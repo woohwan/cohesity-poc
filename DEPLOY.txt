@@ -1,0 +1,125 @@
+================================================================
+  다른 Linux 서버로 이전 및 테스트 절차
+================================================================
+
+[ 옮길 디렉터리 ]
+
+  gaia_ragas/      ← QA 생성 / RAGAS 평가 소스 코드 (.venv 제외)
+  qdrant_rag/      ← Qdrant RAG 파이프라인 소스 코드 (.venv 제외)
+  gaia_dataset/    ← 통합 데이터셋 (111GB, XML/PDF/XLS 원본)
+
+  ※ dataset1/, dataset2/, dataset3/ 는 gaia_dataset/ 으로 이미 통합됨 → 불필요
+  ※ .venv/, qdrant_storage/, output/ 은 타겟에서 재생성
+
+
+[ 1. 파일 전송 (rsync 권장) ]
+
+  rsync -avz --progress \
+    /data/richard/cohesity-poc/gaia_ragas/ \
+    /data/richard/cohesity-poc/qdrant_rag/ \
+    /data/richard/cohesity-poc/gaia_dataset/ \
+    user@target-server:/data/cohesity-poc/
+
+  ※ --progress: 진행률 표시
+  ※ 중단 후 재실행하면 이어서 전송 (중복 전송 없음)
+
+
+[ 2. 타겟 서버에서 환경 설정 ]
+
+  # Python 3.10 이상 필요
+  python3 --version
+
+  # gaia_ragas 가상환경
+  cd /data/cohesity-poc/gaia_ragas
+  python3 -m venv .venv
+  .venv/bin/pip install --upgrade pip
+  .venv/bin/pip install -r requirements.txt
+
+  # qdrant_rag 가상환경
+  cd /data/cohesity-poc/qdrant_rag
+  ./run.sh setup
+
+
+[ 3. Qdrant 인제스트 ]
+
+  cd /data/cohesity-poc/qdrant_rag
+
+  # 테스트 (특정 회사만, 빠름)
+  ./run.sh ingest --company 삼성전자
+
+  # 전체 인제스트 (시간 소요)
+  ./run.sh ingest
+
+
+[ 4. QA 생성 및 평가 ]
+
+  export ANTHROPIC_API_KEY=sk-ant-...
+
+  # [A안] 전체 랜덤 샘플링
+  cd /data/cohesity-poc/gaia_ragas
+  ./run.sh --step sample
+  ./run.sh --step qa
+
+  cd /data/cohesity-poc/qdrant_rag
+  ./run.sh evaluate
+
+  # [B안] 특정 회사 일치 (인제스트와 동일 회사)
+  cd /data/cohesity-poc/gaia_ragas
+  ./run.sh --step sample --company 삼성전자
+  ./run.sh --step qa     --company 삼성전자
+  # → output/qa_pairs_삼성전자.json 생성
+
+  cd /data/cohesity-poc/qdrant_rag
+  ./run.sh ingest   --company 삼성전자
+  ./run.sh evaluate --company 삼성전자 --limit 20
+
+
+[ 5. 동작 확인 ]
+
+  # Qdrant 컬렉션 상태
+  cd /data/cohesity-poc/qdrant_rag
+  ./run.sh info
+
+  # 벡터 검색 테스트
+  ./run.sh search "삼성전자 2021년 영업이익"
+
+  # RAG Q&A 테스트
+  ./run.sh qa "LG화학 배터리 사업 분할 내용은?"
+
+
+================================================================
+  디렉터리 구조 (타겟 기준)
+================================================================
+
+  /data/cohesity-poc/
+  ├── gaia_ragas/
+  │   ├── .venv/                   (타겟에서 생성)
+  │   ├── config.py
+  │   ├── dart_xml_parser.py
+  │   ├── document_sampler.py
+  │   ├── qa_generator.py
+  │   ├── ragas_testset_creator.py
+  │   ├── run_pipeline.py
+  │   ├── run.sh
+  │   ├── requirements.txt
+  │   └── output/                  (타겟에서 생성)
+  │       ├── sampled_documents.json
+  │       ├── qa_pairs.json
+  │       └── qa_pairs_{회사명}.json
+  ├── qdrant_rag/
+  │   ├── .venv/                   (타겟에서 생성)
+  │   ├── config.py
+  │   ├── ingest.py
+  │   ├── retriever.py
+  │   ├── qa_chain.py
+  │   ├── evaluate.py
+  │   ├── run.sh
+  │   ├── requirements.txt
+  │   ├── qdrant_storage/          (인제스트 후 생성)
+  │   └── output/                  (평가 후 생성)
+  └── gaia_dataset/                (전송, 111GB)
+      ├── 000030_우리금융지주/
+      ├── 000060_메리츠화재해상보험/
+      └── ... (275개 회사)
+
+================================================================

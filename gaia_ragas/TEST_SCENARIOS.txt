@@ -1,0 +1,454 @@
+================================================================================
+DART KOSPI200 공시 문서 — Cohesity GAIA / RAGAS 테스트 시나리오
+================================================================================
+작성일   : 2026-06-11
+대상 시스템: Cohesity GAIA (RAG 기반 엔터프라이즈 AI 검색)
+평가 프레임워크: RAGAS (Retrieval-Augmented Generation Assessment)
+데이터 범위: KOSPI200 기업 271개사, 2015~2026년 공시 (총 177,353 파일)
+문서 유형: XML 전자공시, PDF 원문, XLS 재무제표
+--------------------------------------------------------------------------------
+
+[ 목차 ]
+  TC-P  파서 단위 테스트 (Parser Unit Test)
+  TC-S  샘플러 단위 테스트 (Sampler Unit Test)
+  TC-Q  QA 생성 테스트 (QA Generation Test)
+  TC-R  RAGAS 포맷 테스트 (RAGAS Format Test)
+  TC-G  GAIA 쿼리 시나리오 (GAIA Query Scenario)
+  TC-E  엣지 케이스 (Edge Case)
+  TC-I  통합 파이프라인 테스트 (Integration Test)
+
+================================================================================
+TC-P  파서 단위 테스트
+================================================================================
+
+TC-P-01  XML 파서 — 정상 공시 문서
+  입력 : dataset2/dart_kospi200_rag/010130_고려아연/J/20210831_20210831000496/
+         20210831000496.xml
+  검증 :
+    - 텍스트 추출 성공 (None 아님)
+    - 길이 >= 300자
+    - 한글 포함 여부
+    - source_type == 'xml'
+    - 메타데이터: company='고려아연', report_type='J', filing_date='20210831'
+  기대 결과: PASS
+
+TC-P-02  XML 파서 — 비정규 엔티티(&cr;) 포함 문서
+  입력 : &cr; 포함 XML 파일 (DART 특수 엔티티)
+  검증 :
+    - ParseError 없이 정상 파싱
+    - 결과 텍스트에 &cr; 잔여 없음
+    - 의미있는 한글 텍스트 포함
+  기대 결과: PASS
+
+TC-P-03  PDF 파서 — 일반 공시 PDF
+  입력 : dataset2/.../[고려아연]대규모기업집단현황공시...(2021.08.31).pdf
+  검증 :
+    - 텍스트 추출 성공
+    - 목차 또는 본문 내용 포함
+    - 길이 >= 300자
+    - source_type == 'pdf'
+  기대 결과: PASS
+
+TC-P-04  PDF 파서 — XML 없는 PDF-only 공시
+  입력 : dataset2/.../023530_롯데쇼핑/B/20211115_20211115002285/
+         [롯데쇼핑][정정]계약서(계획서)(2021.11.15).pdf
+  검증 :
+    - XML 없는 폴더에서 PDF fallback 정상 동작
+    - 텍스트 추출 성공
+    - source_type == 'pdf'
+  기대 결과: PASS
+
+TC-P-05  XLS 파서 — 재무제표 변환
+  입력 : dataset3/.../010130_고려아연/A/20150331_20150331004325/
+         [고려아연]사업보고서_재무제표(2015.03.31)_ko.xls
+  검증 :
+    - 9개 시트 중 7개 추출 (기본정보/재무상태표 계열/손익계산서 계열/현금흐름표)
+    - 수치가 억원 단위로 변환되어 포함
+    - "연결 재무상태표" 섹션 포함
+    - "연결 포괄손익계산서" 섹션 포함
+    - source_type == 'xls'
+    - 길이 >= 300자
+  기대 결과: PASS
+
+TC-P-06  메타데이터 추출 — 파일 경로 파싱
+  입력 : .../dataset2/dart_kospi200_rag/010130_고려아연/J/20210831_20210831000496/파일.xml
+  검증 :
+    - company_code == '010130'
+    - company == '고려아연'
+    - report_type == 'J'
+    - filing_date == '20210831'
+    - receipt_no == '20210831000496'
+    - dataset == 'dataset2'
+  기대 결과: PASS
+
+TC-P-07  파서 우선순위 — XML+PDF+XLS 공존 폴더
+  입력 : 사업보고서 폴더 (XML + PDF + XLS 모두 존재)
+  검증 :
+    - parse_filing_dir() 결과 source_type == 'xml' (XML 우선)
+    - parse_file(pdf_path) → source_type == 'pdf'
+    - parse_file(xls_path) → source_type == 'xls'
+  기대 결과: PASS
+
+================================================================================
+TC-S  샘플러 단위 테스트
+================================================================================
+
+TC-S-01  균등 배분 — 3개 데이터셋
+  설정 : sample_size=100, seed=42
+  검증 :
+    - dataset1: 33~34개
+    - dataset2: 33개
+    - dataset3: 33~34개
+    - 합계 == 100
+  기대 결과: PASS
+
+TC-S-02  파일 유형 다양성
+  설정 : sample_size=100
+  검증 :
+    - XML 포함 여부
+    - PDF 포함 여부
+    - XLS 포함 여부 (dataset2/3에 XLS 다수)
+    - source_type 종류 >= 2
+  기대 결과: PASS
+
+TC-S-03  최소 텍스트 길이 필터
+  설정 : min_length=300
+  검증 :
+    - 모든 샘플의 text_length >= 300
+    - 빈 텍스트 샘플 없음
+  기대 결과: PASS
+
+TC-S-04  최대 텍스트 길이 절단
+  설정 : max_length=8000
+  검증 :
+    - 모든 샘플의 len(text) <= 8000
+    - 원본이 8000자 초과인 문서는 절단 적용
+  기대 결과: PASS
+
+TC-S-05  재현성 — 동일 시드
+  설정 : seed=42 두 번 실행
+  검증 :
+    - 두 결과의 receipt_no 목록 동일
+  기대 결과: PASS
+
+TC-S-06  재현성 — 다른 시드
+  설정 : seed=42 vs seed=99
+  검증 :
+    - 두 결과의 receipt_no 목록 불일치 (랜덤성 확인)
+  기대 결과: PASS (결과 달라야 함)
+
+================================================================================
+TC-Q  QA 생성 테스트
+================================================================================
+
+TC-Q-01  XML 공시 문서 QA 생성
+  입력 : 사업보고서(A) XML 문서, n_qa=2
+  검증 :
+    - QA 쌍 2개 생성
+    - 각 QA에 question, answer, question_type 필드 존재
+    - question_type in {factual, summary, financial, relationship}
+    - question 길이 >= 10자
+    - answer 길이 >= 10자
+    - 답변이 문서 내용과 관련 있음 (회사명 언급 등)
+  기대 결과: PASS
+
+TC-Q-02  XLS 재무제표 QA 생성
+  입력 : 사업보고서_재무제표 XLS 문서, n_qa=2
+  검증 :
+    - 수치 포함 질문 생성 (매출액, 영업이익, 자산 등)
+    - question_type == 'financial' 포함
+    - 억원 단위 수치 또는 구체적 금액 포함
+  기대 결과: PASS
+
+TC-Q-03  PDF 공시 문서 QA 생성
+  입력 : 주요사항보고서(B) PDF 문서, n_qa=2
+  검증 :
+    - QA 쌍 2개 생성
+    - PDF 추출 텍스트 기반 질문 생성
+  기대 결과: PASS
+
+TC-Q-04  중단 후 재개
+  조건 : qa_pairs.json에 50개 기존 QA 존재
+  검증 :
+    - 기존 doc_id 중복 생성 없음
+    - 나머지 문서에 대해서만 추가 생성
+    - 최종 결과 = 기존 + 신규
+  기대 결과: PASS
+
+TC-Q-05  API 오류 복구
+  조건 : 일시적 Rate Limit 발생 시뮬레이션
+  검증 :
+    - max_retries=3 내에 재시도
+    - 재시도 성공 시 QA 정상 반환
+    - 최종 실패 시 빈 리스트 반환 (예외 전파 없음)
+  기대 결과: PASS
+
+TC-Q-06  JSON 파싱 안정성
+  조건 : LLM이 코드블록(```json ... ```)으로 응답
+  검증 :
+    - 코드블록 제거 후 JSON 파싱 성공
+  기대 결과: PASS
+
+================================================================================
+TC-R  RAGAS 포맷 테스트
+================================================================================
+
+TC-R-01  필수 필드 존재
+  검증 (샘플 1개 기준):
+    - user_input 존재 및 비어있지 않음
+    - reference 존재 및 비어있지 않음
+    - retrieved_contexts 존재 (list 타입)
+    - response 존재 (빈 문자열 허용)
+  기대 결과: PASS
+
+TC-R-02  최소 샘플 수
+  설정 : 100문서 × 2QA = 200개 QA 쌍
+  검증 :
+    - ragas_testset.json의 total_samples >= 100
+  기대 결과: PASS
+
+TC-R-03  GAIA 평가 CSV 구조
+  검증 :
+    - 컬럼: no, question, expected_answer, question_type,
+             doc_id, company, company_code, report_type,
+             filing_date, dataset, source_type
+    - UTF-8 BOM 인코딩 (엑셀 한글 호환)
+    - 행 수 == QA 쌍 수
+  기대 결과: PASS
+
+TC-R-04  HuggingFace Dataset 저장
+  검증 :
+    - ragas_testset_hf/ 디렉터리 생성
+    - Dataset.load_from_disk() 로드 성공
+    - 컬럼: user_input, reference, retrieved_contexts, response
+  기대 결과: PASS
+
+TC-R-05  소스 유형별 분포 확인
+  검증 :
+    - CSV source_type 컬럼에 xml, pdf, xls 모두 포함
+    - 특정 유형에 100% 편중 없음
+  기대 결과: PASS
+
+================================================================================
+TC-G  GAIA 쿼리 시나리오
+================================================================================
+[ 전제: 공시 문서가 Cohesity GAIA에 인덱싱 완료된 상태 ]
+[ 평가 기준: Containment >= 0.5, RAGAS faithfulness >= 0.7 ]
+
+TC-G-01  보고서 유형별 쿼리 — 사업보고서(A)
+  질문 유형: 요약
+  예시 질문:
+    - "삼성전자의 2023년 사업보고서에서 주요 사업 부문은?"
+    - "현대자동차의 최근 사업보고서 기준 종업원 수는?"
+  검증:
+    - GAIA 응답에 회사명 및 관련 키워드 포함
+    - retrieved_contexts에 사업보고서 출처 포함
+  목표: faithfulness >= 0.7
+
+TC-G-02  보고서 유형별 쿼리 — 공정위공시(J)
+  질문 유형: 관계 파악
+  예시 질문:
+    - "고려아연의 계열회사 간 주식소유 현황에서 서린상사의 지분율은?"
+    - "영풍그룹 기업집단의 대표회사는?"
+  검증:
+    - 지분율, 계열사명 등 구체적 수치/명칭 포함
+  목표: faithfulness >= 0.7
+
+TC-G-03  보고서 유형별 쿼리 — 주요사항보고서(B)
+  질문 유형: 사실 확인
+  예시 질문:
+    - "롯데쇼핑의 2021년 정정 계약서 공시의 정정 대상 공시서류는?"
+    - "SK케미칼의 유상증자 결정 주요사항보고서에서 신주 발행 목적은?"
+  검증:
+    - 정정 내용, 결정 사항 등 핵심 팩트 포함
+  목표: answer_relevancy >= 0.6
+
+TC-G-04  재무제표 수치 쿼리 (XLS 기반)
+  질문 유형: financial
+  예시 질문:
+    - "고려아연의 2014년 연결 재무상태표 기준 유동자산 총액은?"
+    - "한국전력공사의 2023년 3분기 매출액은?"
+    - "현대자동차의 직전 사업연도 대비 영업이익 증감은?"
+  검증:
+    - 수치 포함 응답 (억원 단위 또는 원 단위)
+    - 기준 날짜 명시
+  목표: faithfulness >= 0.8, exact_match 수치 일치
+
+TC-G-05  기간별 쿼리 — 연도 범위 지정
+  질문 유형: 사실 확인 + 시간 조건
+  예시 질문:
+    - "2021년에 제출된 기아의 공정위공시 내용은?"
+    - "2015~2020년 사이 고려아연이 제출한 사업보고서 건수는?"
+  검증:
+    - 응답이 지정 기간 데이터 참조
+    - 다른 연도 데이터 혼입 없음
+  목표: context_precision >= 0.6
+
+TC-G-06  회사별 쿼리 — 대기업 그룹
+  예시 질문:
+    - "한화그룹 계열사 중 DART에 공시된 회사 목록은?"
+    - "삼성전자와 삼성생명의 공시 유형별 건수 비교"
+  검증:
+    - 그룹사 인식 및 연관 회사 응답
+  목표: context_recall >= 0.5
+
+TC-G-07  다중 문서 종합 쿼리
+  질문 유형: 관계 파악 + 요약
+  예시 질문:
+    - "SK텔레콤의 공정위공시와 사업보고서에서 공통적으로 언급되는 계열사는?"
+    - "현대모비스의 최근 3개년 영업이익 추이는?"
+  검증:
+    - 복수 문서 내용 종합
+    - 출처 구분 명확
+  목표: faithfulness >= 0.7, context_recall >= 0.6
+
+TC-G-08  문서 유형 혼합 쿼리 (XML + PDF + XLS)
+  질문 유형: 종합
+  예시 질문:
+    - "한국전력공사의 분기보고서에서 재무제표상 영업손실과 공시 본문의
+       손실 원인 설명을 종합하면?"
+  검증:
+    - XLS(수치) + XML/PDF(설명) 복합 참조
+    - 수치와 설명이 일치
+  목표: faithfulness >= 0.7
+
+================================================================================
+TC-E  엣지 케이스
+================================================================================
+
+TC-E-01  텍스트 추출 불가 PDF (스캔 이미지 PDF)
+  입력 : pdfplumber로 텍스트 추출 시 빈 문자열 반환
+  검증 :
+    - parse_file() → (None, 'none') 반환
+    - 샘플러에서 해당 파일 건너뜀
+    - 프로그램 비정상 종료 없음
+  기대 결과: PASS
+
+TC-E-02  손상된 XLS 파일
+  입력 : xlrd.open_workbook() 예외 발생 케이스
+  검증 :
+    - parse_xls_text() → None 반환
+    - 예외 전파 없음
+  기대 결과: PASS
+
+TC-E-03  텍스트가 극히 짧은 공시 (< 300자)
+  입력 : 참조 공시 (본문 없이 다른 공시 링크만 존재)
+  검증 :
+    - min_length 필터에 의해 샘플링 제외
+    - 해당 문서에 대한 QA 생성 시도 없음
+  기대 결과: PASS
+
+TC-E-04  한글 깨짐 없음 확인
+  검증 :
+    - 모든 출력 파일(JSON, CSV)에서 한글 정상 표시
+    - CSV UTF-8 BOM으로 엑셀 호환
+    - JSON ensure_ascii=False 적용
+  기대 결과: PASS
+
+TC-E-05  동일 문서 중복 샘플링 방지
+  검증 :
+    - 샘플 100개의 file_path 모두 고유
+  기대 결과: PASS
+
+TC-E-06  QA 생성 시 비어있는 텍스트 처리
+  입력 : text = "" 또는 text가 공백만 있는 경우
+  검증 :
+    - 해당 문서 QA 생성 건너뜀
+    - 오류 없이 다음 문서 처리
+  기대 결과: PASS
+
+================================================================================
+TC-I  통합 파이프라인 테스트
+================================================================================
+
+TC-I-01  Mini 파이프라인 (API 사용, 소규모)
+  설정 : sample_size=5, qa_per_doc=2
+  실행 : python test_pipeline.py --stage all
+  검증 :
+    - sampled_documents.json 생성 (5개)
+    - qa_pairs.json 생성 (>= 5개)
+    - ragas_testset.json 생성 (필수 필드 존재)
+    - gaia_eval.csv 생성 (5+ 행)
+    - 전체 실행 시간 < 3분
+  기대 결과: PASS
+
+TC-I-02  Full 파이프라인 (100문서)
+  설정 : sample_size=100, qa_per_doc=2
+  실행 : ./run.sh
+  검증 :
+    - sampled_documents.json: 100개
+    - qa_pairs.json: >= 100개 (일부 생성 실패 허용)
+    - ragas_testset.json: total_samples >= 100
+    - gaia_eval.csv: >= 100행
+    - 전체 실행 시간 < 30분
+  기대 결과: PASS
+
+TC-I-03  중단 후 재개 (재현성)
+  시나리오 :
+    1. ./run.sh --step qa  실행 중 50번째에서 강제 종료 (Ctrl+C)
+    2. 동일 명령 재실행
+  검증 :
+    - 기존 50개 QA 유지
+    - 나머지 50개만 추가 생성
+    - 최종 결과 == 처음부터 실행한 결과와 동일
+  기대 결과: PASS
+
+TC-I-04  RAGAS 평가 실행 (GAIA API 필요)
+  전제 : GAIA 클러스터 연결 및 문서 인덱싱 완료
+  실행 : ./run.sh --step evaluate
+  검증 :
+    - gaia_eval_results.csv 생성
+    - ragas_eval_results.csv 생성
+    - faithfulness 컬럼 존재 및 0~1 범위
+    - answer_relevancy 컬럼 존재 및 0~1 범위
+    - context_precision 컬럼 존재 및 0~1 범위
+    - context_recall 컬럼 존재 및 0~1 범위
+  목표 수치 :
+    - Exact Match >= 20%
+    - Avg Containment >= 0.4
+    - faithfulness >= 0.7
+    - answer_relevancy >= 0.6
+    - context_precision >= 0.5
+    - context_recall >= 0.5
+  기대 결과: PASS
+
+================================================================================
+합격 기준 요약 (Pass Criteria Summary)
+================================================================================
+
+  카테고리        | 테스트 수 | 합격 기준
+  --------------- | --------- | -----------------------------------------
+  TC-P 파서       |     7     | 전체 PASS (파싱 실패 0)
+  TC-S 샘플러     |     6     | 전체 PASS
+  TC-Q QA 생성    |     6     | 5/6 이상 PASS (API 의존 테스트 제외)
+  TC-R RAGAS 포맷 |     5     | 전체 PASS
+  TC-G GAIA 쿼리  |     8     | 목표 메트릭 기준 6/8 이상 달성
+  TC-E 엣지케이스 |     6     | 전체 PASS
+  TC-I 통합       |     4     | TC-I-01~03 PASS, TC-I-04 목표 수치 달성
+
+================================================================================
+실행 명령어 요약
+================================================================================
+
+  # Stage 1: 파서/샘플러 (API 불필요)
+  .venv/bin/python test_pipeline.py --stage parse
+
+  # Stage 2: QA 생성 (Claude API 필요)
+  export ANTHROPIC_API_KEY=sk-ant-...
+  .venv/bin/python test_pipeline.py --stage qa
+
+  # Stage 3: RAGAS 포맷
+  .venv/bin/python test_pipeline.py --stage testset
+
+  # Stage 4: GAIA 연결 (클러스터 필요)
+  export COHESITY_CLUSTER_URL=https://<cluster-ip>
+  export COHESITY_API_TOKEN=<bearer-token>
+  .venv/bin/python test_pipeline.py --stage gaia
+
+  # 전체 Mini 파이프라인
+  .venv/bin/python test_pipeline.py --stage all
+
+  # 전체 Full 파이프라인 (100문서)
+  ./run.sh
+
+================================================================================
