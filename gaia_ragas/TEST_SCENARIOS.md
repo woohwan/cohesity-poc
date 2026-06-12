@@ -30,7 +30,7 @@
 
 | | |
 |-|-|
-| **입력** | `dataset2/.../010130_고려아연/J/20210831_20210831000496/20210831000496.xml` |
+| **입력** | `gaia_dataset/010130_고려아연/고려아연_20210831_공정위공시_000496.xml` |
 | **기대 결과** | PASS |
 
 **검증 항목**
@@ -38,7 +38,7 @@
 - [ ] 길이 >= 300자
 - [ ] 한글 포함
 - [ ] `source_type == 'xml'`
-- [ ] `company='고려아연'`, `report_type='J'`, `filing_date='20210831'`
+- [ ] `company='고려아연'`, `filing_date='20210831'`
 
 ---
 
@@ -75,7 +75,7 @@
 
 | | |
 |-|-|
-| **입력** | `023530_롯데쇼핑/B/20211115_20211115002285/[롯데쇼핑][정정]계약서(계획서)(2021.11.15).pdf` |
+| **입력** | `gaia_dataset/023530_롯데쇼핑/롯데쇼핑_20211115_주요사항보고서_002285.pdf` |
 | **기대 결과** | PASS |
 
 **검증 항목**
@@ -89,7 +89,7 @@
 
 | | |
 |-|-|
-| **입력** | `010130_고려아연/A/20150331_20150331004325/[고려아연]사업보고서_재무제표(2015.03.31)_ko.xls` |
+| **입력** | `gaia_dataset/010130_고려아연/고려아연_20150331_사업보고서_004325.xls` |
 | **기대 결과** | PASS |
 
 **검증 항목**
@@ -105,7 +105,7 @@
 
 | | |
 |-|-|
-| **입력** | `.../dataset2/dart_kospi200_rag/010130_고려아연/J/20210831_20210831000496/파일.xml` |
+| **입력** | `gaia_dataset/010130_고려아연/고려아연_20210831_공정위공시_000496.xml` |
 | **기대 결과** | PASS |
 
 **검증 항목**
@@ -114,10 +114,10 @@
 |------|--------|
 | `company_code` | `010130` |
 | `company` | `고려아연` |
-| `report_type` | `J` |
+| `report_type` | `J` (공정위공시 역매핑) |
 | `filing_date` | `20210831` |
-| `receipt_no` | `20210831000496` |
-| `dataset` | `dataset2` |
+| `receipt_no` | `000496` |
+| `dataset` | `gaia_dataset` |
 
 ---
 
@@ -137,18 +137,18 @@
 
 ## TC-S  샘플러 단위 테스트
 
-### TC-S-01  균등 배분 — 3개 데이터셋
+### TC-S-01  gaia_dataset 단일 디렉터리 샘플링
 
 | 설정 | 값 |
 |------|----|
 | `sample_size` | 100 |
 | `seed` | 42 |
+| 소스 | `gaia_dataset/` (dataset1/2/3 통합본) |
 
 **검증 항목**
-- [ ] `dataset1`: 33~34개
-- [ ] `dataset2`: 33개
-- [ ] `dataset3`: 33~34개
 - [ ] 합계 == 100
+- [ ] `dataset` 필드값 == `gaia_dataset`
+- [ ] 여러 회사의 문서가 섞여 있음 (단일 회사 집중 아님)
 
 ---
 
@@ -157,7 +157,7 @@
 **검증 항목**
 - [ ] XML 포함
 - [ ] PDF 포함
-- [ ] XLS 포함 (dataset2/3에 각 1,940~1,951건 존재)
+- [ ] XLS 포함 (gaia_dataset 내 4,182개 존재)
 - [ ] `source_type` 종류 >= 2
 
 ---
@@ -439,6 +439,8 @@ python test_pipeline.py --stage all
 
 ## 실행 명령어 요약
 
+### 로컬 실행 (venv)
+
 ```bash
 cd /data/richard/cohesity-poc/gaia_ragas
 
@@ -452,14 +454,43 @@ export ANTHROPIC_API_KEY=sk-ant-...
 # Stage 3: RAGAS 포맷 검증 (~3초)
 .venv/bin/python test_pipeline.py --stage testset
 
-# Stage 4: GAIA 클러스터 연결 확인
-export COHESITY_CLUSTER_URL=https://<cluster-ip>
-export COHESITY_API_TOKEN=<bearer-token>
-.venv/bin/python test_pipeline.py --stage gaia
-
 # 전체 Mini 파이프라인 (5문서, ~2분)
 .venv/bin/python test_pipeline.py --stage all
 
-# 전체 Full 파이프라인 (100문서, ~30분)
+# 전체 Full 파이프라인 — A안: 전체 랜덤
 ./run.sh
+
+# 전체 Full 파이프라인 — B안: 특정 회사
+./run.sh --step sample --company 삼성전자
+./run.sh --step qa     --company 삼성전자
+```
+
+### Docker 실행 (컨테이너)
+
+```bash
+cd /data/richard/cohesity-poc
+
+# 사전: .env 파일에 ANTHROPIC_API_KEY 설정
+# docker compose build (최초 1회)
+
+# A안: 전체 랜덤 샘플링
+docker compose run --rm gaia-ragas ./run.sh --step sample
+docker compose run --rm gaia-ragas ./run.sh --step qa
+docker compose run --rm qdrant-rag ./run.sh ingest
+docker compose run --rm qdrant-rag ./run.sh evaluate
+
+# B안: 특정 회사 (권장)
+docker compose run --rm gaia-ragas ./run.sh --step sample --company 삼성전자
+docker compose run --rm gaia-ragas ./run.sh --step qa     --company 삼성전자
+docker compose run --rm qdrant-rag ./run.sh ingest        --company 삼성전자
+docker compose run --rm qdrant-rag ./run.sh evaluate      --company 삼성전자 --limit 20
+
+# 검색 / Q&A 단독 테스트
+docker compose run --rm qdrant-rag ./run.sh search "삼성전자 2021년 영업이익"
+docker compose run --rm qdrant-rag ./run.sh qa "LG화학 배터리 사업 분할 내용은?"
+
+# GAIA 클러스터 평가 (별도 클러스터 필요)
+export COHESITY_CLUSTER_URL=https://<cluster-ip>
+export COHESITY_API_TOKEN=<bearer-token>
+docker compose run --rm gaia-ragas ./run.sh --step evaluate
 ```

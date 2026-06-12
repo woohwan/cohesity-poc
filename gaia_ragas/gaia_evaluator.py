@@ -28,7 +28,7 @@ from typing import Optional
 import requests
 import pandas as pd
 
-from config import OUTPUT_DIR
+from config import OUTPUT_DIR, CLAUDE_MODEL
 
 
 CLUSTER_URL = os.environ.get("COHESITY_CLUSTER_URL", "")
@@ -196,7 +196,7 @@ def run_ragas_evaluation(
         from langchain_anthropic import ChatAnthropic
         from ragas.llms import LangchainLLMWrapper
 
-        llm = LangchainLLMWrapper(ChatAnthropic(model="claude-sonnet-4-6"))
+        llm = LangchainLLMWrapper(ChatAnthropic(model=CLAUDE_MODEL))
     except Exception as e:
         print(f"[WARN] LLM 설정 실패: {e}. RAGAS 기본 LLM을 사용합니다.")
         llm = None

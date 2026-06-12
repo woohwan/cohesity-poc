@@ -14,7 +14,7 @@ from typing import Optional
 import anthropic
 from tqdm import tqdm
 
-from config import ANTHROPIC_API_KEY, QA_PER_DOC, OUTPUT_DIR, REPORT_TYPE_MAP
+from config import ANTHROPIC_API_KEY, CLAUDE_MODEL, QA_PER_DOC, OUTPUT_DIR, REPORT_TYPE_MAP
 
 
 QA_SYSTEM_PROMPT = """당신은 한국 금융 공시 문서(DART)를 분석하는 전문가입니다.
@@ -79,7 +79,7 @@ def generate_qa_for_doc(
     for attempt in range(max_retries):
         try:
             response = client.messages.create(
-                model="claude-sonnet-4-6",
+                model=CLAUDE_MODEL,
                 max_tokens=1024,
                 system=QA_SYSTEM_PROMPT,
                 messages=[{"role": "user", "content": prompt}],

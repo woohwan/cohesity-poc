@@ -14,6 +14,9 @@
 #   ./run.sh evaluate --limit 20                    RAGAS 평가 (20개)
 #   ./run.sh evaluate --company 삼성전자            특정 회사 QA만 평가
 #   ./run.sh evaluate --company 삼성전자 --limit 20 회사 필터 + 개수 제한
+#   ./run.sh qa-gen                                 QA 쌍 생성 (gaia_dataset → output/)
+#   ./run.sh qa-gen --company 삼성전자              특정 회사 QA 생성
+#   ./run.sh qa-gen --sample 50 --qa-per-doc 3      샘플 수 / 문서당 QA 수 조정
 #   ./run.sh info                                   컬렉션 상태 확인
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -41,8 +44,8 @@ else
     exit 1
 fi
 
-# ANTHROPIC_API_KEY 확인 (qa, evaluate만)
-if [[ "${1}" =~ ^(qa|evaluate)$ ]] && [ -z "$ANTHROPIC_API_KEY" ]; then
+# ANTHROPIC_API_KEY 확인 (qa, qa-gen, evaluate만)
+if [[ "${1}" =~ ^(qa|qa-gen|evaluate)$ ]] && [ -z "$ANTHROPIC_API_KEY" ]; then
     echo "[ERROR] ANTHROPIC_API_KEY 환경 변수를 설정하세요:"
     echo "  export ANTHROPIC_API_KEY=sk-ant-..."
     exit 1
@@ -76,6 +79,10 @@ for r in results:
         shift
         "$PYTHON" evaluate.py "$@"
         ;;
+    qa-gen)
+        shift
+        "$PYTHON" qa_gen.py "$@"
+        ;;
     info)
         "$PYTHON" -c "
 import sys; sys.path.insert(0, '.')
@@ -86,17 +93,19 @@ for k, v in d.items():
 "
         ;;
     *)
-        echo "사용법: ./run.sh {setup|ingest|search|qa|evaluate|info} [옵션]"
+        echo "사용법: ./run.sh {setup|ingest|search|qa|qa-gen|evaluate|info} [옵션]"
         echo ""
-        echo "  setup                                 가상환경 및 패키지 설치"
+        echo "  setup                                       가상환경 및 패키지 설치"
         echo "  ingest [--limit N] [--reset] [--company 회사명]"
         echo "  search \"질문\""
         echo "  qa \"질문\" [--company 회사명] [--top-k N]"
+        echo "  qa-gen [--sample N] [--qa-per-doc N] [--company 회사명]"
         echo "  evaluate [--limit N] [--company 회사명] [--out 파일명]"
-        echo "  info                               컬렉션 상태"
+        echo "  info                                        컬렉션 상태"
         echo ""
         echo "  ※ 소규모 테스트 권장 순서:"
-        echo "    ./run.sh ingest --company 삼성전자"
+        echo "    ./run.sh ingest   --company 삼성전자"
+        echo "    ./run.sh qa-gen   --company 삼성전자"
         echo "    ./run.sh evaluate --company 삼성전자 --limit 20"
         exit 1
         ;;

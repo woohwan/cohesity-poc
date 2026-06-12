@@ -13,6 +13,16 @@ RUN pip install --no-cache-dir --upgrade pip \
 
 COPY gaia_ragas/ .
 
+ARG UID=1000
+ARG GID=1000
+RUN groupadd -f -g ${GID} appgroup && \
+    useradd -u ${UID} -g ${GID} -m -d /home/appuser appuser && \
+    mkdir -p /app/output && \
+    chown -R appuser:appgroup /app
+
+USER appuser
+ENV HOME=/home/appuser
+
 ENV PYTHONUNBUFFERED=1
 
 CMD ["bash"]

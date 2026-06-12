@@ -1,0 +1,19 @@
+# 대용량 데이터 — Docker 빌드 컨텍스트에서 제외
+gaia_dataset/
+*.tar
+*.log
+
+# 벡터 DB / 실행 결과 — 컨테이너 내부에서 생성
+qdrant_rag/qdrant_storage/
+qdrant_rag/output/
+gaia_ragas/output/
+
+# 로컬 가상환경 및 캐시
+**/.venv/
+**/__pycache__/
+**/*.pyc
+
+# IDE / 시스템
+.vscode/
+.claude/
+.git/

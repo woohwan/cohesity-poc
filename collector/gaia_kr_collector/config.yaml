@@ -1,0 +1,98 @@
+# Gaia Korean dataset collector config
+# Unit examples: 10GB, 500MB, 1024KB
+root_dir: ./gaia_test_200g_kr80_no_ocr
+user_agent: "gaia-test-collector/1.0 (+internal-poc; respect robots; contact: your-email@example.com)"
+request_timeout_sec: 30
+sleep_sec: 1.0
+max_retries: 3
+
+# Default target matching the requested no SEC / no DART / no AI Hub OCR plan.
+quotas:
+  data_go_kr: 50GB
+  gov_policy_reports: 45GB
+  kosis_statistics: 25GB
+  national_assembly_reports: 20GB
+  common_crawl_ko_text: 15GB
+  kowiki_knowledge: 10GB
+  english_reference: 35GB
+
+# Keep only file types Gaia can ingest directly or with minimal handling.
+allowed_extensions:
+  - .pdf
+  - .csv
+  - .xlsx
+  - .xls
+  - .xml
+  - .json
+  - .txt
+  - .html
+  - .htm
+  - .zip
+  - .gz
+  - .bz2
+
+# Crawl depth is intentionally conservative. Increase slowly.
+generic_crawl:
+  max_pages_per_site: 2000
+  max_depth: 3
+
+# Data.go.kr pages are dynamic and may require manual seed URLs/API approval.
+# Add specific fileData.do / standard.do / download URLs here when needed.
+data_go_kr:
+  enabled: true
+  seed_urls:
+    - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&keyword=%ED%86%B5%EA%B3%84"
+    - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&keyword=%EB%B3%B4%EA%B1%B4"
+    - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&keyword=%EA%B5%90%ED%86%B5"
+    - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&keyword=%EC%82%B0%EC%97%85"
+    - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&keyword=%EB%B3%B5%EC%A7%80"
+
+# Government / public research PDF sources. Add/remove as needed.
+gov_policy_reports:
+  enabled: true
+  seed_urls:
+    - "https://www.kdi.re.kr/research/reportList"
+    - "https://www.kiet.re.kr/research/reportList"
+    - "https://www.kisdi.re.kr/report/list.do"
+    - "https://www.krihs.re.kr/publica/reportList.do"
+    - "https://www.kihasa.re.kr/publish/report/list"
+    - "https://www.moef.go.kr/nw/mosfnw/mvpnesrch.do"
+    - "https://www.motie.go.kr/kor/article/ATCL3f49a5a8c"
+    - "https://www.molit.go.kr/USR/policyData/m_34681/lst.jsp"
+    - "https://www.mohw.go.kr/board.es?mid=a10411010100&bid=0019"
+
+kosis_statistics:
+  enabled: true
+  # KOSIS OpenAPI requires an API key for many calls.
+  # Put it in env var KOSIS_API_KEY if you want API export mode.
+  seed_urls:
+    - "https://kosis.kr/statHtml/statHtml.do"
+    - "https://kosis.kr/publication/publicationThema.do"
+
+national_assembly_reports:
+  enabled: true
+  seed_urls:
+    - "https://www.nars.go.kr/report/list.do?cmsCode=CM0043"
+    - "https://www.nabo.go.kr/Sub/01Report/01_01_Board.jsp"
+    - "https://www.nabo.go.kr/ko/report/budgetAllList.do?key=2509090001"
+
+common_crawl_ko_text:
+  enabled: true
+  # Latest known 2026 crawl. Change to a newer crawl path if desired.
+  crawl_id: "CC-MAIN-2026-12"
+  max_wet_files: 200
+  min_hangul_ratio: 0.15
+  output_chunk_mb: 128
+
+kowiki_knowledge:
+  enabled: true
+  urls:
+    - "https://dumps.wikimedia.org/kowiki/latest/kowiki-latest-pages-articles-multistream.xml.bz2"
+    - "https://dumps.wikimedia.org/kowiki/latest/kowiki-latest-pages-articles-multistream-index.txt.bz2"
+
+english_reference:
+  enabled: true
+  # English reference collection is intentionally left as URL-seed based.
+  # arXiv bulk needs AWS requester-pays; PMC OA is better via official FTP lists.
+  seed_urls:
+    - "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_bulk/"

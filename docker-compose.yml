@@ -15,12 +15,16 @@ services:
     build:
       context: .
       dockerfile: gaia_ragas/Dockerfile
+      args:
+        UID: ${HOST_UID:-1000}
+        GID: ${HOST_GID:-1000}
     container_name: cohesity-gaia-ragas
     volumes:
       - ./gaia_dataset:/data/gaia_dataset:ro   # dataset1/2/3 통합본
       - ./gaia_ragas/output:/app/output
     environment:
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN:-}
       - GAIA_DATASET_DIR=/data/gaia_dataset
       - OUTPUT_DIR=/app/output
     stdin_open: true
@@ -31,16 +35,22 @@ services:
     build:
       context: .
       dockerfile: qdrant_rag/Dockerfile
+      args:
+        UID: ${HOST_UID:-1000}
+        GID: ${HOST_GID:-1000}
     container_name: cohesity-qdrant-rag
     volumes:
       - ./gaia_dataset:/data/gaia_dataset:ro
-      - ./gaia_ragas/output:/data/gaia_ragas/output:ro
       - ./qdrant_rag/output:/app/output
+      - ${HOME}/.cache/huggingface:/app/hf_cache
     environment:
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN:-}
+      - EMBED_MODEL=${EMBED_MODEL:-jhgan/ko-sroberta-multitask}
+      - EMBED_DIMENSION=${EMBED_DIMENSION:-768}
+      - HF_HOME=/app/hf_cache
       - QDRANT_URL=http://qdrant:6333
       - GAIA_DATASET_DIR=/data/gaia_dataset
-      - GAIA_RAGAS_DIR=/data/gaia_ragas
       - OUTPUT_DIR=/app/output
     depends_on:
       - qdrant

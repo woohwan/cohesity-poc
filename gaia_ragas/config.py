@@ -27,8 +27,9 @@ OUTPUT_DIR = Path(os.environ.get("OUTPUT_DIR",
                   str(Path(__file__).parent / "output")))
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-# Anthropic API 키
+# Anthropic API
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
+CLAUDE_MODEL      = os.environ.get("CLAUDE_MODEL", "claude-sonnet-4-6")
 
 # 샘플링 설정
 SAMPLE_SIZE = 100          # 총 샘플 문서 수

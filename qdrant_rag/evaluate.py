@@ -18,7 +18,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-from config import GAIA_RAGAS_DIR, OUTPUT_DIR, TOP_K
+from config import OUTPUT_DIR, TOP_K
 from qa_chain import ask
 
 def _resolve_qa_path(company_filter: str = None) -> Path:
@@ -26,7 +26,7 @@ def _resolve_qa_path(company_filter: str = None) -> Path:
     회사 필터가 있으면 qa_pairs_{company}.json 우선 탐색.
     없으면 qa_pairs.json 사용.
     """
-    output_dir = GAIA_RAGAS_DIR / "output"
+    output_dir = OUTPUT_DIR
     if company_filter:
         company_path = output_dir / f"qa_pairs_{company_filter}.json"
         if company_path.exists():
@@ -40,9 +40,8 @@ def load_qa_pairs(limit: int = None, company_filter: str = None) -> list[dict]:
     qa_path = _resolve_qa_path(company_filter)
     if not qa_path.exists():
         print(f"[ERROR] QA 파일이 없습니다: {qa_path}")
-        print("  gaia_ragas/ 에서 먼저 실행하세요:")
-        print("    ./run.sh --step sample [--company 회사명]")
-        print("    ./run.sh --step qa     [--company 회사명]")
+        print("  먼저 QA 생성을 실행하세요:")
+        print("    ./run.sh qa-gen [--company 회사명]")
         sys.exit(1)
     with open(qa_path, encoding="utf-8") as f:
         pairs = json.load(f)
@@ -81,11 +80,14 @@ def run_eval(qa_pairs: list[dict], company_filter: str = None) -> list[dict]:
 
 
 def compute_ragas(rows: list[dict]) -> dict:
-    """RAGAS 메트릭 계산."""
+    """RAGAS 메트릭 계산 (4가지: faithfulness, answer_relevancy, context_precision, context_recall)."""
     try:
         from ragas import evaluate
         from ragas.dataset_schema import SingleTurnSample, EvaluationDataset
-        from ragas.metrics import faithfulness, answer_relevancy
+        from ragas.metrics import (
+            faithfulness, answer_relevancy,
+            context_precision, context_recall,
+        )
         from langchain_anthropic import ChatAnthropic
         from ragas.llms import LangchainLLMWrapper
 
@@ -103,7 +105,7 @@ def compute_ragas(rows: list[dict]) -> dict:
             ))
 
         dataset = EvaluationDataset(samples=samples)
-        metrics = [faithfulness, answer_relevancy]
+        metrics = [faithfulness, answer_relevancy, context_precision, context_recall]
 
         # LLM 주입
         for m in metrics:

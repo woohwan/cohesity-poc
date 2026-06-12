@@ -22,14 +22,13 @@ TC-P  파서 단위 테스트
 ================================================================================
 
 TC-P-01  XML 파서 — 정상 공시 문서
-  입력 : dataset2/dart_kospi200_rag/010130_고려아연/J/20210831_20210831000496/
-         20210831000496.xml
+  입력 : gaia_dataset/010130_고려아연/고려아연_20210831_공정위공시_000496.xml
   검증 :
     - 텍스트 추출 성공 (None 아님)
     - 길이 >= 300자
     - 한글 포함 여부
     - source_type == 'xml'
-    - 메타데이터: company='고려아연', report_type='J', filing_date='20210831'
+    - 메타데이터: company='고려아연', filing_date='20210831'
   기대 결과: PASS
 
 TC-P-02  XML 파서 — 비정규 엔티티(&cr;) 포함 문서
@@ -41,7 +40,7 @@ TC-P-02  XML 파서 — 비정규 엔티티(&cr;) 포함 문서
   기대 결과: PASS
 
 TC-P-03  PDF 파서 — 일반 공시 PDF
-  입력 : dataset2/.../[고려아연]대규모기업집단현황공시...(2021.08.31).pdf
+  입력 : gaia_dataset/010130_고려아연/고려아연_20210831_공정위공시_000496.pdf
   검증 :
     - 텍스트 추출 성공
     - 목차 또는 본문 내용 포함
@@ -50,8 +49,7 @@ TC-P-03  PDF 파서 — 일반 공시 PDF
   기대 결과: PASS
 
 TC-P-04  PDF 파서 — XML 없는 PDF-only 공시
-  입력 : dataset2/.../023530_롯데쇼핑/B/20211115_20211115002285/
-         [롯데쇼핑][정정]계약서(계획서)(2021.11.15).pdf
+  입력 : gaia_dataset/023530_롯데쇼핑/롯데쇼핑_20211115_주요사항보고서_002285.pdf
   검증 :
     - XML 없는 폴더에서 PDF fallback 정상 동작
     - 텍스트 추출 성공
@@ -59,8 +57,7 @@ TC-P-04  PDF 파서 — XML 없는 PDF-only 공시
   기대 결과: PASS
 
 TC-P-05  XLS 파서 — 재무제표 변환
-  입력 : dataset3/.../010130_고려아연/A/20150331_20150331004325/
-         [고려아연]사업보고서_재무제표(2015.03.31)_ko.xls
+  입력 : gaia_dataset/010130_고려아연/고려아연_20150331_사업보고서_004325.xls
   검증 :
     - 9개 시트 중 7개 추출 (기본정보/재무상태표 계열/손익계산서 계열/현금흐름표)
     - 수치가 억원 단위로 변환되어 포함
@@ -71,14 +68,14 @@ TC-P-05  XLS 파서 — 재무제표 변환
   기대 결과: PASS
 
 TC-P-06  메타데이터 추출 — 파일 경로 파싱
-  입력 : .../dataset2/dart_kospi200_rag/010130_고려아연/J/20210831_20210831000496/파일.xml
+  입력 : gaia_dataset/010130_고려아연/고려아연_20210831_공정위공시_000496.xml
   검증 :
     - company_code == '010130'
     - company == '고려아연'
-    - report_type == 'J'
+    - report_type == 'J' (공정위공시 역매핑)
     - filing_date == '20210831'
-    - receipt_no == '20210831000496'
-    - dataset == 'dataset2'
+    - receipt_no == '000496'
+    - dataset == 'gaia_dataset'
   기대 결과: PASS
 
 TC-P-07  파서 우선순위 — XML+PDF+XLS 공존 폴더
@@ -93,13 +90,12 @@ TC-P-07  파서 우선순위 — XML+PDF+XLS 공존 폴더
 TC-S  샘플러 단위 테스트
 ================================================================================
 
-TC-S-01  균등 배분 — 3개 데이터셋
-  설정 : sample_size=100, seed=42
+TC-S-01  gaia_dataset 단일 디렉터리 샘플링
+  설정 : sample_size=100, seed=42, 소스=gaia_dataset/
   검증 :
-    - dataset1: 33~34개
-    - dataset2: 33개
-    - dataset3: 33~34개
     - 합계 == 100
+    - dataset 필드값 == 'gaia_dataset'
+    - 여러 회사 문서가 섞여 있음 (단일 회사 집중 아님)
   기대 결과: PASS
 
 TC-S-02  파일 유형 다양성
@@ -107,7 +103,7 @@ TC-S-02  파일 유형 다양성
   검증 :
     - XML 포함 여부
     - PDF 포함 여부
-    - XLS 포함 여부 (dataset2/3에 XLS 다수)
+    - XLS 포함 여부 (gaia_dataset 내 4,182개 존재)
     - source_type 종류 >= 2
   기대 결과: PASS
 
@@ -430,6 +426,8 @@ TC-I-04  RAGAS 평가 실행 (GAIA API 필요)
 실행 명령어 요약
 ================================================================================
 
+  [ 로컬 실행 (venv) ]
+
   # Stage 1: 파서/샘플러 (API 불필요)
   .venv/bin/python test_pipeline.py --stage parse
 
@@ -440,15 +438,39 @@ TC-I-04  RAGAS 평가 실행 (GAIA API 필요)
   # Stage 3: RAGAS 포맷
   .venv/bin/python test_pipeline.py --stage testset
 
-  # Stage 4: GAIA 연결 (클러스터 필요)
-  export COHESITY_CLUSTER_URL=https://<cluster-ip>
-  export COHESITY_API_TOKEN=<bearer-token>
-  .venv/bin/python test_pipeline.py --stage gaia
-
-  # 전체 Mini 파이프라인
+  # 전체 Mini 파이프라인 (5문서)
   .venv/bin/python test_pipeline.py --stage all
 
-  # 전체 Full 파이프라인 (100문서)
+  # 전체 Full 파이프라인 — A안: 전체 랜덤 (100문서)
   ./run.sh
+
+  # 전체 Full 파이프라인 — B안: 특정 회사
+  ./run.sh --step sample --company 삼성전자
+  ./run.sh --step qa     --company 삼성전자
+
+  [ Docker 실행 (컨테이너) ]
+  ※ 사전: cp .env.example .env  →  ANTHROPIC_API_KEY 입력
+  ※ 사전: docker compose build (최초 1회)
+
+  # A안: 전체 랜덤 샘플링
+  docker compose run --rm gaia-ragas ./run.sh --step sample
+  docker compose run --rm gaia-ragas ./run.sh --step qa
+  docker compose run --rm qdrant-rag ./run.sh ingest
+  docker compose run --rm qdrant-rag ./run.sh evaluate
+
+  # B안: 특정 회사 (권장)
+  docker compose run --rm gaia-ragas ./run.sh --step sample --company 삼성전자
+  docker compose run --rm gaia-ragas ./run.sh --step qa     --company 삼성전자
+  docker compose run --rm qdrant-rag ./run.sh ingest        --company 삼성전자
+  docker compose run --rm qdrant-rag ./run.sh evaluate      --company 삼성전자 --limit 20
+
+  # 검색 / Q&A 단독 테스트
+  docker compose run --rm qdrant-rag ./run.sh search "삼성전자 2021년 영업이익"
+  docker compose run --rm qdrant-rag ./run.sh qa "LG화학 배터리 사업 분할 내용은?"
+
+  # GAIA 클러스터 평가 (별도 클러스터 필요)
+  export COHESITY_CLUSTER_URL=https://<cluster-ip>
+  export COHESITY_API_TOKEN=<bearer-token>
+  docker compose run --rm gaia-ragas ./run.sh --step evaluate
 
 ================================================================================

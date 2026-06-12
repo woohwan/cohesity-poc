@@ -21,7 +21,7 @@ from config import (
     GAIA_DATASET_DIR, QDRANT_PATH, QDRANT_URL,
     COLLECTION_NAME, EMBED_MODEL, EMBED_DIMENSION, EMBED_BATCH_SIZE,
     CHUNK_SIZE, CHUNK_OVERLAP, MIN_CHUNK_LENGTH,
-    CHECKPOINT_FILE,
+    CHECKPOINT_FILE, HF_TOKEN,
 )
 
 # 컨테이너: dart_xml_parser.py 가 /app 에 복사됨 → 직접 import
@@ -73,8 +73,15 @@ def load_checkpoint() -> set:
 
 
 def save_checkpoint(done: set) -> None:
+    CHECKPOINT_FILE.parent.mkdir(parents=True, exist_ok=True)
     with open(CHECKPOINT_FILE, "w", encoding="utf-8") as f:
         json.dump(sorted(done), f, ensure_ascii=False)
+
+
+def clear_checkpoint() -> None:
+    if CHECKPOINT_FILE.exists():
+        CHECKPOINT_FILE.unlink()
+        print(f"[초기화] 체크포인트 삭제: {CHECKPOINT_FILE}")
 
 
 # ── 파일 목록 수집 ─────────────────────────────────────────────────────────────
@@ -115,16 +122,19 @@ def extract_meta_from_path(file_path: Path) -> dict:
     파일 경로에서 메타데이터 추출.
     company_dir: {코드}_{회사명}
     file_name:   {회사명}_{날짜}_{보고서유형}_{uid}.{ext}
+    회사명에 _ 포함 가능하므로 오른쪽에서 3번 분리.
     """
     company_dir = file_path.parent.name       # 000030_우리금융지주
     stem        = file_path.stem              # 우리금융지주_20210101_사업보고서_000496
-    parts       = stem.split("_")
+
+    # 오른쪽에서 분리: [회사명, 날짜, 유형명, uid]
+    parts = stem.rsplit("_", 3)
 
     meta = {
         "company_code": company_dir[:6] if len(company_dir) >= 7 else "",
         "company":      company_dir[7:] if len(company_dir) >= 7 else company_dir,
-        "filing_date":  parts[1] if len(parts) >= 2 else "",
-        "report_name":  parts[2] if len(parts) >= 3 else "",
+        "filing_date":  parts[1] if len(parts) >= 4 else "",
+        "report_name":  parts[2] if len(parts) >= 4 else "",
         "uid":          parts[3] if len(parts) >= 4 else "",
         "source_type":  file_path.suffix.lstrip(".").lower(),
         "file_name":    file_path.name,
@@ -141,7 +151,8 @@ def get_embed_model():
     if _embed_model is None:
         from sentence_transformers import SentenceTransformer
         print(f"[임베딩] 모델 로딩: {EMBED_MODEL}")
-        _embed_model = SentenceTransformer(EMBED_MODEL)
+        kwargs = {"token": HF_TOKEN} if HF_TOKEN else {}
+        _embed_model = SentenceTransformer(EMBED_MODEL, **kwargs)
     return _embed_model
 
 
@@ -182,7 +193,9 @@ def run(limit: Optional[int] = None, reset: bool = False,
     client = get_client()
     ensure_collection(client, reset=reset)
 
-    done = set() if reset else load_checkpoint()
+    if reset:
+        clear_checkpoint()
+    done = load_checkpoint()
     all_files = collect_files(company_filter)
 
     pending = [f for f in all_files if str(f) not in done]

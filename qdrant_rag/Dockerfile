@@ -16,6 +16,17 @@ COPY gaia_ragas/dart_xml_parser.py .
 
 COPY qdrant_rag/ .
 
+# 호스트 사용자 UID/GID와 일치하는 사용자 생성 (getpwuid 오류 방지, 볼륨 권한 일치)
+ARG UID=1000
+ARG GID=1000
+RUN groupadd -f -g ${GID} appgroup && \
+    useradd -u ${UID} -g ${GID} -m -d /home/appuser appuser && \
+    mkdir -p /app/output /app/hf_cache && \
+    chown -R appuser:appgroup /app
+
+USER appuser
+ENV HOME=/home/appuser
+
 ENV PYTHONUNBUFFERED=1
 ENV QDRANT_URL=http://qdrant:6333
 

@@ -20,6 +20,10 @@
   # 출력 파일:
   #   (A안) qa_pairs.json
   #   (B안) qa_pairs_삼성전자.json
+
+  # 초기화 후 재실행:
+  python run_pipeline.py --reset
+  python run_pipeline.py --reset --company 삼성전자
 """
 import argparse
 import sys
@@ -30,6 +34,19 @@ from config import OUTPUT_DIR, SAMPLE_SIZE, QA_PER_DOC
 
 def _file_suffix(args) -> str:
     return f"_{args.company}" if getattr(args, "company", None) else ""
+
+
+def clear_outputs(suffix: str) -> None:
+    targets = [
+        OUTPUT_DIR / f"sampled_documents{suffix}.json",
+        OUTPUT_DIR / f"qa_pairs{suffix}.json",
+        OUTPUT_DIR / "ragas_testset.json",
+        OUTPUT_DIR / "gaia_eval_results.csv",
+    ]
+    for path in targets:
+        if path.exists():
+            path.unlink()
+            print(f"[초기화] 삭제: {path.name}")
 
 
 def step_sample(args) -> None:
@@ -92,6 +109,8 @@ def main():
                         help=f"문서당 QA 수 (기본: {QA_PER_DOC})")
     parser.add_argument("--company",     type=str, default=None,
                         help="특정 회사명 필터 (B안: 회사별 QA 생성)")
+    parser.add_argument("--reset",       action="store_true",
+                        help="기존 출력 파일 삭제 후 재실행")
     args = parser.parse_args()
 
     print("=" * 55)
@@ -101,6 +120,9 @@ def main():
     if args.company:
         print(f"회사 필터    : {args.company}")
     print()
+
+    if args.reset:
+        clear_outputs(_file_suffix(args))
 
     step_map = {
         "sample":   [step_sample],

@@ -1,0 +1,36 @@
+services:
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: cohesity-qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - ./qdrant_storage:/qdrant/storage
+    restart: unless-stopped
+
+  qdrant-rag:
+    build:
+      context: ..
+      dockerfile: qdrant_rag/Dockerfile
+      args:
+        UID: ${HOST_UID:-1000}
+        GID: ${HOST_GID:-1000}
+    container_name: cohesity-qdrant-rag
+    volumes:
+      - ../gaia_dataset:/data/gaia_dataset:ro
+      - ./output:/app/output
+      - ${HOME}/.cache/huggingface:/app/hf_cache
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN:-}
+      - EMBED_MODEL=${EMBED_MODEL:-jhgan/ko-sroberta-multitask}
+      - EMBED_DIMENSION=${EMBED_DIMENSION:-768}
+      - HF_HOME=/app/hf_cache
+      - QDRANT_URL=http://qdrant:6333
+      - GAIA_DATASET_DIR=/data/gaia_dataset
+      - OUTPUT_DIR=/app/output
+    depends_on:
+      - qdrant
+    stdin_open: true
+    tty: true
