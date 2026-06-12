@@ -56,6 +56,7 @@ gaia_dataset/ (XML/PDF/XLS)
 - `gaia_dataset/` 디렉터리 존재 (상위 경로 `../gaia_dataset/`)
 - `ANTHROPIC_API_KEY` 환경 변수 (`qa`, `qa-gen`, `evaluate` 명령 시)
 - `HUGGING_FACE_HUB_TOKEN` 환경 변수 (private/gated HuggingFace 모델 사용 시)
+- NVIDIA GPU 사용 시: NVIDIA Container Toolkit 설치 필요
 
 ---
 
@@ -68,7 +69,7 @@ gaia_dataset/ (XML/PDF/XLS)
 ```bash
 cd qdrant_rag
 cp .env.example .env
-vi .env   # ANTHROPIC_API_KEY 입력, UID/GID 확인 (id -u && id -g)
+vi .env   # ANTHROPIC_API_KEY 입력, HOST_UID/HOST_GID 및 CUDA_VISIBLE_DEVICES 확인
 
 docker compose build
 docker compose up -d qdrant   # Qdrant 컨테이너 시작
@@ -81,13 +82,21 @@ ANTHROPIC_API_KEY=sk-ant-...
 HUGGING_FACE_HUB_TOKEN=        # private/gated 모델 사용 시 입력
 
 # 임베딩 모델 (모델 변경 시 EMBED_DIMENSION도 반드시 함께 수정)
+# 대형 모델(8B+) 사용 시 GPU 권장
 EMBED_MODEL=jhgan/ko-sroberta-multitask
 EMBED_DIMENSION=768
 
-# 컨테이너 실행 사용자 (호스트 사용자와 일치시켜 볼륨 권한 문제 방지)
-UID=1000
-GID=1000
+# 사용할 GPU 번호 (nvidia-smi로 확인, 여러 개는 "0,1" 형식)
+CUDA_VISIBLE_DEVICES=0
+
+# 컨테이너 실행 사용자 (id -u && id -g 로 확인)
+HOST_UID=1000
+HOST_GID=1000
 ```
+
+> **CUDA 버전 확인**: `nvidia-smi` 상단 `CUDA Version` 값에 맞게 Dockerfile의 `cu121`을 `cu118` / `cu124` 등으로 수정 후 재빌드.
+>
+> **GPU 확인**: `docker compose run --rm qdrant-rag python -c "import torch; print(torch.cuda.is_available(), torch.cuda.device_count())"`
 
 ### 2. 인제스트
 
@@ -100,6 +109,9 @@ docker compose run --rm qdrant-rag ./run.sh ingest --limit 500
 
 # 특정 회사만
 docker compose run --rm qdrant-rag ./run.sh ingest --company 삼성전자
+
+# GPU 번호 지정 (기본: .env의 CUDA_VISIBLE_DEVICES)
+docker compose run --rm qdrant-rag ./run.sh ingest --company 삼성전자 --gpu 2
 
 # 컬렉션 + 체크포인트 완전 초기화 후 재인제스트
 docker compose run --rm qdrant-rag ./run.sh ingest --reset
@@ -159,12 +171,14 @@ export ANTHROPIC_API_KEY=sk-ant-...
 export HUGGING_FACE_HUB_TOKEN=hf_...   # 필요 시
 export EMBED_MODEL=jhgan/ko-sroberta-multitask   # 필요 시 변경
 export EMBED_DIMENSION=768                       # 모델 변경 시 함께 수정
+export CUDA_VISIBLE_DEVICES=0                    # 사용할 GPU 번호
 ```
 
 ### 2. 실행 (명령어는 Docker와 동일)
 
 ```bash
 ./run.sh ingest --company 삼성전자
+./run.sh ingest --company 삼성전자 --gpu 2       # GPU 번호 지정
 ./run.sh ingest --reset                          # 완전 초기화 후 재인제스트
 ./run.sh qa-gen --company 삼성전자
 ./run.sh evaluate --company 삼성전자 --limit 20
@@ -178,7 +192,7 @@ export EMBED_DIMENSION=768                       # 모델 변경 시 함께 수�
 
 ---
 
-## 설정 (config.py)
+## 설정 (config.py / 환경 변수)
 
 | 변수 | 기본값 | 환경 변수 | 설명 |
 |------|--------|-----------|------|
@@ -194,6 +208,7 @@ export EMBED_DIMENSION=768                       # 모델 변경 시 함께 수�
 | `TOP_K` | `5` | — | 검색 반환 문서 수 |
 | `CLAUDE_MODEL` | `claude-sonnet-4-6` | `CLAUDE_MODEL` | Q&A / 평가 LLM |
 | `OUTPUT_DIR` | `./output` | `OUTPUT_DIR` | 결과 저장 디렉터리 |
+| — | `0` | `CUDA_VISIBLE_DEVICES` | 사용할 GPU 번호 (`"0,1"` 형식으로 다중 지정 가능) |
 
 ---
 
@@ -215,9 +230,12 @@ export EMBED_DIMENSION=768                       # 모델 변경 시 함께 수�
 - 임베딩 모델 최초 실행 시 HuggingFace 자동 다운로드
   - **Docker**: `~/.cache/huggingface/` (호스트) ↔ `/app/hf_cache` (컨테이너) 볼륨 마운트로 공유
   - **로컬**: `~/.cache/huggingface/hub/`
+- 대형 임베딩 모델(8B+) 사용 시 GPU 필수 — CPU로 실행하면 속도가 매우 느림
+- `--gpu N` 옵션으로 실행 시 사용할 GPU를 지정할 수 있음 (기본: `.env`의 `CUDA_VISIBLE_DEVICES`)
 - private/gated 모델 사용 시 `HUGGING_FACE_HUB_TOKEN` 설정 필요
 - 인제스트 중단 시 `output/ingest_checkpoint.json` 기반으로 이어서 재개 가능
 - `--reset` 실행 시 Qdrant 컬렉션과 체크포인트 파일 모두 삭제되어 처음부터 재인제스트
 - QA 생성 중단 시 `output/qa_pairs.json` 기반으로 이어서 재개 가능 (doc_id 기준)
-- 컨테이너는 호스트 사용자(`UID`/`GID`)로 실행되어 볼륨 마운트 파일 권한 문제가 없음
+- 컨테이너는 호스트 사용자(`HOST_UID`/`HOST_GID`)로 실행되어 볼륨 마운트 파일 권한 문제가 없음
+- `HOST_UID`/`HOST_GID`는 `.env`에 설정 — `UID`/`GID` shell 변수는 Docker Compose에 전달되지 않으므로 사용하지 않음
 - `gaia_ragas`와는 `gaia_dataset/` 만 공유하며 완전 독립 실행 가능

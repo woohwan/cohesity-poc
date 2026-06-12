@@ -49,10 +49,18 @@ services:
       - EMBED_MODEL=${EMBED_MODEL:-jhgan/ko-sroberta-multitask}
       - EMBED_DIMENSION=${EMBED_DIMENSION:-768}
       - HF_HOME=/app/hf_cache
+      - CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-0}
       - QDRANT_URL=http://qdrant:6333
       - GAIA_DATASET_DIR=/data/gaia_dataset
       - OUTPUT_DIR=/app/output
     depends_on:
       - qdrant
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
     stdin_open: true
     tty: true

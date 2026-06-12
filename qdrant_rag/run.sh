@@ -2,25 +2,42 @@
 # Qdrant RAG 파이프라인 실행
 #
 # 사용법:
-#   ./run.sh setup                                  가상환경 및 패키지 설치
-#   ./run.sh ingest                                 전체 문서 인제스트
-#   ./run.sh ingest --limit 500                     테스트용 (500파일)
-#   ./run.sh ingest --reset                         컬렉션 초기화 후 재인제스트
-#   ./run.sh ingest --company 삼성전자              특정 회사만
-#   ./run.sh search "질문"                          벡터 검색 테스트
-#   ./run.sh qa "질문"                              RAG Q&A
-#   ./run.sh qa "질문" --company LG화학             특정 회사 대상 Q&A
-#   ./run.sh evaluate                               RAGAS 평가 (전체)
-#   ./run.sh evaluate --limit 20                    RAGAS 평가 (20개)
-#   ./run.sh evaluate --company 삼성전자            특정 회사 QA만 평가
-#   ./run.sh evaluate --company 삼성전자 --limit 20 회사 필터 + 개수 제한
-#   ./run.sh qa-gen                                 QA 쌍 생성 (gaia_dataset → output/)
-#   ./run.sh qa-gen --company 삼성전자              특정 회사 QA 생성
-#   ./run.sh qa-gen --sample 50 --qa-per-doc 3      샘플 수 / 문서당 QA 수 조정
-#   ./run.sh info                                   컬렉션 상태 확인
+#   ./run.sh setup                                         가상환경 및 패키지 설치
+#   ./run.sh ingest                                        전체 문서 인제스트
+#   ./run.sh ingest --limit 500                            테스트용 (500파일)
+#   ./run.sh ingest --reset                                컬렉션 초기화 후 재인제스트
+#   ./run.sh ingest --company 삼성전자                     특정 회사만
+#   ./run.sh ingest --company 삼성전자 --gpu 2             GPU 2번 사용
+#   ./run.sh search "질문"                                 벡터 검색 테스트
+#   ./run.sh qa "질문"                                     RAG Q&A
+#   ./run.sh qa "질문" --company LG화학                    특정 회사 대상 Q&A
+#   ./run.sh evaluate                                      RAGAS 평가 (전체)
+#   ./run.sh evaluate --limit 20                           RAGAS 평가 (20개)
+#   ./run.sh evaluate --company 삼성전자                   특정 회사 QA만 평가
+#   ./run.sh evaluate --company 삼성전자 --limit 20        회사 필터 + 개수 제한
+#   ./run.sh qa-gen                                        QA 쌍 생성 (gaia_dataset → output/)
+#   ./run.sh qa-gen --company 삼성전자                     특정 회사 QA 생성
+#   ./run.sh qa-gen --sample 50 --qa-per-doc 3             샘플 수 / 문서당 QA 수 조정
+#   ./run.sh info                                          컬렉션 상태 확인
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 VENV="$SCRIPT_DIR/.venv/bin/python"
+
+# ── --gpu 옵션 파싱 (CUDA_VISIBLE_DEVICES 설정) ──────────────────────────────
+FILTERED_ARGS=()
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --gpu)
+            export CUDA_VISIBLE_DEVICES="$2"
+            shift 2
+            ;;
+        *)
+            FILTERED_ARGS+=("$1")
+            shift
+            ;;
+    esac
+done
+set -- "${FILTERED_ARGS[@]}"
 
 # ── setup (로컬 전용) ────────────────────────────────────────────────────────
 if [ "${1}" = "setup" ]; then
@@ -96,7 +113,7 @@ for k, v in d.items():
         echo "사용법: ./run.sh {setup|ingest|search|qa|qa-gen|evaluate|info} [옵션]"
         echo ""
         echo "  setup                                       가상환경 및 패키지 설치"
-        echo "  ingest [--limit N] [--reset] [--company 회사명]"
+        echo "  ingest [--limit N] [--reset] [--company 회사명] [--gpu N]"
         echo "  search \"질문\""
         echo "  qa \"질문\" [--company 회사명] [--top-k N]"
         echo "  qa-gen [--sample N] [--qa-per-doc N] [--company 회사명]"

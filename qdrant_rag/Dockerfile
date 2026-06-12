@@ -8,7 +8,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 COPY qdrant_rag/requirements.txt .
+# CUDA 버전에 맞게 cu121 → cu118 / cu124 로 변경 (nvidia-smi로 확인)
 RUN pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cu121 \
     && pip install --no-cache-dir -r requirements.txt
 
 # gaia_ragas 파서 재사용 (sys.path 없이 직접 import)
