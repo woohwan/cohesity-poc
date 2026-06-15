@@ -23,12 +23,38 @@ EMBED_BATCH_SIZE = int(os.environ.get("EMBED_BATCH_SIZE", "64"))
 HF_TOKEN         = os.environ.get("HUGGING_FACE_HUB_TOKEN", None)  # private/gated 모델 접근용
 
 # ── 텍스트 청킹 ───────────────────────────────────────────────────────────────
-CHUNK_SIZE       = 800    # 글자 수
-CHUNK_OVERLAP    = 100
-MIN_CHUNK_LENGTH = 50     # 이 길이 미만 청크 제외
+import json as _json
+
+CHUNK_SIZE       = int(os.environ.get("CHUNK_SIZE",       "800"))   # 청크 글자 수
+CHUNK_OVERLAP    = int(os.environ.get("CHUNK_OVERLAP",    "100"))   # 오버랩 글자 수
+MIN_CHUNK_LENGTH = int(os.environ.get("MIN_CHUNK_LENGTH", "50"))    # 이 길이 미만 청크 제외
+
+# 분리 우선순위: 앞쪽부터 순서대로 시도, "" = 글자 단위 (최후 수단)
+# JSON 배열 형식으로 .env에 지정:  CHUNK_SEPARATORS=["\n\n","\n","。","."," ",""]
+_DEFAULT_SEPARATORS = ["\n\n", "\n", "。", ".", " ", ""]
+CHUNK_SEPARATORS = _json.loads(
+    os.environ.get("CHUNK_SEPARATORS", _json.dumps(_DEFAULT_SEPARATORS, ensure_ascii=False))
+)
+
+# True: 분리자를 청크에 포함 / False: 제거
+CHUNK_KEEP_SEPARATOR = os.environ.get("CHUNK_KEEP_SEPARATOR", "false").lower() == "true"
+
+# True: CHUNK_SEPARATORS를 정규식으로 해석
+CHUNK_SEPARATOR_REGEX = os.environ.get("CHUNK_SEPARATOR_REGEX", "false").lower() == "true"
+
+# ── 임베딩 서버 (선택) ────────────────────────────────────────────────────────
+# 설정 시 retriever가 로컬 모델 대신 서버로 요청 (search/qa 시 모델 로딩 생략)
+# docker compose up -d embed-server 로 먼저 시작 필요
+EMBED_SERVER_URL = os.environ.get("EMBED_SERVER_URL", None)
 
 # ── 검색 ─────────────────────────────────────────────────────────────────────
-TOP_K = 5
+TOP_K = int(os.environ.get("TOP_K", "5"))
+
+# 하이브리드 검색 (BM25 sparse + dense 벡터 RRF 퓨전)
+# True: 컬렉션에 sparse 벡터 포함 (재인제스트 필요)
+# False: dense 벡터만 (기존 방식)
+USE_HYBRID_SEARCH = os.environ.get("USE_HYBRID_SEARCH", "true").lower() == "true"
+BM25_MODEL        = os.environ.get("BM25_MODEL", "Qdrant/bm25")
 
 # ── Claude API ────────────────────────────────────────────────────────────────
 CLAUDE_MODEL      = os.environ.get("CLAUDE_MODEL", "claude-sonnet-4-6")
@@ -38,6 +64,9 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 CHECKPOINT_FILE = Path(os.environ.get("CHECKPOINT_FILE",
                        str(Path(os.environ.get("OUTPUT_DIR",
                            str(Path(__file__).parent / "output"))) / "ingest_checkpoint.json")))
+LOG_FILE     = Path(os.environ.get("OUTPUT_DIR",
+                    str(Path(__file__).parent / "output"))) / "ingest.log"
+LOG_INTERVAL = int(os.environ.get("LOG_INTERVAL", "1000"))  # 로그 기록 간격 (파일 수)
 
 # ── QA 생성 설정 ──────────────────────────────────────────────────────────────
 SAMPLE_SIZE     = 100    # 샘플 문서 수

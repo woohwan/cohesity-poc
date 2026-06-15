@@ -9,22 +9,25 @@ Claude API와 결합해 RAG Q&A 및 RAGAS 품질 평가를 수행하는 파이�
 qdrant_rag/
 ├── config.py               설정 (경로, 임베딩 모델, Qdrant, Claude)
 ├── ingest.py               문서 파싱 → 청킹 → 임베딩 → Qdrant 저장
-├── retriever.py            Qdrant 벡터 검색 인터페이스
+├── retriever.py            Qdrant 벡터 검색 인터페이스 (dense + BM25 하이브리드)
+├── embed_server.py         임베딩 모델 서버 (모델 1회 로딩 후 HTTP 서빙)
 ├── qa_chain.py             검색 + Claude API Q&A 체인
 ├── qa_gen.py               gaia_dataset 에서 QA 쌍 생성
 ├── evaluate.py             RAGAS 4개 메트릭 평가
 ├── requirements.txt        Python 패키지 목록
 ├── Dockerfile              컨테이너 이미지 정의
-├── docker-compose.yml      컨테이너 구성 (qdrant_rag 단독 실행)
+├── docker-compose.yml      컨테이너 구성 (qdrant, embed-server, qdrant-rag)
 ├── .env.example            환경 변수 템플릿
 ├── run.sh                  컨테이너 / 로컬 통합 실행 스크립트
 ├── qdrant_storage/         Qdrant 로컬 파일 DB (로컬 모드 시 자동 생성)
 └── output/
-    ├── ingest_checkpoint.json   인제스트 진행 상태 (재개용)
-    ├── qa_pairs.json            전체 QA 쌍
-    ├── qa_pairs_{회사}.json     회사별 QA 쌍
-    ├── qdrant_eval.csv          RAGAS 평가 결과
-    └── qdrant_eval.json         RAGAS 점수 요약
+    ├── ingest_checkpoint.json        인제스트 진행 상태 (재개용)
+    ├── ingest_checkpoint_gpu{N}.json 멀티 GPU 샤드별 체크포인트 (자동 생성)
+    ├── ingest.log                    인제스트 진행 로그 (백그라운드 모니터링용)
+    ├── qa_pairs.json                 전체 QA 쌍
+    ├── qa_pairs_{회사}.json          회사별 QA 쌍
+    ├── qdrant_eval.csv               RAGAS 평가 결과
+    └── qdrant_eval.json              RAGAS 점수 요약
 ```
 
 ## 아키텍처
@@ -33,16 +36,26 @@ qdrant_rag/
 gaia_dataset/ (XML/PDF/XLS)
       │
       ▼
-  ingest.py
-  dart_xml_parser  →  텍스트 추출
-  RecursiveCharacterTextSplitter  →  청킹 (800자, overlap 100)
-  임베딩 모델 (기본: jhgan/ko-sroberta-multitask, 768차원)  →  .env의 EMBED_MODEL로 변경 가능
+  ingest.py                           ← GPU 직접 사용 (embed-server 미사용)
+  dart_xml_parser  →  텍스트 추출 (스타일/스크립트 노이즈 제거)
+  RecursiveCharacterTextSplitter  →  청킹 (.env의 CHUNK_SIZE / CHUNK_OVERLAP 설정 가능)
+  Dense 임베딩 (SentenceTransformer)  →  GPU 직접 로딩
+  BM25 sparse 임베딩 (fastembed)      →  USE_HYBRID_SEARCH=true 시 추가
       │
       ▼
   Qdrant (Docker 컨테이너 or 로컬 파일)
+  ├── dense  벡터 (named vector)
+  └── bm25   sparse 벡터 (named vector, 하이브리드 모드)
       │
       ▼
-  retriever.py  →  query_points() 벡터 검색
+  embed-server (별도 서비스, 모델 1회 로딩 후 상시 대기)
+  ├── POST /embed/dense   → Dense 벡터
+  └── POST /embed/sparse  → BM25 Sparse 벡터
+      │
+      ▼
+  retriever.py  →  embed-server에 HTTP 요청 → Prefetch(dense+bm25) → FusionQuery(RRF)
+                   쿼리 내 연도/분기 자동 감지 → filing_date 필터 적용
+                   (embed-server 미기동 시 로컬 모델로 자동 fallback)
       │
       ▼
   qa_chain.py  →  Claude API 답변 생성 (기본: claude-sonnet-4-6, CLAUDE_MODEL로 변경 가능)
@@ -50,6 +63,14 @@ gaia_dataset/ (XML/PDF/XLS)
       ▼
   evaluate.py  →  RAGAS 4개 메트릭 평가
 ```
+
+### GPU 사용 분리
+
+| 역할 | GPU 사용 방식 | 설정 |
+|------|--------------|------|
+| **ingest** | 각 GPU 워커가 직접 로딩 (멀티 GPU 병렬) | `--gpus N,N,...` 또는 `CUDA_VISIBLE_DEVICES` |
+| **embed-server** | 서버 기동 시 1회 로딩, 이후 상시 서빙 | `EMBED_SERVER_GPU` |
+| **search / qa** | embed-server에 HTTP 요청 (모델 로딩 없음) | — |
 
 ## 사전 조건
 
@@ -69,10 +90,9 @@ gaia_dataset/ (XML/PDF/XLS)
 ```bash
 cd qdrant_rag
 cp .env.example .env
-vi .env   # ANTHROPIC_API_KEY 입력, HOST_UID/HOST_GID 및 CUDA_VISIBLE_DEVICES 확인
+vi .env   # ANTHROPIC_API_KEY 입력, HOST_UID/HOST_GID / GPU 번호 확인
 
 docker compose build
-docker compose up -d qdrant   # Qdrant 컨테이너 시작
 ```
 
 `.env` 주요 항목:
@@ -82,12 +102,16 @@ ANTHROPIC_API_KEY=sk-ant-...
 HUGGING_FACE_HUB_TOKEN=        # private/gated 모델 사용 시 입력
 
 # 임베딩 모델 (모델 변경 시 EMBED_DIMENSION도 반드시 함께 수정)
-# 대형 모델(8B+) 사용 시 GPU 권장
 EMBED_MODEL=jhgan/ko-sroberta-multitask
 EMBED_DIMENSION=768
 
-# 사용할 GPU 번호 (nvidia-smi로 확인, 여러 개는 "0,1" 형식)
-CUDA_VISIBLE_DEVICES=0
+# 하이브리드 검색 (BM25 + Dense RRF) — 변경 시 --reset 재인제스트 필요
+USE_HYBRID_SEARCH=true
+BM25_MODEL=Qdrant/bm25
+
+# GPU 설정
+EMBED_SERVER_GPU=0    # embed-server 전용 GPU
+CUDA_VISIBLE_DEVICES=1  # ingest 단일 GPU (--gpus 사용 시 무시)
 
 # 컨테이너 실행 사용자 (id -u && id -g 로 확인)
 HOST_UID=1000
@@ -95,10 +119,24 @@ HOST_GID=1000
 ```
 
 > **CUDA 버전 확인**: `nvidia-smi` 상단 `CUDA Version` 값에 맞게 Dockerfile의 `cu121`을 `cu118` / `cu124` 등으로 수정 후 재빌드.
->
-> **GPU 확인**: `docker compose run --rm qdrant-rag python -c "import torch; print(torch.cuda.is_available(), torch.cuda.device_count())"`
 
-### 2. 인제스트
+### 2. 서비스 시작
+
+```bash
+# Qdrant DB + embed-server 시작 (상시 유지)
+docker compose up -d qdrant embed-server
+
+# embed-server 로그 확인 (모델 로딩 완료 확인)
+docker compose logs embed-server
+
+# embed-server 중지
+docker compose stop embed-server
+```
+
+> `embed-server`는 `restart: unless-stopped` — 크래시/재부팅 시 자동 재기동.  
+> `docker compose stop embed-server`로 명시적으로 중지하면 재부팅 후에도 멈춘 상태를 유지.
+
+### 3. 인제스트
 
 ```bash
 # 전체 인제스트 (177K 파일, 시간 소요)
@@ -111,19 +149,45 @@ docker compose run --rm qdrant-rag ./run.sh ingest --limit 500
 docker compose run --rm qdrant-rag ./run.sh ingest --company 삼성전자
 
 # GPU 번호 지정 (기본: .env의 CUDA_VISIBLE_DEVICES)
-docker compose run --rm qdrant-rag ./run.sh ingest --company 삼성전자 --gpu 2
+docker compose run --rm qdrant-rag ./run.sh ingest --company 삼성전자 --gpu 7
+
+# 파싱 병렬화 (CPU 코어 수에 맞게, 8~16 권장)
+docker compose run --rm qdrant-rag ./run.sh ingest --workers 8 --gpu 7
+
+# 멀티 GPU — GPU 수만큼 프로세스를 병렬로 띄워 파일 분담
+docker compose run --rm qdrant-rag ./run.sh ingest --gpus 2,3,4,5
+docker compose run --rm qdrant-rag ./run.sh ingest --gpus 2,3,4,5 --workers 8
 
 # 컬렉션 + 체크포인트 완전 초기화 후 재인제스트
+# USE_HYBRID_SEARCH 변경 시 반드시 --reset 필요 (컬렉션 스키마가 바뀜)
 docker compose run --rm qdrant-rag ./run.sh ingest --reset
 ```
 
-> `--reset`은 Qdrant 컬렉션을 삭제하고 `output/ingest_checkpoint.json`도 함께 삭제합니다.
+> `--reset`은 Qdrant 컬렉션을 삭제하고 `output/ingest_checkpoint*.json`을 모두 삭제합니다.
+>
+> **인제스트는 embed-server를 사용하지 않습니다.** 각 GPU 워커가 직접 모델을 로딩하여 병렬 처리합니다.
 
-### 3. 검색 / Q&A 테스트
+### 4. 백그라운드 실행 (세션 끊겨도 계속)
 
 ```bash
-# 벡터 검색
+# 백그라운드로 인제스트 시작
+docker compose run -d qdrant-rag ./run.sh ingest --gpus 4,5,6,7 --workers 8
+
+# 진행 상황 실시간 확인
+tail -f output/ingest.log
+
+# 상태 요약 (체크포인트 + 로그 최근 10줄)
+docker compose run --rm qdrant-rag ./run.sh status
+```
+
+### 5. 검색 / Q&A 테스트
+
+```bash
+# 벡터 검색 (쿼리 내 연도 자동 감지 → 날짜 필터 적용)
 docker compose run --rm qdrant-rag ./run.sh search "삼성전자 2021년 영업이익"
+
+# 날짜/회사 명시 필터
+docker compose run --rm qdrant-rag ./run.sh search "영업이익" --company 삼성전자 --from 20210101 --to 20211231
 
 # RAG Q&A
 docker compose run --rm qdrant-rag ./run.sh qa "LG화학 배터리 사업 분할 내용은?"
@@ -133,7 +197,10 @@ docker compose run --rm qdrant-rag ./run.sh qa "매출액은?" --company 삼성�
 docker compose run --rm qdrant-rag ./run.sh info
 ```
 
-### 4. QA 쌍 생성
+> embed-server가 기동 중이면 모델 로딩 없이 즉시 응답합니다.  
+> embed-server가 없으면 자동으로 로컬 모델 로딩으로 fallback합니다.
+
+### 6. QA 쌍 생성
 
 ```bash
 # 전체 100개 샘플 → output/qa_pairs.json
@@ -146,7 +213,7 @@ docker compose run --rm qdrant-rag ./run.sh qa-gen --company 삼성전자
 docker compose run --rm qdrant-rag ./run.sh qa-gen --sample 50 --qa-per-doc 3
 ```
 
-### 5. RAGAS 평가
+### 7. RAGAS 평가
 
 ```bash
 # 전체 평가 (output/qa_pairs.json 사용)
@@ -169,21 +236,24 @@ cd qdrant_rag
 ./run.sh setup   # .venv 생성 및 패키지 설치
 export ANTHROPIC_API_KEY=sk-ant-...
 export HUGGING_FACE_HUB_TOKEN=hf_...   # 필요 시
-export EMBED_MODEL=jhgan/ko-sroberta-multitask   # 필요 시 변경
-export EMBED_DIMENSION=768                       # 모델 변경 시 함께 수정
-export CUDA_VISIBLE_DEVICES=0                    # 사용할 GPU 번호
+export EMBED_MODEL=jhgan/ko-sroberta-multitask
+export EMBED_DIMENSION=768
+export CUDA_VISIBLE_DEVICES=0
 ```
 
 ### 2. 실행 (명령어는 Docker와 동일)
 
 ```bash
 ./run.sh ingest --company 삼성전자
-./run.sh ingest --company 삼성전자 --gpu 2       # GPU 번호 지정
-./run.sh ingest --reset                          # 완전 초기화 후 재인제스트
+./run.sh ingest --workers 8 --gpu 2
+./run.sh ingest --gpus 2,3,4,5 --workers 8
+./run.sh ingest --reset
+./run.sh status
+./run.sh search "삼성전자 2021년 영업이익"
+./run.sh search "영업이익" --company 삼성전자 --from 20210101 --to 20211231
+./run.sh qa "매출액은?" --company 삼성전자
 ./run.sh qa-gen --company 삼성전자
 ./run.sh evaluate --company 삼성전자 --limit 20
-./run.sh search "삼성전자 2021년 영업이익"
-./run.sh qa "매출액은?" --company 삼성전자
 ./run.sh info
 ```
 
@@ -202,13 +272,52 @@ export CUDA_VISIBLE_DEVICES=0                    # 사용할 GPU 번호
 | `COLLECTION_NAME` | `dart_kospi200` | — | Qdrant 컬렉션 이름 |
 | `EMBED_MODEL` | `jhgan/ko-sroberta-multitask` | `EMBED_MODEL` | 임베딩 모델 |
 | `EMBED_DIMENSION` | `768` | `EMBED_DIMENSION` | 임베딩 벡터 차원 (모델 변경 시 함께 수정) |
+| `EMBED_BATCH_SIZE` | `64` | `EMBED_BATCH_SIZE` | GPU당 배치 크기 (VRAM에 맞게 조정) |
 | `HF_TOKEN` | `None` | `HUGGING_FACE_HUB_TOKEN` | HuggingFace private/gated 모델 접근 토큰 |
-| `CHUNK_SIZE` | `800` | — | 청크 글자 수 |
-| `CHUNK_OVERLAP` | `100` | — | 청크 오버랩 글자 수 |
-| `TOP_K` | `5` | — | 검색 반환 문서 수 |
+| `EMBED_SERVER_URL` | `None` | `EMBED_SERVER_URL` | embed-server 주소 (Docker: `http://embed-server:8765`) |
+| `USE_HYBRID_SEARCH` | `true` | `USE_HYBRID_SEARCH` | BM25 + Dense 하이브리드 검색 (변경 시 `--reset` 필요) |
+| `BM25_MODEL` | `Qdrant/bm25` | `BM25_MODEL` | BM25 sparse 임베딩 모델 |
+| `CHUNK_SIZE` | `800` | `CHUNK_SIZE` | 청크 글자 수 (길수록 문맥↑, 짧을수록 정밀검색↑) |
+| `CHUNK_OVERLAP` | `100` | `CHUNK_OVERLAP` | 청크 간 오버랩 글자 수 |
+| `MIN_CHUNK_LENGTH` | `50` | `MIN_CHUNK_LENGTH` | 이 글자 수 미만 청크 제외 |
+| `CHUNK_SEPARATORS` | `["\n\n","\n","。","."," ",""]` | `CHUNK_SEPARATORS` | 분리 우선순위 (JSON 배열) |
+| `CHUNK_KEEP_SEPARATOR` | `false` | `CHUNK_KEEP_SEPARATOR` | 분리자를 청크에 포함 여부 |
+| `CHUNK_SEPARATOR_REGEX` | `false` | `CHUNK_SEPARATOR_REGEX` | 분리자를 정규식으로 해석 여부 |
+| `TOP_K` | `5` | `TOP_K` | 검색 반환 문서 수 |
+| `LOG_INTERVAL` | `1000` | `LOG_INTERVAL` | `ingest.log` 기록 간격 (처리 파일 수 기준) |
 | `CLAUDE_MODEL` | `claude-sonnet-4-6` | `CLAUDE_MODEL` | Q&A / 평가 LLM |
 | `OUTPUT_DIR` | `./output` | `OUTPUT_DIR` | 결과 저장 디렉터리 |
-| — | `0` | `CUDA_VISIBLE_DEVICES` | 사용할 GPU 번호 (`"0,1"` 형식으로 다중 지정 가능) |
+| — | `1` | `CUDA_VISIBLE_DEVICES` | ingest 단일 GPU 번호 |
+| — | `0` | `EMBED_SERVER_GPU` | embed-server GPU 번호 |
+
+---
+
+## 검색 동작 방식
+
+### 하이브리드 검색 (USE_HYBRID_SEARCH=true)
+
+Dense 벡터와 BM25 sparse 벡터를 **RRF(Reciprocal Rank Fusion)** 로 결합합니다.
+
+- Dense: 의미적 유사도 (한국어 문맥 이해)
+- BM25: 키워드 정밀도 (회사명, 수치, 고유명사)
+- RRF fusion: 두 결과의 순위를 결합해 최종 순위 결정
+
+> `USE_HYBRID_SEARCH` 값을 변경한 뒤에는 반드시 `--reset` 재인제스트 필요  
+> (컬렉션 스키마가 `dense` 단일 벡터 ↔ `dense + bm25` 이중 벡터로 달라짐)
+
+### 날짜 자동 감지
+
+쿼리에 연도/분기 표현이 있으면 `filing_date` 필터를 자동 적용합니다.  
+`filing_date`는 정수(`YYYYMMDD`)로 저장되며 Qdrant Range 필터로 범위 검색합니다.
+
+| 쿼리 예시 | 적용 필터 |
+|-----------|-----------|
+| `삼성전자 2021년 영업이익` | `20210101 ~ 20211231` |
+| `LG화학 2022년 1분기 매출` | `20220101 ~ 20220331` |
+| `현대차 2020년 상반기 실적` | `20200101 ~ 20200630` |
+| `SK하이닉스 2023년 하반기 투자` | `20230701 ~ 20231231` |
+
+명시적 날짜 필터(`--from` / `--to`)가 있으면 자동 감지보다 우선 적용됩니다.
 
 ---
 
@@ -230,12 +339,18 @@ export CUDA_VISIBLE_DEVICES=0                    # 사용할 GPU 번호
 - 임베딩 모델 최초 실행 시 HuggingFace 자동 다운로드
   - **Docker**: `~/.cache/huggingface/` (호스트) ↔ `/app/hf_cache` (컨테이너) 볼륨 마운트로 공유
   - **로컬**: `~/.cache/huggingface/hub/`
-- 대형 임베딩 모델(8B+) 사용 시 GPU 필수 — CPU로 실행하면 속도가 매우 느림
-- `--gpu N` 옵션으로 실행 시 사용할 GPU를 지정할 수 있음 (기본: `.env`의 `CUDA_VISIBLE_DEVICES`)
-- private/gated 모델 사용 시 `HUGGING_FACE_HUB_TOKEN` 설정 필요
-- 인제스트 중단 시 `output/ingest_checkpoint.json` 기반으로 이어서 재개 가능
-- `--reset` 실행 시 Qdrant 컬렉션과 체크포인트 파일 모두 삭제되어 처음부터 재인제스트
+- **embed-server**: Dense + BM25 모델을 한 번 로딩 후 HTTP로 상시 서빙 — search/qa 콜드스타트 제거
+  - `EMBED_SERVER_GPU` — embed-server 전용 GPU (인제스트 GPU와 분리 권장)
+  - embed-server 미기동 시 retriever가 로컬 모델로 자동 fallback
+- **ingest**는 embed-server를 사용하지 않음 — 각 GPU 워커가 직접 로딩하여 병렬 처리
+- `--gpu N` : 단일 GPU 지정 (기본: `.env`의 `CUDA_VISIBLE_DEVICES`)
+- `--gpus N,N,...` : 멀티 GPU — GPU당 별도 프로세스를 spawn하여 파일 균등 분배 (CUDA fork 이슈 없음)
+- `--workers N` : 파일 파싱 병렬 스레드 수 (CPU 코어 수에 맞게, 8~16 권장)
+- 멀티 GPU 인제스트는 GPU당 `output/ingest_checkpoint_gpu{N}.json`에 개별 저장
+- `output/ingest.log` — 인제스트 진행 로그; 백그라운드 실행 시 `tail -f`로 실시간 확인 가능
+- `./run.sh status` — 체크포인트 파일 집계 + 로그 최근 10줄 요약
+- 인제스트 중단 시 체크포인트 기반으로 이어서 재개 가능
+- `--reset` 실행 시 Qdrant 컬렉션과 체크포인트 파일 전체(`ingest_checkpoint*.json`) 삭제
 - QA 생성 중단 시 `output/qa_pairs.json` 기반으로 이어서 재개 가능 (doc_id 기준)
 - 컨테이너는 호스트 사용자(`HOST_UID`/`HOST_GID`)로 실행되어 볼륨 마운트 파일 권한 문제가 없음
-- `HOST_UID`/`HOST_GID`는 `.env`에 설정 — `UID`/`GID` shell 변수는 Docker Compose에 전달되지 않으므로 사용하지 않음
 - `gaia_ragas`와는 `gaia_dataset/` 만 공유하며 완전 독립 실행 가능

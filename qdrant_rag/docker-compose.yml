@@ -9,6 +9,38 @@ services:
       - ./qdrant_storage:/qdrant/storage
     restart: unless-stopped
 
+  embed-server:
+    build:
+      context: ..
+      dockerfile: qdrant_rag/Dockerfile
+      args:
+        UID: ${HOST_UID:-1000}
+        GID: ${HOST_GID:-1000}
+    container_name: cohesity-embed-server
+    command: python embed_server.py
+    ports:
+      - "8765:8765"
+    volumes:
+      - ${HOME}/.cache/huggingface:/app/hf_cache
+    environment:
+      - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN:-}
+      - EMBED_MODEL=${EMBED_MODEL:-jhgan/ko-sroberta-multitask}
+      - EMBED_DIMENSION=${EMBED_DIMENSION:-768}
+      - EMBED_BATCH_SIZE=${EMBED_BATCH_SIZE:-64}
+      - USE_HYBRID_SEARCH=${USE_HYBRID_SEARCH:-true}
+      - BM25_MODEL=${BM25_MODEL:-Qdrant/bm25}
+      - HF_HOME=/app/hf_cache
+      - CUDA_VISIBLE_DEVICES=${EMBED_SERVER_GPU:-0}
+      - EMBED_SERVER_PORT=8765
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    restart: unless-stopped
+
   qdrant-rag:
     build:
       context: ..
@@ -26,11 +58,16 @@ services:
       - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN:-}
       - EMBED_MODEL=${EMBED_MODEL:-jhgan/ko-sroberta-multitask}
       - EMBED_DIMENSION=${EMBED_DIMENSION:-768}
+      - EMBED_BATCH_SIZE=${EMBED_BATCH_SIZE:-64}
+      - USE_HYBRID_SEARCH=${USE_HYBRID_SEARCH:-true}
+      - BM25_MODEL=${BM25_MODEL:-Qdrant/bm25}
       - HF_HOME=/app/hf_cache
       - CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-0}
       - QDRANT_URL=http://qdrant:6333
+      - EMBED_SERVER_URL=http://embed-server:8765
       - GAIA_DATASET_DIR=/data/gaia_dataset
       - OUTPUT_DIR=/app/output
+      - LOG_INTERVAL=${LOG_INTERVAL:-1000}
     depends_on:
       - qdrant
     deploy:
@@ -38,7 +75,7 @@ services:
         reservations:
           devices:
             - driver: nvidia
-              count: 1
+              count: all
               capabilities: [gpu]
     stdin_open: true
     tty: true

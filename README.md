@@ -19,7 +19,7 @@ cohesity-poc/
 │   ├── docker-compose.yml      ← 단독 실행용 (Qdrant 포함)
 │   ├── .env.example
 │   ├── qdrant_storage/         ← Qdrant 벡터 DB (자동 생성)
-│   └── output/                 ← 인제스트 체크포인트/QA/평가 결과 (자동 생성)
+│   └── output/                 ← 인제스트 체크포인트/로그/QA/평가 결과 (자동 생성)
 └── README.md
 ```
 
@@ -54,25 +54,36 @@ docker compose run --rm gaia-ragas ./run.sh --step qa     --company 삼성전자
 ```bash
 cd qdrant_rag
 cp .env.example .env
-vi .env              # ANTHROPIC_API_KEY, HUGGING_FACE_HUB_TOKEN 입력
+vi .env              # ANTHROPIC_API_KEY, HOST_UID/HOST_GID 입력
 docker compose build
-docker compose up -d qdrant   # Qdrant DB 시작
+docker compose up -d qdrant embed-server   # Qdrant DB + 임베딩 서버 시작
+docker compose logs embed-server           # 모델 로딩 완료 확인
 
-# A안 — 전체 랜덤 테스트
-docker compose run --rm qdrant-rag ./run.sh ingest
-docker compose run --rm qdrant-rag ./run.sh qa-gen
-docker compose run --rm qdrant-rag ./run.sh evaluate
-
-# B안 — 특정 회사 테스트 (권장)
+# 소규모 테스트 (권장 순서)
 docker compose run --rm qdrant-rag ./run.sh ingest   --company 삼성전자
 docker compose run --rm qdrant-rag ./run.sh qa-gen   --company 삼성전자
 docker compose run --rm qdrant-rag ./run.sh evaluate --company 삼성전자 --limit 20
 
-# 검색 / Q&A
+# 속도 향상 옵션
+docker compose run --rm qdrant-rag ./run.sh ingest --workers 8 --gpu 7      # 파싱 병렬 + GPU 지정
+docker compose run --rm qdrant-rag ./run.sh ingest --gpus 2,3,4,5 --workers 8  # 멀티 GPU
+
+# 백그라운드 실행 (세션 끊겨도 계속)
+docker compose run -d qdrant-rag ./run.sh ingest --gpus 4,5,6,7 --workers 8
+tail -f qdrant_rag/output/ingest.log                                          # 진행 로그
+docker compose run --rm qdrant-rag ./run.sh status                           # 상태 요약
+
+# 검색 (쿼리 내 연도 자동 감지 → 공시일 필터 적용)
 docker compose run --rm qdrant-rag ./run.sh search "삼성전자 2021년 영업이익"
+docker compose run --rm qdrant-rag ./run.sh search "영업이익" --company 삼성전자 --from 20210101 --to 20211231
+
+# RAG Q&A
 docker compose run --rm qdrant-rag ./run.sh qa "매출액은?" --company 삼성전자
 docker compose run --rm qdrant-rag ./run.sh info
 ```
+
+> **하이브리드 검색**: `USE_HYBRID_SEARCH=true`(기본값)일 때 Dense + BM25 RRF 방식으로 검색합니다.  
+> 값을 변경한 뒤에는 반드시 `--reset` 재인제스트가 필요합니다.
 
 ---
 
@@ -101,6 +112,7 @@ docker compose run --rm qdrant-rag ./run.sh evaluate      --company 삼성전자
 | `gaia_ragas/output/qa_pairs.json` | 전체 QA 쌍 |
 | `gaia_ragas/output/qa_pairs_{회사}.json` | 회사별 QA 쌍 |
 | `gaia_ragas/output/gaia_eval_results.csv` | GAIA API 평가 결과 |
+| `qdrant_rag/output/ingest.log` | 인제스트 진행 로그 |
 | `qdrant_rag/output/qa_pairs.json` | qdrant_rag 자체 QA 쌍 |
 | `qdrant_rag/output/qdrant_eval.csv` | RAGAS 평가 결과 |
 | `qdrant_rag/output/qdrant_eval.json` | RAGAS 점수 요약 |

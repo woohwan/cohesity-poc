@@ -20,6 +20,6 @@
 **/gaia_dataset
 **/__pycache__
 **/*.tar
-qdrant_rag/.env
+qdrant_rag/output/
 
 
