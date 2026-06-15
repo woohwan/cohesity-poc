@@ -22,4 +22,10 @@
 **/*.tar
 qdrant_rag/output/
 
+# 환경 변수 (실제 키 포함 — 절대 커밋 금지)
+.env
+**/.env
+gaia_ragas/.env
+qdrant_rag/.env
+
 
