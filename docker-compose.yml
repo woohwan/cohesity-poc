@@ -23,7 +23,15 @@ services:
       - ./gaia_dataset:/data/gaia_dataset:ro   # dataset1/2/3 통합본
       - ./gaia_ragas/output:/app/output
     environment:
-      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - LLM_PROVIDER=${LLM_PROVIDER:-claude}
+      - LLM_MODEL=${LLM_MODEL:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - CLAUDE_MODEL=${CLAUDE_MODEL:-claude-sonnet-4-6}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-5-mini}
+      - OPENAI_MAX_OUTPUT_TOKENS=${OPENAI_MAX_OUTPUT_TOKENS:-4096}
+      - OPENAI_REASONING_EFFORT=${OPENAI_REASONING_EFFORT:-minimal}
+      - RAGAS_OPENAI_MODEL=${RAGAS_OPENAI_MODEL:-gpt-4o-mini}
       - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN:-}
       - GAIA_DATASET_DIR=/data/gaia_dataset
       - OUTPUT_DIR=/app/output
@@ -44,7 +52,15 @@ services:
       - ./qdrant_rag/output:/app/output
       - ${HOME}/.cache/huggingface:/app/hf_cache
     environment:
-      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - LLM_PROVIDER=${LLM_PROVIDER:-claude}
+      - LLM_MODEL=${LLM_MODEL:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - CLAUDE_MODEL=${CLAUDE_MODEL:-claude-sonnet-4-6}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-5-mini}
+      - OPENAI_MAX_OUTPUT_TOKENS=${OPENAI_MAX_OUTPUT_TOKENS:-4096}
+      - OPENAI_REASONING_EFFORT=${OPENAI_REASONING_EFFORT:-minimal}
+      - RAGAS_OPENAI_MODEL=${RAGAS_OPENAI_MODEL:-gpt-4o-mini}
       - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN:-}
       - EMBED_MODEL=${EMBED_MODEL:-jhgan/ko-sroberta-multitask}
       - EMBED_DIMENSION=${EMBED_DIMENSION:-768}

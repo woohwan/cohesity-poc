@@ -1,5 +1,5 @@
 """
-gaia_dataset/ 에서 문서를 샘플링하여 Claude API로 QA 쌍을 생성한다.
+gaia_dataset/ 에서 문서를 샘플링하여 LLM API로 QA 쌍을 생성한다.
 qdrant_rag 독립 실행용 — gaia_ragas에 의존하지 않는다.
 
 사용법:
@@ -20,8 +20,15 @@ from tqdm import tqdm
 
 # config는 sys.path 조작 전에 import
 from config import (
-    GAIA_DATASET_DIR, OUTPUT_DIR, ANTHROPIC_API_KEY,
+    GAIA_DATASET_DIR, OUTPUT_DIR,
     SAMPLE_SIZE, QA_PER_DOC, MIN_TEXT_LENGTH, MAX_TEXT_LENGTH,
+)
+from llm_client import (
+    LLMAPIError,
+    LLMClient,
+    LLMRateLimitError,
+    is_llm_configured,
+    required_api_key_name,
 )
 
 try:
@@ -29,8 +36,6 @@ try:
 except ImportError:
     sys.path.insert(0, str(Path(__file__).parent.parent / "gaia_ragas"))
     from dart_xml_parser import parse_file  # noqa: E402
-
-import anthropic
 
 SUPPORTED_EXT = {".xml", ".pdf", ".xls", ".xlsx"}
 
@@ -131,18 +136,12 @@ def build_prompt(doc: dict, n_qa: int) -> str:
 JSON 배열 형식으로만 응답하세요. 다른 설명 없이 JSON만 출력하세요."""
 
 
-def generate_qa(client: anthropic.Anthropic, doc: dict, n_qa: int,
+def generate_qa(client: LLMClient, doc: dict, n_qa: int,
                 max_retries: int = 3) -> list[dict]:
     prompt = build_prompt(doc, n_qa)
     for attempt in range(max_retries):
         try:
-            resp = client.messages.create(
-                model="claude-sonnet-4-6",
-                max_tokens=1024,
-                system=QA_SYSTEM_PROMPT,
-                messages=[{"role": "user", "content": prompt}],
-            )
-            content = resp.content[0].text.strip()
+            content = client.generate(QA_SYSTEM_PROMPT, prompt, max_tokens=1024)
             if content.startswith("```"):
                 content = "\n".join(content.split("\n")[1:])
                 if content.endswith("```"):
@@ -160,11 +159,11 @@ def generate_qa(client: anthropic.Anthropic, doc: dict, n_qa: int,
         except json.JSONDecodeError:
             print(f"  [WARN] JSON 파싱 실패 (시도 {attempt+1}/{max_retries})")
             time.sleep(2)
-        except anthropic.RateLimitError:
+        except LLMRateLimitError:
             wait = 30 * (attempt + 1)
             print(f"  [WARN] Rate limit. {wait}초 대기...")
             time.sleep(wait)
-        except anthropic.APIError as e:
+        except LLMAPIError as e:
             print(f"  [ERROR] API 오류: {e}")
             time.sleep(5)
     return []
@@ -172,8 +171,8 @@ def generate_qa(client: anthropic.Anthropic, doc: dict, n_qa: int,
 
 def run(sample_size: int, qa_per_doc: int,
         company_filter: Optional[str] = None) -> None:
-    if not ANTHROPIC_API_KEY:
-        print("[ERROR] ANTHROPIC_API_KEY 환경 변수를 설정하세요.")
+    if not is_llm_configured():
+        print(f"[ERROR] {required_api_key_name()} 환경 변수를 설정하세요.")
         sys.exit(1)
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -196,7 +195,7 @@ def run(sample_size: int, qa_per_doc: int,
     pending = [d for d in docs if d.get("uid", "") not in existing_doc_ids]
     print(f"[문서] 파싱 성공: {len(docs)}개 / 미처리: {len(pending)}개")
 
-    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+    client = LLMClient()
     all_qa = list(existing_qa)
 
     for i, doc in enumerate(tqdm(pending, desc="QA 생성", unit="doc")):

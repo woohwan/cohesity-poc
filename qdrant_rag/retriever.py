@@ -95,16 +95,28 @@ def embed_query_sparse(query: str):
     return list(bm25.query_embed(query))[0]
 
 
-def _extract_date_range(query: str) -> tuple[Optional[str], Optional[str]]:
+FINANCIAL_YEAR_TERMS = (
+    "영업이익", "매출", "매출액", "순이익", "당기순이익", "손익",
+    "재무", "실적", "자산", "부채", "자본", "사업보고서", "감사보고서",
+)
+
+
+def _is_financial_year_query(query: str) -> bool:
+    return any(term in query for term in FINANCIAL_YEAR_TERMS)
+
+
+def _extract_date_range(query: str) -> tuple[Optional[str], Optional[str], Optional[str]]:
     """
-    쿼리에서 연도/반기/분기를 추출해 (date_from, date_to) 반환.
-    예)  "2021년"       → ("20210101", "20211231")
-         "2021년 1분기" → ("20210101", "20210331")
-         "2021년 상반기" → ("20210101", "20210630")
+    쿼리에서 연도/반기/분기를 추출해 (date_from, date_to, label) 반환.
+    재무 수치 연간 질의는 공시일이 다음 해로 넘어가므로 다음 해 4월까지 포함한다.
+    예)  "2021년"         → (20210101, 20211231, "날짜")
+         "2021년 영업이익" → (20210101, 20220430, "사업연도")
+         "2021년 1분기"   → (20210101, 20210331, "날짜")
+         "2021년 상반기"  → (20210101, 20210630, "날짜")
     """
     year_m = re.search(r'(20\d{2}|19\d{2})년', query)
     if not year_m:
-        return None, None
+        return None, None, None
 
     year = year_m.group(1)
 
@@ -115,16 +127,20 @@ def _extract_date_range(query: str) -> tuple[Optional[str], Optional[str]]:
         month_ranges = {1: ("01", "03"), 2: ("04", "06"),
                         3: ("07", "09"), 4: ("10", "12")}
         m_from, m_to = month_ranges[q]
-        return int(f"{year}{m_from}01"), int(f"{year}{m_to}31")
+        return int(f"{year}{m_from}01"), int(f"{year}{m_to}31"), "날짜"
 
     # 상/하반기
     if "상반기" in query:
-        return int(f"{year}0101"), int(f"{year}0630")
+        return int(f"{year}0101"), int(f"{year}0630"), "날짜"
     if "하반기" in query:
-        return int(f"{year}0701"), int(f"{year}1231")
+        return int(f"{year}0701"), int(f"{year}1231"), "날짜"
+
+    # 연간 재무 수치 질의는 대상 사업연도의 보고서가 다음 해에 공시되는 경우가 많다.
+    if _is_financial_year_query(query):
+        return int(f"{year}0101"), int(f"{int(year) + 1}0430"), "사업연도"
 
     # 연도만
-    return int(f"{year}0101"), int(f"{year}1231")
+    return int(f"{year}0101"), int(f"{year}1231"), "날짜"
 
 
 def search(
@@ -150,9 +166,9 @@ def search(
 
     # 날짜 범위 결정 (int로 통일 — Qdrant Range는 숫자형만 지원)
     if not date_from and not date_to and auto_date:
-        date_from, date_to = _extract_date_range(query)
+        date_from, date_to, date_label = _extract_date_range(query)
         if date_from:
-            print(f"[검색] 날짜 자동 감지: {date_from} ~ {date_to}")
+            print(f"[검색] {date_label} 자동 감지: {date_from} ~ {date_to}")
     if date_from and not isinstance(date_from, int):
         date_from = int(date_from)
     if date_to and not isinstance(date_to, int):

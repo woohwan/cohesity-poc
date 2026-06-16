@@ -27,9 +27,18 @@ OUTPUT_DIR = Path(os.environ.get("OUTPUT_DIR",
                   str(Path(__file__).parent / "output")))
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-# Anthropic API
+# LLM API
+# LLM_PROVIDER: claude | chatgpt
+LLM_PROVIDER      = (os.environ.get("LLM_PROVIDER") or "claude").lower()
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
+OPENAI_API_KEY    = os.environ.get("OPENAI_API_KEY", "")
 CLAUDE_MODEL      = os.environ.get("CLAUDE_MODEL", "claude-sonnet-4-6")
+OPENAI_MODEL      = os.environ.get("OPENAI_MODEL", "gpt-5-mini")
+LLM_MODEL         = os.environ.get("LLM_MODEL") or (
+    OPENAI_MODEL if LLM_PROVIDER in {"chatgpt", "openai", "gpt"} else CLAUDE_MODEL
+)
+OPENAI_MAX_OUTPUT_TOKENS = int(os.environ.get("OPENAI_MAX_OUTPUT_TOKENS", "4096"))
+OPENAI_REASONING_EFFORT  = os.environ.get("OPENAI_REASONING_EFFORT", "minimal")
 
 # 샘플링 설정
 SAMPLE_SIZE = 100          # 총 샘플 문서 수

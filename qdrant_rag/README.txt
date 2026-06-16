@@ -3,7 +3,19 @@
 ================================================================================
 
 DART KOSPI200 한국 금융 공시 문서를 Qdrant 벡터 DB에 인제스트하고,
-Claude API와 결합해 RAG Q&A 및 RAGAS 품질 평가를 수행하는 파이프라인.
+LLM API와 결합해 RAG Q&A 및 RAGAS 품질 평가를 수행하는 파이프라인.
+
+--------------------------------------------------------------------------------
+  현재 인덱스 데이터 범위
+--------------------------------------------------------------------------------
+
+  - 현재 Qdrant 컬렉션(dart_kospi200)에 인제스트된 filing_date 범위: 2015-02-13 ~ 2026-05-08
+  - 원본 gaia_dataset/ 파일명 기준 날짜 범위도 2015년 ~ 2026년입니다.
+  - 예: "삼성전자 2000년 영업이익"은 현재 인덱스 범위 밖이라 검색 결과가 0건입니다.
+  - 연간 재무 질의(영업이익/매출/순이익/사업보고서/감사보고서 등)는 사업연도로 해석합니다.
+    예: "삼성전자 2015년 영업이익" -> 2015-01-01 ~ 2016-04-30 공시까지 검색
+  - 분기/반기 표현은 해당 기간의 filing_date 범위로 검색합니다.
+
 
 --------------------------------------------------------------------------------
   파일 구조
@@ -14,7 +26,7 @@ Claude API와 결합해 RAG Q&A 및 RAGAS 품질 평가를 수행하는 파이�
   ├── ingest.py               문서 파싱 → 청킹 → 임베딩 → Qdrant 저장
   ├── retriever.py            Qdrant 검색 (dense + BM25 하이브리드)
   ├── embed_server.py         임베딩 모델 서버 (모델 1회 로딩 후 HTTP 서빙)
-  ├── qa_chain.py             검색 + Claude API Q&A 체인
+  ├── qa_chain.py             검색 + LLM API Q&A 체인
   ├── qa_gen.py               gaia_dataset 에서 QA 쌍 생성
   ├── evaluate.py             RAGAS 4개 메트릭 평가
   ├── requirements.txt        Python 패키지 목록
@@ -58,7 +70,7 @@ Claude API와 결합해 RAG Q&A 및 RAGAS 품질 평가를 수행하는 파이�
                     (embed-server 미기동 시 로컬 모델로 자동 fallback)
         |
         v
-  qa_chain.py   ->  Claude API 답변 생성 (기본: claude-sonnet-4-6)
+  qa_chain.py   ->  LLM API 답변 생성 (LLM_PROVIDER/LLM_MODEL로 변경 가능)
         |
         v
   evaluate.py   ->  RAGAS 4개 메트릭 평가
@@ -76,7 +88,7 @@ Claude API와 결합해 RAG Q&A 및 RAGAS 품질 평가를 수행하는 파이�
 --------------------------------------------------------------------------------
 
   - gaia_dataset/ 디렉터리 존재 (상위 경로 ../gaia_dataset/)
-  - ANTHROPIC_API_KEY 환경 변수 (qa, qa-gen, evaluate 명령 시)
+  - ANTHROPIC_API_KEY 또는 OPENAI_API_KEY 환경 변수 (qa, qa-gen, evaluate 명령 시)
   - HUGGING_FACE_HUB_TOKEN 환경 변수 (private/gated HuggingFace 모델 사용 시)
   - NVIDIA GPU 사용 시: NVIDIA Container Toolkit 설치 필요
 
@@ -161,7 +173,7 @@ Claude API와 결합해 RAG Q&A 및 RAGAS 품질 평가를 수행하는 파이�
 
   cd qdrant_rag
   ./run.sh setup
-  export ANTHROPIC_API_KEY=sk-ant-...
+  export ANTHROPIC_API_KEY=sk-ant-...  # 또는 LLM_PROVIDER=chatgpt OPENAI_API_KEY=sk-...
   export CUDA_VISIBLE_DEVICES=0
 
   ./run.sh ingest --company 삼성전자

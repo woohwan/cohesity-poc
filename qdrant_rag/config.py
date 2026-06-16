@@ -56,9 +56,19 @@ TOP_K = int(os.environ.get("TOP_K", "5"))
 USE_HYBRID_SEARCH = os.environ.get("USE_HYBRID_SEARCH", "true").lower() == "true"
 BM25_MODEL        = os.environ.get("BM25_MODEL", "Qdrant/bm25")
 
-# ── Claude API ────────────────────────────────────────────────────────────────
-CLAUDE_MODEL      = os.environ.get("CLAUDE_MODEL", "claude-sonnet-4-6")
+# ── LLM API ───────────────────────────────────────────────────────────────────
+# LLM_PROVIDER: claude | chatgpt
+LLM_PROVIDER      = (os.environ.get("LLM_PROVIDER") or "claude").lower()
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
+OPENAI_API_KEY    = os.environ.get("OPENAI_API_KEY", "")
+CLAUDE_MODEL      = os.environ.get("CLAUDE_MODEL", "claude-sonnet-4-6")
+OPENAI_MODEL      = os.environ.get("OPENAI_MODEL", "gpt-5-mini")
+LLM_MODEL         = os.environ.get("LLM_MODEL") or (
+    OPENAI_MODEL if LLM_PROVIDER in {"chatgpt", "openai", "gpt"} else CLAUDE_MODEL
+)
+OPENAI_MAX_OUTPUT_TOKENS = int(os.environ.get("OPENAI_MAX_OUTPUT_TOKENS", "4096"))
+OPENAI_REASONING_EFFORT  = os.environ.get("OPENAI_REASONING_EFFORT", "minimal")
+RAGAS_OPENAI_MODEL       = os.environ.get("RAGAS_OPENAI_MODEL", "gpt-4o-mini")
 
 # ── 인제스트 상태 저장 (output/ 에 저장 → 컨테이너 재시작 후에도 유지) ──────────
 CHECKPOINT_FILE = Path(os.environ.get("CHECKPOINT_FILE",
@@ -72,7 +82,7 @@ LOG_INTERVAL = int(os.environ.get("LOG_INTERVAL", "1000"))  # 로그 기록 간�
 SAMPLE_SIZE     = 100    # 샘플 문서 수
 QA_PER_DOC      = 2      # 문서당 QA 쌍 수
 MIN_TEXT_LENGTH = 300    # 최소 텍스트 길이 (이 미만 문서 제외)
-MAX_TEXT_LENGTH = 8000   # Claude 입력용 최대 텍스트 길이
+MAX_TEXT_LENGTH = 8000   # LLM 입력용 최대 텍스트 길이
 
 # ── 평가 결과 출력 ─────────────────────────────────────────────────────────────
 OUTPUT_DIR = Path(os.environ.get("OUTPUT_DIR", str(Path(__file__).parent / "output")))

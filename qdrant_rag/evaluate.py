@@ -14,6 +14,7 @@ RAGAS로 Qdrant RAG 파이프라인 품질 평가
 import argparse
 import csv
 import json
+import math
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -79,21 +80,42 @@ def run_eval(qa_pairs: list[dict], company_filter: str = None) -> list[dict]:
     return rows
 
 
+def _install_ragas_compat_shims() -> None:
+    """RAGAS 일부 버전이 참조하는 구 LangChain VertexAI 경로를 호환 처리한다."""
+    import sys
+    import types
+
+    module_name = "langchain_community.chat_models.vertexai"
+    if module_name in sys.modules:
+        return
+
+    module = types.ModuleType(module_name)
+
+    class ChatVertexAI:  # pragma: no cover - 실제 평가에서는 사용하지 않는 호환 shim
+        def __init__(self, *args, **kwargs):
+            raise ImportError(
+                "ChatVertexAI is not installed. "
+                "Set LLM_PROVIDER=claude or chatgpt for this evaluator."
+            )
+
+    module.ChatVertexAI = ChatVertexAI
+    sys.modules[module_name] = module
+
+
 def compute_ragas(rows: list[dict]) -> dict:
     """RAGAS 메트릭 계산 (4가지: faithfulness, answer_relevancy, context_precision, context_recall)."""
     try:
+        _install_ragas_compat_shims()
         from ragas import evaluate
         from ragas.dataset_schema import SingleTurnSample, EvaluationDataset
         from ragas.metrics import (
             faithfulness, answer_relevancy,
             context_precision, context_recall,
         )
-        from langchain_anthropic import ChatAnthropic
         from ragas.llms import LangchainLLMWrapper
+        from llm_client import build_langchain_llm
 
-        from config import CLAUDE_MODEL, ANTHROPIC_API_KEY
-        llm = ChatAnthropic(model=CLAUDE_MODEL, api_key=ANTHROPIC_API_KEY)
-        ragas_llm = LangchainLLMWrapper(llm)
+        ragas_llm = LangchainLLMWrapper(build_langchain_llm())
 
         samples = []
         for r in rows:
@@ -120,34 +142,65 @@ def compute_ragas(rows: list[dict]) -> dict:
         return {}
 
 
+def _result_records(rows: list[dict]) -> list[dict]:
+    records = []
+    for i, r in enumerate(rows, 1):
+        records.append({
+            "no": i,
+            "question": r["user_input"],
+            "rag_response": r["response"],
+            "reference_answer": r["reference"],
+            "company": r["company"],
+            "source_type": r["source_type"],
+            "doc_id": r["doc_id"],
+            "contexts_count": len(r["retrieved_contexts"]),
+            "retrieved_contexts": "\n---\n".join(r["retrieved_contexts"]),
+        })
+    return records
+
+
 def save_results(rows: list[dict], scores: dict, out_path: Path) -> None:
     out_path.parent.mkdir(parents=True, exist_ok=True)
+    records = _result_records(rows)
 
     # CSV 저장
     csv_path = out_path.with_suffix(".csv")
-    fieldnames = ["user_input", "response", "reference",
-                  "company", "source_type", "doc_id",
-                  "contexts_count"]
+    fieldnames = [
+        "no", "question", "rag_response", "reference_answer",
+        "company", "source_type", "doc_id", "contexts_count",
+    ]
     with open(csv_path, "w", newline="", encoding="utf-8-sig") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
-        for r in rows:
-            writer.writerow({
-                "user_input":     r["user_input"],
-                "response":       r["response"],
-                "reference":      r["reference"],
-                "company":        r["company"],
-                "source_type":    r["source_type"],
-                "doc_id":         r["doc_id"],
-                "contexts_count": len(r["retrieved_contexts"]),
-            })
+        for record in records:
+            writer.writerow({k: record[k] for k in fieldnames})
     print(f"[저장] 결과 CSV: {csv_path}")
+
+    # Excel 저장
+    xlsx_path = out_path.with_suffix(".xlsx")
+    try:
+        import pandas as pd
+
+        scores_records = [
+            {"metric": k, "score": v}
+            for k, v in scores.items()
+        ]
+        with pd.ExcelWriter(xlsx_path, engine="openpyxl") as writer:
+            pd.DataFrame(records).to_excel(writer, index=False, sheet_name="results")
+            pd.DataFrame(scores_records).to_excel(writer, index=False, sheet_name="ragas_scores")
+        print(f"[저장] 결과 Excel: {xlsx_path}")
+    except Exception as e:
+        print(f"[WARN] Excel 저장 실패: {e}")
 
     # 요약 JSON
     summary = {
         "timestamp":   datetime.now().isoformat(),
         "total_qa":    len(rows),
         "ragas_scores": scores,
+        "files": {
+            "csv": str(csv_path),
+            "xlsx": str(xlsx_path),
+        },
     }
     json_path = out_path.with_suffix(".json")
     with open(json_path, "w", encoding="utf-8") as f:
@@ -155,11 +208,38 @@ def save_results(rows: list[dict], scores: dict, out_path: Path) -> None:
     print(f"[저장] 요약 JSON: {json_path}")
 
 
+def _shorten(text: str, limit: int = 260) -> str:
+    text = " ".join((text or "").split())
+    if len(text) <= limit:
+        return text
+    return text[: limit - 3] + "..."
+
+
+def print_eval_rows(rows: list[dict]) -> None:
+    print("\n========== RAG 응답 상세 ==========")
+    if not rows:
+        print("  출력할 평가 결과가 없습니다.")
+    for i, r in enumerate(rows, 1):
+        print(f"\n[{i}] 질문")
+        print(f"  {_shorten(r['user_input'], 220)}")
+        print("  RAG 답변")
+        print(f"  {_shorten(r['response'], 420)}")
+        print("  기준 답변")
+        print(f"  {_shorten(r['reference'], 420)}")
+        print(f"  참조 문서 수: {len(r['retrieved_contexts'])} | 회사: {r['company']} | 유형: {r['source_type']}")
+    print("===================================\n")
+
+
 def print_summary(scores: dict, total: int) -> None:
     print("\n========== RAGAS 평가 결과 ==========")
     print(f"  평가 QA 수 : {total:,}개")
     if scores:
-        for k, v in scores.items():
+        printable_scores = {k: v for k, v in scores.items() if isinstance(v, (int, float)) and not math.isnan(v)}
+        if not printable_scores:
+            print("  RAGAS 점수가 모두 NaN입니다. 위쪽 RAGAS 예외 로그를 확인하세요.")
+            print("=====================================\n")
+            return
+        for k, v in printable_scores.items():
             bar = "█" * int(v * 20)
             print(f"  {k:<25}: {v:.4f}  {bar}")
         # GAIA 목표 기준
@@ -167,9 +247,9 @@ def print_summary(scores: dict, total: int) -> None:
                    "context_precision": 0.5, "context_recall": 0.5}
         print("\n  [GAIA 목표 기준]")
         for k, t in targets.items():
-            if k in scores:
-                ok = "PASS" if scores[k] >= t else "FAIL"
-                print(f"    {k:<25}: {scores[k]:.4f} (목표 {t}) → {ok}")
+            if k in printable_scores:
+                ok = "PASS" if printable_scores[k] >= t else "FAIL"
+                print(f"    {k:<25}: {printable_scores[k]:.4f} (목표 {t}) → {ok}")
     else:
         print("  RAGAS 점수를 계산하지 못했습니다.")
     print("=====================================\n")
@@ -187,5 +267,6 @@ if __name__ == "__main__":
     scores   = compute_ragas(rows)
 
     out_path = OUTPUT_DIR / args.out
+    print_eval_rows(rows)
     save_results(rows, scores, out_path)
     print_summary(scores, len(rows))

@@ -5,7 +5,7 @@
   # 1단계: API 없이 파서/샘플러만 검증 (빠름, 무료)
   python test_pipeline.py --stage parse
 
-  # 2단계: Claude API로 QA 소규모 생성 (5문서 × 2QA = 10개)
+  # 2단계: LLM API로 QA 소규모 생성 (5문서 × 2QA = 10개)
   python test_pipeline.py --stage qa
 
   # 3단계: RAGAS 테스트셋 포맷 검증
@@ -105,13 +105,15 @@ def test_sampler(n: int = 9):
 # ── Stage 2: QA 생성 검증 ────────────────────────────────────────────────────
 
 def test_qa_generation(n_docs: int = 5, n_qa: int = 2):
-    """Claude API로 소규모 QA 생성 (API 키 필요)."""
+    """LLM API로 소규모 QA 생성 (API 키 필요)."""
     print(f"\n[Stage 2] QA 생성 검증 ({n_docs}문서 × {n_qa}QA)")
 
-    from config import ANTHROPIC_API_KEY
-    if not ANTHROPIC_API_KEY:
-        fail("ANTHROPIC_API_KEY 환경 변수가 없습니다.")
-        info("export ANTHROPIC_API_KEY=sk-ant-...")
+    from llm_client import is_llm_configured, required_api_key_name
+    if not is_llm_configured():
+        key_name = required_api_key_name()
+        fail(f"{key_name} 환경 변수가 없습니다.")
+        info("export LLM_PROVIDER=chatgpt && export OPENAI_API_KEY=sk-...")
+        info("또는 export ANTHROPIC_API_KEY=sk-ant-...")
         return False
 
     # 소규모 샘플

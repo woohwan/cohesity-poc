@@ -42,8 +42,16 @@ if [ "${1}" = "consolidate" ]; then
     exit $?
 fi
 
-# QA 파이프라인 모드 (ANTHROPIC_API_KEY 필요)
-if [ -z "$ANTHROPIC_API_KEY" ]; then
+# QA 파이프라인 모드 (선택한 LLM provider의 API key 필요)
+LLM_PROVIDER="${LLM_PROVIDER:-claude}"
+if [[ "$LLM_PROVIDER" =~ ^(chatgpt|openai|gpt)$ ]]; then
+    if [ -z "$OPENAI_API_KEY" ]; then
+        echo "[ERROR] OPENAI_API_KEY 환경 변수를 설정하세요."
+        echo "  export LLM_PROVIDER=chatgpt"
+        echo "  export OPENAI_API_KEY=sk-..."
+        exit 1
+    fi
+elif [ -z "$ANTHROPIC_API_KEY" ]; then
     echo "[ERROR] ANTHROPIC_API_KEY 환경 변수를 설정하세요."
     echo "  export ANTHROPIC_API_KEY=sk-ant-..."
     exit 1

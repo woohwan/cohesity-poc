@@ -431,8 +431,8 @@ TC-I-04  RAGAS 평가 실행 (GAIA API 필요)
   # Stage 1: 파서/샘플러 (API 불필요)
   .venv/bin/python test_pipeline.py --stage parse
 
-  # Stage 2: QA 생성 (Claude API 필요)
-  export ANTHROPIC_API_KEY=sk-ant-...
+  # Stage 2: QA 생성 (LLM API 필요)
+  export ANTHROPIC_API_KEY=sk-ant-...  # 또는 LLM_PROVIDER=chatgpt OPENAI_API_KEY=sk-...
   .venv/bin/python test_pipeline.py --stage qa
 
   # Stage 3: RAGAS 포맷
@@ -449,7 +449,7 @@ TC-I-04  RAGAS 평가 실행 (GAIA API 필요)
   ./run.sh --step qa     --company 삼성전자
 
   [ Docker 실행 (컨테이너) ]
-  ※ 사전: cp .env.example .env  →  ANTHROPIC_API_KEY 입력
+  ※ 사전: cp .env.example .env  →  ANTHROPIC_API_KEY 또는 OPENAI_API_KEY 입력
   ※ 사전: docker compose build (최초 1회)
 
   # A안: 전체 랜덤 샘플링

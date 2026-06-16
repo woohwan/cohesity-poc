@@ -3,13 +3,22 @@
 DART KOSPI200 한국 금융 공시 문서에서 QA 쌍을 생성하고
 Cohesity GAIA API 및 RAGAS로 RAG 품질을 평가하는 파이프라인.
 
+## 현재 테스트 데이터 범위
+
+- 현재 `gaia_dataset/` 파일명 기준 날짜 범위: **2015년 ~ 2026년**
+- qdrant RAG 테스트 컬렉션(`dart_kospi200`) 기준 `filing_date` 범위: **2015-02-13 ~ 2026-05-08**
+- 예: `삼성전자 2000년 영업이익`은 현재 테스트 데이터 범위 밖이라 GAIA/RAG 평가 질문으로 부적합합니다.
+- 연간 재무 질의(`영업이익`, `매출`, `순이익`, `사업보고서`, `감사보고서` 등)는 사업연도 기준으로 해석해야 합니다.
+  예: `삼성전자 2015년 영업이익`은 2015년 사업연도 질문이며, 2016년 제출 감사보고서/사업보고서에 답이 있을 수 있습니다.
+- QA 생성과 RAGAS 평가용 질문도 위 범위를 벗어나지 않도록 샘플링/작성해야 합니다.
+
 ## 파일 구조
 
 ```
 gaia_ragas/
-├── config.py               설정 (경로, Claude 모델, 샘플링 파라미터)
+├── config.py               설정 (경로, LLM provider/model, 샘플링 파라미터)
 ├── document_sampler.py     gaia_dataset 에서 문서 샘플링
-├── qa_generator.py         Claude API 로 QA 쌍 생성
+├── qa_generator.py         LLM API 로 QA 쌍 생성
 ├── ragas_testset_creator.py QA 쌍 → RAGAS 테스트셋 변환
 ├── gaia_evaluator.py       Cohesity GAIA API 평가 + RAGAS 메트릭 계산
 ├── run_pipeline.py         단계별 파이프라인 진입점
@@ -31,7 +40,7 @@ gaia_dataset/ (XML/PDF/XLS)
 document_sampler.py  →  랜덤 샘플링 (기본 100개)
       │
       ▼
-qa_generator.py      →  Claude API 로 QA 쌍 생성 (문서당 2개)
+qa_generator.py      →  LLM API 로 QA 쌍 생성 (문서당 2개)
       │
       ▼
 ragas_testset_creator.py  →  RAGAS SingleTurnSample 형식 변환
@@ -43,7 +52,7 @@ gaia_evaluator.py    →  Cohesity GAIA API 쿼리 + RAGAS 메트릭 계산
 ## 사전 조건
 
 - `gaia_dataset/` 디렉터리 존재 (상위 경로 `../gaia_dataset/`)
-- `ANTHROPIC_API_KEY` 환경 변수 (QA 생성 및 RAGAS 평가 시)
+- `ANTHROPIC_API_KEY` 또는 `OPENAI_API_KEY` 환경 변수 (QA 생성 및 RAGAS 평가 시)
 - GAIA 평가 시 추가 환경 변수:
   - `COHESITY_CLUSTER_URL` — `https://<cluster-ip>`
   - `COHESITY_API_TOKEN` — Bearer 토큰
@@ -60,7 +69,7 @@ gaia_evaluator.py    →  Cohesity GAIA API 쿼리 + RAGAS 메트릭 계산
 ```bash
 cd gaia_ragas
 cp .env.example .env
-vi .env   # ANTHROPIC_API_KEY 입력, UID/GID 확인 (id -u && id -g)
+vi .env   # LLM_PROVIDER와 API key 입력, UID/GID 확인 (id -u && id -g)
 
 docker compose build
 ```
@@ -68,8 +77,15 @@ docker compose build
 `.env` 주요 항목:
 
 ```
+# Claude 기본값
+LLM_PROVIDER=claude
 ANTHROPIC_API_KEY=sk-ant-...
-CLAUDE_MODEL=claude-sonnet-4-6    # 기본값, 변경 가능
+CLAUDE_MODEL=claude-sonnet-4-6
+
+# ChatGPT/OpenAI 사용 시
+# LLM_PROVIDER=chatgpt
+# OPENAI_API_KEY=sk-...
+# OPENAI_MODEL=gpt-5-mini
 
 # 컨테이너 실행 사용자 (호스트 사용자와 일치시켜 볼륨 권한 문제 방지)
 UID=1000
@@ -128,7 +144,14 @@ Docker 없이 로컬 `.venv`에서 직접 실행하는 방법.
 cd gaia_ragas
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
+# Claude 사용 시
+export LLM_PROVIDER=claude
 export ANTHROPIC_API_KEY=sk-ant-...
+
+# ChatGPT/OpenAI 사용 시
+# export LLM_PROVIDER=chatgpt
+# export OPENAI_API_KEY=sk-...
+# export OPENAI_MODEL=gpt-5-mini
 ```
 
 ### 2. 실행 (명령어는 Docker와 동일)
@@ -149,12 +172,18 @@ export ANTHROPIC_API_KEY=sk-ant-...
 |------|--------|-----------|------|
 | `GAIA_DATASET_DIR` | `../gaia_dataset` | `GAIA_DATASET_DIR` | 샘플링 대상 데이터 경로 |
 | `OUTPUT_DIR` | `./output` | `OUTPUT_DIR` | 결과 저장 디렉터리 |
+| `LLM_PROVIDER` | `claude` | `LLM_PROVIDER` | `claude` 또는 `chatgpt` |
+| `LLM_MODEL` | provider별 기본값 | `LLM_MODEL` | QA 생성 / 평가 LLM 모델 직접 지정 |
 | `ANTHROPIC_API_KEY` | — | `ANTHROPIC_API_KEY` | Claude API 키 |
-| `CLAUDE_MODEL` | `claude-sonnet-4-6` | `CLAUDE_MODEL` | QA 생성 / 평가 LLM |
+| `OPENAI_API_KEY` | — | `OPENAI_API_KEY` | ChatGPT/OpenAI API 키 |
+| `CLAUDE_MODEL` | `claude-sonnet-4-6` | `CLAUDE_MODEL` | Claude 기본 모델 |
+| `OPENAI_MODEL` | `gpt-5-mini` | `OPENAI_MODEL` | ChatGPT/OpenAI 기본 모델 |
+| `OPENAI_MAX_OUTPUT_TOKENS` | `4096` | `OPENAI_MAX_OUTPUT_TOKENS` | OpenAI 응답 출력 토큰 상한 |
+| `OPENAI_REASONING_EFFORT` | `minimal` | `OPENAI_REASONING_EFFORT` | GPT-5/o 계열 reasoning effort |
 | `SAMPLE_SIZE` | `100` | — | 샘플링 문서 수 |
 | `QA_PER_DOC` | `2` | — | 문서당 QA 쌍 수 |
 | `MIN_TEXT_LENGTH` | `300` | — | 최소 텍스트 길이 (미만 제외) |
-| `MAX_TEXT_LENGTH` | `8000` | — | Claude 입력 최대 텍스트 길이 |
+| `MAX_TEXT_LENGTH` | `8000` | — | LLM 입력 최대 텍스트 길이 |
 
 ---
 

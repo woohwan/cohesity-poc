@@ -1,5 +1,5 @@
 """
-Qdrant 검색 + Claude API를 결합한 RAG Q&A 체인
+Qdrant 검색 + LLM API를 결합한 RAG Q&A 체인
 
 사용법:
   python qa_chain.py "삼성전자의 2021년 매출액은 얼마인가?"
@@ -9,9 +9,8 @@ import argparse
 import sys
 from pathlib import Path
 
-import anthropic
-
-from config import CLAUDE_MODEL, ANTHROPIC_API_KEY, TOP_K
+from config import TOP_K
+from llm_client import LLMClient, is_llm_configured, required_api_key_name
 from retriever import search, SearchResult
 
 SYSTEM_PROMPT = """당신은 한국 상장기업의 공시 문서(사업보고서, 주요사항보고서 등)를 분석하는 전문가입니다.
@@ -37,14 +36,18 @@ def ask(
     top_k: int = TOP_K,
     company_filter: str = None,
     source_type_filter: str = None,
+    date_from: str = None,
+    date_to: str = None,
 ) -> dict:
     """
-    질문 → 검색 → Claude 답변.
+    질문 → 검색 → LLM 답변.
     반환: {question, answer, contexts, sources}
     """
     results = search(question, top_k=top_k,
                      company_filter=company_filter,
-                     source_type_filter=source_type_filter)
+                     source_type_filter=source_type_filter,
+                     date_from=date_from,
+                     date_to=date_to)
 
     if not results:
         return {
@@ -57,14 +60,8 @@ def ask(
     context_text = format_contexts(results)
     user_message = f"참고 문서:\n\n{context_text}\n\n질문: {question}"
 
-    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
-    response = client.messages.create(
-        model=CLAUDE_MODEL,
-        max_tokens=1024,
-        system=SYSTEM_PROMPT,
-        messages=[{"role": "user", "content": user_message}],
-    )
-    answer = response.content[0].text
+    client = LLMClient()
+    answer = client.generate(SYSTEM_PROMPT, user_message, max_tokens=1024)
 
     return {
         "question": question,
@@ -91,17 +88,28 @@ if __name__ == "__main__":
     parser.add_argument("--company", type=str, default=None, help="회사명 필터")
     parser.add_argument("--type",    type=str, default=None,
                         choices=["xml", "pdf", "xls", "xlsx"], help="파일 유형 필터")
+    parser.add_argument("--from",    dest="date_from", type=str, default=None,
+                        help="공시일 시작 (YYYYMMDD)")
+    parser.add_argument("--to",      dest="date_to",   type=str, default=None,
+                        help="공시일 종료 (YYYYMMDD)")
     args = parser.parse_args()
 
-    if not ANTHROPIC_API_KEY:
-        print("[ERROR] ANTHROPIC_API_KEY 환경 변수를 설정하세요.")
+    if not is_llm_configured():
+        print(f"[ERROR] {required_api_key_name()} 환경 변수를 설정하세요.")
         sys.exit(1)
 
     result = ask(args.question, top_k=args.top_k,
-                 company_filter=args.company, source_type_filter=args.type)
+                 company_filter=args.company, source_type_filter=args.type,
+                 date_from=args.date_from, date_to=args.date_to)
 
-    print(f"\n질문: {result['question']}")
-    print(f"\n답변:\n{result['answer']}")
-    print(f"\n참조 문서 ({len(result['sources'])}개):")
+    print()
+    print("=" * 60)
+    print(f"질문: {result['question']}")
+    print("=" * 60)
+    print(f"\n{result['answer']}")
+    print()
+    print("-" * 60)
+    print(f"참조 문서 ({len(result['sources'])}개)")
+    print("-" * 60)
     for s in result["sources"]:
         print(f"  [{s['score']:.4f}] {s['company']} | {s['report_name']} | {s['filing_date']} | {s['source_type'].upper()}")

@@ -125,11 +125,21 @@ else
     exit 1
 fi
 
-# ANTHROPIC_API_KEY 확인 (qa, qa-gen, evaluate만)
-if [[ "${1}" =~ ^(qa|qa-gen|evaluate)$ ]] && [ -z "$ANTHROPIC_API_KEY" ]; then
-    echo "[ERROR] ANTHROPIC_API_KEY 환경 변수를 설정하세요:"
-    echo "  export ANTHROPIC_API_KEY=sk-ant-..."
-    exit 1
+# LLM API key 확인 (qa, qa-gen, evaluate만)
+if [[ "${1}" =~ ^(qa|qa-gen|evaluate)$ ]]; then
+    LLM_PROVIDER="${LLM_PROVIDER:-claude}"
+    if [[ "$LLM_PROVIDER" =~ ^(chatgpt|openai|gpt)$ ]]; then
+        if [ -z "$OPENAI_API_KEY" ]; then
+            echo "[ERROR] OPENAI_API_KEY 환경 변수를 설정하세요:"
+            echo "  export LLM_PROVIDER=chatgpt"
+            echo "  export OPENAI_API_KEY=sk-..."
+            exit 1
+        fi
+    elif [ -z "$ANTHROPIC_API_KEY" ]; then
+        echo "[ERROR] ANTHROPIC_API_KEY 환경 변수를 설정하세요:"
+        echo "  export ANTHROPIC_API_KEY=sk-ant-..."
+        exit 1
+    fi
 fi
 
 cd "$SCRIPT_DIR"
@@ -145,35 +155,7 @@ case "${1}" in
         ;;
     search)
         shift
-        QUERY="$1"; shift
-        SEARCH_COMPANY=""
-        SEARCH_FROM=""
-        SEARCH_TO=""
-        SEARCH_TOPK="$TOP_K"
-        while [[ $# -gt 0 ]]; do
-            case "$1" in
-                --company)  SEARCH_COMPANY="$2"; shift 2 ;;
-                --from)     SEARCH_FROM="$2";    shift 2 ;;
-                --to)       SEARCH_TO="$2";      shift 2 ;;
-                --top-k)    SEARCH_TOPK="$2";    shift 2 ;;
-                *)          shift ;;
-            esac
-        done
-        "$PYTHON" -c "
-import sys; sys.path.insert(0, '.')
-from retriever import search
-results = search(
-    '''$QUERY''',
-    top_k=${SEARCH_TOPK:-5},
-    company_filter='''$SEARCH_COMPANY''' or None,
-    date_from='''$SEARCH_FROM''' or None,
-    date_to='''$SEARCH_TO''' or None,
-)
-for r in results:
-    print(f'[{r.score:.4f}] {r.company} | {r.report_name} | {r.filing_date} | {r.source_type.upper()}')
-    print(f'  {r.text[:200]}...')
-    print()
-"
+        "$PYTHON" qa_chain.py "$@"
         ;;
     qa)
         shift

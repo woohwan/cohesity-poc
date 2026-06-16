@@ -1,17 +1,27 @@
 # qdrant_rag — Qdrant 기반 RAG 파이프라인
 
 DART KOSPI200 한국 금융 공시 문서를 Qdrant 벡터 DB에 인제스트하고,
-Claude API와 결합해 RAG Q&A 및 RAGAS 품질 평가를 수행하는 파이프라인.
+LLM API와 결합해 RAG Q&A 및 RAGAS 품질 평가를 수행하는 파이프라인.
+
+## 현재 인덱스 데이터 범위
+
+- 현재 Qdrant 컬렉션(`dart_kospi200`)에 인제스트된 `filing_date` 범위: **2015-02-13 ~ 2026-05-08**
+- 원본 `gaia_dataset/` 파일명 기준 날짜 범위도 **2015년 ~ 2026년**입니다.
+- 예: `삼성전자 2000년 영업이익`은 현재 인덱스 범위 밖이라 검색 결과가 0건입니다.
+- 연간 재무 질의(`영업이익`, `매출`, `순이익`, `사업보고서`, `감사보고서` 등)는 사업연도로 해석합니다.
+  예: `삼성전자 2015년 영업이익` -> `2015-01-01 ~ 2016-04-30` 공시까지 검색
+- 분기/반기 표현은 해당 기간의 `filing_date` 범위로 검색합니다.
+
 
 ## 파일 구조
 
 ```
 qdrant_rag/
-├── config.py               설정 (경로, 임베딩 모델, Qdrant, Claude)
+├── config.py               설정 (경로, 임베딩 모델, Qdrant, LLM)
 ├── ingest.py               문서 파싱 → 청킹 → 임베딩 → Qdrant 저장
 ├── retriever.py            Qdrant 벡터 검색 인터페이스 (dense + BM25 하이브리드)
 ├── embed_server.py         임베딩 모델 서버 (모델 1회 로딩 후 HTTP 서빙)
-├── qa_chain.py             검색 + Claude API Q&A 체인
+├── qa_chain.py             검색 + LLM API Q&A 체인
 ├── qa_gen.py               gaia_dataset 에서 QA 쌍 생성
 ├── evaluate.py             RAGAS 4개 메트릭 평가
 ├── requirements.txt        Python 패키지 목록
@@ -58,7 +68,7 @@ gaia_dataset/ (XML/PDF/XLS)
                    (embed-server 미기동 시 로컬 모델로 자동 fallback)
       │
       ▼
-  qa_chain.py  →  Claude API 답변 생성 (기본: claude-sonnet-4-6, CLAUDE_MODEL로 변경 가능)
+  qa_chain.py  →  LLM API 답변 생성 (LLM_PROVIDER/LLM_MODEL로 변경 가능)
       │
       ▼
   evaluate.py  →  RAGAS 4개 메트릭 평가
@@ -75,7 +85,7 @@ gaia_dataset/ (XML/PDF/XLS)
 ## 사전 조건
 
 - `gaia_dataset/` 디렉터리 존재 (상위 경로 `../gaia_dataset/`)
-- `ANTHROPIC_API_KEY` 환경 변수 (`qa`, `qa-gen`, `evaluate` 명령 시)
+- `ANTHROPIC_API_KEY` 또는 `OPENAI_API_KEY` 환경 변수 (`qa`, `qa-gen`, `evaluate` 명령 시)
 - `HUGGING_FACE_HUB_TOKEN` 환경 변수 (private/gated HuggingFace 모델 사용 시)
 - NVIDIA GPU 사용 시: NVIDIA Container Toolkit 설치 필요
 
@@ -90,7 +100,7 @@ gaia_dataset/ (XML/PDF/XLS)
 ```bash
 cd qdrant_rag
 cp .env.example .env
-vi .env   # ANTHROPIC_API_KEY 입력, HOST_UID/HOST_GID / GPU 번호 확인
+vi .env   # LLM_PROVIDER와 API key 입력, HOST_UID/HOST_GID / GPU 번호 확인
 
 docker compose build
 ```
@@ -98,7 +108,16 @@ docker compose build
 `.env` 주요 항목:
 
 ```
+# Claude 기본값
+LLM_PROVIDER=claude
 ANTHROPIC_API_KEY=sk-ant-...
+CLAUDE_MODEL=claude-sonnet-4-6
+
+# ChatGPT/OpenAI 사용 시
+# LLM_PROVIDER=chatgpt
+# OPENAI_API_KEY=sk-...
+# OPENAI_MODEL=gpt-5-mini
+
 HUGGING_FACE_HUB_TOKEN=        # private/gated 모델 사용 시 입력
 
 # 임베딩 모델 (모델 변경 시 EMBED_DIMENSION도 반드시 함께 수정)
@@ -285,7 +304,12 @@ export CUDA_VISIBLE_DEVICES=0
 | `CHUNK_SEPARATOR_REGEX` | `false` | `CHUNK_SEPARATOR_REGEX` | 분리자를 정규식으로 해석 여부 |
 | `TOP_K` | `5` | `TOP_K` | 검색 반환 문서 수 |
 | `LOG_INTERVAL` | `1000` | `LOG_INTERVAL` | `ingest.log` 기록 간격 (처리 파일 수 기준) |
-| `CLAUDE_MODEL` | `claude-sonnet-4-6` | `CLAUDE_MODEL` | Q&A / 평가 LLM |
+| `LLM_PROVIDER` | `claude` | `LLM_PROVIDER` | `claude` 또는 `chatgpt` |
+| `LLM_MODEL` | provider별 기본값 | `LLM_MODEL` | Q&A / 평가 LLM 모델 직접 지정 |
+| `ANTHROPIC_API_KEY` | — | `ANTHROPIC_API_KEY` | Claude API 키 |
+| `OPENAI_API_KEY` | — | `OPENAI_API_KEY` | ChatGPT/OpenAI API 키 |
+| `CLAUDE_MODEL` | `claude-sonnet-4-6` | `CLAUDE_MODEL` | Claude 기본 모델 |
+| `OPENAI_MODEL` | `gpt-5-mini` | `OPENAI_MODEL` | ChatGPT/OpenAI 기본 모델 |
 | `OUTPUT_DIR` | `./output` | `OUTPUT_DIR` | 결과 저장 디렉터리 |
 | — | `1` | `CUDA_VISIBLE_DEVICES` | ingest 단일 GPU 번호 |
 | — | `0` | `EMBED_SERVER_GPU` | embed-server GPU 번호 |

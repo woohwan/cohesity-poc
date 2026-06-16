@@ -1,5 +1,5 @@
 """
-Claude API를 사용해 DART 공시 문서에서 QA 쌍을 생성한다.
+LLM API를 사용해 DART 공시 문서에서 QA 쌍을 생성한다.
 
 생성 전략:
   - 사실 확인 질문 (수치, 날짜, 비율 등)
@@ -11,10 +11,16 @@ import time
 from pathlib import Path
 from typing import Optional
 
-import anthropic
 from tqdm import tqdm
 
-from config import ANTHROPIC_API_KEY, CLAUDE_MODEL, QA_PER_DOC, OUTPUT_DIR, REPORT_TYPE_MAP
+from config import QA_PER_DOC, OUTPUT_DIR, REPORT_TYPE_MAP
+from llm_client import (
+    LLMAPIError,
+    LLMClient,
+    LLMRateLimitError,
+    is_llm_configured,
+    required_api_key_name,
+)
 
 
 QA_SYSTEM_PROMPT = """당신은 한국 금융 공시 문서(DART)를 분석하는 전문가입니다.
@@ -68,7 +74,7 @@ JSON 배열 형식으로만 응답하세요. 다른 설명 없이 JSON만 출력
 
 
 def generate_qa_for_doc(
-    client: anthropic.Anthropic,
+    client: LLMClient,
     doc: dict,
     n_qa: int = QA_PER_DOC,
     max_retries: int = 3,
@@ -78,13 +84,7 @@ def generate_qa_for_doc(
 
     for attempt in range(max_retries):
         try:
-            response = client.messages.create(
-                model=CLAUDE_MODEL,
-                max_tokens=1024,
-                system=QA_SYSTEM_PROMPT,
-                messages=[{"role": "user", "content": prompt}],
-            )
-            content = response.content[0].text.strip()
+            content = client.generate(QA_SYSTEM_PROMPT, prompt, max_tokens=1024)
 
             # JSON 파싱 - 코드블록 제거
             if content.startswith("```"):
@@ -107,11 +107,11 @@ def generate_qa_for_doc(
         except json.JSONDecodeError:
             print(f"  [WARN] JSON 파싱 실패 (시도 {attempt+1}/{max_retries})")
             time.sleep(2)
-        except anthropic.RateLimitError:
+        except LLMRateLimitError:
             wait = 30 * (attempt + 1)
             print(f"  [WARN] Rate limit. {wait}초 대기...")
             time.sleep(wait)
-        except anthropic.APIError as e:
+        except LLMAPIError as e:
             print(f"  [ERROR] API 오류: {e}")
             time.sleep(5)
 
@@ -128,8 +128,8 @@ def generate_all_qa(
     모든 문서에 대해 QA 쌍을 생성한다.
     중간 저장을 통해 중단 후 재개가 가능하다.
     """
-    if not ANTHROPIC_API_KEY:
-        raise ValueError("ANTHROPIC_API_KEY 환경 변수가 설정되지 않았습니다.")
+    if not is_llm_configured():
+        raise ValueError(f"{required_api_key_name()} 환경 변수가 설정되지 않았습니다.")
 
     if output_path is None:
         output_path = OUTPUT_DIR / "qa_pairs.json"
@@ -143,7 +143,7 @@ def generate_all_qa(
         existing_doc_ids = {qa["doc_id"] for qa in existing_qa}
         print(f"[재개] 기존 {len(existing_qa)}개 QA 로드 완료. 남은 문서 처리 중...")
 
-    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+    client = LLMClient()
     all_qa = list(existing_qa)
 
     pending_docs = [d for d in docs if d.get("receipt_no", "") not in existing_doc_ids]

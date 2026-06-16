@@ -447,8 +447,8 @@ cd /data/richard/cohesity-poc/gaia_ragas
 # Stage 1: 파서/샘플러 (API 불필요, ~5초)
 .venv/bin/python test_pipeline.py --stage parse
 
-# Stage 2: QA 생성 소규모 (Claude API, ~30초)
-export ANTHROPIC_API_KEY=sk-ant-...
+# Stage 2: QA 생성 소규모 (LLM API, ~30초)
+export ANTHROPIC_API_KEY=sk-ant-...  # 또는 LLM_PROVIDER=chatgpt OPENAI_API_KEY=sk-...
 .venv/bin/python test_pipeline.py --stage qa
 
 # Stage 3: RAGAS 포맷 검증 (~3초)
