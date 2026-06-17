@@ -354,7 +354,15 @@ Dense 벡터와 BM25 sparse 벡터를 **RRF(Reciprocal Rank Fusion)** 로 결합
 | `context_precision` | ≥ 0.50 | 검색된 문서가 관련있는가 |
 | `context_recall` | ≥ 0.50 | 관련 문서를 충분히 검색했는가 |
 
-평가 결과는 `output/qdrant_eval.csv` 와 `output/qdrant_eval.json` 으로 저장됩니다.
+평가 결과는 `output/qdrant_eval.csv`, `output/qdrant_eval.xlsx`, `output/qdrant_eval.json` 으로 저장됩니다.
+
+### RAGAS 평가 동작 방식
+
+- **LLM**: `LLM_PROVIDER` 설정을 따름 (Claude 또는 ChatGPT) — OpenAI를 기본값으로 사용하지 않음
+- **Embeddings**: embed-server가 기동 중이면 embed-server 재활용, 없으면 로컬 HuggingFace 모델 사용 — OpenAI embedding fallback 없음
+- **QA dataset 재사용**: `qa-gen`으로 생성한 `qa_pairs_{회사}.json`은 한 번 생성 후 반복 평가에 재사용 가능 (파라미터 튜닝 비교 시 동일 dataset으로 공정 비교)
+- **신뢰성 있는 샘플 수**: 100개 이상 권장 (10개는 sanity check 수준, 50개는 초기 확인용)
+- **RAGAS 버전**: 0.4.3 기준 (`Faithfulness()` 등 클래스 인스턴스 방식)
 
 ---
 

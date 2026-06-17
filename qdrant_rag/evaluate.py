@@ -4,7 +4,7 @@ RAGAS로 Qdrant RAG 파이프라인 품질 평가
 사전 조건:
   - gaia_ragas/output/qa_pairs.json 가 생성되어 있어야 함
   - Qdrant 컬렉션에 문서가 인제스트되어 있어야 함
-  - ANTHROPIC_API_KEY 설정
+  - LLM API 키 설정 (LLM_PROVIDER=claude → ANTHROPIC_API_KEY, chatgpt → OPENAI_API_KEY)
 
 사용법:
   python evaluate.py
@@ -102,20 +102,62 @@ def _install_ragas_compat_shims() -> None:
     sys.modules[module_name] = module
 
 
+def _build_ragas_embeddings():
+    """embed 서버(우선) 또는 로컬 HuggingFace 모델을 LangchainEmbeddingsWrapper로 감싸 반환."""
+    from config import EMBED_MODEL, EMBED_SERVER_URL
+    from ragas.embeddings import LangchainEmbeddingsWrapper
+    from langchain_core.embeddings import Embeddings
+
+    if EMBED_SERVER_URL:
+        from retriever import _server_post
+
+        class _EmbedServerEmbeddings(Embeddings):
+            def embed_documents(self, texts: list[str]) -> list[list[float]]:
+                resp = _server_post("/embed/dense", {"texts": texts, "normalize": True})
+                return resp["vectors"]
+
+            def embed_query(self, text: str) -> list[float]:
+                return self.embed_documents([text])[0]
+
+        return LangchainEmbeddingsWrapper(_EmbedServerEmbeddings())
+
+    from langchain_huggingface import HuggingFaceEmbeddings
+    return LangchainEmbeddingsWrapper(HuggingFaceEmbeddings(model_name=EMBED_MODEL))
+
+
 def compute_ragas(rows: list[dict]) -> dict:
     """RAGAS 메트릭 계산 (4가지: faithfulness, answer_relevancy, context_precision, context_recall)."""
+    if not rows:
+        print("[RAGAS] 평가할 데이터가 없습니다 (RAG 응답 실패).")
+        return {}
     try:
         _install_ragas_compat_shims()
         from ragas import evaluate
         from ragas.dataset_schema import SingleTurnSample, EvaluationDataset
-        from ragas.metrics import (
-            faithfulness, answer_relevancy,
-            context_precision, context_recall,
-        )
         from ragas.llms import LangchainLLMWrapper
+        try:
+            from ragas.metrics import (
+                Faithfulness, AnswerRelevancy,
+                ContextPrecision, ContextRecall,
+            )
+            metrics = [Faithfulness(), AnswerRelevancy(), ContextPrecision(), ContextRecall()]
+        except ImportError:
+            from ragas.metrics import (  # noqa: E402  (older ragas)
+                faithfulness, answer_relevancy,
+                context_precision, context_recall,
+            )
+            metrics = [faithfulness, answer_relevancy, context_precision, context_recall]
+
         from llm_client import build_langchain_llm
 
         ragas_llm = LangchainLLMWrapper(build_langchain_llm())
+
+        try:
+            ragas_embeddings = _build_ragas_embeddings()
+            print("[RAGAS] embeddings: embed 서버 또는 로컬 HuggingFace 사용")
+        except Exception as e:
+            print(f"[WARN] RAGAS embeddings 설정 실패: {e}")
+            ragas_embeddings = None
 
         samples = []
         for r in rows:
@@ -127,14 +169,18 @@ def compute_ragas(rows: list[dict]) -> dict:
             ))
 
         dataset = EvaluationDataset(samples=samples)
-        metrics = [faithfulness, answer_relevancy, context_precision, context_recall]
 
-        # LLM 주입
         for m in metrics:
             if hasattr(m, "llm"):
                 m.llm = ragas_llm
+            if ragas_embeddings and hasattr(m, "embeddings"):
+                m.embeddings = ragas_embeddings
 
-        result = evaluate(dataset=dataset, metrics=metrics)
+        eval_kwargs = {"dataset": dataset, "metrics": metrics, "llm": ragas_llm}
+        if ragas_embeddings:
+            eval_kwargs["embeddings"] = ragas_embeddings
+
+        result = evaluate(**eval_kwargs)
         return result.to_pandas().mean(numeric_only=True).to_dict()
 
     except Exception as e:

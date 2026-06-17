@@ -1,18 +1,17 @@
 """
 Cohesity GAIA API를 호출해 테스트셋으로 평가한다.
 
-Cohesity GAIA REST API 엔드포인트 (예시):
-  POST /api/v1/gaia/query
+Cohesity GAIA REST API 엔드포인트:
+  POST /gaia/ask
   {
-    "query": "질문",
-    "collection_ids": ["..."],
-    "max_results": 5
+    "datasetNames": ["dataset-name"],
+    "queryString": "질문"
   }
 
 사용 전에 환경 변수를 설정하세요:
-  COHESITY_CLUSTER_URL  : https://<cluster-ip>
-  COHESITY_API_TOKEN    : Bearer 토큰
-  COHESITY_COLLECTION_ID: GAIA 컬렉션 ID
+  COHESITY_CLUSTER_URL  : https://<helios-fqdn>
+  COHESITY_API_KEY      : Helios API Key (Settings > Access Management > API Keys)
+  COHESITY_DATASET_NAME : GAIA 데이터셋 이름 (GAIA_VIEW 권한 필요)
 
 평가 메트릭:
   - Exact Match (EM)
@@ -31,29 +30,27 @@ import pandas as pd
 from config import OUTPUT_DIR
 
 
-CLUSTER_URL = os.environ.get("COHESITY_CLUSTER_URL", "")
-API_TOKEN = os.environ.get("COHESITY_API_TOKEN", "")
-COLLECTION_ID = os.environ.get("COHESITY_COLLECTION_ID", "")
+CLUSTER_URL   = os.environ.get("COHESITY_CLUSTER_URL", "")
+API_KEY       = os.environ.get("COHESITY_API_KEY", "")
+DATASET_NAME  = os.environ.get("COHESITY_DATASET_NAME", "")
 
 
 def query_gaia(question: str, top_k: int = 5) -> dict:
     """GAIA API에 질문을 보내고 응답을 반환한다."""
-    if not CLUSTER_URL or not API_TOKEN:
-        raise ValueError("COHESITY_CLUSTER_URL, COHESITY_API_TOKEN 환경 변수를 설정하세요.")
+    if not CLUSTER_URL or not API_KEY:
+        raise ValueError("COHESITY_CLUSTER_URL, COHESITY_API_KEY 환경 변수를 설정하세요.")
 
     headers = {
-        "Authorization": f"Bearer {API_TOKEN}",
+        "apiKey": API_KEY,
         "Content-Type": "application/json",
     }
     payload = {
-        "query": question,
-        "max_results": top_k,
+        "queryString": question,
     }
-    if COLLECTION_ID:
-        payload["collection_ids"] = [COLLECTION_ID]
+    if DATASET_NAME:
+        payload["datasetNames"] = [DATASET_NAME]
 
-    # GAIA 엔드포인트는 클러스터 버전에 따라 다를 수 있음
-    url = f"{CLUSTER_URL}/api/v1/gaia/query"
+    url = f"{CLUSTER_URL}/gaia/ask"
     resp = requests.post(url, headers=headers, json=payload, verify=False, timeout=60)
     resp.raise_for_status()
     return resp.json()
@@ -180,25 +177,33 @@ def run_ragas_evaluation(
     """
     try:
         from ragas import evaluate
+        from ragas.dataset_schema import SingleTurnSample, EvaluationDataset
+        from ragas.llms import LangchainLLMWrapper
         from ragas.metrics import (
-            faithfulness,
-            answer_relevancy,
-            context_precision,
-            context_recall,
+            Faithfulness, AnswerRelevancy,
+            ContextPrecision, ContextRecall,
         )
-        from datasets import Dataset
+        from llm_client import build_langchain_llm
     except ImportError:
-        print("[SKIP] ragas 또는 datasets 패키지가 없어 RAGAS 평가를 건너뜁니다.")
+        print("[SKIP] ragas 패키지가 없어 RAGAS 평가를 건너뜁니다.")
         return
 
     try:
-        from ragas.llms import LangchainLLMWrapper
-        from llm_client import build_langchain_llm
-
-        llm = LangchainLLMWrapper(build_langchain_llm())
+        ragas_llm = LangchainLLMWrapper(build_langchain_llm())
     except Exception as e:
         print(f"[WARN] LLM 설정 실패: {e}. RAGAS 기본 LLM을 사용합니다.")
-        llm = None
+        ragas_llm = None
+
+    # OpenAI embedding fallback 방지 — 소형 HuggingFace 모델 사용
+    ragas_embeddings = None
+    try:
+        from ragas.embeddings import LangchainEmbeddingsWrapper
+        from langchain_huggingface import HuggingFaceEmbeddings
+        ragas_embeddings = LangchainEmbeddingsWrapper(
+            HuggingFaceEmbeddings(model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
+        )
+    except Exception as e:
+        print(f"[WARN] embeddings 설정 실패 (OpenAI fallback 가능): {e}")
 
     if testset_path is None:
         testset_path = OUTPUT_DIR / "ragas_testset.json"
@@ -217,22 +222,32 @@ def run_ragas_evaluation(
         testset = json.load(f)
     samples = testset["samples"] if "samples" in testset else testset
 
-    ragas_data = []
+    ragas_samples = []
     for row, sample in zip(gaia_df.itertuples(), samples):
-        ragas_data.append({
-            "user_input": sample["user_input"],
-            "response": row.gaia_response if row.gaia_response else "",
-            "retrieved_contexts": sample.get("retrieved_contexts", []),
-            "reference": sample["reference"],
-        })
+        ragas_samples.append(SingleTurnSample(
+            user_input=sample["user_input"],
+            response=row.gaia_response if row.gaia_response else "",
+            retrieved_contexts=sample.get("retrieved_contexts", []),
+            reference=sample["reference"],
+        ))
 
-    dataset = Dataset.from_list(ragas_data)
+    dataset = EvaluationDataset(ragas_samples)
 
-    metrics = [faithfulness, answer_relevancy, context_precision, context_recall]
-    kwargs = {"llm": llm} if llm else {}
+    metrics = [Faithfulness(), AnswerRelevancy(), ContextPrecision(), ContextRecall()]
+    for m in metrics:
+        if ragas_llm and hasattr(m, "llm"):
+            m.llm = ragas_llm
+        if ragas_embeddings and hasattr(m, "embeddings"):
+            m.embeddings = ragas_embeddings
+
+    eval_kwargs = {"dataset": dataset, "metrics": metrics}
+    if ragas_llm:
+        eval_kwargs["llm"] = ragas_llm
+    if ragas_embeddings:
+        eval_kwargs["embeddings"] = ragas_embeddings
 
     print("RAGAS 평가 실행 중...")
-    result = evaluate(dataset, metrics=metrics, **kwargs)
+    result = evaluate(**eval_kwargs)
 
     result_df = result.to_pandas()
     result_df.to_csv(output_path, index=False, encoding="utf-8-sig")

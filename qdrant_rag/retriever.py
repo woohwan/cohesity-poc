@@ -105,7 +105,7 @@ def _is_financial_year_query(query: str) -> bool:
     return any(term in query for term in FINANCIAL_YEAR_TERMS)
 
 
-def _extract_date_range(query: str) -> tuple[Optional[str], Optional[str], Optional[str]]:
+def _extract_date_range(query: str) -> tuple[Optional[int], Optional[int], Optional[str]]:
     """
     쿼리에서 연도/반기/분기를 추출해 (date_from, date_to, label) 반환.
     재무 수치 연간 질의는 공시일이 다음 해로 넘어가므로 다음 해 4월까지 포함한다.

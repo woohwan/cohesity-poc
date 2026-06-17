@@ -62,7 +62,7 @@ LLM_PROVIDER      = (os.environ.get("LLM_PROVIDER") or "claude").lower()
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 OPENAI_API_KEY    = os.environ.get("OPENAI_API_KEY", "")
 CLAUDE_MODEL      = os.environ.get("CLAUDE_MODEL", "claude-sonnet-4-6")
-OPENAI_MODEL      = os.environ.get("OPENAI_MODEL", "gpt-5-mini")
+OPENAI_MODEL      = os.environ.get("OPENAI_MODEL", "gpt-5.4-mini")
 LLM_MODEL         = os.environ.get("LLM_MODEL") or (
     OPENAI_MODEL if LLM_PROVIDER in {"chatgpt", "openai", "gpt"} else CLAUDE_MODEL
 )

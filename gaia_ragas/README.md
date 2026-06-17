@@ -40,23 +40,30 @@ gaia_dataset/ (XML/PDF/XLS)
 document_sampler.py  →  랜덤 샘플링 (기본 100개)
       │
       ▼
-qa_generator.py      →  LLM API 로 QA 쌍 생성 (문서당 2개)
+qa_generator.py      →  LLM API 로 QA 쌍 생성 (문서당 2개)  ← 최초 1회만 생성, 재사용 가능
       │
       ▼
 ragas_testset_creator.py  →  RAGAS SingleTurnSample 형식 변환
       │
       ▼
-gaia_evaluator.py    →  Cohesity GAIA API 쿼리 + RAGAS 메트릭 계산
+gaia_evaluator.py    →  Cohesity GAIA API 쿼리 (POST /gaia/ask) + RAGAS 메트릭 계산
 ```
+
+### Cohesity GAIA API
+
+- 엔드포인트: `POST /gaia/ask`
+- 인증: `apiKey` 헤더 (Bearer 토큰 아님)
+- 임베딩/리랭킹/LLM 추론은 Gaia 내부에서 자동 처리 (NVIDIA NeMo Retriever)
+- 외부에서는 `/gaia/ask` 호출만 담당
 
 ## 사전 조건
 
 - `gaia_dataset/` 디렉터리 존재 (상위 경로 `../gaia_dataset/`)
 - `ANTHROPIC_API_KEY` 또는 `OPENAI_API_KEY` 환경 변수 (QA 생성 및 RAGAS 평가 시)
 - GAIA 평가 시 추가 환경 변수:
-  - `COHESITY_CLUSTER_URL` — `https://<cluster-ip>`
-  - `COHESITY_API_TOKEN` — Bearer 토큰
-  - `COHESITY_COLLECTION_ID` — GAIA 컬렉션 ID
+  - `COHESITY_CLUSTER_URL` — `https://<helios-fqdn>`
+  - `COHESITY_API_KEY` — Helios API Key (Settings > Access Management > API Keys)
+  - `COHESITY_DATASET_NAME` — GAIA 데이터셋 이름 (GAIA_VIEW 권한 필요)
 
 ---
 
@@ -193,10 +200,11 @@ export ANTHROPIC_API_KEY=sk-ant-...
 |------|-----------|------|
 | `output/sampled_documents.json` | `--step sample` | 전체 샘플링 문서 |
 | `output/sampled_documents_{회사}.json` | `--step sample --company` | 회사별 샘플링 문서 |
-| `output/qa_pairs.json` | `--step qa` | 전체 QA 쌍 |
-| `output/qa_pairs_{회사}.json` | `--step qa --company` | 회사별 QA 쌍 |
+| `output/qa_pairs.json` | `--step qa` | 전체 QA 쌍 (**재사용 가능** — 한 번 생성 후 반복 평가에 활용) |
+| `output/qa_pairs_{회사}.json` | `--step qa --company` | 회사별 QA 쌍 (재사용 가능) |
 | `output/ragas_testset.json` | `--step testset` | RAGAS 평가용 테스트셋 |
 | `output/gaia_eval_results.csv` | `--step evaluate` | GAIA API 평가 결과 |
+| `output/ragas_eval_results.csv` | `--step evaluate` | RAGAS 4개 메트릭 점수 |
 
 ---
 

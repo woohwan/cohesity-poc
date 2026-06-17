@@ -104,7 +104,7 @@ class LLMClient:
                 "input": user_prompt,
                 "max_output_tokens": max(max_tokens, OPENAI_MAX_OUTPUT_TOKENS),
             }
-            if LLM_MODEL.startswith(("gpt-5", "o1", "o3", "o4")):
+            if LLM_MODEL.startswith(("o1", "o3", "o4")):
                 create_kwargs["reasoning"] = {"effort": OPENAI_REASONING_EFFORT}
 
             response = self.client.responses.create(**create_kwargs)

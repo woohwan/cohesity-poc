@@ -205,28 +205,29 @@ def test_testset_format():
 # ── Stage 4: GAIA API 연결 확인 ───────────────────────────────────────────────
 
 def test_gaia_connection():
-    """GAIA 클러스터 연결 가능 여부만 확인 (실제 쿼리 X)."""
+    """GAIA 데이터셋 목록 조회로 연결 확인 (GET /gaia/datasets)."""
     print("\n[Stage 4] GAIA API 연결 확인")
     import os, requests
 
-    url   = os.environ.get("COHESITY_CLUSTER_URL", "")
-    token = os.environ.get("COHESITY_API_TOKEN", "")
+    url     = os.environ.get("COHESITY_CLUSTER_URL", "")
+    api_key = os.environ.get("COHESITY_API_KEY", "")
 
-    if not url or not token:
-        fail("COHESITY_CLUSTER_URL / COHESITY_API_TOKEN 미설정")
-        info("export COHESITY_CLUSTER_URL=https://<cluster-ip>")
-        info("export COHESITY_API_TOKEN=<bearer-token>")
+    if not url or not api_key:
+        fail("COHESITY_CLUSTER_URL / COHESITY_API_KEY 미설정")
+        info("export COHESITY_CLUSTER_URL=https://<helios-fqdn>")
+        info("export COHESITY_API_KEY=<api-key>")
         return False
 
     try:
         resp = requests.get(
-            f"{url}/irisservices/api/v1/public/basicClusterInfo",
-            headers={"Authorization": f"Bearer {token}"},
+            f"{url}/gaia/datasets",
+            headers={"apiKey": api_key, "Content-Type": "application/json"},
             verify=False, timeout=10,
         )
         if resp.ok:
-            cluster = resp.json()
-            ok(f"클러스터 연결 성공: {cluster.get('name', url)}")
+            datasets = resp.json()
+            names = [d.get("name", "") for d in (datasets if isinstance(datasets, list) else [])]
+            ok(f"GAIA 연결 성공. 데이터셋: {names or datasets}")
             return True
         else:
             fail(f"HTTP {resp.status_code}: {resp.text[:100]}")

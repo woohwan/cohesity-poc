@@ -126,7 +126,7 @@ else
 fi
 
 # LLM API key 확인 (qa, qa-gen, evaluate만)
-if [[ "${1}" =~ ^(qa|qa-gen|evaluate)$ ]]; then
+if [[ "${1}" =~ ^(search|qa|qa-gen|evaluate)$ ]]; then
     LLM_PROVIDER="${LLM_PROVIDER:-claude}"
     if [[ "$LLM_PROVIDER" =~ ^(chatgpt|openai|gpt)$ ]]; then
         if [ -z "$OPENAI_API_KEY" ]; then
