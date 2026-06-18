@@ -11,6 +11,7 @@ services:
     volumes:
       - ../gaia_dataset:/data/gaia_dataset:ro
       - ./output:/app/output
+      - ./eval:/app/eval
     environment:
       - LLM_PROVIDER=${LLM_PROVIDER:-claude}
       - LLM_MODEL=${LLM_MODEL:-}
@@ -23,5 +24,9 @@ services:
       - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN:-}
       - GAIA_DATASET_DIR=/data/gaia_dataset
       - OUTPUT_DIR=/app/output
+      - COHESITY_CLUSTER_URL=${COHESITY_CLUSTER_URL:-}
+      - COHESITY_API_KEY=${COHESITY_API_KEY:-}
+      - COHESITY_DATASET_NAME=${COHESITY_DATASET_NAME:-}
+      - EVAL_DIR=/app/eval
     stdin_open: true
     tty: true

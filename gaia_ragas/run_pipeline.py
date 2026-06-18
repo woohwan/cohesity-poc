@@ -41,7 +41,9 @@ def clear_outputs(suffix: str) -> None:
         OUTPUT_DIR / f"sampled_documents{suffix}.json",
         OUTPUT_DIR / f"qa_pairs{suffix}.json",
         OUTPUT_DIR / "ragas_testset.json",
+        OUTPUT_DIR / "gaia_eval.csv",
         OUTPUT_DIR / "gaia_eval_results.csv",
+        OUTPUT_DIR / "ragas_eval_results.csv",
     ]
     for path in targets:
         if path.exists():
