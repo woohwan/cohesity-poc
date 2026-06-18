@@ -2,7 +2,8 @@
 """
 Gaia Korean Dataset Collector
 - Excludes SEC / DART / AI Hub OCR by design.
-- Collects mostly Korean, text-bearing PDF/XLSX/CSV/XML/JSON/HTML/TXT files.
+- Collects mostly Korean, text-bearing PDF/XLSX/CSV/XML/JSON/TXT/DOCX/DOC files.
+- Excludes HWP/HWPX (Korean word processor) and archive files (zip, bz2, gz).
 - Uses respectful crawling, quota limits, and resumable manifest.
 
 Usage:
@@ -22,18 +23,16 @@ import bz2
 import csv
 import gzip
 import hashlib
-import json
 import os
-import queue
 import random
 import re
 import shutil
-import sys
 import time
+import xml.etree.ElementTree as ET
 from collections import deque
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional, Set, Tuple
+from typing import List, Optional, Set
 from urllib.parse import urljoin, urlparse, unquote
 
 import requests
@@ -47,7 +46,8 @@ except Exception:
     ArchiveIterator = None
 
 SIZE_RE = re.compile(r"^\s*(\d+(?:\.\d+)?)\s*([KMGT]?B)\s*$", re.I)
-FILE_EXT_RE = re.compile(r"\.(pdf|csv|xlsx|xls|xml|json|txt|html|htm|zip|gz|bz2)(?:$|[?#])", re.I)
+FILE_EXT_RE = re.compile(r"\.(pdf|csv|xlsx|xls|xml|json|txt|docx|doc)(?:$|[?#])", re.I)
+BLOCKED_EXT_RE = re.compile(r"\.(hwp|hwpx)(?:$|[?#])", re.I)
 HANGUL_RE = re.compile(r"[가-힣]")
 URL_LIKE_RE = re.compile(r"https?://[^\s\"'<>]+")
 
@@ -120,6 +120,12 @@ class Collector:
         if not self.manifest_path.exists():
             with self.manifest_path.open("w", encoding="utf-8", newline="") as f:
                 csv.writer(f).writerow(["ts", "source", "url", "path", "bytes", "status"])
+        # config.yaml allowed_extensions 기반으로 URL 필터링 정규식 생성
+        if cfg.allowed_exts:
+            exts = "|".join(re.escape(e.lstrip(".")) for e in sorted(cfg.allowed_exts))
+            self._file_ext_re = re.compile(rf"\.({exts})(?:$|[?#])", re.I)
+        else:
+            self._file_ext_re = FILE_EXT_RE
 
     def log(self, source: str, url: str, path: Path, nbytes: int, status: str) -> None:
         with self.manifest_path.open("a", encoding="utf-8", newline="") as f:
@@ -162,6 +168,9 @@ class Collector:
         if not self.under_quota(source):
             return False
         name = safe_name_from_url(url)
+        if BLOCKED_EXT_RE.search(name):
+            self.log(source, url, out_dir / name, 0, "skip_blocked_ext")
+            return False
         out = out_dir / name
         if out.exists() and out.stat().st_size > 0:
             return True
@@ -195,7 +204,9 @@ class Collector:
 
     def is_allowed_file_url(self, url: str) -> bool:
         lower = url.lower()
-        if FILE_EXT_RE.search(lower):
+        if BLOCKED_EXT_RE.search(lower):
+            return False
+        if self._file_ext_re.search(lower):
             return True
         # Korean public sites frequently hide file extension behind download endpoints.
         return any(x in lower for x in ["download", "filedown", "attach", "atchfile", "getfile", "downfile"])
@@ -253,13 +264,6 @@ class Collector:
             if not text:
                 continue
             pages += 1; pbar.update(1)
-            # Save HTML pages too if Korean-heavy and quota needs content.
-            if HANGUL_RE.search(text[:5000]):
-                html_dir = source_dir / "html_pages"; mkdir(html_dir)
-                out = html_dir / (sha1_text(url)[:16] + ".html")
-                if not out.exists():
-                    out.write_text(text, encoding="utf-8", errors="ignore")
-                    self.log(source, url, out, out.stat().st_size, "html_saved")
             links = self.extract_links(url, text)
             for link in links:
                 if link in seen:
@@ -273,11 +277,122 @@ class Collector:
 
     def run_kowiki(self) -> None:
         source = "kowiki_knowledge"
-        out_dir = self.cfg.root / source / "raw"
+        raw_dir = self.cfg.root / source / "raw"
+        docx_dir = self.cfg.root / source / "docx"
+        mkdir(raw_dir)
+        mkdir(docx_dir)
+
         for url in self.cfg.raw.get(source, {}).get("urls", []):
             if not self.under_quota(source):
                 break
-            self.download(source, url, out_dir)
+            self.download(source, url, raw_dir)
+            # XML dump만 docx 변환 (index 파일 제외)
+            if "pages-articles-multistream.xml.bz2" in url:
+                local = raw_dir / safe_name_from_url(url)
+                if local.exists():
+                    self._kowiki_to_docx(source, local, docx_dir)
+
+    @staticmethod
+    def _strip_wiki_markup(text: str) -> str:
+        # 중첩 템플릿 {{...}} 제거 (최대 5회 반복)
+        for _ in range(5):
+            text, n = re.subn(r'\{\{[^{}]*\}\}', '', text)
+            if n == 0:
+                break
+        # 파일/이미지/분류 링크 제거
+        text = re.sub(r'\[\[(?:파일|File|Image|그림|Category|분류)[^\]]*\]\]', '', text, flags=re.I)
+        # [[링크|표시]] → 표시, [[링크]] → 링크
+        text = re.sub(r'\[\[(?:[^|\]]*\|)?([^\]]*)\]\]', r'\1', text)
+        # 외부 링크 [url 표시] → 표시, [url] → ''
+        text = re.sub(r'\[https?://\S+\s+([^\]]+)\]', r'\1', text)
+        text = re.sub(r'\[https?://\S+\]', '', text)
+        # 굵게/기울임 마커 제거
+        text = re.sub(r"'{2,3}", '', text)
+        # 섹션 헤더 == ... == → 텍스트만
+        text = re.sub(r'={2,6}\s*(.+?)\s*={2,6}', r'\n\1\n', text)
+        # <ref>...</ref> 및 자기닫힘 ref
+        text = re.sub(r'<ref[^>]*>.*?</ref>', '', text, flags=re.DOTALL)
+        text = re.sub(r'<ref[^>]*/>', '', text)
+        # 나머지 HTML 태그
+        text = re.sub(r'<[^>]+>', ' ', text)
+        # 표 문법 (|, !, {| 로 시작하는 줄)
+        text = re.sub(r'^[ \t]*(?:\{\||\|\}|[|!]).+$', '', text, flags=re.MULTILINE)
+        # 목록 마커 (*, #, :, ;)
+        text = re.sub(r'^[*#:;]+\s*', '', text, flags=re.MULTILINE)
+        # 빈 줄 정리
+        text = re.sub(r'\n{3,}', '\n\n', text)
+        return text.strip()
+
+    def _kowiki_to_docx(self, source: str, bz2_path: Path, docx_dir: Path) -> None:
+        try:
+            from docx import Document
+        except ImportError:
+            raise RuntimeError("python-docx not installed. Run: pip install python-docx")
+
+        ARTICLES_PER_FILE = 200
+        MIN_TEXT_LEN = 300
+
+        # 이미 변환된 경우 건너뜀
+        if list(docx_dir.glob("kowiki_*.docx")):
+            print(f"kowiki: docx 파일이 이미 존재합니다. 건너뜁니다. ({docx_dir})")
+            return
+
+        batch_idx = 0
+        count = 0
+        doc = Document()
+        title = ""
+        ns_ok = True  # namespace 0 = 일반 문서
+
+        pbar = tqdm(desc="kowiki→docx", unit="article")
+        try:
+            with bz2.open(str(bz2_path), "rb") as f:
+                for event, elem in ET.iterparse(f, events=("end",)):
+                    tag = elem.tag.split("}")[-1] if "}" in elem.tag else elem.tag
+
+                    if tag == "title":
+                        title = elem.text or ""
+                        elem.clear()
+                    elif tag == "ns":
+                        ns_ok = (elem.text or "0") == "0"
+                        elem.clear()
+                    elif tag == "text":
+                        raw = elem.text or ""
+                        elem.clear()
+                        if not ns_ok or not title:
+                            continue
+                        if raw.startswith(("#REDIRECT", "#넘겨주기")):
+                            continue
+                        clean = self._strip_wiki_markup(raw)
+                        if len(clean) < MIN_TEXT_LEN:
+                            continue
+
+                        doc.add_heading(title, level=1)
+                        for para in clean.split("\n\n"):
+                            para = para.strip()
+                            if para:
+                                doc.add_paragraph(para)
+                        count += 1
+                        pbar.update(1)
+
+                        if count % ARTICLES_PER_FILE == 0:
+                            fname = docx_dir / f"kowiki_{batch_idx:05d}.docx"
+                            doc.save(str(fname))
+                            self.log(source, str(bz2_path), fname, fname.stat().st_size, "docx_batch")
+                            batch_idx += 1
+                            doc = Document()
+                            if not self.under_quota(source):
+                                break
+        finally:
+            pbar.close()
+
+        # 마지막 배치 저장
+        if count % ARTICLES_PER_FILE != 0:
+            fname = docx_dir / f"kowiki_{batch_idx:05d}.docx"
+            doc.save(str(fname))
+            self.log(source, str(bz2_path), fname, fname.stat().st_size, "docx_batch")
+            batch_idx += 1
+
+        print(f"kowiki: {count}개 문서 → {batch_idx}개 docx 파일 ({docx_dir})")
 
     def run_common_crawl_ko(self) -> None:
         source = "common_crawl_ko_text"

@@ -18,6 +18,7 @@
 **/.claude
 **/.vscode
 **/gaia_dataset
+**/gaia_test_200g_kr80_no_ocr
 **/__pycache__
 **/*.tar
 qdrant_rag/output/

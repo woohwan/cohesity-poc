@@ -7,7 +7,9 @@
 - AI Hub OCR/이미지 기반 데이터 제외
 - 총 200GB
 - 한국어 80% 이상
-- 텍스트 포함 PDF/XLSX/CSV/XML/JSON/HTML/TXT 중심
+- 문서 종류: PDF/XLSX/CSV/XML/JSON/TXT/DOCX/DOC 이외의 파일은 제외
+- archive 파일 제외: zip, bz2 등
+- 한글 문서 제외: hwp, hwpx
 
 ## 설치
 
@@ -38,7 +40,11 @@ python gaia_collect.py --config config.yaml --run kosis_statistics
 python gaia_collect.py --config config.yaml --run data_go_kr
 python gaia_collect.py --config config.yaml --run kowiki_knowledge
 python gaia_collect.py --config config.yaml --run common_crawl_ko_text
+python gaia_collect.py --config config.yaml --run english_reference
 ```
+
+> **kowiki_knowledge 참고**: Wikipedia 덤프(`.bz2`)를 다운로드한 후 자동으로 XML을 파싱하여 `.docx` 파일로 변환합니다.
+> 출력 위치: `kowiki_knowledge/docx/kowiki_00000.docx` ~ (200개 문서당 1파일)
 
 ## 용량 목표
 
@@ -51,6 +57,7 @@ python gaia_collect.py --config config.yaml --run common_crawl_ko_text
 | Common Crawl 한국어 텍스트 | 15GB |
 | 한국어 Wikipedia | 10GB |
 | 영어 기준 데이터 | 35GB |
+| **합계** | **200GB** |
 
 ## 중요한 운영 팁
 
@@ -69,7 +76,11 @@ gaia_test_200g_kr80_no_ocr/
   kosis_statistics/
   national_assembly_reports/
   common_crawl_ko_text/
+    filtered_ko_txt/  ← 한국어 필터링된 텍스트 청크 (.txt)
+    wet_raw/          ← 처리 중간 WET 파일 (임시, .warc.wet.gz)
   kowiki_knowledge/
+    raw/        ← Wikipedia 덤프 원본 (.bz2)
+    docx/       ← 변환된 문서 (kowiki_00000.docx ~ )
   english_reference/
   manifest.csv
 ```
