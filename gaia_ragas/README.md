@@ -228,5 +228,7 @@ docker compose run --rm gaia-ragas ./run.sh consolidate
 - QA 데이터셋(`qa_pairs_mixed.json`)은 최초 1회 생성 후 재사용 — LLM 호출 비용 절약
 - RAGAS 평가 시 OpenAI embedding fallback 방지를 위해 `paraphrase-multilingual-MiniLM-L12-v2` 사용
 - `COHESITY_*` 환경변수 미설정 시 GAIA 평가는 자동으로 skip되고 RAGAS만 실행
+- **RAGAS 평가는 `eval/gaia_eval_results.csv`가 있어야 실행됨** — GAIA 평가(`--step evaluate`)를 먼저 수행해야 함
+- `eval/ragas_testset.json`이 이미 생성된 경우 `--step evaluate`부터 바로 실행 가능 (QA/testset 재생성 불필요)
 - `qdrant_rag`와는 `gaia_dataset/` 만 공유하며 독립적으로 실행 가능
 - 컨테이너는 호스트 사용자(`HOST_UID`/`HOST_GID`)로 실행되어 볼륨 파일 권한 문제 없음
