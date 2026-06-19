@@ -6,15 +6,16 @@ request_timeout_sec: 30
 sleep_sec: 1.0
 max_retries: 3
 
-# Default target matching the requested no SEC / no DART / no AI Hub OCR plan.
+# Quota is now tracked per document TYPE, not per source.
+# Run any source repeatedly — duplicates are skipped via manifest.csv.
 quotas:
-  data_go_kr: 50GB
-  gov_policy_reports: 45GB
-  kosis_statistics: 25GB
-  national_assembly_reports: 20GB
-  common_crawl_ko_text: 15GB
-  kowiki_knowledge: 10GB
-  english_reference: 35GB
+  total: 200GB
+  by_type:
+    pdf:          100GB   # text-selectable PDF only
+    docx_doc:      40GB   # .docx + .doc
+    xlsx_xls_csv:  30GB   # .xlsx + .xls + .csv
+    txt:           20GB   # .txt (includes Common Crawl chunks)
+    json_xml:      10GB   # .json + .xml
 
 # Keep only file types Gaia can ingest directly or with minimal handling.
 allowed_extensions:
@@ -28,13 +29,16 @@ allowed_extensions:
   - .docx
   - .doc
 
-# Crawl depth is intentionally conservative. Increase slowly.
+# Crawl depth / page limits — increase if a source produces fewer files than expected.
 generic_crawl:
-  max_pages_per_site: 2000
-  max_depth: 3
+  max_pages_per_site: 5000
+  max_depth: 4
 
-# Data.go.kr pages are dynamic and may require manual seed URLs/API approval.
-# Add specific fileData.do / standard.do / download URLs here when needed.
+# ---------------------------------------------------------------------------
+# Sources — add more seed_urls to any section to increase yield.
+# There are no per-source quotas; run a source as many times as needed.
+# ---------------------------------------------------------------------------
+
 data_go_kr:
   enabled: true
   seed_urls:
@@ -43,8 +47,12 @@ data_go_kr:
     - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&keyword=%EA%B5%90%ED%86%B5"
     - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&keyword=%EC%82%B0%EC%97%85"
     - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&keyword=%EB%B3%B5%EC%A7%80"
+    - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&keyword=%ED%99%98%EA%B2%BD"
+    - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&keyword=%EA%B2%BD%EC%A0%9C"
+    - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&keyword=%EC%97%90%EB%84%88%EC%A7%80"
+    - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&keyword=%EB%86%8D%EC%97%85"
+    - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&keyword=%EC%88%98%EC%82%B0%EC%97%85"
 
-# Government / public research PDF sources. Add/remove as needed.
 gov_policy_reports:
   enabled: true
   seed_urls:
@@ -57,14 +65,25 @@ gov_policy_reports:
     - "https://www.motie.go.kr/kor/article/ATCL3f49a5a8c"
     - "https://www.molit.go.kr/USR/policyData/m_34681/lst.jsp"
     - "https://www.mohw.go.kr/board.es?mid=a10411010100&bid=0019"
+    - "https://www.nipa.kr/bbs/list?menuNo=220023"
+    - "https://www.nia.or.kr/site/nia_kor/ex/bbs/List.do?cbIdx=75522"
+    - "https://www.keei.re.kr/main.nsf/index.html"
+    - "https://www.krei.re.kr/krei/publication/list.do"
+    - "https://www.kiep.go.kr/gallery.es?mid=a10100000000&bid=0001"
+    - "https://www.kicce.re.kr/kor/publication/02.jsp"
+    - "https://www.kiet.re.kr/research/reportList"
+    - "https://www.kdb.co.kr/hmp/kr/rsrh/pmblPblctList.do"
+    - "https://www.bok.or.kr/portal/bbs/P0000559/list.do?menuNo=200761"
+    - "https://eiec.kdi.re.kr/policy/domesticView.do"
+    - "https://www.kostat.go.kr/portal/korea/kor_nw/1/2/index.board"
 
 kosis_statistics:
   enabled: true
-  # KOSIS OpenAPI requires an API key for many calls.
-  # Put it in env var KOSIS_API_KEY if you want API export mode.
   seed_urls:
     - "https://kosis.kr/statHtml/statHtml.do"
     - "https://kosis.kr/publication/publicationThema.do"
+    - "https://kosis.kr/statisticsList/statisticsListIndex.do?menuId=M_01_01"
+    - "https://kosis.kr/statisticsList/statisticsListIndex.do?menuId=M_01_02"
 
 national_assembly_reports:
   enabled: true
@@ -72,12 +91,14 @@ national_assembly_reports:
     - "https://www.nars.go.kr/report/list.do?cmsCode=CM0043"
     - "https://www.nabo.go.kr/Sub/01Report/01_01_Board.jsp"
     - "https://www.nabo.go.kr/ko/report/budgetAllList.do?key=2509090001"
+    - "https://www.nars.go.kr/report/list.do?cmsCode=CM0044"
+    - "https://www.nars.go.kr/report/list.do?cmsCode=CM0045"
+    - "https://likms.assembly.go.kr/bill/billList.do"
 
 common_crawl_ko_text:
   enabled: true
-  # Latest known 2026 crawl. Change to a newer crawl path if desired.
   crawl_id: "CC-MAIN-2026-12"
-  max_wet_files: 200
+  max_wet_files: 2000   # increase to fill 20GB TXT quota
   min_hangul_ratio: 0.15
   output_chunk_mb: 128
 
@@ -89,7 +110,8 @@ kowiki_knowledge:
 
 english_reference:
   enabled: true
-  # English reference collection is intentionally left as URL-seed based.
-  # arXiv bulk needs AWS requester-pays; PMC OA is better via official FTP lists.
   seed_urls:
     - "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_bulk/"
+    - "https://arxiv.org/list/cs.AI/recent"
+    - "https://arxiv.org/list/cs.IR/recent"
+    - "https://arxiv.org/list/cs.CL/recent"
