@@ -22,6 +22,8 @@
 **/__pycache__
 **/*.tar
 qdrant_rag/output/
+collector/gaia_kr_collector/.collect.pid
+collector/gaia_kr_collector/collect.log
 
 # 환경 변수 (실제 키 포함 — 절대 커밋 금지)
 .env
