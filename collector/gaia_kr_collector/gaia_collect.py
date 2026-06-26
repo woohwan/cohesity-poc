@@ -368,19 +368,29 @@ class Collector:
             return True  # HWP/HWPX → LibreOffice로 DOCX 변환
         return any(x in lower for x in ["download", "filedown", "attach", "atchfile", "getfile", "downfile"])
 
+    @staticmethod
+    def _clean_url(url: str) -> str:
+        return url.replace("[", "%5B").replace("]", "%5D")
+
     def extract_links(self, base_url: str, html: str) -> List[str]:
         soup = BeautifulSoup(html, "lxml")
         links = []
         for tag in soup.find_all(["a", "link", "script"]):
             href = tag.get("href") or tag.get("src")
             if href:
-                links.append(urljoin(base_url, href))
+                try:
+                    links.append(urljoin(base_url, self._clean_url(href)))
+                except ValueError:
+                    pass
         for m in URL_LIKE_RE.finditer(html):
-            links.append(m.group(0))
+            links.append(self._clean_url(m.group(0)))
         out = []
         seen: Set[str] = set()
         for u in links:
-            p = urlparse(u)
+            try:
+                p = urlparse(u)
+            except ValueError:
+                continue
             if p.scheme not in ("http", "https"):
                 continue
             u = u.split("#")[0]
@@ -401,7 +411,7 @@ class Collector:
         q = deque((u, 0) for u in seed_urls)
         seen: Set[str] = set()
         pages = 0
-        seed_domains = {urlparse(u).netloc for u in seed_urls}
+        seed_domains = {urlparse(self._clean_url(u)).netloc for u in seed_urls}
         pbar = tqdm(desc=source, unit="page")
         while q and self.any_quota_remaining() and pages < max_pages:
             url, depth = q.popleft()
@@ -413,7 +423,10 @@ class Collector:
                 continue
             if depth > max_depth:
                 continue
-            if urlparse(url).netloc not in seed_domains:
+            try:
+                if urlparse(url).netloc not in seed_domains:
+                    continue
+            except ValueError:
                 continue
             r = self.get(url)
             if not r:
@@ -429,8 +442,12 @@ class Collector:
                     continue
                 if self.is_allowed_file_url(link):
                     q.appendleft((link, depth + 1))
-                elif depth + 1 <= max_depth and urlparse(link).netloc in seed_domains:
-                    q.append((link, depth + 1))
+                else:
+                    try:
+                        if depth + 1 <= max_depth and urlparse(link).netloc in seed_domains:
+                            q.append((link, depth + 1))
+                    except ValueError:
+                        pass
             time.sleep(self.cfg.sleep)
         pbar.close()
 
