@@ -98,7 +98,7 @@ national_assembly_reports:
 common_crawl_ko_text:
   enabled: true
   crawl_id: "CC-MAIN-2026-12"
-  max_wet_files: 2000   # increase to fill 20GB TXT quota
+  max_wet_files: 8000   # TXT 20GB 목표 기준 확대
   min_hangul_ratio: 0.15
   output_chunk_mb: 128
 
@@ -115,3 +115,72 @@ english_reference:
     - "https://arxiv.org/list/cs.AI/recent"
     - "https://arxiv.org/list/cs.IR/recent"
     - "https://arxiv.org/list/cs.CL/recent"
+    - "https://arxiv.org/list/cs.LG/recent"
+    - "https://arxiv.org/list/cs.CV/recent"
+    - "https://arxiv.org/list/stat.ML/recent"
+    - "https://arxiv.org/list/econ/recent"
+
+# ---------------------------------------------------------------------------
+# 추가 소스 — PDF 100GB 달성을 위한 대형 출처
+# ---------------------------------------------------------------------------
+
+riss_theses:
+  enabled: true
+  seed_urls:
+    - "https://www.riss.kr/search/Search.do?searchGubun=true&p_mat_type=p&query=%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5"
+    - "https://www.riss.kr/search/Search.do?searchGubun=true&p_mat_type=p&query=%EA%B2%BD%EC%A0%9C%EC%A0%95%EC%B1%85"
+    - "https://www.riss.kr/search/Search.do?searchGubun=true&p_mat_type=p&query=%EB%B3%B4%EA%B1%B4%EC%9D%98%EB%A3%8C"
+    - "https://www.riss.kr/search/Search.do?searchGubun=true&p_mat_type=p&query=%ED%99%98%EA%B2%BD%EC%97%90%EB%84%88%EC%A7%80"
+    - "https://www.riss.kr/search/Search.do?searchGubun=true&p_mat_type=p&query=%EA%B5%90%EC%9C%A1"
+    - "https://www.riss.kr/search/Search.do?searchGubun=true&p_mat_type=p&query=%EC%82%AC%ED%9A%8C%EB%B3%B5%EC%A7%80"
+
+prism_policy:
+  enabled: true
+  seed_urls:
+    - "https://www.prism.go.kr/homepage/entire/retrieveEntireList.do?menuNo=I0000002"
+    - "https://www.prism.go.kr/homepage/entire/retrieveEntireList.do?menuNo=I0000005"
+    - "https://www.prism.go.kr/homepage/entire/retrieveEntireList.do?menuNo=I0000008"
+    - "https://www.prism.go.kr/homepage/entire/retrieveEntireList.do?menuNo=I0000011"
+
+kisti_reports:
+  enabled: true
+  seed_urls:
+    - "https://repository.kisti.re.kr/browse?type=dateissued"
+    - "https://repository.kisti.re.kr/browse?type=subject"
+    - "https://www.kisti.re.kr/post/research-report"
+    - "https://scienceon.kisti.re.kr/srch/selectPORSrchReport.do"
+
+kipris_patent:
+  enabled: true
+  seed_urls:
+    - "https://doi.kipris.or.kr/patdb/search/search_basic.jsp"
+    - "https://engdoc.kipris.or.kr/engdoc/search/search_basic.jsp"
+
+law_reports:
+  enabled: true
+  seed_urls:
+    - "https://www.scourt.go.kr/portal/justicesta/JusticestaListAction.work"
+    - "https://www.ccourt.go.kr/site/kor/ex/bbs/List.do?cbIdx=1028"
+    - "https://www.moleg.go.kr/lawinfo/nwLwAnInfo.mo?mid=a10104010000"
+    - "https://elaw.klri.re.kr/kor_service/lawTranslation.do"
+
+local_gov_data:
+  enabled: true
+  seed_urls:
+    - "https://data.seoul.go.kr/dataList/datasetList.do?t=F"
+    - "https://data.busan.go.kr/dataSet/list.do?dType=FILE"
+    - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&keyword=%EC%84%9C%EC%9A%B8%EC%8B%9C"
+    - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&keyword=%EB%B6%80%EC%82%B0%EC%8B%9C"
+    - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&keyword=%EC%9D%B8%EC%B2%9C%EC%8B%9C"
+    - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&keyword=%EB%8C%80%EA%B5%AC%EC%8B%9C"
+    - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&keyword=%EA%B4%91%EC%A3%BC%EC%8B%9C"
+
+# ---------------------------------------------------------------------------
+# 나무위키 덤프 — TXT 20GB 달성을 위한 대형 한국어 텍스트
+# ---------------------------------------------------------------------------
+
+namuwiki_dump:
+  enabled: true
+  index_url: "https://mu-star.net/wikidb"
+  output_chunk_mb: 128
+  min_text_len: 300

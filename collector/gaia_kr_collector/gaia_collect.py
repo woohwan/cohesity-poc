@@ -617,11 +617,113 @@ class Collector:
         finally:
             out.close()
 
+    def run_namuwiki_dump(self) -> None:
+        source = "namuwiki_dump"
+        if not self.under_type_quota("dummy.txt"):
+            return
+        sconf = self.cfg.raw.get(source, {})
+        index_url = sconf.get("index_url", "https://mu-star.net/wikidb")
+        chunk_mb = int(sconf.get("output_chunk_mb", 128))
+        min_text_len = int(sconf.get("min_text_len", 300))
+
+        # 덤프 인덱스 페이지에서 최신 다운로드 URL 찾기
+        r = self.get(index_url)
+        if not r:
+            print(f"[{source}] 덤프 인덱스 페이지 접근 실패: {index_url}")
+            return
+        soup = BeautifulSoup(r.text, "lxml")
+        dump_url = None
+        for a in soup.find_all("a", href=True):
+            href = a["href"]
+            if re.search(r'\.(json\.gz|json\.zst|db\.gz|db\.zst|json)$', href, re.I):
+                dump_url = urljoin(index_url, href)
+                break
+        if not dump_url:
+            print(f"[{source}] 덤프 파일 링크를 찾지 못했습니다. 수동으로 dump_url을 config에 지정하세요.")
+            return
+
+        out_dir = self.cfg.root / source / "txt"
+        mkdir(out_dir)
+        raw_dir = self.cfg.root / source / "raw"
+        mkdir(raw_dir)
+
+        local = raw_dir / safe_name_from_url(dump_url)
+        if not local.exists():
+            print(f"[{source}] 덤프 다운로드 중: {dump_url}")
+            r2 = self.get(dump_url, stream=True)
+            if not r2:
+                print(f"[{source}] 덤프 다운로드 실패")
+                return
+            with local.open("wb") as f:
+                shutil.copyfileobj(r2.raw, f)
+            print(f"[{source}] 덤프 다운로드 완료: {local}")
+
+        chunk_target = chunk_mb * 1024 * 1024
+        chunk_idx = len(list(out_dir.glob("namuwiki_*.txt")))
+        out_path = out_dir / f"namuwiki_{chunk_idx:05d}.txt"
+        out = out_path.open("ab")
+        written_in_chunk = out_path.stat().st_size if out_path.exists() else 0
+
+        import json as _json
+        opener = gzip.open if str(local).endswith(".gz") else open
+        pbar = tqdm(desc=source, unit="article")
+        try:
+            with opener(local, "rt", encoding="utf-8", errors="ignore") as f:
+                data = _json.load(f)
+            for entry in data:
+                if not self.under_type_quota("dummy.txt"):
+                    break
+                ns = entry.get("namespace", 0)
+                if ns != 0:
+                    continue
+                text = entry.get("text", "") or ""
+                text = self._strip_namu_markup(text)
+                if len(text) < min_text_len:
+                    continue
+                title = entry.get("title", "")
+                block = f"\n\n---DOC---\n제목: {title}\n{text.strip()}\n".encode("utf-8", errors="ignore")
+                out.write(block)
+                written_in_chunk += len(block)
+                pbar.update(1)
+                if written_in_chunk >= chunk_target:
+                    out.close()
+                    self.log(source, dump_url, out_path, written_in_chunk, "ko_chunk")
+                    chunk_idx += 1
+                    out_path = out_dir / f"namuwiki_{chunk_idx:05d}.txt"
+                    out = out_path.open("ab")
+                    written_in_chunk = 0
+        except Exception as e:
+            print(f"[{source}] 파싱 오류: {e}")
+        finally:
+            out.close()
+            pbar.close()
+            if out_path.exists() and out_path.stat().st_size > 0:
+                self.log(source, dump_url, out_path, written_in_chunk, "ko_chunk")
+
+    @staticmethod
+    def _strip_namu_markup(text: str) -> str:
+        text = re.sub(r'\[{2}[^|\]]*\|([^\]]*)\]{2}', r'\1', text)  # [[링크|표시]] → 표시
+        text = re.sub(r'\[{2}([^\]]*)\]{2}', r'\1', text)            # [[링크]] → 링크
+        text = re.sub(r'\{{3}[^|]*\|([^}]*)\}{3}', r'\1', text)      # {{{색|텍스트}}} → 텍스트
+        text = re.sub(r'\{{3}.*?\}{3}', '', text, flags=re.DOTALL)    # {{{...}}} 제거
+        text = re.sub(r'##.*$', '', text, flags=re.MULTILINE)         # 주석 제거
+        text = re.sub(r'\[(?:include|youtube|anchor|목차|tableofcontents)[^\]]*\]', '', text, flags=re.I)
+        text = re.sub(r'\[(?:각주|footnote)[^\]]*\]', '', text, flags=re.I)
+        text = re.sub(r'\|\|[^\n]*', '', text)                        # 테이블 제거
+        text = re.sub(r"'{2,}", '', text)                             # 볼드/이탤릭 마커
+        text = re.sub(r'={2,6}\s*(.+?)\s*={2,6}', r'\n\1\n', text)  # 제목
+        text = re.sub(r'<[^>]+>', ' ', text)                          # HTML 태그
+        text = re.sub(r'https?://\S+', '', text)                      # URL
+        text = re.sub(r'\n{3,}', '\n\n', text)
+        return text.strip()
+
     def run_source(self, source: str) -> None:
         if source == "kowiki_knowledge":
             self.run_kowiki(); return
         if source == "common_crawl_ko_text":
             self.run_common_crawl_ko(); return
+        if source == "namuwiki_dump":
+            self.run_namuwiki_dump(); return
         conf = self.cfg.raw.get(source, {})
         seeds = conf.get("seed_urls", [])
         if not seeds:
