@@ -272,22 +272,27 @@ nrf_reports:
     - "https://www.nrf.re.kr/cms/board/general/list?menu_no=56"
 
 # ── DOCX/HWP 풀 (정부 정책·지침 — 엔터프라이즈 문서 시나리오) ────────────────
+# 주요 소스는 enabled: true로 즉시 실행; 나머지는 미달 시 auto_pool 활성화
 
 moe_publications:
-  auto_pool: true
+  enabled: true           # HWP 즉시 수집
+  auto_pool: false
   type_hint: docx_doc
   seed_urls:
     - "https://www.moe.go.kr/boardCnts/list.do?boardID=316&m=0302&s=moe"
     - "https://www.moe.go.kr/boardCnts/list.do?boardID=340&m=0303&s=moe"
     - "https://www.moe.go.kr/boardCnts/list.do?boardID=350&m=0304&s=moe"
+    - "https://www.moe.go.kr/boardCnts/list.do?boardID=294&m=0501&s=moe"
 
 mohw_guidelines:
-  auto_pool: true
+  enabled: true           # 보건복지부 지침 HWP 즉시 수집
+  auto_pool: false
   type_hint: docx_doc
   seed_urls:
     - "https://www.mohw.go.kr/react/jb/sjb030301ls.jsp"
     - "https://www.mohw.go.kr/react/jb/sjb0303ls.jsp"
     - "https://www.mohw.go.kr/react/jb/sjb030401ls.jsp"
+    - "https://www.mohw.go.kr/react/jb/sjb030101ls.jsp"
 
 mlit_plans:
   auto_pool: true
@@ -310,22 +315,70 @@ mist_plans:
     - "https://www.msit.go.kr/bbs/list.do?sCode=user&mId=113&mPid=112"
     - "https://www.msit.go.kr/bbs/list.do?sCode=user&mId=99&mPid=74"
 
-# ── XLSX/CSV 풀 (금융·통계·공시 데이터) ────────────────────────────────────
+# 추가 HWP 특화 소스 (한국 행정 문서의 주력 포맷)
+moef_hwp:
+  enabled: true
+  auto_pool: false
+  type_hint: docx_doc
+  seed_urls:
+    - "https://www.moef.go.kr/com/bbs/BbsList.do?bbsId=MOSFBBS_000000000063&menuNo=6050200"
+    - "https://www.moef.go.kr/com/bbs/BbsList.do?bbsId=MOSFBBS_000000000030&menuNo=4020100"
+    - "https://www.moef.go.kr/com/bbs/BbsList.do?bbsId=MOSFBBS_000000000079&menuNo=7030200"
+
+smba_hwp:
+  enabled: true
+  auto_pool: false
+  type_hint: docx_doc
+  seed_urls:
+    - "https://www.mss.go.kr/site/smba/09/10906010000002019082001.jsp"
+    - "https://www.mss.go.kr/site/smba/04/10403010000002019101401.jsp"
+    - "https://www.mss.go.kr/site/smba/03/10301010000002019101401.jsp"
+
+mfds_hwp:
+  enabled: true
+  auto_pool: false
+  type_hint: docx_doc
+  seed_urls:
+    - "https://www.mfds.go.kr/brd/m_228/list.do"
+    - "https://www.mfds.go.kr/brd/m_218/list.do"
+    - "https://www.mfds.go.kr/brd/m_74/list.do"
+
+kpta_hwp:
+  enabled: true
+  auto_pool: false
+  type_hint: docx_doc
+  seed_urls:
+    - "https://www.kipo.go.kr/kpo/HtmlApp?c=10003&catmenu=m04_03_01"
+    - "https://www.kipo.go.kr/kpo/HtmlApp?c=10012&catmenu=m04_04_01"
+
+nts_hwp:
+  enabled: true
+  auto_pool: false
+  type_hint: docx_doc
+  seed_urls:
+    - "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=2319&cntntsId=7675"
+    - "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=2321&cntntsId=7677"
+
+# ── XLSX/CSV 즉시 활성화 소스 ───────────────────────────────────────────────
 
 dart_financial:
-  auto_pool: true
+  enabled: true           # DART 재무제표 Excel 즉시 수집
+  auto_pool: false
   type_hint: xlsx_xls_csv
   seed_urls:
     - "https://dart.fss.or.kr/dsab001/main.do"
     - "https://dart.fss.or.kr/dsac001/mainY.do"
     - "https://dart.fss.or.kr/dsab002/main.do"
+    - "https://dart.fss.or.kr/dsab003/search.do"
 
 hira_opendata:
-  auto_pool: true
+  enabled: true           # 심평원 통계 Excel 즉시 수집
+  auto_pool: false
   type_hint: xlsx_xls_csv
   seed_urls:
     - "https://opendata.hira.or.kr/op/opc/olapMstrList.do"
     - "https://opendata.hira.or.kr/op/opc/selectSpcDsasInfo.do"
+    - "https://opendata.hira.or.kr/op/opc/selectTrAtcInsupInfo.do"
 
 nhis_stats:
   auto_pool: true
@@ -347,6 +400,49 @@ moef_budget:
   seed_urls:
     - "https://www.moef.go.kr/nw/nes/detailNesDtaView.do?searchBbsId=MOSFBBS_000000000028&menuNo=4010100"
     - "https://www.moef.go.kr/nw/nes/listNesDtaView.do?searchBbsId=MOSFBBS_000000000028&menuNo=4010100"
+
+# 추가 xlsx 전용 소스
+alio_excel:
+  enabled: true
+  auto_pool: false
+  type_hint: xlsx_xls_csv
+  seed_urls:
+    - "https://www.alio.go.kr/popManageAccount.do"
+    - "https://www.alio.go.kr/home.do"
+    - "https://www.alio.go.kr/community/boardList.do?bbsId=BBSMSTR_000000000222"
+
+openfiscal_excel:
+  enabled: true
+  auto_pool: false
+  type_hint: xlsx_xls_csv
+  seed_urls:
+    - "https://www.openfiscaldata.go.kr/op/ko/expndtr/selExpdtrSttus.do"
+    - "https://www.openfiscaldata.go.kr/op/ko/expndtr/selExpdtrAreaSttus.do"
+    - "https://www.openfiscaldata.go.kr/op/ko/expndtr/selNatFsclBdgtSttus.do"
+
+moel_stats:
+  enabled: true
+  auto_pool: false
+  type_hint: xlsx_xls_csv
+  seed_urls:
+    - "https://www.moel.go.kr/info/statistics/statsMnList.do"
+    - "https://www.moel.go.kr/info/statistics/statsDetailList.do"
+
+customs_excel:
+  enabled: true
+  auto_pool: false
+  type_hint: xlsx_xls_csv
+  seed_urls:
+    - "https://unipass.customs.go.kr/ets/index.do"
+    - "https://www.customs.go.kr/kcs/ad/stats/importExport/retrieveExportImport.do"
+
+nts_stats:
+  enabled: true
+  auto_pool: false
+  type_hint: xlsx_xls_csv
+  seed_urls:
+    - "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=2316&cntntsId=7672"
+    - "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=2317&cntntsId=7673"
 
 # ── JSON/XML 풀 (법령·도서관·문화 오픈데이터) ──────────────────────────────
 
