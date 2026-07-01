@@ -5,6 +5,7 @@ user_agent: "gaia-test-collector/1.0 (+internal-poc; respect robots; contact: yo
 request_timeout_sec: 30
 sleep_sec: 1.0
 max_retries: 3
+parallel_workers: 5
 
 # Quota is now tracked per document TYPE, not per source.
 # Run any source repeatedly — duplicates are skipped via manifest.csv.

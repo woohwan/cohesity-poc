@@ -35,6 +35,7 @@ import re
 import shutil
 import subprocess
 import sys
+import threading
 import time
 import xml.etree.ElementTree as ET
 from collections import deque
@@ -84,6 +85,7 @@ CONTENT_TYPE_EXT: Dict[str, Optional[str]] = {
 NON_SOURCE_KEYS = frozenset({
     "root_dir", "user_agent", "request_timeout_sec", "sleep_sec",
     "max_retries", "quotas", "allowed_extensions", "generic_crawl",
+    "parallel_workers",
 })
 
 # Document type groups and the file extensions that belong to each.
@@ -164,6 +166,10 @@ class Cfg:
     def type_quotas(self) -> Dict[str, int]:
         return {k: parse_size(v) for k, v in self.raw.get("quotas", {}).get("by_type", {}).items()}
 
+    @property
+    def parallel_workers(self) -> int:
+        return int(self.raw.get("parallel_workers", 1))
+
     def all_sources(self) -> List[str]:
         return [k for k in self.raw if k not in NON_SOURCE_KEYS]
 
@@ -171,8 +177,9 @@ class Cfg:
 class Collector:
     def __init__(self, cfg: Cfg):
         self.cfg = cfg
-        self.session = requests.Session()
-        self.session.headers.update({"User-Agent": cfg.ua})
+        self._local = threading.local()   # per-thread HTTP session
+        self._lock = threading.Lock()     # _type_bytes + manifest.csv 보호
+        self._lo_lock = threading.Lock()  # LibreOffice 직렬화
         mkdir(cfg.root)
         self.manifest_path = cfg.root / "manifest.csv"
         if not self.manifest_path.exists():
@@ -207,12 +214,20 @@ class Collector:
                         counts[grp] = counts.get(grp, 0) + int(row.get("bytes", 0) or 0)
         return counts
 
+    def _session(self) -> requests.Session:
+        if not hasattr(self._local, "session"):
+            s = requests.Session()
+            s.headers.update({"User-Agent": self.cfg.ua})
+            self._local.session = s
+        return self._local.session
+
     def _ext_group(self, url_or_path: str) -> Optional[str]:
         ext = Path(safe_name_from_url(url_or_path)).suffix.lower().lstrip(".")
         return EXT_TO_GROUP.get(ext)
 
     def total_collected(self) -> int:
-        return sum(self._type_bytes.values())
+        with self._lock:
+            return sum(self._type_bytes.values())
 
     def under_total_quota(self) -> bool:
         return self.total_collected() < self.cfg.total_quota
@@ -220,30 +235,34 @@ class Collector:
     def under_type_quota(self, url_or_path: str) -> bool:
         grp = self._ext_group(url_or_path)
         if grp is None:
-            return True  # unknown — extension filter will decide
+            return True
         limit = self.cfg.type_quotas.get(grp, 0)
         if limit == 0:
             return True
-        return self._type_bytes.get(grp, 0) < limit
+        with self._lock:
+            return self._type_bytes.get(grp, 0) < limit
 
     def any_quota_remaining(self) -> bool:
-        if not self.under_total_quota():
+        with self._lock:
+            if sum(self._type_bytes.values()) >= self.cfg.total_quota:
+                return False
+            for grp, limit in self.cfg.type_quotas.items():
+                if self._type_bytes.get(grp, 0) < limit:
+                    return True
             return False
-        for grp, limit in self.cfg.type_quotas.items():
-            if self._type_bytes.get(grp, 0) < limit:
-                return True
-        return False
 
     def _type_remain(self, url_or_path: str) -> int:
         grp = self._ext_group(url_or_path)
-        # HWP/HWPX → 변환 결과가 DOCX이므로 docx_doc 쿼터 기준
         if grp is None and HWP_EXT_RE.search(url_or_path):
             grp = "docx_doc"
-        total_remain = max(0, self.cfg.total_quota - self.total_collected())
+        with self._lock:
+            total = sum(self._type_bytes.values())
+            type_cur = self._type_bytes.get(grp, 0) if grp else 0
+        total_remain = max(0, self.cfg.total_quota - total)
         if grp is None:
             return total_remain
         limit = self.cfg.type_quotas.get(grp, 0)
-        type_remain = max(0, limit - self._type_bytes.get(grp, 0)) if limit else total_remain
+        type_remain = max(0, limit - type_cur) if limit else total_remain
         return min(total_remain, type_remain)
 
     def convert_hwp(self, hwp_path: Path) -> Optional[Path]:
@@ -252,16 +271,19 @@ class Collector:
         docx_path = out_dir / (hwp_path.stem + ".docx")
         if docx_path.exists() and docx_path.stat().st_size > 0:
             return docx_path
-        try:
-            result = subprocess.run(
-                ["libreoffice", "--headless", "--convert-to", "docx",
-                 "--outdir", str(out_dir), str(hwp_path)],
-                capture_output=True, timeout=120,
-            )
-            if result.returncode == 0 and docx_path.exists() and docx_path.stat().st_size > 0:
+        with self._lo_lock:  # LibreOffice는 동시 실행 불가 — 직렬화
+            if docx_path.exists() and docx_path.stat().st_size > 0:
                 return docx_path
-        except (subprocess.TimeoutExpired, FileNotFoundError):
-            pass
+            try:
+                result = subprocess.run(
+                    ["libreoffice", "--headless", "--convert-to", "docx",
+                     "--outdir", str(out_dir), str(hwp_path)],
+                    capture_output=True, timeout=120,
+                )
+                if result.returncode == 0 and docx_path.exists() and docx_path.stat().st_size > 0:
+                    return docx_path
+            except (subprocess.TimeoutExpired, FileNotFoundError):
+                pass
         return None
 
     # ------------------------------------------------------------------
@@ -269,17 +291,18 @@ class Collector:
     # ------------------------------------------------------------------
 
     def log(self, source: str, url: str, path: Path, nbytes: int, status: str) -> None:
-        with self.manifest_path.open("a", encoding="utf-8", newline="") as f:
-            csv.writer(f).writerow([int(time.time()), source, url, str(path), nbytes, status])
-        if status in ("downloaded", "docx_batch", "ko_chunk") and nbytes > 0:
-            grp = EXT_TO_GROUP.get(path.suffix.lower().lstrip("."))
-            if grp:
-                self._type_bytes[grp] = self._type_bytes.get(grp, 0) + nbytes
+        with self._lock:
+            with self.manifest_path.open("a", encoding="utf-8", newline="") as f:
+                csv.writer(f).writerow([int(time.time()), source, url, str(path), nbytes, status])
+            if status in ("downloaded", "docx_batch", "ko_chunk") and nbytes > 0:
+                grp = EXT_TO_GROUP.get(path.suffix.lower().lstrip("."))
+                if grp:
+                    self._type_bytes[grp] = self._type_bytes.get(grp, 0) + nbytes
 
     def get(self, url: str, stream: bool = False) -> Optional[requests.Response]:
         for attempt in range(self.cfg.retries):
             try:
-                r = self.session.get(url, timeout=self.cfg.timeout, stream=stream, allow_redirects=True)
+                r = self._session().get(url, timeout=self.cfg.timeout, stream=stream, allow_redirects=True)
                 if r.status_code in (429, 500, 502, 503, 504):
                     time.sleep(self.cfg.sleep * (2 ** attempt + random.random()))
                     continue
@@ -755,6 +778,8 @@ def main():
     ap.add_argument("--config", default="config.yaml")
     ap.add_argument("--plan", action="store_true")
     ap.add_argument("--run", nargs="+", help="source names or 'all'")
+    ap.add_argument("--parallel", type=int, default=0,
+                    help="parallel source workers (0 = use config parallel_workers)")
     ap.add_argument("--bg", action="store_true", help="run in background (detached from terminal)")
     ap.add_argument("--log", default="collect.log", help="log file path when using --bg")
     args = ap.parse_args()
@@ -774,17 +799,31 @@ def main():
     if args.plan:
         col.plan()
     if args.run:
-        sources = cfg.all_sources() if "all" in args.run else args.run
-        for src in sources:
-            if not cfg.raw.get(src, {}).get("enabled", True):
-                print(f"Skip disabled: {src}")
-                continue
-            if not col.any_quota_remaining():
-                print("All type quotas filled. Done.")
-                break
-            print(f"\n=== Running {src} ===")
-            col.run_source(src)
+        all_sources = cfg.all_sources() if "all" in args.run else args.run
+        sources = [s for s in all_sources if cfg.raw.get(s, {}).get("enabled", True)]
+        workers = args.parallel if args.parallel > 0 else cfg.parallel_workers
+
+        if workers > 1:
+            from concurrent.futures import ThreadPoolExecutor
+
+            def _run_one(src: str) -> None:
+                if not col.any_quota_remaining():
+                    return
+                print(f"\n=== Running {src} ===", flush=True)
+                col.run_source(src)
+
+            print(f"[병렬 수집] workers={workers}, sources={len(sources)}")
+            with ThreadPoolExecutor(max_workers=workers) as pool:
+                pool.map(_run_one, sources)
             col.plan()
+        else:
+            for src in sources:
+                if not col.any_quota_remaining():
+                    print("All type quotas filled. Done.")
+                    break
+                print(f"\n=== Running {src} ===")
+                col.run_source(src)
+                col.plan()
 
 if __name__ == "__main__":
     main()
