@@ -85,8 +85,18 @@ if [ "${1}" = "status" ]; then
 
     if [ -f "$LOG" ]; then
         LOG_MTIME=$(stat -c %Y "$LOG")
+        _ROOT_DIR="$SCRIPT_DIR/$(grep '^root_dir:' "$CONFIG" | sed 's|root_dir:[[:space:]]*||;s|^\./||')"
+        MAN_MTIME=$(stat -c %Y "$_ROOT_DIR/manifest.csv" 2>/dev/null || echo 0)
         NOW=$(date +%s)
-        DIFF=$((NOW - LOG_MTIME))
+        # 로그와 manifest.csv 중 더 최근 활동 기준으로 경과 시간 계산
+        if [ "$MAN_MTIME" -gt "$LOG_MTIME" ]; then
+            LAST_MTIME=$MAN_MTIME
+            LAST_LABEL="manifest"
+        else
+            LAST_MTIME=$LOG_MTIME
+            LAST_LABEL="로그"
+        fi
+        DIFF=$((NOW - LAST_MTIME))
         if   [ $DIFF -lt 60 ];    then AGO="${DIFF}초 전"
         elif [ $DIFF -lt 3600 ];  then AGO="$((DIFF / 60))분 전"
         elif [ $DIFF -lt 86400 ]; then AGO="$((DIFF / 3600))시간 전"
@@ -96,9 +106,9 @@ if [ "${1}" = "status" ]; then
 
         if [ $RUNNING -eq 1 ]; then
             if [ $DIFF -lt 600 ]; then
-                echo "[실행 중 / 활성] PID $PID  — 로그 ${AGO} 업데이트됨"
+                echo "[실행 중 / 활성] PID $PID  — ${LAST_LABEL} ${AGO} 업데이트됨"
             else
-                echo "[실행 중 / 정체?] PID $PID  — 로그가 ${AGO} 업데이트 안 됨 (확인 필요)"
+                echo "[실행 중 / 정체?] PID $PID  — 마지막 활동 ${AGO} (로그·manifest 모두 정체)"
             fi
             echo "  중단하려면: ./run.sh stop"
         else
@@ -253,7 +263,8 @@ if [ "${1}" = "bg" ]; then
     (
         CYCLE=1
         PREV_COLLECTED="-1"
-        STALE_SEC=1800   # 30분 동안 로그 업데이트 없으면 프로세스 재시작
+        STALE_SEC=1800   # 30분 동안 로그·manifest 모두 미업데이트 시 재시작
+        MANIFEST="$SCRIPT_DIR/$(grep '^root_dir:' "$CONFIG" | sed 's|root_dir:[[:space:]]*||;s|^\./||')/manifest.csv"
         cd "$SCRIPT_DIR"
         while true; do
             echo "" >> "$RUN_LOG"
@@ -265,12 +276,14 @@ if [ "${1}" = "bg" ]; then
             while kill -0 "$PYPID" 2>/dev/null; do
                 sleep 300
                 kill -0 "$PYPID" 2>/dev/null || break
-                MTIME=$(stat -c %Y "$RUN_LOG" 2>/dev/null || echo 0)
+                LOG_MT=$(stat -c %Y "$RUN_LOG" 2>/dev/null || echo 0)
+                MAN_MT=$(stat -c %Y "$MANIFEST" 2>/dev/null || echo 0)
+                LAST_MT=$(( LOG_MT > MAN_MT ? LOG_MT : MAN_MT ))
                 NOW_TS=$(date +%s)
-                STALE=$((NOW_TS - MTIME))
+                STALE=$((NOW_TS - LAST_MT))
                 if [ "$STALE" -gt "$STALE_SEC" ]; then
                     echo "" >> "$RUN_LOG"
-                    echo "[워치독] 로그 $((STALE/60))분 미업데이트 → 수집 프로세스 재시작 (PID $PYPID)" >> "$RUN_LOG"
+                    echo "[워치독] $((STALE/60))분 동안 로그·manifest 미업데이트 → 수집 프로세스 재시작 (PID $PYPID)" >> "$RUN_LOG"
                     kill "$PYPID" 2>/dev/null
                     break
                 fi
