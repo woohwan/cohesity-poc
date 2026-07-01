@@ -10,13 +10,13 @@ parallel_workers: 5
 # Quota is now tracked per document TYPE, not per source.
 # Run any source repeatedly — duplicates are skipped via manifest.csv.
 quotas:
-  total: 200GB
+  total: 100GB
   by_type:
-    pdf:          100GB   # text-selectable PDF only
-    docx_doc:      40GB   # .docx + .doc
-    xlsx_xls_csv:  30GB   # .xlsx + .xls + .csv
-    txt:           20GB   # .txt (includes Common Crawl chunks)
-    json_xml:      10GB   # .json + .xml
+    pdf:          20GB
+    docx_doc:     20GB
+    xlsx_xls_csv: 20GB
+    txt:          20GB
+    json_xml:     20GB
 
 # Keep only file types Gaia can ingest directly or with minimal handling.
 allowed_extensions:
