@@ -251,6 +251,12 @@ class Collector:
                     return True
             return False
 
+    def lagging_types(self) -> set:
+        """쿼터 미달 타입 집합 반환."""
+        with self._lock:
+            return {grp for grp, limit in self.cfg.type_quotas.items()
+                    if self._type_bytes.get(grp, 0) < limit}
+
     def _type_remain(self, url_or_path: str) -> int:
         grp = self._ext_group(url_or_path)
         if grp is None and HWP_EXT_RE.search(url_or_path):
@@ -773,6 +779,30 @@ class Collector:
         print(f"Overall progress: {total_pct:.1f}%")
 
 
+def _exec_sources(col: "Collector", sources: List[str], workers: int) -> None:
+    """소스 목록을 순차 또는 병렬로 실행."""
+    if workers > 1:
+        from concurrent.futures import ThreadPoolExecutor
+
+        def _run_one(src: str) -> None:
+            if not col.any_quota_remaining():
+                return
+            print(f"\n=== Running {src} ===", flush=True)
+            col.run_source(src)
+
+        print(f"[병렬 수집] workers={workers}, sources={len(sources)}", flush=True)
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            pool.map(_run_one, sources)
+    else:
+        for src in sources:
+            if not col.any_quota_remaining():
+                print("All type quotas filled. Done.")
+                break
+            print(f"\n=== Running {src} ===")
+            col.run_source(src)
+            col.plan()
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="config.yaml")
@@ -799,31 +829,38 @@ def main():
     if args.plan:
         col.plan()
     if args.run:
-        all_sources = cfg.all_sources() if "all" in args.run else args.run
-        sources = [s for s in all_sources if cfg.raw.get(s, {}).get("enabled", True)]
+        all_cfg = cfg.all_sources() if "all" in args.run else args.run
         workers = args.parallel if args.parallel > 0 else cfg.parallel_workers
 
-        if workers > 1:
-            from concurrent.futures import ThreadPoolExecutor
+        # 일반 소스: enabled이고 auto_pool이 아닌 것
+        regular = [s for s in all_cfg
+                   if cfg.raw.get(s, {}).get("enabled", True)
+                   and not cfg.raw.get(s, {}).get("auto_pool")]
+        # 풀 소스: auto_pool: true — 타입 미달 시 자동 추가
+        pool_srcs = [s for s in all_cfg if cfg.raw.get(s, {}).get("auto_pool")]
 
-            def _run_one(src: str) -> None:
-                if not col.any_quota_remaining():
-                    return
-                print(f"\n=== Running {src} ===", flush=True)
-                col.run_source(src)
+        used_pool: set = set()
+        to_run = regular
 
-            print(f"[병렬 수집] workers={workers}, sources={len(sources)}")
-            with ThreadPoolExecutor(max_workers=workers) as pool:
-                pool.map(_run_one, sources)
+        while to_run:
+            _exec_sources(col, to_run, workers)
             col.plan()
-        else:
-            for src in sources:
-                if not col.any_quota_remaining():
-                    print("All type quotas filled. Done.")
-                    break
-                print(f"\n=== Running {src} ===")
-                col.run_source(src)
-                col.plan()
+
+            if not col.any_quota_remaining():
+                break
+
+            lagging = col.lagging_types()
+            promoted = [s for s in pool_srcs
+                        if s not in used_pool
+                        and cfg.raw.get(s, {}).get("type_hint") in lagging]
+            if not promoted:
+                break
+
+            print(f"\n[자동 소스 추가] 미달 타입={sorted(lagging)}", flush=True)
+            for s in promoted:
+                print(f"  + {s}  (type_hint={cfg.raw[s].get('type_hint')})", flush=True)
+            used_pool.update(promoted)
+            to_run = promoted
 
 if __name__ == "__main__":
     main()

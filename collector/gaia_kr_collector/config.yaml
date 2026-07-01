@@ -122,7 +122,7 @@ english_reference:
     - "https://arxiv.org/list/econ/recent"
 
 # ---------------------------------------------------------------------------
-# 추가 소스 — PDF 100GB 달성을 위한 대형 출처
+# 추가 활성 소스 — 초기 수집 세트
 # ---------------------------------------------------------------------------
 
 riss_theses:
@@ -185,3 +185,197 @@ namuwiki_dump:
   index_url: "https://mu-star.net/wikidb"
   output_chunk_mb: 128
   min_text_len: 300
+
+# ===========================================================================
+# 자동 소스 풀 (auto_pool: true)
+# 타입별 쿼터 미달 시 자동 활성화됨. 수동 실행 불필요.
+#
+# RAGAS/GAIA 적합성 기준:
+#   - 구조화된 한국어 팩트 문서 (보고서, 논문, 법령, 지침)
+#   - Q&A 생성 가능한 명확한 사실 내용
+#   - Cohesity GAIA 엔터프라이즈 문서 검색 시나리오와 유사한 문서 유형
+# ===========================================================================
+
+# ── PDF 풀 (정책·연구 보고서 — RAGAS Q&A 최적) ─────────────────────────────
+
+kdi_reports:
+  auto_pool: true
+  type_hint: pdf
+  seed_urls:
+    - "https://www.kdi.re.kr/research/reportList.jsp"
+    - "https://www.kdi.re.kr/research/focusList.jsp"
+    - "https://www.kdi.re.kr/policy/policyList.jsp"
+
+bok_publications:
+  auto_pool: true
+  type_hint: pdf
+  seed_urls:
+    - "https://www.bok.or.kr/portal/bbs/P0000559/list.do?menuNo=200761"
+    - "https://www.bok.or.kr/portal/bbs/P0000600/list.do?menuNo=200788"
+    - "https://www.bok.or.kr/portal/bbs/P0000562/list.do?menuNo=200764"
+
+kistep_reports:
+  auto_pool: true
+  type_hint: pdf
+  seed_urls:
+    - "https://www.kistep.re.kr/reportList.es?mid=a10306000000"
+    - "https://www.kistep.re.kr/reportList.es?mid=a10308000000"
+    - "https://www.kistep.re.kr/reportList.es?mid=a10302000000"
+
+nipa_reports:
+  auto_pool: true
+  type_hint: pdf
+  seed_urls:
+    - "https://www.nipa.kr/bbs/C0000003/list.do?menuNo=30050"
+    - "https://www.nipa.kr/bbs/C0000003/list.do?menuNo=30051"
+
+nia_reports:
+  auto_pool: true
+  type_hint: pdf
+  seed_urls:
+    - "https://www.nia.or.kr/site/nia_kor/ex/bbs/List.do?cbIdx=81623"
+    - "https://www.nia.or.kr/site/nia_kor/ex/bbs/List.do?cbIdx=75517"
+
+kei_reports:
+  auto_pool: true
+  type_hint: pdf
+  seed_urls:
+    - "https://www.kei.re.kr/researchReportView.es?mid=a10101000000"
+    - "https://www.kei.re.kr/researchReportView.es?mid=a10102000000"
+
+khidi_reports:
+  auto_pool: true
+  type_hint: pdf
+  seed_urls:
+    - "https://www.khidi.or.kr/board/DRD000000005/list.do"
+    - "https://www.khidi.or.kr/board/DRD000000006/list.do"
+
+krei_reports:
+  auto_pool: true
+  type_hint: pdf
+  seed_urls:
+    - "https://www.krei.re.kr/krei/researchReportList.do"
+    - "https://www.krei.re.kr/krei/issueNoteList.do"
+
+krihs_reports:
+  auto_pool: true
+  type_hint: pdf
+  seed_urls:
+    - "https://www.krihs.re.kr/gallery.es?mid=a10301000000&bid=0002"
+    - "https://www.krihs.re.kr/gallery.es?mid=a10302000000&bid=0003"
+
+nrf_reports:
+  auto_pool: true
+  type_hint: pdf
+  seed_urls:
+    - "https://www.nrf.re.kr/cms/board/general/list?menu_no=95"
+    - "https://www.nrf.re.kr/cms/board/general/list?menu_no=56"
+
+# ── DOCX/HWP 풀 (정부 정책·지침 — 엔터프라이즈 문서 시나리오) ────────────────
+
+moe_publications:
+  auto_pool: true
+  type_hint: docx_doc
+  seed_urls:
+    - "https://www.moe.go.kr/boardCnts/list.do?boardID=316&m=0302&s=moe"
+    - "https://www.moe.go.kr/boardCnts/list.do?boardID=340&m=0303&s=moe"
+    - "https://www.moe.go.kr/boardCnts/list.do?boardID=350&m=0304&s=moe"
+
+mohw_guidelines:
+  auto_pool: true
+  type_hint: docx_doc
+  seed_urls:
+    - "https://www.mohw.go.kr/react/jb/sjb030301ls.jsp"
+    - "https://www.mohw.go.kr/react/jb/sjb0303ls.jsp"
+    - "https://www.mohw.go.kr/react/jb/sjb030401ls.jsp"
+
+mlit_plans:
+  auto_pool: true
+  type_hint: docx_doc
+  seed_urls:
+    - "https://www.molit.go.kr/USR/PBNTC0204/m_45/lst.jsp"
+    - "https://www.molit.go.kr/USR/PBNTC0204/m_46/lst.jsp"
+
+me_guidelines:
+  auto_pool: true
+  type_hint: docx_doc
+  seed_urls:
+    - "https://www.me.go.kr/home/web/board/read.do?menuId=10525&boardMasterId=1&boardId=1672668"
+    - "https://www.me.go.kr/home/web/policy/read.do?menuId=286"
+
+mist_plans:
+  auto_pool: true
+  type_hint: docx_doc
+  seed_urls:
+    - "https://www.msit.go.kr/bbs/list.do?sCode=user&mId=113&mPid=112"
+    - "https://www.msit.go.kr/bbs/list.do?sCode=user&mId=99&mPid=74"
+
+# ── XLSX/CSV 풀 (금융·통계·공시 데이터) ────────────────────────────────────
+
+dart_financial:
+  auto_pool: true
+  type_hint: xlsx_xls_csv
+  seed_urls:
+    - "https://dart.fss.or.kr/dsab001/main.do"
+    - "https://dart.fss.or.kr/dsac001/mainY.do"
+    - "https://dart.fss.or.kr/dsab002/main.do"
+
+hira_opendata:
+  auto_pool: true
+  type_hint: xlsx_xls_csv
+  seed_urls:
+    - "https://opendata.hira.or.kr/op/opc/olapMstrList.do"
+    - "https://opendata.hira.or.kr/op/opc/selectSpcDsasInfo.do"
+
+nhis_stats:
+  auto_pool: true
+  type_hint: xlsx_xls_csv
+  seed_urls:
+    - "https://www.nhis.or.kr/nhis/together/wbhaec07800m01.do"
+    - "https://www.nhis.or.kr/nhis/together/wbhaea01600m01.do"
+
+koroad_stats:
+  auto_pool: true
+  type_hint: xlsx_xls_csv
+  seed_urls:
+    - "https://www.koroad.or.kr/kp_web/statisticList.do?menuCode=PSOT10100"
+    - "https://www.koroad.or.kr/kp_web/statisticList.do?menuCode=PSOT10200"
+
+moef_budget:
+  auto_pool: true
+  type_hint: xlsx_xls_csv
+  seed_urls:
+    - "https://www.moef.go.kr/nw/nes/detailNesDtaView.do?searchBbsId=MOSFBBS_000000000028&menuNo=4010100"
+    - "https://www.moef.go.kr/nw/nes/listNesDtaView.do?searchBbsId=MOSFBBS_000000000028&menuNo=4010100"
+
+# ── JSON/XML 풀 (법령·도서관·문화 오픈데이터) ──────────────────────────────
+
+law_open_data:
+  auto_pool: true
+  type_hint: json_xml
+  seed_urls:
+    - "https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=1&efYd=&lsId=&chrClsCd=010202&urlMode=lsInfoP&viewCls=lsInfoP"
+    - "https://www.law.go.kr/LSW/lsStmdInfoP.do"
+    - "https://www.law.go.kr/LSW/admRulLstP.do"
+
+library_catalog:
+  auto_pool: true
+  type_hint: json_xml
+  seed_urls:
+    - "https://data4library.kr/openDataL?authKey=test&pageNo=1&pageSize=10&format=xml"
+    - "https://www.nl.go.kr/seoji/SearchApi.do?cert_key=test&result_style=xml&page_no=1&page_size=10"
+
+cultural_heritage_data:
+  auto_pool: true
+  type_hint: json_xml
+  seed_urls:
+    - "https://www.cha.go.kr/cha/idx/Index.do?mn=NS_01"
+    - "https://www.heritage.go.kr/heri/cul/culSelectDetail.do"
+
+data_go_kr_json:
+  auto_pool: true
+  type_hint: json_xml
+  seed_urls:
+    - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&fileType=json&keyword=%ED%86%B5%EA%B3%84"
+    - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&fileType=xml&keyword=%ED%86%B5%EA%B3%84"
+    - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&fileType=json&keyword=%EC%A3%BC%EC%86%8C"
