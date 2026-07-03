@@ -60,6 +60,11 @@ HWP_EXT_RE  = re.compile(r"\.(hwp|hwpx)(?:$|[?#])", re.I)
 HANGUL_RE = re.compile(r"[가-힣]")
 URL_LIKE_RE = re.compile(r"https?://[^\s\"'<>]+")
 
+# 다운로드 URL의 실제 확장자가 경로가 아니라 쿼리스트링에 있는 경우 (예: lbFileDownload.do?...&flExt=pdf)
+KNOWN_DOC_EXTS = {"pdf", "csv", "xlsx", "xls", "xml", "json", "txt", "docx", "doc",
+                  "hwp", "hwpx", "odf", "rtf", "ppt", "pptx", "html", "zip"}
+QUERY_EXT_RE = re.compile(r"(?:flExt|fileExt|fileExtension|ext|type)=([A-Za-z0-9]{2,5})", re.I)
+
 # Content-Type → 저장할 확장자. None이면 저장하지 않음.
 CONTENT_TYPE_EXT: Dict[str, Optional[str]] = {
     "application/pdf":                                                          ".pdf",
@@ -69,16 +74,23 @@ CONTENT_TYPE_EXT: Dict[str, Optional[str]] = {
     "application/vnd.ms-excel":                                                 ".xls",
     "text/csv":                                                                 ".csv",
     "text/plain":                                                               ".txt",
-    "application/json":                                                         ".json",
+    "application/json":                                                         None,
     "application/xml":                                                          ".xml",
     "text/xml":                                                                 ".xml",
+    "text/html":                                                                ".html",
+    "application/rtf":                                                          ".rtf",
+    "text/rtf":                                                                 ".rtf",
+    "application/vnd.oasis.opendocument.text":                                  ".odf",
+    "application/vnd.oasis.opendocument.spreadsheet":                           ".odf",
+    "application/vnd.ms-powerpoint":                                            ".ppt",
+    "application/vnd.openxmlformats-officedocument.presentationml.presentation": ".pptx",
     "application/vnd.hancom.hwp":                                               ".hwp",
     "application/vnd.hancom.hwpx":                                              ".hwpx",
     # 아래는 저장 불필요 → None
     "image/jpeg": None, "image/png": None, "image/gif": None, "image/webp": None,
     "application/zip": None, "application/x-zip-compressed": None,
     "application/x-rar-compressed": None, "application/octet-stream": None,
-    "text/html": None, "application/javascript": None,
+    "application/javascript": None,
 }
 
 # Keys in config.yaml that are NOT source names.
@@ -91,10 +103,10 @@ NON_SOURCE_KEYS = frozenset({
 # Document type groups and the file extensions that belong to each.
 TYPE_GROUPS: Dict[str, Set[str]] = {
     "pdf":          {"pdf"},
-    "docx_doc":     {"docx", "doc"},
+    "docx_doc":     {"docx", "doc", "odf", "rtf"},
     "xlsx_xls_csv": {"xlsx", "xls", "csv"},
-    "txt":          {"txt"},
-    "json_xml":     {"json", "xml"},
+    "ppt_pptx":     {"ppt", "pptx"},
+    "txt":          {"txt", "html"},
 }
 EXT_TO_GROUP: Dict[str, str] = {
     ext: grp for grp, exts in TYPE_GROUPS.items() for ext in exts
@@ -128,9 +140,17 @@ def sha1_text(s: str) -> str:
 
 def safe_name_from_url(url: str, default_ext: str = ".bin") -> str:
     parsed = urlparse(url)
-    name = Path(unquote(parsed.path)).name
-    if not name or "." not in name:
-        name = sha1_text(url)[:16] + default_ext
+    path_name = Path(unquote(parsed.path)).name
+    path_ext = Path(path_name).suffix.lower().lstrip(".")
+    if path_name and path_ext in KNOWN_DOC_EXTS:
+        name = path_name
+    else:
+        # 경로에 알려진 문서 확장자가 없으면 쿼리스트링에서 실제 확장자를 찾는다
+        # (예: .../download.do?fileId=1&flExt=pdf 같은 URL 패턴)
+        m = QUERY_EXT_RE.search(parsed.query)
+        q_ext = m.group(1).lower() if m else ""
+        ext = f".{q_ext}" if q_ext in KNOWN_DOC_EXTS else default_ext
+        name = sha1_text(url)[:16] + ext
     name = re.sub(r"[^0-9A-Za-z가-힣._-]+", "_", name)
     return name[:180]
 
@@ -167,11 +187,19 @@ class Cfg:
         return {k: parse_size(v) for k, v in self.raw.get("quotas", {}).get("by_type", {}).items()}
 
     @property
+    def lang_caps(self) -> Dict[str, float]:
+        """타입별 영어 소스 허용 비율 (예: docx_doc: 0.3 → 영어는 해당 타입 quota의 30%까지만)."""
+        return {k: float(v) for k, v in self.raw.get("quotas", {}).get("lang_cap", {}).items()}
+
+    @property
     def parallel_workers(self) -> int:
         return int(self.raw.get("parallel_workers", 1))
 
     def all_sources(self) -> List[str]:
         return [k for k in self.raw if k not in NON_SOURCE_KEYS]
+
+    def source_lang(self, source: str) -> str:
+        return str(self.raw.get(source, {}).get("lang", "ko")).lower()
 
 
 class Collector:
@@ -196,18 +224,49 @@ class Collector:
             print("[INFO] LibreOffice 감지됨 — HWP/HWPX 파일을 DOCX로 변환합니다 (원본 보존).")
         # Initialize per-type byte counters from manifest history.
         self._type_bytes: Dict[str, int] = self._init_type_bytes()
+        self._type_en_bytes: Dict[str, int] = self._init_type_bytes(lang="en")
+        # 이미 방문한 URL 세트 (페이지 + 파일) — 재시작 시 재크롤 방지
+        self._visited_path = cfg.root / "visited_pages.txt"
+        self._visited: Set[str] = self._load_visited()
+
+    def _load_visited(self) -> Set[str]:
+        """visited_pages.txt + manifest.csv URL을 합쳐 seen 초기 세트 반환."""
+        visited: Set[str] = set()
+        if self._visited_path.exists():
+            with self._visited_path.open(encoding="utf-8", errors="ignore") as f:
+                for line in f:
+                    u = line.strip()
+                    if u:
+                        visited.add(u)
+        if self.manifest_path.exists():
+            with self.manifest_path.open(encoding="utf-8", newline="", errors="ignore") as f:
+                for row in csv.DictReader(f):
+                    u = row.get("url", "").strip()
+                    if u:
+                        visited.add(u)
+        return visited
+
+    def _mark_visited(self, url: str) -> None:
+        """페이지 URL을 visited_pages.txt에 기록."""
+        with self._lock:
+            self._visited.add(url)
+            with self._visited_path.open("a", encoding="utf-8") as f:
+                f.write(url + "\n")
 
     # ------------------------------------------------------------------
     # Type-quota helpers
     # ------------------------------------------------------------------
 
-    def _init_type_bytes(self) -> Dict[str, int]:
+    def _init_type_bytes(self, lang: Optional[str] = None) -> Dict[str, int]:
+        """매니페스트 이력에서 타입별 누적 바이트 집계. lang="en"이면 영어 소스분만 집계."""
         counts: Dict[str, int] = {g: 0 for g in TYPE_GROUPS}
         if not self.manifest_path.exists():
             return counts
         with self.manifest_path.open(encoding="utf-8", newline="") as f:
             for row in csv.DictReader(f):
                 if row.get("status") in ("downloaded", "docx_batch", "ko_chunk"):
+                    if lang is not None and self.cfg.source_lang(row.get("source", "")) != lang:
+                        continue
                     ext = Path(row.get("path", "")).suffix.lower().lstrip(".")
                     grp = EXT_TO_GROUP.get(ext)
                     if grp:
@@ -229,10 +288,7 @@ class Collector:
         with self._lock:
             return sum(self._type_bytes.values())
 
-    def under_total_quota(self) -> bool:
-        return self.total_collected() < self.cfg.total_quota
-
-    def under_type_quota(self, url_or_path: str) -> bool:
+    def under_type_quota(self, url_or_path: str, source: Optional[str] = None) -> bool:
         grp = self._ext_group(url_or_path)
         if grp is None:
             return True
@@ -240,16 +296,20 @@ class Collector:
         if limit == 0:
             return True
         with self._lock:
-            return self._type_bytes.get(grp, 0) < limit
+            if self._type_bytes.get(grp, 0) >= limit:
+                return False
+            if source is not None and self.cfg.source_lang(source) == "en":
+                cap = self.cfg.lang_caps.get(grp)
+                if cap is not None and self._type_en_bytes.get(grp, 0) >= limit * cap:
+                    return False  # 영어 소스는 타입별 허용 비율(예: 30%)까지만
+            return True
 
     def any_quota_remaining(self) -> bool:
-        with self._lock:
-            if sum(self._type_bytes.values()) >= self.cfg.total_quota:
-                return False
-            for grp, limit in self.cfg.type_quotas.items():
-                if self._type_bytes.get(grp, 0) < limit:
-                    return True
-            return False
+        """타입별 쿼터가 하나라도 남아있으면 True.
+        전체 합계(quotas.total)는 개별 타입 쿼터의 합과 같아야 정상이므로 별도로
+        게이트하지 않는다 — 한 타입이 버그로 초과 수집되어도 다른 타입의 목표
+        달성을 막지 않도록 하기 위함 (2026-07-03: txt 초과로 인한 조기 종료 버그)."""
+        return bool(self.lagging_types())
 
     def lagging_types(self) -> set:
         """쿼터 미달 타입 집합 반환."""
@@ -257,19 +317,23 @@ class Collector:
             return {grp for grp, limit in self.cfg.type_quotas.items()
                     if self._type_bytes.get(grp, 0) < limit}
 
-    def _type_remain(self, url_or_path: str) -> int:
+    def _type_remain(self, url_or_path: str, source: Optional[str] = None) -> int:
         grp = self._ext_group(url_or_path)
         if grp is None and HWP_EXT_RE.search(url_or_path):
             grp = "docx_doc"
-        with self._lock:
-            total = sum(self._type_bytes.values())
-            type_cur = self._type_bytes.get(grp, 0) if grp else 0
-        total_remain = max(0, self.cfg.total_quota - total)
         if grp is None:
-            return total_remain
+            return self.cfg.total_quota  # 타입을 알 수 없는 경우 사실상 무제한
         limit = self.cfg.type_quotas.get(grp, 0)
-        type_remain = max(0, limit - type_cur) if limit else total_remain
-        return min(total_remain, type_remain)
+        with self._lock:
+            type_cur = self._type_bytes.get(grp, 0)
+            en_cur = self._type_en_bytes.get(grp, 0)
+        remain = max(0, limit - type_cur) if limit else self.cfg.total_quota
+        if source is not None and self.cfg.source_lang(source) == "en":
+            cap = self.cfg.lang_caps.get(grp)
+            if cap is not None and limit:
+                en_remain = max(0, int(limit * cap) - en_cur)
+                remain = min(remain, en_remain)
+        return remain
 
     def convert_hwp(self, hwp_path: Path) -> Optional[Path]:
         """HWP/HWPX → DOCX 변환. 원본은 보존하고 변환된 DOCX 경로를 반환."""
@@ -304,6 +368,8 @@ class Collector:
                 grp = EXT_TO_GROUP.get(path.suffix.lower().lstrip("."))
                 if grp:
                     self._type_bytes[grp] = self._type_bytes.get(grp, 0) + nbytes
+                    if self.cfg.source_lang(source) == "en":
+                        self._type_en_bytes[grp] = self._type_en_bytes.get(grp, 0) + nbytes
 
     def get(self, url: str, stream: bool = False) -> Optional[requests.Response]:
         for attempt in range(self.cfg.retries):
@@ -319,6 +385,32 @@ class Collector:
                 time.sleep(self.cfg.sleep * (2 ** attempt + random.random()))
         return None
 
+    @staticmethod
+    def _cd_filename(headers) -> Optional[str]:
+        """Content-Disposition 헤더에서 실제 파일명 추출."""
+        cd = headers.get("content-disposition", "")
+        if not cd:
+            return None
+        # RFC 5987: filename*=UTF-8''%EC%9D%B4...
+        m = re.search(r"filename\*\s*=\s*[A-Za-z0-9-]*''([^;\s]+)", cd, re.I)
+        if m:
+            try:
+                return unquote(m.group(1), encoding="utf-8")
+            except Exception:
+                pass
+        # 일반 filename="..."
+        m = re.search(r'filename\s*=\s*"([^"]+)"', cd, re.I)
+        if m:
+            raw = m.group(1)
+            try:
+                return raw.encode("latin-1").decode("utf-8")  # 한국 사이트 EUC-KR→UTF-8 복구
+            except Exception:
+                return raw
+        m = re.search(r"filename\s*=\s*([^;\s\"']+)", cd, re.I)
+        if m:
+            return unquote(m.group(1))
+        return None
+
     def download(self, source: str, url: str, out_dir: Path) -> bool:
         mkdir(out_dir)
         if not self.any_quota_remaining():
@@ -326,8 +418,8 @@ class Collector:
         name = safe_name_from_url(url)
         is_hwp = bool(HWP_EXT_RE.search(name))
         if is_hwp and not self._libreoffice_ok:
-            return False  # LibreOffice 없으면 HWP 수집 불가
-        if not self.under_type_quota("dummy.docx" if is_hwp else url):
+            return False
+        if not self.under_type_quota("dummy.docx" if is_hwp else url, source=source):
             return False
         out = out_dir / name
         if out.exists() and out.stat().st_size > 0:
@@ -338,16 +430,30 @@ class Collector:
             self.log(source, url, out, 0, "http_error")
             return False
 
-        # Content-Type으로 실제 파일 타입 확인
+        # 1) Content-Disposition에서 실제 파일명 우선 추출
+        #    한국 공공사이트는 .do URL이라도 여기에 실제 확장자가 있음
+        cd_name = self._cd_filename(r.headers)
+        if cd_name:
+            cd_ext = Path(cd_name).suffix.lower()
+            if cd_ext in self.cfg.allowed_exts or HWP_EXT_RE.search(cd_name):
+                safe_cd = re.sub(r"[^0-9A-Za-z가-힣._-]+", "_", cd_name)[:180]
+                name = safe_cd
+                out = out_dir / name
+                tmp = out.with_suffix(out.suffix + ".part")
+                if out.exists() and out.stat().st_size > 0:
+                    return True
+                is_hwp = bool(HWP_EXT_RE.search(name))
+
+        # 2) Content-Type으로 보조 확인
         ctype = r.headers.get("content-type", "").split(";")[0].strip().lower()
         if ctype and not is_hwp:
             ct_ext = CONTENT_TYPE_EXT.get(ctype)
             if ct_ext is None and ctype in CONTENT_TYPE_EXT:
-                # 명시적으로 저장 불필요한 타입 (이미지, zip 등)
-                self.log(source, url, out, 0, "skip_content_type")
-                return False
+                # octet-stream은 CD에서 이미 처리 시도 — 여기까지 오면 허용 확장자 아님
+                if ctype != "application/octet-stream":
+                    self.log(source, url, out, 0, "skip_content_type")
+                    return False
             if ct_ext and name.endswith(".bin"):
-                # .bin으로 저장될 뻔했지만 실제 타입을 알았으면 확장자 교정
                 name = name[:-4] + ct_ext
                 out = out_dir / name
                 tmp = out.with_suffix(out.suffix + ".part")
@@ -355,13 +461,13 @@ class Collector:
                     return True
                 is_hwp = bool(HWP_EXT_RE.search(name))
 
-        # .bin으로 남을 파일은 저장하지 않음
+        # 3) 확장자를 끝내 알 수 없으면 스킵
         if name.endswith(".bin"):
             self.log(source, url, out, 0, "skip_unknown_type")
             return False
 
         total = int(r.headers.get("content-length", 0) or 0)
-        remain = self._type_remain("dummy.docx" if is_hwp else name)
+        remain = self._type_remain("dummy.docx" if is_hwp else name, source=source)
         if total and total > remain:
             self.log(source, url, out, 0, "skip_over_quota")
             return False
@@ -437,8 +543,9 @@ class Collector:
         settings = self.cfg.raw.get("generic_crawl", {})
         max_pages = int(settings.get("max_pages_per_site", 5000))
         max_depth = int(settings.get("max_depth", 4))
-        q = deque((u, 0) for u in seed_urls)
-        seen: Set[str] = set()
+        # 이전 실행에서 방문한 URL로 seen 초기화 → 재시작 시 재크롤 방지
+        seen: Set[str] = set(self._visited)
+        q = deque((u, 0) for u in seed_urls if u not in seen)
         pages = 0
         seed_domains = {urlparse(self._clean_url(u)).netloc for u in seed_urls}
         pbar = tqdm(desc=source, unit="page")
@@ -465,6 +572,7 @@ class Collector:
             if not text:
                 continue
             pages += 1; pbar.update(1)
+            self._mark_visited(url)   # 페이지 방문 기록
             links = self.extract_links(url, text)
             for link in links:
                 if link in seen:
@@ -586,6 +694,8 @@ class Collector:
 
     def run_common_crawl_ko(self) -> None:
         source = "common_crawl_ko_text"
+        if not self.under_type_quota("dummy.txt"):
+            return
         if ArchiveIterator is None:
             raise RuntimeError("warcio not installed. pip install -r requirements.txt")
         sconf = self.cfg.raw.get(source, {})
@@ -621,8 +731,12 @@ class Collector:
                 local = raw_dir / safe_name_from_url(wet_url, ".warc.wet.gz")
                 with local.open("wb") as f:
                     shutil.copyfileobj(r.raw, f)
+                quota_hit = False
                 with gzip.open(local, "rb") as stream:
                     for record in ArchiveIterator(stream):
+                        if not self.any_quota_remaining() or not self.under_type_quota("dummy.txt"):
+                            quota_hit = True
+                            break
                         if record.rec_type != "conversion":
                             continue
                         payload = record.content_stream().read().decode("utf-8", errors="ignore")
@@ -642,6 +756,8 @@ class Collector:
                                 out = out_path.open("ab")
                                 written_in_chunk = 0
                 local.unlink(missing_ok=True)  # WET 원본 즉시 삭제
+                if quota_hit:
+                    break
                 time.sleep(self.cfg.sleep)
         finally:
             out.close()
@@ -746,11 +862,63 @@ class Collector:
         text = re.sub(r'\n{3,}', '\n\n', text)
         return text.strip()
 
+    def run_law_lbook(self) -> None:
+        """국가법령정보센터 전자법령집(lbook) — 목록 → 상세 → 실제 PDF 다운로드.
+        HWP는 HWPML(구형 XML) 포맷이라 LibreOffice 변환이 되지 않아 제외 — 같은 책의 PDF로 내용 커버됨."""
+        source = "law_lbook"
+        sconf = self.cfg.raw.get(source, {})
+        base = "https://www.law.go.kr/lbook/"
+        list_url_tpl = sconf.get(
+            "list_url_tpl",
+            "https://www.law.go.kr/lbook/lbListR.do?dSearchYn=N&FSort=100"
+            "&pageIndex={page}&menuId=13&subMenuId=67&tabMenuId=293",
+        )
+        max_pages = int(sconf.get("max_pages", 90))
+        out_dir = self.cfg.root / source / "files"
+        mkdir(out_dir)
+
+        seq_re = re.compile(r"lbInfoR\.do\?lbookSeq=(\d+)")
+        file_re = re.compile(r'href="(lbFileDownload\.do\?[^"]+)"', re.I)
+
+        seqs: List[str] = []
+        seen_seq: Set[str] = set()
+        pbar = tqdm(range(1, max_pages + 1), desc=f"{source}-list", unit="page")
+        for page in pbar:
+            if not self.any_quota_remaining():
+                break
+            r = self.get(list_url_tpl.format(page=page))
+            if not r:
+                continue
+            for m in seq_re.finditer(r.text):
+                seq = m.group(1)
+                if seq not in seen_seq:
+                    seen_seq.add(seq)
+                    seqs.append(seq)
+            time.sleep(self.cfg.sleep)
+        pbar.close()
+
+        pbar2 = tqdm(seqs, desc=f"{source}-files", unit="book")
+        for seq in pbar2:
+            if not self.any_quota_remaining():
+                break
+            r = self.get(urljoin(base, f"lbInfoR.do?lbookSeq={seq}"))
+            if not r:
+                continue
+            for m in file_re.finditer(r.text):
+                href = m.group(1).replace("&amp;", "&")
+                if "flext=pdf" not in href.lower():
+                    continue  # hwp(HWPML, 변환 불가)/zip 등은 제외 — pdf만 수집
+                self.download(source, urljoin(base, href), out_dir)
+            time.sleep(self.cfg.sleep)
+        pbar2.close()
+
     def run_source(self, source: str) -> None:
         if source == "kowiki_knowledge":
             self.run_kowiki(); return
         if source == "common_crawl_ko_text":
             self.run_common_crawl_ko(); return
+        if source == "law_lbook":
+            self.run_law_lbook(); return
         if source == "namuwiki_dump":
             self.run_namuwiki_dump(); return
         conf = self.cfg.raw.get(source, {})
@@ -762,9 +930,15 @@ class Collector:
 
     def plan(self) -> None:
         tq = self.cfg.type_quotas
+        target_sum = sum(tq.values())
+        # 타입별로 목표치를 초과한 분량은 진행률 계산에서 제외(캡)한다 — 한 타입의
+        # 초과 수집이 전체 진행률을 부풀려 보이게 하는 것을 방지 (2026-07-03: txt 초과 건).
+        capped_sum = sum(min(self._type_bytes.get(g, 0), limit) for g, limit in tq.items())
         print(f"\nRoot : {self.cfg.root}")
-        print(f"Total: {human(self.total_collected()):>10s} / {human(self.cfg.total_quota)}")
+        print(f"수집량(원본, 초과분 포함): {human(self.total_collected())}")
+        print(f"목표 합계(타입별 쿼터 합): {human(target_sum)}")
         print()
+        lang_caps = self.cfg.lang_caps
         print(f"{'Type group':<18} {'Collected':>10} {'Target':>10} {'Remaining':>10}  Progress")
         print("-" * 68)
         for grp in TYPE_GROUPS:
@@ -773,10 +947,17 @@ class Collector:
             rem = max(0, limit - cur)
             pct = min(100.0, cur / limit * 100) if limit else 0.0
             bar = "#" * int(pct / 5) + "." * (20 - int(pct / 5))
-            print(f"{grp:<18} {human(cur):>10} {human(limit):>10} {human(rem):>10}  [{bar}] {pct:5.1f}%")
+            line = f"{grp:<18} {human(cur):>10} {human(limit):>10} {human(rem):>10}  [{bar}] {pct:5.1f}%"
+            if cur > limit:
+                line += f"   (초과 +{human(cur - limit)})"
+            if grp in lang_caps:
+                en_cur = self._type_en_bytes.get(grp, 0)
+                en_pct = (en_cur / cur * 100) if cur else 0.0
+                line += f"   (en {human(en_cur)}, {en_pct:.0f}% / cap {lang_caps[grp]*100:.0f}%)"
+            print(line)
         print()
-        total_pct = min(100.0, self.total_collected() / self.cfg.total_quota * 100)
-        print(f"Overall progress: {total_pct:.1f}%")
+        overall_pct = min(100.0, capped_sum / target_sum * 100) if target_sum else 0.0
+        print(f"Overall progress: {overall_pct:.1f}%  (타입별 목표 기준, 초과분 제외)")
 
 
 def _exec_sources(col: "Collector", sources: List[str], workers: int) -> None:

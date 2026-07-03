@@ -182,11 +182,13 @@ if [ "${1}" = "cleanup" ]; then
         echo "  삭제: wet_raw/ ($SIZE)"
     fi
 
-    # 확장자 불명 .bin 파일
-    BIN_COUNT=$(find "$ROOT" -name "*.bin" 2>/dev/null | wc -l)
-    if [ "$BIN_COUNT" -gt 0 ]; then
-        find "$ROOT" -name "*.bin" -delete
-        echo "  삭제: .bin 파일 ${BIN_COUNT}개"
+    # 타입 불명 파일 (.bin, .do, .jsp, .es 등 — Content-Disposition 수정 전 수집된 잔재)
+    JUNK_COUNT=$(find "$ROOT" \( -name "*.bin" -o -name "*.do" -o -name "*.jsp" \
+        -o -name "*.es" -o -name "*.aspx" -o -name "*.uxls" \) 2>/dev/null | wc -l)
+    if [ "$JUNK_COUNT" -gt 0 ]; then
+        find "$ROOT" \( -name "*.bin" -o -name "*.do" -o -name "*.jsp" \
+            -o -name "*.es" -o -name "*.aspx" -o -name "*.uxls" \) -delete
+        echo "  삭제: 타입 불명 파일 ${JUNK_COUNT}개 (.bin/.do/.jsp 등)"
     fi
 
     # 이미지 파일 (jpg, png, gif 등)
@@ -214,18 +216,26 @@ fi
 
 # ── stop ─────────────────────────────────────────────────────────────────────
 if [ "${1}" = "stop" ]; then
-    if [ ! -f "$PIDFILE" ]; then
-        echo "[INFO] 실행 중인 수집 프로세스가 없습니다."
-        exit 0
-    fi
-    PID=$(cat "$PIDFILE")
-    if kill -0 "$PID" 2>/dev/null; then
-        kill "$PID"
-        echo "[중단] PID $PID 종료 요청"
+    if [ -f "$PIDFILE" ]; then
+        PID=$(cat "$PIDFILE")
+        if kill -0 "$PID" 2>/dev/null; then
+            kill "$PID"
+            echo "[중단] 워치독 PID $PID 종료 요청"
+        else
+            echo "[INFO] 워치독 PID $PID 는 이미 종료되어 있습니다."
+        fi
         rm -f "$PIDFILE"
     else
-        echo "[INFO] PID $PID 는 이미 종료되어 있습니다."
-        rm -f "$PIDFILE"
+        echo "[INFO] pidfile이 없습니다 (워치독 루프는 이미 종료된 상태)."
+    fi
+    # 워치독 서브셸을 kill해도 그 안에서 &로 띄운 실제 python 워커는 고아 프로세스로
+    # 남을 수 있으므로, 같은 config를 사용하는 gaia_collect.py 프로세스를 모두 함께 정리한다.
+    MATCHES=$(pgrep -f "gaia_collect\.py --config $CONFIG" 2>/dev/null)
+    if [ -n "$MATCHES" ]; then
+        echo "[중단] 잔여 수집 프로세스 종료: $MATCHES"
+        pkill -TERM -f "gaia_collect\.py --config $CONFIG" 2>/dev/null
+        sleep 2
+        pkill -KILL -f "gaia_collect\.py --config $CONFIG" 2>/dev/null
     fi
     exit 0
 fi
@@ -259,10 +269,11 @@ if [ "${1}" = "bg" ]; then
     RUN_LOG="$SCRIPT_DIR/logs/collect_${RUN_TS}.log"
     ln -sf "$RUN_LOG" "$LOG"
 
-    # 목표 달성까지 사이클 반복 (소스 소진 시 자동 종료)
+    # 목표(타입별 quota) 달성까지 사이클 반복 — 소스 소진으로는 종료하지 않는다.
     (
         CYCLE=1
         PREV_COLLECTED="-1"
+        STALL_COUNT=0
         STALE_SEC=1800   # 30분 동안 로그·manifest 모두 미업데이트 시 재시작
         MANIFEST="$SCRIPT_DIR/$(grep '^root_dir:' "$CONFIG" | sed 's|root_dir:[[:space:]]*||;s|^\./||')/manifest.csv"
         cd "$SCRIPT_DIR"
@@ -302,14 +313,16 @@ print('DONE' if not col.any_quota_remaining() else str(col.total_collected()))
 PYEOF
 )
             if [ "$NOW_COLLECTED" = "DONE" ]; then
-                echo "[완료] 목표 달성. 수집 종료. $(date '+%Y-%m-%d %H:%M:%S')" >> "$RUN_LOG"
+                echo "[완료] 목표(타입별 quota) 달성. 수집 종료. $(date '+%Y-%m-%d %H:%M:%S')" >> "$RUN_LOG"
                 rm -f "$PIDFILE"
                 break
             fi
             if [ "$NOW_COLLECTED" = "$PREV_COLLECTED" ]; then
-                echo "[종료] 사이클 ${CYCLE} 후 추가 수집 없음 — 소스 소진. $(date '+%Y-%m-%d %H:%M:%S')" >> "$RUN_LOG"
-                rm -f "$PIDFILE"
-                break
+                STALL_COUNT=$((STALL_COUNT + 1))
+                echo "[대기] 사이클 ${CYCLE} 후 추가 수집 없음 (연속 ${STALL_COUNT}회) — 목표 미달성이므로 계속 재시도. $(date '+%Y-%m-%d %H:%M:%S')" >> "$RUN_LOG"
+                sleep $(( STALL_COUNT < 10 ? 60 * STALL_COUNT : 600 ))  # 정체 반복 시 재시도 간격을 늘려 헛수고 최소화
+            else
+                STALL_COUNT=0
             fi
             PREV_COLLECTED="$NOW_COLLECTED"
             CYCLE=$((CYCLE + 1))

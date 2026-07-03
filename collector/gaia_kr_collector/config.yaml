@@ -10,25 +10,34 @@ parallel_workers: 5
 # Quota is now tracked per document TYPE, not per source.
 # Run any source repeatedly — duplicates are skipped via manifest.csv.
 quotas:
-  total: 100GB
+  total: 110GB
   by_type:
-    pdf:          20GB
-    docx_doc:     20GB
-    xlsx_xls_csv: 20GB
-    txt:          20GB
-    json_xml:     20GB
+    pdf:          35GB   # .pdf
+    docx_doc:     30GB   # .doc .docx .odf .rtf
+    xlsx_xls_csv: 15GB   # .xls .xlsx .csv
+    ppt_pptx:     10GB   # .ppt .pptx
+    txt:          20GB   # .txt .html
+  # 한국어 소스가 부족한 타입은 영어 소스로 보충 허용 (한국어 70% / 영어 30%).
+  # lang: en 태그가 붙은 소스는 여기 지정된 비율(타입 quota 대비)까지만 채워짐.
+  lang_cap:
+    docx_doc:  0.3
+    ppt_pptx:  0.3
 
-# Keep only file types Gaia can ingest directly or with minimal handling.
+# Cohesity Gaia 지원 타입
 allowed_extensions:
   - .pdf
-  - .csv
-  - .xlsx
-  - .xls
-  - .xml
-  - .json
-  - .txt
-  - .docx
   - .doc
+  - .docx
+  - .odf
+  - .rtf
+  - .xls
+  - .xlsx
+  - .csv
+  - .ppt
+  - .pptx
+  - .txt
+  - .html
+  - .xml
 
 # Crawl depth / page limits — increase if a source produces fewer files than expected.
 generic_crawl:
@@ -164,6 +173,12 @@ law_reports:
     - "https://www.ccourt.go.kr/site/kor/ex/bbs/List.do?cbIdx=1028"
     - "https://www.moleg.go.kr/lawinfo/nwLwAnInfo.mo?mid=a10104010000"
     - "https://elaw.klri.re.kr/kor_service/lawTranslation.do"
+
+# 국가법령정보센터 전자법령집 — 사용자 제작 법령 모음집을 PDF/HWP로 직접 다운로드
+# (Open API 인증키 불필요, lbookSeq 목록 → 상세페이지 → lbFileDownload.do 실파일 링크)
+law_lbook:
+  enabled: true
+  max_pages: 90   # 목록 페이지 수 (페이지당 10건 → 약 900건까지 커버)
 
 local_gov_data:
   enabled: true
@@ -359,6 +374,74 @@ nts_hwp:
     - "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=2319&cntntsId=7675"
     - "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=2321&cntntsId=7677"
 
+# 추가 DOCX/HWP 소스 (docx_doc 미달 보강용, 2026-07-03 추가)
+korea_briefing:
+  auto_pool: true
+  type_hint: docx_doc
+  seed_urls:
+    - "https://www.korea.kr/briefing/policyBriefingList.do"
+
+mois_data:
+  auto_pool: true
+  type_hint: docx_doc
+  seed_urls:
+    - "https://www.mois.go.kr/frt/bbs/type010/commonSelectBoardList.do?bbsId=BBSMSTR_000000000008"
+
+mof_docs:
+  auto_pool: true
+  type_hint: docx_doc
+  seed_urls:
+    - "https://www.mof.go.kr/doc/ko/selectDocList.do"
+
+moef_briefing:
+  auto_pool: true
+  type_hint: docx_doc
+  seed_urls:
+    - "https://www.moef.go.kr/nw/nes/detailNesDtaView.do?searchNttId1=&menuNo=4010100"
+
+kosha_guidelines:
+  auto_pool: true
+  type_hint: docx_doc
+  seed_urls:
+    - "https://kosha.or.kr/kosha/data/carcinogenGuide.do"
+
+# ── PPT/PPTX 풀 (교육·세미나·발표 자료 — ppt_pptx 타입 전용, 2026-07-03 추가) ──
+kdi_edu_ppt:
+  auto_pool: true
+  type_hint: ppt_pptx
+  seed_urls:
+    - "https://www.kdi.re.kr/edu/notify/data_list.jsp"
+
+nia_seminar:
+  auto_pool: true
+  type_hint: ppt_pptx
+  seed_urls:
+    - "https://www.nia.or.kr/site/nia_kor/ex/bbs/List.do?cbIdx=99870"
+
+koti_seminar:
+  auto_pool: true
+  type_hint: ppt_pptx
+  seed_urls:
+    - "https://www.koti.re.kr/user/bbs/BD_selectBbsList.do?q_bbsCode=1013"
+
+keei_seminar:
+  auto_pool: true
+  type_hint: ppt_pptx
+  seed_urls:
+    - "https://www.keei.re.kr/main.nsf/index.html"
+
+spo_data:
+  auto_pool: true
+  type_hint: ppt_pptx
+  seed_urls:
+    - "https://www.spo.go.kr/site/spo/ex/board/List.do?cbIdx=1051"
+
+kostat_edu:
+  auto_pool: true
+  type_hint: ppt_pptx
+  seed_urls:
+    - "https://kostat.go.kr/board.es?mid=a10301070100&bid=207"
+
 # ── XLSX/CSV 즉시 활성화 소스 ───────────────────────────────────────────────
 
 dart_financial:
@@ -376,9 +459,8 @@ hira_opendata:
   auto_pool: false
   type_hint: xlsx_xls_csv
   seed_urls:
-    - "https://opendata.hira.or.kr/op/opc/olapMstrList.do"
-    - "https://opendata.hira.or.kr/op/opc/selectSpcDsasInfo.do"
-    - "https://opendata.hira.or.kr/op/opc/selectTrAtcInsupInfo.do"
+    # 기존 3개 URL이 전부 404라서 수집이 안 되고 있었음 (2026-07-03 확인) — 홈으로 교체, depth crawl로 실제 게시판 탐색
+    - "https://opendata.hira.or.kr/home.do"
 
 nhis_stats:
   auto_pool: true
@@ -475,3 +557,100 @@ data_go_kr_json:
     - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&fileType=json&keyword=%ED%86%B5%EA%B3%84"
     - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&fileType=xml&keyword=%ED%86%B5%EA%B3%84"
     - "https://www.data.go.kr/tcs/dss/selectDataSetList.do?dType=FILE&fileType=json&keyword=%EC%A3%BC%EC%86%8C"
+
+# ── 주제 다양성 확장 풀 (기존에 없던 도메인 — 보건/농림/여성가족/문화관광/산업/통일, 2026-07-03 추가) ──
+# 정부 기관 사이트 자체는 계속 유효하지만, PoC 데이터셋은 특정 부처에 몰리기보다
+# 주제(도메인)가 다양할수록 RAG 커버리지 평가에 유리하다는 판단으로 추가.
+mafra_food:
+  auto_pool: true
+  type_hint: pdf
+  seed_urls:
+    - "https://www.mafra.go.kr/mafra/293/subview.do"
+
+mogef_family:
+  auto_pool: true
+  type_hint: docx_doc
+  seed_urls:
+    - "https://www.mogef.go.kr/mp/pcd/mp_pcd_s001d.do"
+
+mcst_culture:
+  auto_pool: true
+  type_hint: docx_doc
+  seed_urls:
+    - "https://www.mcst.go.kr/kor/s_notice/press/pressList.jsp"
+
+knto_tourism:
+  auto_pool: true
+  type_hint: pdf
+  seed_urls:
+    - "https://knto.or.kr/kor/notice/data.kto"
+
+kdca_health:
+  auto_pool: true
+  type_hint: pdf
+  seed_urls:
+    - "https://www.kdca.go.kr"
+
+motie_industry:
+  auto_pool: true
+  type_hint: docx_doc
+  seed_urls:
+    - "https://www.motie.go.kr"
+
+unikorea_unification:
+  auto_pool: true
+  type_hint: docx_doc
+  seed_urls:
+    - "https://www.unikorea.go.kr"
+
+# ── 영어 doc/docx, ppt/pptx 보충 풀 (한국어 소스 부족 시 최대 30%까지만, 2026-07-03 추가) ──
+# lang: en 태그 + quotas.lang_cap 설정으로 docx_doc/ppt_pptx 타입의 30%까지만 채워지도록 제한됨.
+# 한국어 소스가 있는 한 우선적으로 그쪽이 채워지고, 이건 부족분 보충용.
+bok_eng:
+  auto_pool: true
+  lang: en
+  type_hint: docx_doc
+  seed_urls:
+    - "https://www.bok.or.kr/eng/bbs/E0000634/list.do?menuNo=400069"
+
+moef_eng:
+  auto_pool: true
+  lang: en
+  type_hint: docx_doc
+  seed_urls:
+    - "https://english.moef.go.kr/pc/selectTbPressCenterList.do?boardCd=N0001"
+
+kostat_eng:
+  auto_pool: true
+  lang: en
+  type_hint: docx_doc
+  seed_urls:
+    - "https://kostat.go.kr/board.es?mid=a90104010000&bid=11749"
+
+investkorea_eng:
+  auto_pool: true
+  lang: en
+  type_hint: docx_doc
+  seed_urls:
+    - "https://www.investkorea.org/ik-en/cntnts/i-317/web.do"
+
+kdischool_eng:
+  auto_pool: true
+  lang: en
+  type_hint: ppt_pptx
+  seed_urls:
+    - "https://www.kdischool.ac.kr"
+
+kdi_eng_reports:
+  auto_pool: true
+  lang: en
+  type_hint: ppt_pptx
+  seed_urls:
+    - "https://www.kdi.re.kr/eng/report/report_list.jsp"
+
+mss_eng:
+  auto_pool: true
+  lang: en
+  type_hint: ppt_pptx
+  seed_urls:
+    - "https://www.mss.go.kr/site/eng/main.do"
