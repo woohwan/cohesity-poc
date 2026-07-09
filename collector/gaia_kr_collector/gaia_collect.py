@@ -29,6 +29,7 @@ import bz2
 import csv
 import gzip
 import hashlib
+import json
 import os
 import random
 import re
@@ -545,48 +546,73 @@ class Collector:
         max_depth = int(settings.get("max_depth", 4))
         # 이전 실행에서 방문한 URL로 seen 초기화 → 재시작 시 재크롤 방지
         seen: Set[str] = set(self._visited)
-        q = deque((u, 0) for u in seed_urls if u not in seen)
+        # 미방문 프론티어(큐)를 파일로 영속화 — seed_urls는 첫 방문 즉시 visited
+        # 처리되므로, 프론티어를 저장해두지 않으면 재시작 시 큐가 비어 그 소스는
+        # 영구히 0페이지로 멈춘다 (2026-07-08: kostat_eng 등 재시작 후 크롤 유실 버그).
+        frontier_path = source_dir / ".frontier.json"
+        q: deque = deque()
+        if frontier_path.exists():
+            try:
+                saved = json.loads(frontier_path.read_text())
+                q = deque((u, d) for u, d in saved if u not in seen)
+            except (json.JSONDecodeError, OSError, ValueError):
+                q = deque()
+        if not q:
+            q = deque((u, 0) for u in seed_urls if u not in seen)
         pages = 0
         seed_domains = {urlparse(self._clean_url(u)).netloc for u in seed_urls}
-        pbar = tqdm(desc=source, unit="page")
-        while q and self.any_quota_remaining() and pages < max_pages:
-            url, depth = q.popleft()
-            if url in seen:
-                continue
-            seen.add(url)
-            if self.is_allowed_file_url(url):
-                self.download(source, url, source_dir / "files")
-                continue
-            if depth > max_depth:
-                continue
+
+        def _save_frontier() -> None:
             try:
-                if urlparse(url).netloc not in seed_domains:
+                tmp = frontier_path.with_suffix(".json.tmp")
+                tmp.write_text(json.dumps(list(q)))
+                tmp.replace(frontier_path)
+            except OSError:
+                pass
+
+        pbar = tqdm(desc=source, unit="page")
+        try:
+            while q and self.any_quota_remaining() and pages < max_pages:
+                url, depth = q.popleft()
+                if url in seen:
                     continue
-            except ValueError:
-                continue
-            r = self.get(url)
-            if not r:
-                continue
-            ctype = r.headers.get("content-type", "")
-            text = r.text if "text" in ctype or "html" in ctype or not ctype else ""
-            if not text:
-                continue
-            pages += 1; pbar.update(1)
-            self._mark_visited(url)   # 페이지 방문 기록
-            links = self.extract_links(url, text)
-            for link in links:
-                if link in seen:
+                seen.add(url)
+                if self.is_allowed_file_url(url):
+                    self.download(source, url, source_dir / "files")
                     continue
-                if self.is_allowed_file_url(link):
-                    q.appendleft((link, depth + 1))
-                else:
-                    try:
-                        if depth + 1 <= max_depth and urlparse(link).netloc in seed_domains:
-                            q.append((link, depth + 1))
-                    except ValueError:
-                        pass
-            time.sleep(self.cfg.sleep)
-        pbar.close()
+                if depth > max_depth:
+                    continue
+                try:
+                    if urlparse(url).netloc not in seed_domains:
+                        continue
+                except ValueError:
+                    continue
+                r = self.get(url)
+                if not r:
+                    continue
+                ctype = r.headers.get("content-type", "")
+                text = r.text if "text" in ctype or "html" in ctype or not ctype else ""
+                if not text:
+                    continue
+                pages += 1; pbar.update(1)
+                self._mark_visited(url)   # 페이지 방문 기록
+                links = self.extract_links(url, text)
+                for link in links:
+                    if link in seen:
+                        continue
+                    if self.is_allowed_file_url(link):
+                        q.appendleft((link, depth + 1))
+                    else:
+                        try:
+                            if depth + 1 <= max_depth and urlparse(link).netloc in seed_domains:
+                                q.append((link, depth + 1))
+                        except ValueError:
+                            pass
+                _save_frontier()
+                time.sleep(self.cfg.sleep)
+        finally:
+            _save_frontier()
+            pbar.close()
 
     def run_kowiki(self) -> None:
         source = "kowiki_knowledge"

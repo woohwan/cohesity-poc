@@ -106,7 +106,7 @@ national_assembly_reports:
     - "https://likms.assembly.go.kr/bill/billList.do"
 
 common_crawl_ko_text:
-  enabled: true
+  enabled: false   # 2026-07-08: 저품질 웹 스크랩(보일러플레이트/스팸)으로 판단, txt 타입 소스에서 제외
   crawl_id: "CC-MAIN-2026-12"
   max_wet_files: 8000   # TXT 20GB 목표 기준 확대
   min_hangul_ratio: 0.15
@@ -654,3 +654,14 @@ mss_eng:
   type_hint: ppt_pptx
   seed_urls:
     - "https://www.mss.go.kr/site/eng/main.do"
+
+# 2026-07-08: 정부/공공기관 게시판 크롤링이 아니라 구글 filetype:pptx 검색으로
+# 직접 찾은 pptx 파일들을 수동 다운로드해 등록. enabled: false — 크롤링 대상 아님
+# (manifest.csv에 이미 다운로드 기록됨, lang 태그만 정확한 집계를 위해 유지).
+web_pptx_kr:
+  enabled: false
+  lang: ko
+
+web_pptx_en:
+  enabled: false
+  lang: en
