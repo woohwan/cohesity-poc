@@ -92,13 +92,13 @@ def evaluate_containment(predicted: str, reference: str) -> float:
 
 
 def run_gaia_evaluation(
-    type_group: str,
+    group_key: str,
     max_samples: Optional[int] = None,
     delay_seconds: float = 1.0,
 ) -> pd.DataFrame:
-    """타입별 RAGAS 테스트셋으로 GAIA API를 호출해 평가한다."""
-    testset_path = OUTPUT_DIR / f"ragas_testset_{type_group}.json"
-    output_path = OUTPUT_DIR / f"gaia_eval_results_{type_group}.csv"
+    """group_key(타입명 또는 소스명)의 RAGAS 테스트셋으로 GAIA API를 호출해 평가한다."""
+    testset_path = OUTPUT_DIR / f"ragas_testset_{group_key}.json"
+    output_path = OUTPUT_DIR / f"gaia_eval_results_{group_key}.csv"
 
     with open(testset_path, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -106,10 +106,10 @@ def run_gaia_evaluation(
     if max_samples:
         samples = samples[:max_samples]
 
-    print(f"[{type_group}] {len(samples)}개 샘플로 GAIA 평가 시작...")
+    print(f"[{group_key}] {len(samples)}개 샘플로 GAIA 평가 시작...")
 
     rows = []
-    for i, sample in enumerate(tqdm(samples, desc=f"GAIA 질의[{type_group}]", unit="q")):
+    for i, sample in enumerate(tqdm(samples, desc=f"GAIA 질의[{group_key}]", unit="q")):
         question = sample["user_input"]
         reference = sample["reference"]
 
@@ -132,7 +132,7 @@ def run_gaia_evaluation(
             "exact_match": em,
             "containment": round(containment, 3),
             "retrieved_context_count": len(contexts),
-            "type_group": sample.get("type_group", type_group),
+            "type_group": sample.get("type_group", ""),
             "ext": sample.get("ext", ""),
             "source": sample.get("source", ""),
             "question_type": sample.get("question_type", ""),
@@ -143,7 +143,7 @@ def run_gaia_evaluation(
     df = pd.DataFrame(rows)
     df.to_csv(output_path, index=False, encoding="utf-8-sig")
 
-    print(f"\n===== GAIA 평가 결과 [{type_group}] =====")
+    print(f"\n===== GAIA 평가 결과 [{group_key}] =====")
     print(f"총 샘플: {len(df)}")
     print(f"Exact Match: {df['exact_match'].mean():.1%}")
     print(f"Avg Containment: {df['containment'].mean():.3f}")
@@ -187,14 +187,14 @@ def _build_ragas_embeddings():
     )
 
 
-def run_ragas_evaluation(type_group: str) -> Optional[pd.DataFrame]:
-    """gaia_eval_results_{type}.csv를 읽어 pip 패키지 ragas로 4개 메트릭을 채점한다."""
+def run_ragas_evaluation(group_key: str) -> Optional[pd.DataFrame]:
+    """gaia_eval_results_{group_key}.csv를 읽어 pip 패키지 ragas로 4개 메트릭을 채점한다."""
     from ragas import evaluate
     from ragas.dataset_schema import SingleTurnSample, EvaluationDataset
     from ragas.metrics import Faithfulness, AnswerRelevancy, ContextPrecision, ContextRecall
 
-    eval_csv = OUTPUT_DIR / f"gaia_eval_results_{type_group}.csv"
-    output_path = OUTPUT_DIR / f"ragas_eval_results_{type_group}.csv"
+    eval_csv = OUTPUT_DIR / f"gaia_eval_results_{group_key}.csv"
+    output_path = OUTPUT_DIR / f"ragas_eval_results_{group_key}.csv"
 
     if not eval_csv.exists():
         print(f"[ERROR] {eval_csv} 가 없습니다. run_gaia_evaluation()을 먼저 실행하세요.")
@@ -222,7 +222,7 @@ def run_ragas_evaluation(type_group: str) -> Optional[pd.DataFrame]:
     embeddings = _build_ragas_embeddings()
     metrics = [Faithfulness(), AnswerRelevancy(), ContextPrecision(), ContextRecall()]
 
-    print(f"RAGAS 평가 실행 중 [{type_group}] ({len(samples)}개 샘플)...")
+    print(f"RAGAS 평가 실행 중 [{group_key}] ({len(samples)}개 샘플)...")
     result = evaluate(dataset=dataset, metrics=metrics, llm=llm, embeddings=embeddings)
 
     result_df = result.to_pandas()
@@ -232,7 +232,7 @@ def run_ragas_evaluation(type_group: str) -> Optional[pd.DataFrame]:
         result_df[c] = df[c].values
     result_df.to_csv(output_path, index=False, encoding="utf-8-sig")
 
-    print(f"\n===== RAGAS 평가 결과 [{type_group}] =====")
+    print(f"\n===== RAGAS 평가 결과 [{group_key}] =====")
     for metric in ["faithfulness", "answer_relevancy", "context_precision", "context_recall"]:
         if metric in result_df.columns:
             print(f"{metric}: {result_df[metric].mean():.3f}")
@@ -244,11 +244,14 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--type", choices=list(TYPE_GROUPS.keys()), required=True)
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument("--type", choices=list(TYPE_GROUPS.keys()))
+    group.add_argument("--source", help="이전 단계를 --group-by source 로 실행한 경우의 소스명")
     parser.add_argument("--max-samples", type=int, default=None)
     parser.add_argument("--skip-ragas", action="store_true", help="GAIA 질의만 하고 RAGAS 채점은 생략")
     args = parser.parse_args()
 
-    run_gaia_evaluation(args.type, max_samples=args.max_samples)
+    key = args.type or args.source
+    run_gaia_evaluation(key, max_samples=args.max_samples)
     if not args.skip_ragas:
-        run_ragas_evaluation(args.type)
+        run_ragas_evaluation(key)

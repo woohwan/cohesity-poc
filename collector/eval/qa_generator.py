@@ -114,14 +114,17 @@ def generate_qa_for_doc(
 
 def generate_all_qa(
     docs: list[dict],
-    type_group: str,
+    group_key: str,
     n_qa_per_doc: int = QA_PER_DOC,
     save_intermediate: bool = True,
 ) -> list[dict]:
+    """group_key: 타입명(pdf 등) 또는 소스명(bok_publications 등) — 출력 파일명에 쓰인다.
+    문서별 QA 프롬프트는 doc["type_group"]/doc["source"]를 그대로 쓰므로 그룹 기준과
+    무관하게 동일하게 동작한다."""
     if not is_llm_configured():
         raise ValueError(f"{required_api_key_name()} 환경 변수가 설정되지 않았습니다.")
 
-    output_path = OUTPUT_DIR / f"qa_pairs_{type_group}.json"
+    output_path = OUTPUT_DIR / f"qa_pairs_{group_key}.json"
 
     existing_qa = []
     existing_doc_ids = set()
@@ -136,7 +139,7 @@ def generate_all_qa(
 
     pending_docs = [d for d in docs if d.get("doc_id", "") not in existing_doc_ids]
 
-    for i, doc in enumerate(tqdm(pending_docs, desc=f"QA 생성[{type_group}]", unit="doc")):
+    for i, doc in enumerate(tqdm(pending_docs, desc=f"QA 생성[{group_key}]", unit="doc")):
         qa_list = generate_qa_for_doc(client, doc, n_qa_per_doc)
         if qa_list:
             all_qa.extend(qa_list)
@@ -160,9 +163,12 @@ if __name__ == "__main__":
     from document_sampler import load_sampled_documents
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--type", choices=list(TYPE_GROUPS.keys()), required=True)
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument("--type", choices=list(TYPE_GROUPS.keys()))
+    group.add_argument("--source", help="sample 단계를 --group-by source 로 실행한 경우의 소스명")
     args = parser.parse_args()
 
-    docs = load_sampled_documents(args.type)
-    qa_pairs = generate_all_qa(docs, args.type)
+    key = args.type or args.source
+    docs = load_sampled_documents(key)
+    qa_pairs = generate_all_qa(docs, key)
     print(f"\n총 {len(qa_pairs)}개 QA 쌍 생성 완료.")

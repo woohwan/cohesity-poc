@@ -1,6 +1,6 @@
 """
 QA 쌍을 RAGAS 평가용 테스트셋(SingleTurnSample 호환)으로 변환한다.
-타입별로 별도 파일을 생성한다.
+그룹(타입 또는 소스=토픽) 기준으로 별도 파일을 생성한다.
 """
 import json
 import random
@@ -12,8 +12,8 @@ import pandas as pd
 from config import OUTPUT_DIR, RANDOM_SEED
 
 
-def load_qa_pairs(type_group: str) -> list[dict]:
-    path = OUTPUT_DIR / f"qa_pairs_{type_group}.json"
+def load_qa_pairs(group_key: str) -> list[dict]:
+    path = OUTPUT_DIR / f"qa_pairs_{group_key}.json"
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
@@ -37,12 +37,12 @@ def build_ragas_samples(qa_pairs: list[dict]) -> list[dict]:
     return samples
 
 
-def save_ragas_json(samples: list[dict], type_group: str) -> Path:
-    path = OUTPUT_DIR / f"ragas_testset_{type_group}.json"
+def save_ragas_json(samples: list[dict], group_key: str) -> Path:
+    path = OUTPUT_DIR / f"ragas_testset_{group_key}.json"
     ragas_format = {
         "version": "1.0",
-        "description": f"Cohesity GAIA KR 수집 데이터 — {type_group} 타입 RAGAS 테스트셋",
-        "type_group": type_group,
+        "description": f"Cohesity GAIA KR 수집 데이터 — {group_key} 그룹 RAGAS 테스트셋",
+        "group_key": group_key,
         "total_samples": len(samples),
         "samples": samples,
     }
@@ -52,8 +52,8 @@ def save_ragas_json(samples: list[dict], type_group: str) -> Path:
     return path
 
 
-def save_gaia_eval_csv(samples: list[dict], type_group: str) -> Path:
-    path = OUTPUT_DIR / f"gaia_eval_{type_group}.csv"
+def save_gaia_eval_csv(samples: list[dict], group_key: str) -> Path:
+    path = OUTPUT_DIR / f"gaia_eval_{group_key}.csv"
     fieldnames = [
         "no", "question", "expected_answer", "question_type",
         "doc_id", "type_group", "ext", "source", "file_name",
@@ -78,13 +78,13 @@ def save_gaia_eval_csv(samples: list[dict], type_group: str) -> Path:
     return path
 
 
-def save_ragas_hf_dataset(samples: list[dict], type_group: str) -> Optional[Path]:
+def save_ragas_hf_dataset(samples: list[dict], group_key: str) -> Optional[Path]:
     try:
         from datasets import Dataset
     except ImportError:
         print("[SKIP] datasets 패키지가 없어 HF 형식 저장을 건너뜁니다.")
         return None
-    path = OUTPUT_DIR / f"ragas_testset_hf_{type_group}"
+    path = OUTPUT_DIR / f"ragas_testset_hf_{group_key}"
     df = pd.DataFrame([{
         "user_input": s["user_input"],
         "reference": s["reference"],
@@ -97,9 +97,9 @@ def save_ragas_hf_dataset(samples: list[dict], type_group: str) -> Optional[Path
     return path
 
 
-def print_statistics(samples: list[dict], type_group: str) -> None:
+def print_statistics(samples: list[dict], group_key: str) -> None:
     df = pd.DataFrame(samples)
-    print(f"\n========== RAGAS 테스트셋 통계 [{type_group}] ==========")
+    print(f"\n========== RAGAS 테스트셋 통계 [{group_key}] ==========")
     print(f"총 샘플 수: {len(df)}")
     print("\n확장자별 분포:")
     print(df["ext"].value_counts().to_string())
@@ -114,19 +114,20 @@ def print_statistics(samples: list[dict], type_group: str) -> None:
     print("=========================================================\n")
 
 
-def create_testset(type_group: str, seed: int = RANDOM_SEED) -> list[dict]:
-    qa_pairs = load_qa_pairs(type_group)
-    print(f"[로드] QA 쌍 {len(qa_pairs)}개 로드 [{type_group}].")
+def create_testset(group_key: str, seed: int = RANDOM_SEED) -> list[dict]:
+    """group_key: 타입명(pdf 등) 또는 소스명(bok_publications 등)."""
+    qa_pairs = load_qa_pairs(group_key)
+    print(f"[로드] QA 쌍 {len(qa_pairs)}개 로드 [{group_key}].")
 
     samples = build_ragas_samples(qa_pairs)
 
     rng = random.Random(seed)
     rng.shuffle(samples)
 
-    save_ragas_json(samples, type_group)
-    save_gaia_eval_csv(samples, type_group)
-    save_ragas_hf_dataset(samples, type_group)
-    print_statistics(samples, type_group)
+    save_ragas_json(samples, group_key)
+    save_gaia_eval_csv(samples, group_key)
+    save_ragas_hf_dataset(samples, group_key)
+    print_statistics(samples, group_key)
 
     return samples
 
@@ -136,7 +137,9 @@ if __name__ == "__main__":
     from config import TYPE_GROUPS
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--type", choices=list(TYPE_GROUPS.keys()), required=True)
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument("--type", choices=list(TYPE_GROUPS.keys()))
+    group.add_argument("--source", help="sample/qa 단계를 --group-by source 로 실행한 경우의 소스명")
     args = parser.parse_args()
 
-    create_testset(args.type)
+    create_testset(args.type or args.source)

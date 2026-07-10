@@ -1,8 +1,10 @@
-# collector/eval — 문서 타입별 QA/RAGAS 데이터셋 생성기
+# collector/eval — 문서 타입별/소스(토픽)별 QA/RAGAS 데이터셋 생성기
 
 `collector/gaia_kr_collector`가 수집한 `gaia_test_200g_kr80_no_ocr` 데이터셋에서
-문서 타입(PDF / DOCX·DOC / XLSX·XLS·CSV / PPT·PPTX)별로 QA 쌍을 생성하고
-Cohesity GAIA RAGAS 평가용 테스트셋을 만드는 독립 파이프라인이다.
+문서 타입(PDF / DOCX·DOC / XLSX·XLS·CSV / PPT·PPTX)별로, 또는 수집 소스(=토픽,
+`manifest.csv`의 `source` 컬럼 — 예: `dart_financial`, `bok_publications`)별로
+QA 쌍을 생성하고 Cohesity GAIA RAGAS 평가용 테스트셋을 만드는 독립 파이프라인이다.
+모든 단계는 `--group-by {type,source}`로 그룹 기준을 선택할 수 있다 (기본값 `type`).
 
 `gaia_ragas/`(DART 공시 문서용, 회사 단위)와는 별개의 파이프라인이며 서로 의존하지 않는다.
 txt 타입은 제외한다 — 수집된 txt의 대부분이 Common Crawl 저품질 스크랩이라 의미 있는
@@ -94,6 +96,21 @@ cd collector/eval
 .venv/bin/python run_pipeline.py --step all --sample-size 50
 ```
 
+소스(=토픽) 단위로 실행 — 전체 소스(약 74개, 소스당 기본 20개 샘플):
+
+```bash
+.venv/bin/python run_pipeline.py --step all --group-by source
+```
+
+특정 소스만:
+
+```bash
+.venv/bin/python run_pipeline.py --step all --group-by source --source dart_financial
+```
+
+`--type`은 `--group-by type`(기본값)에서만, `--source`는 `--group-by source`에서만 쓸 수 있다.
+소스 목록은 `document_sampler.list_sources()`가 `DATASET_DIR` 바로 아래 디렉터리를 훑어 반환한다.
+
 ### 단계별 실행
 
 각 단계는 독립적으로도 실행 가능하고, 이전 단계의 출력 파일(`output/*.json`)을 읽는다.
@@ -109,12 +126,17 @@ cd collector/eval
 .venv/bin/python run_pipeline.py --step testset
 ```
 
-개별 모듈을 직접 실행할 수도 있다 (동일한 `--type` 인자 지원):
+개별 모듈을 직접 실행할 수도 있다 (동일한 `--type`/`--source` 인자 지원):
 
 ```bash
 .venv/bin/python document_sampler.py --type pdf --sample-size 30
 .venv/bin/python qa_generator.py --type pdf
 .venv/bin/python ragas_testset_creator.py --type pdf
+
+# 소스(토픽) 기준
+.venv/bin/python document_sampler.py --group-by source --source dart_financial --sample-size 20
+.venv/bin/python qa_generator.py --source dart_financial
+.venv/bin/python ragas_testset_creator.py --source dart_financial
 ```
 
 ### 재개(resume)
@@ -245,17 +267,22 @@ export GAIA_KR_DATASET_DIR=/path/to/gaia_test_200g_kr80_no_ocr
 
 ## 6. 출력 (`output/`)
 
-타입(`pdf` / `docx_doc` / `xlsx_xls_csv` / `ppt_pptx`)별로 아래 파일이 생성된다.
+`{group}`은 `--group-by type`이면 타입명(`pdf` / `docx_doc` / `xlsx_xls_csv` / `ppt_pptx`),
+`--group-by source`이면 소스명(`dart_financial` / `bok_publications` 등)이다.
 
 | 파일 | 생성 단계 | 설명 |
 |---|---|---|
-| `sampled_documents_{type}.json` | sample | 샘플링된 문서 원문 + 메타데이터 |
-| `qa_pairs_{type}.json` | qa | 문서별 QA 쌍 (재사용 가능 — 재실행 시 이어서 생성) |
-| `ragas_testset_{type}.json` | testset | RAGAS SingleTurnSample 포맷 테스트셋 |
-| `gaia_eval_{type}.csv` | testset | (참고용) 질문/정답만 담은 GAIA 평가 입력 CSV — 실제 응답 아님 |
-| `ragas_testset_hf_{type}/` | testset | HuggingFace `datasets` 형식 (설치돼 있으면 생성) |
-| `gaia_eval_results_{type}.csv` | evaluate | **실제 GAIA 응답** + exact_match/containment |
-| `ragas_eval_results_{type}.csv` | evaluate | LLM judge로 채점한 4개 RAGAS 스타일 지표 |
+| `sampled_documents_{group}.json` | sample | 샘플링된 문서 원문 + 메타데이터 |
+| `qa_pairs_{group}.json` | qa | 문서별 QA 쌍 (재사용 가능 — 재실행 시 이어서 생성) |
+| `ragas_testset_{group}.json` | testset | RAGAS SingleTurnSample 포맷 테스트셋 |
+| `gaia_eval_{group}.csv` | testset | (참고용) 질문/정답만 담은 GAIA 평가 입력 CSV — 실제 응답 아님 |
+| `ragas_testset_hf_{group}/` | testset | HuggingFace `datasets` 형식 (설치돼 있으면 생성) |
+| `gaia_eval_results_{group}.csv` | evaluate | **실제 GAIA 응답** + exact_match/containment |
+| `ragas_eval_results_{group}.csv` | evaluate | LLM judge로 채점한 4개 RAGAS 스타일 지표 |
+
+각 레코드에는 그룹 기준과 무관하게 `type_group`(문서 타입)과 `source`(수집 소스) 필드가
+항상 함께 들어있으므로, 소스 기준으로 생성한 데이터셋도 타입별 분포를 그대로 확인할 수 있다
+(반대도 마찬가지).
 
 ## 7. 설정값 (`config.py`)
 
@@ -264,7 +291,8 @@ export GAIA_KR_DATASET_DIR=/path/to/gaia_test_200g_kr80_no_ocr
 | `DATASET_DIR` | `../gaia_kr_collector/gaia_test_200g_kr80_no_ocr` | `GAIA_KR_DATASET_DIR` | 샘플링 대상 원본 데이터 경로 |
 | `OUTPUT_DIR` | `./output` | `OUTPUT_DIR` | 결과 저장 경로 |
 | `LLM_PROVIDER` | `claude` | `LLM_PROVIDER` | `claude` 또는 `chatgpt` |
-| `SAMPLE_SIZE_PER_TYPE` | `100` | `SAMPLE_SIZE_PER_TYPE` | 타입당 샘플 문서 수 |
+| `SAMPLE_SIZE_PER_TYPE` | `100` | `SAMPLE_SIZE_PER_TYPE` | 타입당 샘플 문서 수 (`--group-by type`) |
+| `SAMPLE_SIZE_PER_SOURCE` | `20` | `SAMPLE_SIZE_PER_SOURCE` | 소스당 샘플 문서 수 (`--group-by source`) |
 | `MIN_TEXT_LENGTH` | `300` | — | 최소 텍스트 길이 (미만 제외) |
 | `MAX_TEXT_LENGTH` | `8000` | — | LLM 입력 최대 텍스트 길이 |
 | `QA_PER_DOC` | `2` | — | 문서당 QA 쌍 수 |

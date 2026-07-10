@@ -1,0 +1,27 @@
+{
+  "citation": "",
+  "description": "",
+  "features": {
+    "user_input": {
+      "dtype": "large_string",
+      "_type": "Value"
+    },
+    "reference": {
+      "dtype": "large_string",
+      "_type": "Value"
+    },
+    "retrieved_contexts": {
+      "feature": {
+        "dtype": "string",
+        "_type": "Value"
+      },
+      "_type": "List"
+    },
+    "response": {
+      "dtype": "large_string",
+      "_type": "Value"
+    }
+  },
+  "homepage": "",
+  "license": ""
+}

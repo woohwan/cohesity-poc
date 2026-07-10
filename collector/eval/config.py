@@ -1,8 +1,9 @@
 """
-Cohesity GAIA 문서 타입별 RAGAS 평가 설정.
+Cohesity GAIA 문서 타입별/소스(토픽)별 RAGAS 평가 설정.
 
 collector/gaia_kr_collector 가 모은 gaia_test_200g_kr80_no_ocr 데이터셋에서
-문서 타입(pdf/docx_doc/xlsx_xls_csv/ppt_pptx)별로 QA/RAGAS 데이터셋을 만든다.
+문서 타입(pdf/docx_doc/xlsx_xls_csv/ppt_pptx)별 또는 수집 소스(=토픽,
+manifest.csv의 source 컬럼)별로 QA/RAGAS 데이터셋을 만든다.
 """
 import os
 from pathlib import Path
@@ -43,6 +44,11 @@ OPENAI_REASONING_EFFORT  = os.environ.get("OPENAI_REASONING_EFFORT", "minimal")
 
 # 샘플링 설정 (타입별 독립 샘플링 — gaia_ragas의 SAMPLE_SIZE=100 관례를 타입 단위로 적용)
 SAMPLE_SIZE_PER_TYPE = int(os.environ.get("SAMPLE_SIZE_PER_TYPE", "100"))
+
+# 소스(=수집 사이트/토픽, manifest.csv의 source 컬럼) 단위로 그룹핑할 때 소스당 샘플 수.
+# 소스가 80개 안팎으로 타입(4개)보다 훨씬 많아 기본값을 더 작게 잡는다.
+SAMPLE_SIZE_PER_SOURCE = int(os.environ.get("SAMPLE_SIZE_PER_SOURCE", "20"))
+
 MIN_TEXT_LENGTH = 300      # 최소 텍스트 길이 (너무 짧은 문서 제외)
 MAX_TEXT_LENGTH = 8000     # LLM 입력용 최대 텍스트 길이
 QA_PER_DOC = 2             # 문서당 생성할 QA 쌍 수
