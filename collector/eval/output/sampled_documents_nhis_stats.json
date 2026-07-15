@@ -1,7 +1,7 @@
 [
   {
     "doc_id": "영유아_발달평가_결과_안내문_중국어_Chinese__37655305",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/영유아_발달평가_결과_안내문_중국어_Chinese_.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/영유아_발달평가_결과_안내문_중국어_Chinese_.pdf",
     "file_name": "영유아_발달평가_결과_안내문_중국어_Chinese_.pdf",
     "source": "nhis_stats",
     "type_group": "pdf",
@@ -11,7 +11,7 @@
   },
   {
     "doc_id": "1._장애인보조기기_품목별_보험급여_현황_2024.9.__27700372",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/1._장애인보조기기_품목별_보험급여_현황_2024.9._.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/1._장애인보조기기_품목별_보험급여_현황_2024.9._.docx",
     "file_name": "1._장애인보조기기_품목별_보험급여_현황_2024.9._.docx",
     "source": "nhis_stats",
     "type_group": "docx_doc",
@@ -21,7 +21,7 @@
   },
   {
     "doc_id": "_보도설명자료_2.28.연합뉴스__지역가입자__전월세_에_매기는_건보료_인하_검토_기사_관련_47185178",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/_보도설명자료_2.28.연합뉴스__지역가입자__전월세_에_매기는_건보료_인하_검토_기사_관련.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/_보도설명자료_2.28.연합뉴스__지역가입자__전월세_에_매기는_건보료_인하_검토_기사_관련.pdf",
     "file_name": "_보도설명자료_2.28.연합뉴스__지역가입자__전월세_에_매기는_건보료_인하_검토_기사_관련.pdf",
     "source": "nhis_stats",
     "type_group": "pdf",
@@ -31,7 +31,7 @@
   },
   {
     "doc_id": "_위생사_실태조사_통계_시각화_14668214",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/_위생사_실태조사_통계_시각화.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/_위생사_실태조사_통계_시각화.xlsx",
     "file_name": "_위생사_실태조사_통계_시각화.xlsx",
     "source": "nhis_stats",
     "type_group": "xlsx_xls_csv",
@@ -41,7 +41,7 @@
   },
   {
     "doc_id": "19._요양보호사_승급제_운영현황과_개선방안_28211379",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/19._요양보호사_승급제_운영현황과_개선방안.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/19._요양보호사_승급제_운영현황과_개선방안.pdf",
     "file_name": "19._요양보호사_승급제_운영현황과_개선방안.pdf",
     "source": "nhis_stats",
     "type_group": "pdf",
@@ -51,7 +51,7 @@
   },
   {
     "doc_id": "2023_의료급여_주요통계_44281046",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/2023_의료급여_주요통계.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/2023_의료급여_주요통계.xlsx",
     "file_name": "2023_의료급여_주요통계.xlsx",
     "source": "nhis_stats",
     "type_group": "xlsx_xls_csv",
@@ -61,7 +61,7 @@
   },
   {
     "doc_id": "_공표용_2024년도_기록물평가심의회_결과_요약__50843742",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/_공표용_2024년도_기록물평가심의회_결과_요약_.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/_공표용_2024년도_기록물평가심의회_결과_요약_.docx",
     "file_name": "_공표용_2024년도_기록물평가심의회_결과_요약_.docx",
     "source": "nhis_stats",
     "type_group": "docx_doc",
@@ -71,7 +71,7 @@
   },
   {
     "doc_id": "1._지역보험료_보수_외_소득월액보험료_소득_정산부과_동의서_개정_안__44461704",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/1._지역보험료_보수_외_소득월액보험료_소득_정산부과_동의서_개정_안_.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/1._지역보험료_보수_외_소득월액보험료_소득_정산부과_동의서_개정_안_.pdf",
     "file_name": "1._지역보험료_보수_외_소득월액보험료_소득_정산부과_동의서_개정_안_.pdf",
     "source": "nhis_stats",
     "type_group": "pdf",
@@ -81,7 +81,7 @@
   },
   {
     "doc_id": "2015_01_gswgs_80981200",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/2015_01_gswgs.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/2015_01_gswgs.xls",
     "file_name": "2015_01_gswgs.xls",
     "source": "nhis_stats",
     "type_group": "xlsx_xls_csv",
@@ -91,7 +91,7 @@
   },
   {
     "doc_id": "_시각화_목록_의사_20349924",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/_시각화_목록_의사.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/_시각화_목록_의사.xlsx",
     "file_name": "_시각화_목록_의사.xlsx",
     "source": "nhis_stats",
     "type_group": "xlsx_xls_csv",
@@ -101,7 +101,7 @@
   },
   {
     "doc_id": "_2026.4.27._치료재료_급여비급여_목록_및_급여상한금액표_개정안_변경대비표__71947409",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/_2026.4.27._치료재료_급여비급여_목록_및_급여상한금액표_개정안_변경대비표_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/_2026.4.27._치료재료_급여비급여_목록_및_급여상한금액표_개정안_변경대비표_.xlsx",
     "file_name": "_2026.4.27._치료재료_급여비급여_목록_및_급여상한금액표_개정안_변경대비표_.xlsx",
     "source": "nhis_stats",
     "type_group": "xlsx_xls_csv",
@@ -111,7 +111,7 @@
   },
   {
     "doc_id": "2021_건강보험통계연보_최종__16070350",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/2021_건강보험통계연보_최종_.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/2021_건강보험통계연보_최종_.pdf",
     "file_name": "2021_건강보험통계연보_최종_.pdf",
     "source": "nhis_stats",
     "type_group": "pdf",
@@ -121,7 +121,7 @@
   },
   {
     "doc_id": "별표_3_업무지원직_인력운영기준표__5__19975030",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/별표_3_업무지원직_인력운영기준표__5_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/별표_3_업무지원직_인력운영기준표__5_.xlsx",
     "file_name": "별표_3_업무지원직_인력운영기준표__5_.xlsx",
     "source": "nhis_stats",
     "type_group": "xlsx_xls_csv",
@@ -131,7 +131,7 @@
   },
   {
     "doc_id": "_2026.2.1.___치료재료_급여비급여_목록_및_급여상한금액표__개정안_변경대비표__80357895",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/_2026.2.1.___치료재료_급여비급여_목록_및_급여상한금액표__개정안_변경대비표_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/_2026.2.1.___치료재료_급여비급여_목록_및_급여상한금액표__개정안_변경대비표_.xlsx",
     "file_name": "_2026.2.1.___치료재료_급여비급여_목록_및_급여상한금액표__개정안_변경대비표_.xlsx",
     "source": "nhis_stats",
     "type_group": "xlsx_xls_csv",
@@ -141,7 +141,7 @@
   },
   {
     "doc_id": "금연치료_의료기관_현황_26.7.1.기준__71834133",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/금연치료_의료기관_현황_26.7.1.기준_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/금연치료_의료기관_현황_26.7.1.기준_.xlsx",
     "file_name": "금연치료_의료기관_현황_26.7.1.기준_.xlsx",
     "source": "nhis_stats",
     "type_group": "xlsx_xls_csv",
@@ -151,7 +151,7 @@
   },
   {
     "doc_id": "20111025_25310728",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/20111025.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/20111025.docx",
     "file_name": "20111025.docx",
     "source": "nhis_stats",
     "type_group": "docx_doc",
@@ -161,7 +161,7 @@
   },
   {
     "doc_id": "피부양자_자격_취득_상실__신고서_90992015",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/피부양자_자격_취득_상실__신고서.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/피부양자_자격_취득_상실__신고서.docx",
     "file_name": "피부양자_자격_취득_상실__신고서.docx",
     "source": "nhis_stats",
     "type_group": "docx_doc",
@@ -171,7 +171,7 @@
   },
   {
     "doc_id": "2012년_질병소분류별_성별_급여현황_약국_처방조제__43051374",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/2012년_질병소분류별_성별_급여현황_약국_처방조제_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/2012년_질병소분류별_성별_급여현황_약국_처방조제_.xlsx",
     "file_name": "2012년_질병소분류별_성별_급여현황_약국_처방조제_.xlsx",
     "source": "nhis_stats",
     "type_group": "xlsx_xls_csv",
@@ -181,7 +181,7 @@
   },
   {
     "doc_id": "2022_영유아_파일명세서_20220210_v5_16527068",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/2022_영유아_파일명세서_20220210_v5.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/2022_영유아_파일명세서_20220210_v5.xlsx",
     "file_name": "2022_영유아_파일명세서_20220210_v5.xlsx",
     "source": "nhis_stats",
     "type_group": "xlsx_xls_csv",
@@ -191,7 +191,7 @@
   },
   {
     "doc_id": "사업장가입자명부_발급_신청서_51219906",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/사업장가입자명부_발급_신청서.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/사업장가입자명부_발급_신청서.docx",
     "file_name": "사업장가입자명부_발급_신청서.docx",
     "source": "nhis_stats",
     "type_group": "docx_doc",

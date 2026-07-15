@@ -1,7 +1,7 @@
 [
   {
     "doc_id": "_EA_B5_AD_EB_AC_B8_EB_B3_B4_EB_8F_84_EC_9E_90_EB_A3_8C_2604__47123539",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_EA_B5_AD_EB_AC_B8_EB_B3_B4_EB_8F_84_EC_9E_90_EB_A3_8C_2604_.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_EA_B5_AD_EB_AC_B8_EB_B3_B4_EB_8F_84_EC_9E_90_EB_A3_8C_2604_.pdf",
     "file_name": "_EA_B5_AD_EB_AC_B8_EB_B3_B4_EB_8F_84_EC_9E_90_EB_A3_8C_2604_.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -11,8 +11,8 @@
   },
   {
     "doc_id": "_ED_87_B4_EC_A7_81_EA_B8_89_EC_97_AC_20_EB_B3_B4_EC_9E_A5_EB_B2__55734208",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/law_lbook/files/_ED_87_B4_EC_A7_81_EA_B8_89_EC_97_AC_20_EB_B3_B4_EC_9E_A5_EB_B2_95_EB_A0_B9.pdf",
-    "file_name": "_ED_87_B4_EC_A7_81_EA_B8_89_EC_97_AC_20_EB_B3_B4_EC_9E_A5_EB_B2_95_EB_A0_B9.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/law_lbook/files/퇴직급여 보장법령.pdf",
+    "file_name": "퇴직급여 보장법령.pdf",
     "source": "law_lbook",
     "type_group": "pdf",
     "ext": "pdf",
@@ -21,7 +21,7 @@
   },
   {
     "doc_id": "6786ff95be7d939b_31756996",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/cultural_heritage_data/files/6786ff95be7d939b.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/cultural_heritage_data/files/6786ff95be7d939b.pdf",
     "file_name": "6786ff95be7d939b.pdf",
     "source": "cultural_heritage_data",
     "type_group": "pdf",
@@ -31,7 +31,7 @@
   },
   {
     "doc_id": "2026.03.11_금융시장국_2026년_202월_20금융시장_20동향_F_52610331",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/2026.03.11_금융시장국_2026년_202월_20금융시장_20동향_F.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/2026.03.11_금융시장국_2026년_202월_20금융시장_20동향_F.pdf",
     "file_name": "2026.03.11_금융시장국_2026년_202월_20금융시장_20동향_F.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -41,7 +41,7 @@
   },
   {
     "doc_id": "journal-32-1-58_69629398",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-32-1-58.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-32-1-58.pdf",
     "file_name": "journal-32-1-58.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -51,7 +51,7 @@
   },
   {
     "doc_id": "_보도자료_202026년_202월_20생산자물가지수_잠정__f_48673072",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_보도자료_202026년_202월_20생산자물가지수_잠정__f.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_보도자료_202026년_202월_20생산자물가지수_잠정__f.pdf",
     "file_name": "_보도자료_202026년_202월_20생산자물가지수_잠정__f.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -61,7 +61,7 @@
   },
   {
     "doc_id": "journal-32-3-191_67722329",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-32-3-191.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-32-3-191.pdf",
     "file_name": "journal-32-3-191.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -71,7 +71,7 @@
   },
   {
     "doc_id": "_보도자료_20한국은행_20금융기관_20대출채권을_20담보로_20하는_20긴급여신_20지원체계_20구축_f_51341289",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_보도자료_20한국은행_20금융기관_20대출채권을_20담보로_20하는_20긴급여신_20지원체계_20구축_f.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_보도자료_20한국은행_20금융기관_20대출채권을_20담보로_20하는_20긴급여신_20지원체계_20구축_f.pdf",
     "file_name": "_보도자료_20한국은행_20금융기관_20대출채권을_20담보로_20하는_20긴급여신_20지원체계_20구축_f.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -81,7 +81,7 @@
   },
   {
     "doc_id": "journal-31-겨울-32_66937981",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-31-겨울-32.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-31-겨울-32.pdf",
     "file_name": "journal-31-겨울-32.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -91,8 +91,8 @@
   },
   {
     "doc_id": "_ED_95_AD_EA_B3_B5_EB_B2_95_EA_B7_9C_44454521",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/law_lbook/files/_ED_95_AD_EA_B3_B5_EB_B2_95_EA_B7_9C.pdf",
-    "file_name": "_ED_95_AD_EA_B3_B5_EB_B2_95_EA_B7_9C.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/law_lbook/files/항공법규.pdf",
+    "file_name": "항공법규.pdf",
     "source": "law_lbook",
     "type_group": "pdf",
     "ext": "pdf",
@@ -101,7 +101,7 @@
   },
   {
     "doc_id": "009f021e48092af5_67031023",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/cultural_heritage_data/files/009f021e48092af5.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/cultural_heritage_data/files/009f021e48092af5.pdf",
     "file_name": "009f021e48092af5.pdf",
     "source": "cultural_heritage_data",
     "type_group": "pdf",
@@ -111,7 +111,7 @@
   },
   {
     "doc_id": "journal-46-1-172_64614545",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-46-1-172.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-46-1-172.pdf",
     "file_name": "journal-46-1-172.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -121,7 +121,7 @@
   },
   {
     "doc_id": "aae6dea1ce350f4d_28927119",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/aae6dea1ce350f4d.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/aae6dea1ce350f4d.pdf",
     "file_name": "aae6dea1ce350f4d.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -131,7 +131,7 @@
   },
   {
     "doc_id": "202404190230596210_53162023",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/202404190230596210.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/202404190230596210.pdf",
     "file_name": "202404190230596210.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -141,7 +141,7 @@
   },
   {
     "doc_id": "em649_85819022",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/english_reference/files/em649.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/english_reference/files/em649.pdf",
     "file_name": "em649.pdf",
     "source": "english_reference",
     "type_group": "pdf",
@@ -151,7 +151,7 @@
   },
   {
     "doc_id": "private06_10903407",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/moe_publications/files/private06.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/moe_publications/files/private06.pdf",
     "file_name": "private06.pdf",
     "source": "moe_publications",
     "type_group": "pdf",
@@ -161,7 +161,7 @@
   },
   {
     "doc_id": "bmj.n71.full_81692680",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/english_reference/files/bmj.n71.full.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/english_reference/files/bmj.n71.full.pdf",
     "file_name": "bmj.n71.full.pdf",
     "source": "english_reference",
     "type_group": "pdf",
@@ -171,8 +171,8 @@
   },
   {
     "doc_id": "_EC_B5_9C_EC_8B_A0_20_EC_A0_84_EA_B8_B0_EA_B4_80_EA_B3_84_EB_B2__24809188",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/law_lbook/files/_EC_B5_9C_EC_8B_A0_20_EC_A0_84_EA_B8_B0_EA_B4_80_EA_B3_84_EB_B2_95_EB_A0_B9.pdf",
-    "file_name": "_EC_B5_9C_EC_8B_A0_20_EC_A0_84_EA_B8_B0_EA_B4_80_EA_B3_84_EB_B2_95_EB_A0_B9.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/law_lbook/files/최신 전기관계법령.pdf",
+    "file_name": "최신 전기관계법령.pdf",
     "source": "law_lbook",
     "type_group": "pdf",
     "ext": "pdf",
@@ -181,7 +181,7 @@
   },
   {
     "doc_id": "통계조사보조원_20고용_20안내_20250321_2014-23-32.497_20371673",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/통계조사보조원_20고용_20안내_20250321_2014-23-32.497.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/통계조사보조원_20고용_20안내_20250321_2014-23-32.497.pdf",
     "file_name": "통계조사보조원_20고용_20안내_20250321_2014-23-32.497.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -191,7 +191,7 @@
   },
   {
     "doc_id": "_EA_B8_88_EC_9C_B5_EC_95_88_EC_A0_95_EB_B3_B4_EA_B3_A0_EC_84_9C__49513906",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_EA_B8_88_EC_9C_B5_EC_95_88_EC_A0_95_EB_B3_B4_EA_B3_A0_EC_84_9C_2026_EB_85_84_206_EC_9B_94_.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_EA_B8_88_EC_9C_B5_EC_95_88_EC_A0_95_EB_B3_B4_EA_B3_A0_EC_84_9C_2026_EB_85_84_206_EC_9B_94_.pdf",
     "file_name": "_EA_B8_88_EC_9C_B5_EC_95_88_EC_A0_95_EB_B3_B4_EA_B3_A0_EC_84_9C_2026_EB_85_84_206_EC_9B_94_.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -201,7 +201,7 @@
   },
   {
     "doc_id": "8d6cec508d484bf89758c76a19682f83_48855162",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/8d6cec508d484bf89758c76a19682f83.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/8d6cec508d484bf89758c76a19682f83.pdf",
     "file_name": "8d6cec508d484bf89758c76a19682f83.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -211,7 +211,7 @@
   },
   {
     "doc_id": "_홈페이지_20게시_20주요국의_20무위험지표금리_20선정_20기준_20및_20절차_F_47060300",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_홈페이지_20게시_20주요국의_20무위험지표금리_20선정_20기준_20및_20절차_F.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_홈페이지_20게시_20주요국의_20무위험지표금리_20선정_20기준_20및_20절차_F.pdf",
     "file_name": "_홈페이지_20게시_20주요국의_20무위험지표금리_20선정_20기준_20및_20절차_F.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -221,7 +221,7 @@
   },
   {
     "doc_id": "Opening_Address_20834782",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/Opening_Address.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/Opening_Address.pdf",
     "file_name": "Opening_Address.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -231,7 +231,7 @@
   },
   {
     "doc_id": "_붙임1_한국은행_20목포본부_20중소기업_20지원자금_20운용기준_20개정_안__31880546",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_붙임1_한국은행_20목포본부_20중소기업_20지원자금_20운용기준_20개정_안_.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_붙임1_한국은행_20목포본부_20중소기업_20지원자금_20운용기준_20개정_안_.pdf",
     "file_name": "_붙임1_한국은행_20목포본부_20중소기업_20지원자금_20운용기준_20개정_안_.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -241,7 +241,7 @@
   },
   {
     "doc_id": "714e9fce576444ff_35070691",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/714e9fce576444ff.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/714e9fce576444ff.pdf",
     "file_name": "714e9fce576444ff.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -251,7 +251,7 @@
   },
   {
     "doc_id": "1._Chinese_Academy_of_Science_and_Technology_for_Development_25895604",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kistep_reports/files/1._Chinese_Academy_of_Science_and_Technology_for_Development.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kistep_reports/files/1._Chinese_Academy_of_Science_and_Technology_for_Development.pdf",
     "file_name": "1._Chinese_Academy_of_Science_and_Technology_for_Development.pdf",
     "source": "kistep_reports",
     "type_group": "pdf",
@@ -261,7 +261,7 @@
   },
   {
     "doc_id": "journal-38-4-492_15896153",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-38-4-492.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-38-4-492.pdf",
     "file_name": "journal-38-4-492.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -271,7 +271,7 @@
   },
   {
     "doc_id": "코로나19_20이후의_20대외경제_20여건_20점검_20및_20전망_1__44972567",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/코로나19_20이후의_20대외경제_20여건_20점검_20및_20전망_1_.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/코로나19_20이후의_20대외경제_20여건_20점검_20및_20전망_1_.pdf",
     "file_name": "코로나19_20이후의_20대외경제_20여건_20점검_20및_20전망_1_.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -281,7 +281,7 @@
   },
   {
     "doc_id": "_EB_B3_B4_EB_8F_84_EC_9E_90_EB_A3_8C_202026_EB_85_84_201_EC_9B_9_84110358",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_EB_B3_B4_EB_8F_84_EC_9E_90_EB_A3_8C_202026_EB_85_84_201_EC_9B_94_20_EC_83_9D_EC_82_B0_EC_9E_90_EB_AC_BC_EA_B0_80_EC_A7_80_EC_88_98_EC_9E_A0_EC_A0_95__f.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_EB_B3_B4_EB_8F_84_EC_9E_90_EB_A3_8C_202026_EB_85_84_201_EC_9B_94_20_EC_83_9D_EC_82_B0_EC_9E_90_EB_AC_BC_EA_B0_80_EC_A7_80_EC_88_98_EC_9E_A0_EC_A0_95__f.pdf",
     "file_name": "_EB_B3_B4_EB_8F_84_EC_9E_90_EB_A3_8C_202026_EB_85_84_201_EC_9B_94_20_EC_83_9D_EC_82_B0_EC_9E_90_EB_AC_BC_EA_B0_80_EC_A7_80_EC_88_98_EC_9E_A0_EC_A0_95__f.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -291,7 +291,7 @@
   },
   {
     "doc_id": "journal-39-3-41_49024892",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-39-3-41.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-39-3-41.pdf",
     "file_name": "journal-39-3-41.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -301,7 +301,7 @@
   },
   {
     "doc_id": "journal-33-4-394_59188269",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-33-4-394.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-33-4-394.pdf",
     "file_name": "journal-33-4-394.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -311,7 +311,7 @@
   },
   {
     "doc_id": "2025_EB_85_84_EC_9D_B8_EA_B6_8C_EC_98_81_ED_96_A5_ED_8F_89_EA_B0_58470515",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/krihs_reports/files/2025_EB_85_84_EC_9D_B8_EA_B6_8C_EC_98_81_ED_96_A5_ED_8F_89_EA_B0_80_EA_B2_B0_EA_B3_BC_EB_B3_B4_EA_B3_A0_EC_84_9C.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/krihs_reports/files/2025_EB_85_84_EC_9D_B8_EA_B6_8C_EC_98_81_ED_96_A5_ED_8F_89_EA_B0_80_EA_B2_B0_EA_B3_BC_EB_B3_B4_EA_B3_A0_EC_84_9C.pdf",
     "file_name": "2025_EB_85_84_EC_9D_B8_EA_B6_8C_EC_98_81_ED_96_A5_ED_8F_89_EA_B0_80_EA_B2_B0_EA_B3_BC_EB_B3_B4_EA_B3_A0_EC_84_9C.pdf",
     "source": "krihs_reports",
     "type_group": "pdf",
@@ -321,7 +321,7 @@
   },
   {
     "doc_id": "DeGruyter_16690317",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/riss_theses/files/DeGruyter.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/riss_theses/files/DeGruyter.pdf",
     "file_name": "DeGruyter.pdf",
     "source": "riss_theses",
     "type_group": "pdf",
@@ -331,7 +331,7 @@
   },
   {
     "doc_id": "_붙임2_20_한국은행_20대전세종충남본부_20지방중소기업지원_20프로그램_20운용기준_20신구조문_20대비표_24_40169047",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_붙임2_20_한국은행_20대전세종충남본부_20지방중소기업지원_20프로그램_20운용기준_20신구조문_20대비표_2408__f.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_붙임2_20_한국은행_20대전세종충남본부_20지방중소기업지원_20프로그램_20운용기준_20신구조문_20대비표_2408__f.pdf",
     "file_name": "_붙임2_20_한국은행_20대전세종충남본부_20지방중소기업지원_20프로그램_20운용기준_20신구조문_20대비표_2408__f.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -341,7 +341,7 @@
   },
   {
     "doc_id": "Visiting_Scholars_Opinion_Paper_series2_47790746",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/Visiting_Scholars_Opinion_Paper_series2.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/Visiting_Scholars_Opinion_Paper_series2.pdf",
     "file_name": "Visiting_Scholars_Opinion_Paper_series2.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -351,7 +351,7 @@
   },
   {
     "doc_id": "BOK_20경제연구_20제2025-19호_본문__86862179",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/BOK_20경제연구_20제2025-19호_본문_.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/BOK_20경제연구_20제2025-19호_본문_.pdf",
     "file_name": "BOK_20경제연구_20제2025-19호_본문_.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -361,7 +361,7 @@
   },
   {
     "doc_id": "f14b26a1333cb9d27c6dcc7334496c57-Paper-Conference_69195630",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/english_reference/files/f14b26a1333cb9d27c6dcc7334496c57-Paper-Conference.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/english_reference/files/f14b26a1333cb9d27c6dcc7334496c57-Paper-Conference.pdf",
     "file_name": "f14b26a1333cb9d27c6dcc7334496c57-Paper-Conference.pdf",
     "source": "english_reference",
     "type_group": "pdf",
@@ -371,7 +371,7 @@
   },
   {
     "doc_id": "202109_91072482",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/202109.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/202109.pdf",
     "file_name": "202109.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -381,7 +381,7 @@
   },
   {
     "doc_id": "journal-29-2-213_61302487",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-29-2-213.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-29-2-213.pdf",
     "file_name": "journal-29-2-213.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -391,8 +391,8 @@
   },
   {
     "doc_id": "_ED_98_95_EC_82_AC_EB_B2_95_20_EB_B0_8F_20_ED_98_95_EC_82_AC_ED__64181961",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/law_lbook/files/_ED_98_95_EC_82_AC_EB_B2_95_20_EB_B0_8F_20_ED_98_95_EC_82_AC_ED_8A_B9_EB_B3_84_EB_B2_95.pdf",
-    "file_name": "_ED_98_95_EC_82_AC_EB_B2_95_20_EB_B0_8F_20_ED_98_95_EC_82_AC_ED_8A_B9_EB_B3_84_EB_B2_95.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/law_lbook/files/형사법 및 형사특별법.pdf",
+    "file_name": "형사법 및 형사특별법.pdf",
     "source": "law_lbook",
     "type_group": "pdf",
     "ext": "pdf",
@@ -401,7 +401,7 @@
   },
   {
     "doc_id": "2415b52ee136f513_36762893",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/cultural_heritage_data/files/2415b52ee136f513.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/cultural_heritage_data/files/2415b52ee136f513.pdf",
     "file_name": "2415b52ee136f513.pdf",
     "source": "cultural_heritage_data",
     "type_group": "pdf",
@@ -411,7 +411,7 @@
   },
   {
     "doc_id": "history202207_94861716",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/history202207.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/history202207.pdf",
     "file_name": "history202207.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -421,7 +421,7 @@
   },
   {
     "doc_id": "6afd70f072f147648b4d46a6db78e96f_66878480",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/6afd70f072f147648b4d46a6db78e96f.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/6afd70f072f147648b4d46a6db78e96f.pdf",
     "file_name": "6afd70f072f147648b4d46a6db78e96f.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -431,7 +431,7 @@
   },
   {
     "doc_id": "2016_2_F2000_23351836",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/2016_2_F2000.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/2016_2_F2000.pdf",
     "file_name": "2016_2_F2000.pdf",
     "source": "nhis_stats",
     "type_group": "pdf",
@@ -441,7 +441,7 @@
   },
   {
     "doc_id": "journal-41-2-5_62953554",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-41-2-5.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-41-2-5.pdf",
     "file_name": "journal-41-2-5.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -451,7 +451,7 @@
   },
   {
     "doc_id": "455d043673bb4b1872ff5e7a24cb3969-Paper-Position_Paper_Track_73379361",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/english_reference/files/455d043673bb4b1872ff5e7a24cb3969-Paper-Position_Paper_Track.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/english_reference/files/455d043673bb4b1872ff5e7a24cb3969-Paper-Position_Paper_Track.pdf",
     "file_name": "455d043673bb4b1872ff5e7a24cb3969-Paper-Position_Paper_Track.pdf",
     "source": "english_reference",
     "type_group": "pdf",
@@ -461,7 +461,7 @@
   },
   {
     "doc_id": "2023_mfds_2_15334881",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/mfds_hwp/files/2023_mfds_2.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/mfds_hwp/files/2023_mfds_2.pdf",
     "file_name": "2023_mfds_2.pdf",
     "source": "mfds_hwp",
     "type_group": "pdf",
@@ -471,7 +471,7 @@
   },
   {
     "doc_id": "202104260552137130_49274862",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/202104260552137130.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/202104260552137130.pdf",
     "file_name": "202104260552137130.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -481,7 +481,7 @@
   },
   {
     "doc_id": "journal-44-4-318_32627145",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-44-4-318.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-44-4-318.pdf",
     "file_name": "journal-44-4-318.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -491,7 +491,7 @@
   },
   {
     "doc_id": "a6ea8471c120fe8cc35a2954c9b9c595-Paper_25597289",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/english_reference/files/a6ea8471c120fe8cc35a2954c9b9c595-Paper.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/english_reference/files/a6ea8471c120fe8cc35a2954c9b9c595-Paper.pdf",
     "file_name": "a6ea8471c120fe8cc35a2954c9b9c595-Paper.pdf",
     "source": "english_reference",
     "type_group": "pdf",
@@ -501,7 +501,7 @@
   },
   {
     "doc_id": "미국_GAO_국가_AI_경쟁력_비교_평가를_위한_프레임워크_공개_45134828",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kistep_reports/files/미국_GAO_국가_AI_경쟁력_비교_평가를_위한_프레임워크_공개.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kistep_reports/files/미국_GAO_국가_AI_경쟁력_비교_평가를_위한_프레임워크_공개.pdf",
     "file_name": "미국_GAO_국가_AI_경쟁력_비교_평가를_위한_프레임워크_공개.pdf",
     "source": "kistep_reports",
     "type_group": "pdf",
@@ -511,7 +511,7 @@
   },
   {
     "doc_id": "ed3bdabafc7c4983ba72f35df826dfac_71377738",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/ed3bdabafc7c4983ba72f35df826dfac.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/ed3bdabafc7c4983ba72f35df826dfac.pdf",
     "file_name": "ed3bdabafc7c4983ba72f35df826dfac.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -521,7 +521,7 @@
   },
   {
     "doc_id": "ca5a8cba57dc1a50_56127428",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/ca5a8cba57dc1a50.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/ca5a8cba57dc1a50.pdf",
     "file_name": "ca5a8cba57dc1a50.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -531,7 +531,7 @@
   },
   {
     "doc_id": "f676373fb8f748d68f7e2f53f90f05f5_92071583",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/f676373fb8f748d68f7e2f53f90f05f5.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/f676373fb8f748d68f7e2f53f90f05f5.pdf",
     "file_name": "f676373fb8f748d68f7e2f53f90f05f5.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -541,7 +541,7 @@
   },
   {
     "doc_id": "Trend_on_Global_Logistics_Technology_699_3_58875838",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/koti_seminar/files/Trend_on_Global_Logistics_Technology_699_3.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/koti_seminar/files/Trend_on_Global_Logistics_Technology_699_3.pdf",
     "file_name": "Trend_on_Global_Logistics_Technology_699_3.pdf",
     "source": "koti_seminar",
     "type_group": "pdf",
@@ -551,7 +551,7 @@
   },
   {
     "doc_id": "2025년도_국정감사_업무보고서_78565886",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/2025년도_국정감사_업무보고서.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/2025년도_국정감사_업무보고서.pdf",
     "file_name": "2025년도_국정감사_업무보고서.pdf",
     "source": "nhis_stats",
     "type_group": "pdf",
@@ -561,7 +561,7 @@
   },
   {
     "doc_id": "fbdaeef8257caf81_27578007",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/fbdaeef8257caf81.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/fbdaeef8257caf81.pdf",
     "file_name": "fbdaeef8257caf81.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -571,7 +571,7 @@
   },
   {
     "doc_id": "c644ef6118a84fe4b33a216dd2ee0203_68497692",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/c644ef6118a84fe4b33a216dd2ee0203.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/c644ef6118a84fe4b33a216dd2ee0203.pdf",
     "file_name": "c644ef6118a84fe4b33a216dd2ee0203.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -581,7 +581,7 @@
   },
   {
     "doc_id": "Motamed_Do_Generative_Video_Models_Understand_Physical_Principle_30221952",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/english_reference/files/Motamed_Do_Generative_Video_Models_Understand_Physical_Principles_WACV_2026_paper.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/english_reference/files/Motamed_Do_Generative_Video_Models_Understand_Physical_Principles_WACV_2026_paper.pdf",
     "file_name": "Motamed_Do_Generative_Video_Models_Understand_Physical_Principles_WACV_2026_paper.pdf",
     "source": "english_reference",
     "type_group": "pdf",
@@ -591,7 +591,7 @@
   },
   {
     "doc_id": "Issue_20Note2025-38_82837797",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/Issue_20Note2025-38.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/Issue_20Note2025-38.pdf",
     "file_name": "Issue_20Note2025-38.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -601,7 +601,7 @@
   },
   {
     "doc_id": "journal-33-2-219_40159742",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-33-2-219.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-33-2-219.pdf",
     "file_name": "journal-33-2-219.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -611,7 +611,7 @@
   },
   {
     "doc_id": "4a420924d20bc025ebb37849169e6ebd-Paper_32916143",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/english_reference/files/4a420924d20bc025ebb37849169e6ebd-Paper.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/english_reference/files/4a420924d20bc025ebb37849169e6ebd-Paper.pdf",
     "file_name": "4a420924d20bc025ebb37849169e6ebd-Paper.pdf",
     "source": "english_reference",
     "type_group": "pdf",
@@ -621,7 +621,7 @@
   },
   {
     "doc_id": "9e64f598fa6547009c3c92a51581c4f0_88762422",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/9e64f598fa6547009c3c92a51581c4f0.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/9e64f598fa6547009c3c92a51581c4f0.pdf",
     "file_name": "9e64f598fa6547009c3c92a51581c4f0.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -631,7 +631,7 @@
   },
   {
     "doc_id": "f53660116d3606d2_34124207",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/f53660116d3606d2.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/f53660116d3606d2.pdf",
     "file_name": "f53660116d3606d2.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -641,7 +641,7 @@
   },
   {
     "doc_id": "BOK_EC_9D_B4_EC_8A_88_EB_85_B8_ED_8A_B8__EC_A0_9C2025-2_ED_98_B8_15710848",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/BOK_EC_9D_B4_EC_8A_88_EB_85_B8_ED_8A_B8__EC_A0_9C2025-2_ED_98_B8_AI_EC_99_80_20_ED_95_9C_EA_B5_AD_EA_B2_BD_EC_A0_9C.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/BOK_EC_9D_B4_EC_8A_88_EB_85_B8_ED_8A_B8__EC_A0_9C2025-2_ED_98_B8_AI_EC_99_80_20_ED_95_9C_EA_B5_AD_EA_B2_BD_EC_A0_9C.pdf",
     "file_name": "BOK_EC_9D_B4_EC_8A_88_EB_85_B8_ED_8A_B8__EC_A0_9C2025-2_ED_98_B8_AI_EC_99_80_20_ED_95_9C_EA_B5_AD_EA_B2_BD_EC_A0_9C.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -651,7 +651,7 @@
   },
   {
     "doc_id": "S0_2_Keynote_Speaker_Hyun_Song_Shin_Slides_22026020",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/S0_2_Keynote_Speaker_Hyun_Song_Shin_Slides.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/S0_2_Keynote_Speaker_Hyun_Song_Shin_Slides.pdf",
     "file_name": "S0_2_Keynote_Speaker_Hyun_Song_Shin_Slides.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -661,7 +661,7 @@
   },
   {
     "doc_id": "Uhlig_13401697",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/Uhlig.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/Uhlig.pdf",
     "file_name": "Uhlig.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -671,7 +671,7 @@
   },
   {
     "doc_id": "_EB_B3_B4_EA_B1_B4_EC_9D_98_EB_A3_8C_EB_8D_B0_EC_9D_B4_ED_84_B0__16356795",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/hira_opendata/files/_EB_B3_B4_EA_B1_B4_EC_9D_98_EB_A3_8C_EB_8D_B0_EC_9D_B4_ED_84_B0_20_ED_99_9C_EC_9A_A9_20_EA_B0_80_EC_9D_B4_EB_93_9C_EB_9D_BC_EC_9D_B8_282024.12._29.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/hira_opendata/files/_EB_B3_B4_EA_B1_B4_EC_9D_98_EB_A3_8C_EB_8D_B0_EC_9D_B4_ED_84_B0_20_ED_99_9C_EC_9A_A9_20_EA_B0_80_EC_9D_B4_EB_93_9C_EB_9D_BC_EC_9D_B8_282024.12._29.pdf",
     "file_name": "_EB_B3_B4_EA_B1_B4_EC_9D_98_EB_A3_8C_EB_8D_B0_EC_9D_B4_ED_84_B0_20_ED_99_9C_EC_9A_A9_20_EA_B0_80_EC_9D_B4_EB_93_9C_EB_9D_BC_EC_9D_B8_282024.12._29.pdf",
     "source": "hira_opendata",
     "type_group": "pdf",
@@ -681,7 +681,7 @@
   },
   {
     "doc_id": "FILE_201803300854543586_30316796",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/FILE_201803300854543586.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/FILE_201803300854543586.pdf",
     "file_name": "FILE_201803300854543586.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -691,8 +691,8 @@
   },
   {
     "doc_id": "_EC_A7_80_EC_97_AD_EA_B2_BD_EC_B0_B0_EC_9D_B4_EC_82_AC_EC_9A_A9__58502066",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/law_lbook/files/_EC_A7_80_EC_97_AD_EA_B2_BD_EC_B0_B0_EC_9D_B4_EC_82_AC_EC_9A_A9_ED_95_98_EB_8A_94_EB_B2_95_EB_A0_B9_EC_A7_91.pdf",
-    "file_name": "_EC_A7_80_EC_97_AD_EA_B2_BD_EC_B0_B0_EC_9D_B4_EC_82_AC_EC_9A_A9_ED_95_98_EB_8A_94_EB_B2_95_EB_A0_B9_EC_A7_91.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/law_lbook/files/지역경찰이사용하는법령집.pdf",
+    "file_name": "지역경찰이사용하는법령집.pdf",
     "source": "law_lbook",
     "type_group": "pdf",
     "ext": "pdf",
@@ -701,8 +701,8 @@
   },
   {
     "doc_id": "_EA_B2_BD_EC_A0_9C_ED_8C_80_20_EB_B2_95_EB_A0_B9_EC_A7_91_83721310",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/law_lbook/files/_EA_B2_BD_EC_A0_9C_ED_8C_80_20_EB_B2_95_EB_A0_B9_EC_A7_91.pdf",
-    "file_name": "_EA_B2_BD_EC_A0_9C_ED_8C_80_20_EB_B2_95_EB_A0_B9_EC_A7_91.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/law_lbook/files/경제팀 법령집.pdf",
+    "file_name": "경제팀 법령집.pdf",
     "source": "law_lbook",
     "type_group": "pdf",
     "ext": "pdf",
@@ -711,7 +711,7 @@
   },
   {
     "doc_id": "journal-9-여름-48_24333467",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-9-여름-48.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-9-여름-48.pdf",
     "file_name": "journal-9-여름-48.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -721,7 +721,7 @@
   },
   {
     "doc_id": "crypto-pools-paper_36764494",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/english_reference/files/crypto-pools-paper.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/english_reference/files/crypto-pools-paper.pdf",
     "file_name": "crypto-pools-paper.pdf",
     "source": "english_reference",
     "type_group": "pdf",
@@ -731,7 +731,7 @@
   },
   {
     "doc_id": "FILE_201803300854529563_77109837",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/FILE_201803300854529563.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/FILE_201803300854529563.pdf",
     "file_name": "FILE_201803300854529563.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -741,7 +741,7 @@
   },
   {
     "doc_id": "_한국은행_20제1032회_인구변화가_20지역별_20노동시장에_20미치는_20영향_웹용_34832316",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_한국은행_20제1032회_인구변화가_20지역별_20노동시장에_20미치는_20영향_웹용.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_한국은행_20제1032회_인구변화가_20지역별_20노동시장에_20미치는_20영향_웹용.pdf",
     "file_name": "_한국은행_20제1032회_인구변화가_20지역별_20노동시장에_20미치는_20영향_웹용.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -751,7 +751,7 @@
   },
   {
     "doc_id": "2025_Obesity_Fact_sheet_web_kor_88487256",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/2025_Obesity_Fact_sheet_web_kor.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/2025_Obesity_Fact_sheet_web_kor.pdf",
     "file_name": "2025_Obesity_Fact_sheet_web_kor.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -761,7 +761,7 @@
   },
   {
     "doc_id": "e636324476a7459890ac3a771745e0b7_71467236",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/e636324476a7459890ac3a771745e0b7.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/e636324476a7459890ac3a771745e0b7.pdf",
     "file_name": "e636324476a7459890ac3a771745e0b7.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -771,7 +771,7 @@
   },
   {
     "doc_id": "2013상_20행우작품전_도록_63201079",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/2013상_20행우작품전_도록.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/2013상_20행우작품전_도록.pdf",
     "file_name": "2013상_20행우작품전_도록.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -781,7 +781,7 @@
   },
   {
     "doc_id": "journal-40-4-332_43540551",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-40-4-332.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-40-4-332.pdf",
     "file_name": "journal-40-4-332.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -791,7 +791,7 @@
   },
   {
     "doc_id": "journal-12-봄-55_45621927",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-12-봄-55.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-12-봄-55.pdf",
     "file_name": "journal-12-봄-55.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -801,8 +801,8 @@
   },
   {
     "doc_id": "_EA_B2_BD_EA_B8_B0_EB_8F_84_EA_B5_90_EC_9C_A1_EC_B2_AD_20_EC_A1__44244908",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/law_lbook/files/_EA_B2_BD_EA_B8_B0_EB_8F_84_EA_B5_90_EC_9C_A1_EC_B2_AD_20_EC_A1_B0_EB_A1_80_EC_A7_91.pdf",
-    "file_name": "_EA_B2_BD_EA_B8_B0_EB_8F_84_EA_B5_90_EC_9C_A1_EC_B2_AD_20_EC_A1_B0_EB_A1_80_EC_A7_91.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/law_lbook/files/경기도교육청 조례집.pdf",
+    "file_name": "경기도교육청 조례집.pdf",
     "source": "law_lbook",
     "type_group": "pdf",
     "ext": "pdf",
@@ -811,7 +811,7 @@
   },
   {
     "doc_id": "journal-38-2-394_66887718",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-38-2-394.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-38-2-394.pdf",
     "file_name": "journal-38-2-394.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -821,7 +821,7 @@
   },
   {
     "doc_id": "journal-34-가을-29_70332247",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-34-가을-29.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-34-가을-29.pdf",
     "file_name": "journal-34-가을-29.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -831,7 +831,7 @@
   },
   {
     "doc_id": "journal-38-3-555_88655505",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-38-3-555.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-38-3-555.pdf",
     "file_name": "journal-38-3-555.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -841,7 +841,7 @@
   },
   {
     "doc_id": "e68a7b7013fca485_83076364",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/e68a7b7013fca485.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/e68a7b7013fca485.pdf",
     "file_name": "e68a7b7013fca485.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -851,7 +851,7 @@
   },
   {
     "doc_id": "ae26ed69a88a4950be7678a5b96ad88a_75904202",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/ae26ed69a88a4950be7678a5b96ad88a.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/ae26ed69a88a4950be7678a5b96ad88a.pdf",
     "file_name": "ae26ed69a88a4950be7678a5b96ad88a.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -861,7 +861,7 @@
   },
   {
     "doc_id": "_붙임2_강원본부_20지방중소기업지원_20프로그램_20운용기준_20신구조문대비표_54805509",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_붙임2_강원본부_20지방중소기업지원_20프로그램_20운용기준_20신구조문대비표.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_붙임2_강원본부_20지방중소기업지원_20프로그램_20운용기준_20신구조문대비표.pdf",
     "file_name": "_붙임2_강원본부_20지방중소기업지원_20프로그램_20운용기준_20신구조문대비표.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -871,8 +871,8 @@
   },
   {
     "doc_id": "_EC_8B_9D_ED_92_88_20_EA_B4_80_EB_A0_A8_20_EB_B2_95_EA_B7_9C_91866510",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/law_lbook/files/_EC_8B_9D_ED_92_88_20_EA_B4_80_EB_A0_A8_20_EB_B2_95_EA_B7_9C.pdf",
-    "file_name": "_EC_8B_9D_ED_92_88_20_EA_B4_80_EB_A0_A8_20_EB_B2_95_EA_B7_9C.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/law_lbook/files/식품 관련 법규.pdf",
+    "file_name": "식품 관련 법규.pdf",
     "source": "law_lbook",
     "type_group": "pdf",
     "ext": "pdf",
@@ -881,7 +881,7 @@
   },
   {
     "doc_id": "journal-32-3-429_84719633",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-32-3-429.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-32-3-429.pdf",
     "file_name": "journal-32-3-429.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -891,7 +891,7 @@
   },
   {
     "doc_id": "강원영동_20경제일지_26.5월호_78589283",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/강원영동_20경제일지_26.5월호.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/강원영동_20경제일지_26.5월호.pdf",
     "file_name": "강원영동_20경제일지_26.5월호.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -901,7 +901,7 @@
   },
   {
     "doc_id": "efa6d949db136fa8_79797117",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/efa6d949db136fa8.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/efa6d949db136fa8.pdf",
     "file_name": "efa6d949db136fa8.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -911,7 +911,7 @@
   },
   {
     "doc_id": "JSTORAnS_11985025",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/riss_theses/files/JSTORAnS.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/riss_theses/files/JSTORAnS.pdf",
     "file_name": "JSTORAnS.pdf",
     "source": "riss_theses",
     "type_group": "pdf",
@@ -921,7 +921,7 @@
   },
   {
     "doc_id": "_EA_B5_AD_ED_86_A0_EC_A2_85_ED_95_A9_EA_B3_84_ED_9A_8D50_EB_85_8_24483253",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/krihs_reports/files/_EA_B5_AD_ED_86_A0_EC_A2_85_ED_95_A9_EA_B3_84_ED_9A_8D50_EB_85_84__EC_A0_84_EC_8B_9C_ED_9A_8C__EB_A6_AC_ED_94_8C_EB_A0_9B.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/krihs_reports/files/_EA_B5_AD_ED_86_A0_EC_A2_85_ED_95_A9_EA_B3_84_ED_9A_8D50_EB_85_84__EC_A0_84_EC_8B_9C_ED_9A_8C__EB_A6_AC_ED_94_8C_EB_A0_9B.pdf",
     "file_name": "_EA_B5_AD_ED_86_A0_EC_A2_85_ED_95_A9_EA_B3_84_ED_9A_8D50_EB_85_84__EC_A0_84_EC_8B_9C_ED_9A_8C__EB_A6_AC_ED_94_8C_EB_A0_9B.pdf",
     "source": "krihs_reports",
     "type_group": "pdf",
@@ -931,7 +931,7 @@
   },
   {
     "doc_id": "journal-34-1-159_34751731",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-34-1-159.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-34-1-159.pdf",
     "file_name": "journal-34-1-159.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -941,7 +941,7 @@
   },
   {
     "doc_id": "journal-36-봄-51_36351575",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-36-봄-51.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-36-봄-51.pdf",
     "file_name": "journal-36-봄-51.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -951,7 +951,7 @@
   },
   {
     "doc_id": "7c62109c6cbbdc2f_57460919",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/cultural_heritage_data/files/7c62109c6cbbdc2f.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/cultural_heritage_data/files/7c62109c6cbbdc2f.pdf",
     "file_name": "7c62109c6cbbdc2f.pdf",
     "source": "cultural_heritage_data",
     "type_group": "pdf",
@@ -961,7 +961,7 @@
   },
   {
     "doc_id": "_EB_B3_B4_EB_8F_84_EC_9E_90_EB_A3_8C_202026_EB_85_84_203_EC_9B_9_85867279",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_EB_B3_B4_EB_8F_84_EC_9E_90_EB_A3_8C_202026_EB_85_84_203_EC_9B_94_EC_A4_91_20_EA_B1_B0_EC_A3_BC_EC_9E_90_EC_99_B8_ED_99_94_EC_98_88_EA_B8_88_20_EB_8F_99_ED_96_A5_F.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_EB_B3_B4_EB_8F_84_EC_9E_90_EB_A3_8C_202026_EB_85_84_203_EC_9B_94_EC_A4_91_20_EA_B1_B0_EC_A3_BC_EC_9E_90_EC_99_B8_ED_99_94_EC_98_88_EA_B8_88_20_EB_8F_99_ED_96_A5_F.pdf",
     "file_name": "_EB_B3_B4_EB_8F_84_EC_9E_90_EB_A3_8C_202026_EB_85_84_203_EC_9B_94_EC_A4_91_20_EA_B1_B0_EC_A3_BC_EC_9E_90_EC_99_B8_ED_99_94_EC_98_88_EA_B8_88_20_EB_8F_99_ED_96_A5_F.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -971,7 +971,7 @@
   },
   {
     "doc_id": "journal-23-1-179_87229764",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-23-1-179.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-23-1-179.pdf",
     "file_name": "journal-23-1-179.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -981,7 +981,7 @@
   },
   {
     "doc_id": "journal-34-1-183_42972435",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-34-1-183.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-34-1-183.pdf",
     "file_name": "journal-34-1-183.pdf",
     "source": "gov_policy_reports",
     "type_group": "pdf",
@@ -991,7 +991,7 @@
   },
   {
     "doc_id": "202303241007136220_10626367",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/202303241007136220.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/202303241007136220.pdf",
     "file_name": "202303241007136220.pdf",
     "source": "bok_publications",
     "type_group": "pdf",

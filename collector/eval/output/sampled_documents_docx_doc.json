@@ -1,7 +1,7 @@
 [
   {
     "doc_id": "2026_EB_85_84_3_EC_9B_94_EB_B6_80_EB_8F_99_EC_82_B0_EC_8B_9C_EC__52531694",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/krihs_reports/files/2026_EB_85_84_3_EC_9B_94_EB_B6_80_EB_8F_99_EC_82_B0_EC_8B_9C_EC_9E_A5_EC_86_8C_EB_B9_84_EC_8B_AC_EB_A6_AC_EC_A7_80_EC_88_98_28_EA_B3_B5_ED_91_9C_EC_9E_90_EB_A3_8C_29.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/krihs_reports/files/2026_EB_85_84_3_EC_9B_94_EB_B6_80_EB_8F_99_EC_82_B0_EC_8B_9C_EC_9E_A5_EC_86_8C_EB_B9_84_EC_8B_AC_EB_A6_AC_EC_A7_80_EC_88_98_28_EA_B3_B5_ED_91_9C_EC_9E_90_EB_A3_8C_29.docx",
     "file_name": "2026_EB_85_84_3_EC_9B_94_EB_B6_80_EB_8F_99_EC_82_B0_EC_8B_9C_EC_9E_A5_EC_86_8C_EB_B9_84_EC_8B_AC_EB_A6_AC_EC_A7_80_EC_88_98_28_EA_B3_B5_ED_91_9C_EC_9E_90_EB_A3_8C_29.docx",
     "source": "krihs_reports",
     "type_group": "docx_doc",
@@ -11,7 +11,7 @@
   },
   {
     "doc_id": "kowiki_00805_47963293",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00805.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00805.docx",
     "file_name": "kowiki_00805.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -21,7 +21,7 @@
   },
   {
     "doc_id": "202308210324359890_84890828",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/202308210324359890.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/202308210324359890.docx",
     "file_name": "202308210324359890.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -31,7 +31,7 @@
   },
   {
     "doc_id": "kowiki_01160_32623779",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01160.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01160.docx",
     "file_name": "kowiki_01160.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -41,7 +41,7 @@
   },
   {
     "doc_id": "_보도설명자료_7.9.수.KBS__스마트장기요양앱_관련_55834833",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/_보도설명자료_7.9.수.KBS__스마트장기요양앱_관련.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/_보도설명자료_7.9.수.KBS__스마트장기요양앱_관련.docx",
     "file_name": "_보도설명자료_7.9.수.KBS__스마트장기요양앱_관련.docx",
     "source": "nhis_stats",
     "type_group": "docx_doc",
@@ -51,7 +51,7 @@
   },
   {
     "doc_id": "kowiki_00505_45731324",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00505.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00505.docx",
     "file_name": "kowiki_00505.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -61,7 +61,7 @@
   },
   {
     "doc_id": "kowiki_02022_82893485",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_02022.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_02022.docx",
     "file_name": "kowiki_02022.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -71,7 +71,7 @@
   },
   {
     "doc_id": "kowiki_00214_51822455",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00214.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00214.docx",
     "file_name": "kowiki_00214.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -81,7 +81,7 @@
   },
   {
     "doc_id": "국민추천서_서식_2회_특별성과__16447247",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/mfds_hwp/files/국민추천서_서식_2회_특별성과_.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/mfds_hwp/files/국민추천서_서식_2회_특별성과_.docx",
     "file_name": "국민추천서_서식_2회_특별성과_.docx",
     "source": "mfds_hwp",
     "type_group": "docx_doc",
@@ -91,7 +91,7 @@
   },
   {
     "doc_id": "2025년_한국은행_법률고문_주요_현황_41427312",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/2025년_한국은행_법률고문_주요_현황.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/2025년_한국은행_법률고문_주요_현황.docx",
     "file_name": "2025년_한국은행_법률고문_주요_현황.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -101,7 +101,7 @@
   },
   {
     "doc_id": "_보도자료_20충청권_20메가시티_20구축의_20경제적_20영향_20진단_20및_20정책_20제언_f_75080562",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_보도자료_20충청권_20메가시티_20구축의_20경제적_20영향_20진단_20및_20정책_20제언_f.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_보도자료_20충청권_20메가시티_20구축의_20경제적_20영향_20진단_20및_20정책_20제언_f.docx",
     "file_name": "_보도자료_20충청권_20메가시티_20구축의_20경제적_20영향_20진단_20및_20정책_20제언_f.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -111,7 +111,7 @@
   },
   {
     "doc_id": "Club_Registration_2026_Spring__Name_of_the_Club_41771988",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/Club_Registration_2026_Spring__Name_of_the_Club.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/Club_Registration_2026_Spring__Name_of_the_Club.docx",
     "file_name": "Club_Registration_2026_Spring__Name_of_the_Club.docx",
     "source": "kdischool_eng",
     "type_group": "docx_doc",
@@ -121,7 +121,7 @@
   },
   {
     "doc_id": "kowiki_02081_32879586",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_02081.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_02081.docx",
     "file_name": "kowiki_02081.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -131,7 +131,7 @@
   },
   {
     "doc_id": "kowiki_00826_67427014",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00826.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00826.docx",
     "file_name": "kowiki_00826.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -141,7 +141,7 @@
   },
   {
     "doc_id": "_5BARC_5D_Student_ID_Name_63968644",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/_5BARC_5D_Student_ID_Name.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/_5BARC_5D_Student_ID_Name.docx",
     "file_name": "_5BARC_5D_Student_ID_Name.docx",
     "source": "kdischool_eng",
     "type_group": "docx_doc",
@@ -151,7 +151,7 @@
   },
   {
     "doc_id": "1._4대사회보험가입내역확인청구서_2025.7.19__36039994",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/1._4대사회보험가입내역확인청구서_2025.7.19_.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/1._4대사회보험가입내역확인청구서_2025.7.19_.docx",
     "file_name": "1._4대사회보험가입내역확인청구서_2025.7.19_.docx",
     "source": "nhis_stats",
     "type_group": "docx_doc",
@@ -161,7 +161,7 @@
   },
   {
     "doc_id": "390b9682cc81449cb83df88f4a1ae19c_35383618",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/390b9682cc81449cb83df88f4a1ae19c.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/390b9682cc81449cb83df88f4a1ae19c.docx",
     "file_name": "390b9682cc81449cb83df88f4a1ae19c.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -171,7 +171,7 @@
   },
   {
     "doc_id": "9baa84474e9b4471a59befdb2b908c2d_72107161",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/9baa84474e9b4471a59befdb2b908c2d.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/9baa84474e9b4471a59befdb2b908c2d.docx",
     "file_name": "9baa84474e9b4471a59befdb2b908c2d.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -181,7 +181,7 @@
   },
   {
     "doc_id": "kowiki_02014_91531884",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_02014.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_02014.docx",
     "file_name": "kowiki_02014.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -191,7 +191,7 @@
   },
   {
     "doc_id": "f5e27c159e0c4e5ab7f73ef721307f2c_15271272",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/f5e27c159e0c4e5ab7f73ef721307f2c.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/f5e27c159e0c4e5ab7f73ef721307f2c.docx",
     "file_name": "f5e27c159e0c4e5ab7f73ef721307f2c.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -201,7 +201,7 @@
   },
   {
     "doc_id": "kowiki_00007_44969927",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00007.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00007.docx",
     "file_name": "kowiki_00007.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -211,7 +211,7 @@
   },
   {
     "doc_id": "202003240921457334_14245393",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/202003240921457334.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/202003240921457334.docx",
     "file_name": "202003240921457334.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -221,7 +221,7 @@
   },
   {
     "doc_id": "kowiki_00091_14427922",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00091.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00091.docx",
     "file_name": "kowiki_00091.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -231,7 +231,7 @@
   },
   {
     "doc_id": "통계조사보조원_20고용_20안내_20251120_77591423",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/통계조사보조원_20고용_20안내_20251120.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/통계조사보조원_20고용_20안내_20251120.docx",
     "file_name": "통계조사보조원_20고용_20안내_20251120.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -241,7 +241,7 @@
   },
   {
     "doc_id": "kowiki_01757_32573214",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01757.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01757.docx",
     "file_name": "kowiki_01757.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -251,7 +251,7 @@
   },
   {
     "doc_id": "kowiki_01498_70181334",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01498.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01498.docx",
     "file_name": "kowiki_01498.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -261,7 +261,7 @@
   },
   {
     "doc_id": "kowiki_01938_89208933",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01938.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01938.docx",
     "file_name": "kowiki_01938.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -271,7 +271,7 @@
   },
   {
     "doc_id": "c51bb4c4a3b24e9a8d9d1638b80c4a13_30308599",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/c51bb4c4a3b24e9a8d9d1638b80c4a13.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/c51bb4c4a3b24e9a8d9d1638b80c4a13.docx",
     "file_name": "c51bb4c4a3b24e9a8d9d1638b80c4a13.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -281,7 +281,7 @@
   },
   {
     "doc_id": "kowiki_01690_47231648",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01690.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01690.docx",
     "file_name": "kowiki_01690.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -291,7 +291,7 @@
   },
   {
     "doc_id": "b567e83c38ec4108a3c8756071cd9514_53212111",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/b567e83c38ec4108a3c8756071cd9514.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/b567e83c38ec4108a3c8756071cd9514.docx",
     "file_name": "b567e83c38ec4108a3c8756071cd9514.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -301,7 +301,7 @@
   },
   {
     "doc_id": "_붙임2_20대구경북본부_20중소기업_20지원자금_20운용기준_20전문_23.3월_81079758",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_붙임2_20대구경북본부_20중소기업_20지원자금_20운용기준_20전문_23.3월.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_붙임2_20대구경북본부_20중소기업_20지원자금_20운용기준_20전문_23.3월.docx",
     "file_name": "_붙임2_20대구경북본부_20중소기업_20지원자금_20운용기준_20전문_23.3월.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -311,7 +311,7 @@
   },
   {
     "doc_id": "4988b212f9434033880ba75b4281a5d3_81971307",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/4988b212f9434033880ba75b4281a5d3.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/4988b212f9434033880ba75b4281a5d3.docx",
     "file_name": "4988b212f9434033880ba75b4281a5d3.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -321,7 +321,7 @@
   },
   {
     "doc_id": "kowiki_02011_45603721",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_02011.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_02011.docx",
     "file_name": "kowiki_02011.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -331,7 +331,7 @@
   },
   {
     "doc_id": "202207290917096791_84163481",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/202207290917096791.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/202207290917096791.docx",
     "file_name": "202207290917096791.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -341,7 +341,7 @@
   },
   {
     "doc_id": "kowiki_00838_67149424",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00838.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00838.docx",
     "file_name": "kowiki_00838.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -351,7 +351,7 @@
   },
   {
     "doc_id": "_EC_B0_B8_EA_B3_A0_EC_9E_90_EB_A3_8C_2605__25474566",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_EC_B0_B8_EA_B3_A0_EC_9E_90_EB_A3_8C_2605_.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_EC_B0_B8_EA_B3_A0_EC_9E_90_EB_A3_8C_2605_.docx",
     "file_name": "_EC_B0_B8_EA_B3_A0_EC_9E_90_EB_A3_8C_2605_.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -361,7 +361,7 @@
   },
   {
     "doc_id": "kowiki_00644_60214998",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00644.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00644.docx",
     "file_name": "kowiki_00644.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -371,7 +371,7 @@
   },
   {
     "doc_id": "kowiki_00432_59546023",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00432.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00432.docx",
     "file_name": "kowiki_00432.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -381,7 +381,7 @@
   },
   {
     "doc_id": "kowiki_00814_76353422",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00814.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00814.docx",
     "file_name": "kowiki_00814.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -391,7 +391,7 @@
   },
   {
     "doc_id": "kowiki_00906_73546212",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00906.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00906.docx",
     "file_name": "kowiki_00906.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -401,7 +401,7 @@
   },
   {
     "doc_id": "kowiki_00718_38779507",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00718.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00718.docx",
     "file_name": "kowiki_00718.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -411,7 +411,7 @@
   },
   {
     "doc_id": "6a20408a68a84376841236ebc793661c_39330765",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/6a20408a68a84376841236ebc793661c.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/6a20408a68a84376841236ebc793661c.docx",
     "file_name": "6a20408a68a84376841236ebc793661c.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -421,7 +421,7 @@
   },
   {
     "doc_id": "ee45bf4728ad49d581c4dea90d3869b4_10873018",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/ee45bf4728ad49d581c4dea90d3869b4.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/ee45bf4728ad49d581c4dea90d3869b4.docx",
     "file_name": "ee45bf4728ad49d581c4dea90d3869b4.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -431,7 +431,7 @@
   },
   {
     "doc_id": "kowiki_00493_95510759",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00493.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00493.docx",
     "file_name": "kowiki_00493.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -441,7 +441,7 @@
   },
   {
     "doc_id": "_보도설명자료_9.9.화__장기요양기관포털의_오류로_인한_개인정보_노출에_대해_진심으로_사과드립니다_17981735",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/_보도설명자료_9.9.화__장기요양기관포털의_오류로_인한_개인정보_노출에_대해_진심으로_사과드립니다.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/_보도설명자료_9.9.화__장기요양기관포털의_오류로_인한_개인정보_노출에_대해_진심으로_사과드립니다.docx",
     "file_name": "_보도설명자료_9.9.화__장기요양기관포털의_오류로_인한_개인정보_노출에_대해_진심으로_사과드립니다.docx",
     "source": "nhis_stats",
     "type_group": "docx_doc",
@@ -451,7 +451,7 @@
   },
   {
     "doc_id": "kowiki_00042_31693549",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00042.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00042.docx",
     "file_name": "kowiki_00042.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -461,7 +461,7 @@
   },
   {
     "doc_id": "kowiki_00856_43314123",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00856.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00856.docx",
     "file_name": "kowiki_00856.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -471,7 +471,7 @@
   },
   {
     "doc_id": "kowiki_01255_30263908",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01255.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01255.docx",
     "file_name": "kowiki_01255.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -481,7 +481,7 @@
   },
   {
     "doc_id": "kowiki_01789_54888454",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01789.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01789.docx",
     "file_name": "kowiki_01789.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -491,7 +491,7 @@
   },
   {
     "doc_id": "ea9a14a1eef14bd4ad71a56cc15e166f_16063887",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/ea9a14a1eef14bd4ad71a56cc15e166f.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/ea9a14a1eef14bd4ad71a56cc15e166f.docx",
     "file_name": "ea9a14a1eef14bd4ad71a56cc15e166f.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -501,7 +501,7 @@
   },
   {
     "doc_id": "3445599ed5ca4caaaa79fe027f482565_67504519",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/3445599ed5ca4caaaa79fe027f482565.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/3445599ed5ca4caaaa79fe027f482565.docx",
     "file_name": "3445599ed5ca4caaaa79fe027f482565.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -511,7 +511,7 @@
   },
   {
     "doc_id": "kowiki_00278_66106378",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00278.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00278.docx",
     "file_name": "kowiki_00278.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -521,7 +521,7 @@
   },
   {
     "doc_id": "kowiki_00488_30503039",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00488.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00488.docx",
     "file_name": "kowiki_00488.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -531,7 +531,7 @@
   },
   {
     "doc_id": "202207130133509400_75674044",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/202207130133509400.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/202207130133509400.docx",
     "file_name": "202207130133509400.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -541,7 +541,7 @@
   },
   {
     "doc_id": "_보도참고자료_20국내_20무위험지표금리_20개발_20현황_20및_20향후_20계획_200923_20F_001_75406774",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_보도참고자료_20국내_20무위험지표금리_20개발_20현황_20및_20향후_20계획_200923_20F_001.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_보도참고자료_20국내_20무위험지표금리_20개발_20현황_20및_20향후_20계획_200923_20F_001.docx",
     "file_name": "_보도참고자료_20국내_20무위험지표금리_20개발_20현황_20및_20향후_20계획_200923_20F_001.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -551,7 +551,7 @@
   },
   {
     "doc_id": "2e8769f188644c00ad67533eb854ad40_21626262",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/2e8769f188644c00ad67533eb854ad40.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/2e8769f188644c00ad67533eb854ad40.docx",
     "file_name": "2e8769f188644c00ad67533eb854ad40.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -561,7 +561,7 @@
   },
   {
     "doc_id": "8d5e87b4b50e4dc793782c4bb2a61793_17448887",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/8d5e87b4b50e4dc793782c4bb2a61793.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/8d5e87b4b50e4dc793782c4bb2a61793.docx",
     "file_name": "8d5e87b4b50e4dc793782c4bb2a61793.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -571,7 +571,7 @@
   },
   {
     "doc_id": "북미협상과_남북경협_전망_1__37777231",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/북미협상과_남북경협_전망_1_.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/북미협상과_남북경협_전망_1_.docx",
     "file_name": "북미협상과_남북경협_전망_1_.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -581,7 +581,7 @@
   },
   {
     "doc_id": "bfo_doc_fd_31736099",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/customs_excel/files/bfo_doc_fd.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/customs_excel/files/bfo_doc_fd.docx",
     "file_name": "bfo_doc_fd.docx",
     "source": "customs_excel",
     "type_group": "docx_doc",
@@ -591,7 +591,7 @@
   },
   {
     "doc_id": "kowiki_00598_22431039",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00598.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00598.docx",
     "file_name": "kowiki_00598.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -601,7 +601,7 @@
   },
   {
     "doc_id": "202109030958486260_54174927",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/202109030958486260.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/202109030958486260.docx",
     "file_name": "202109030958486260.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -611,7 +611,7 @@
   },
   {
     "doc_id": "pb_semi_form_88942363",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/national_assembly_reports/files/pb_semi_form.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/national_assembly_reports/files/pb_semi_form.docx",
     "file_name": "pb_semi_form.docx",
     "source": "national_assembly_reports",
     "type_group": "docx_doc",
@@ -621,7 +621,7 @@
   },
   {
     "doc_id": "kowiki_00985_36850514",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00985.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00985.docx",
     "file_name": "kowiki_00985.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -631,7 +631,7 @@
   },
   {
     "doc_id": "kowiki_01382_67332084",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01382.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01382.docx",
     "file_name": "kowiki_01382.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -641,7 +641,7 @@
   },
   {
     "doc_id": "_붙임3_2020년6월_20운용기준_20전문_강원본부_78023067",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_붙임3_2020년6월_20운용기준_20전문_강원본부.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_붙임3_2020년6월_20운용기준_20전문_강원본부.docx",
     "file_name": "_붙임3_2020년6월_20운용기준_20전문_강원본부.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -651,7 +651,7 @@
   },
   {
     "doc_id": "kowiki_00297_88130873",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00297.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00297.docx",
     "file_name": "kowiki_00297.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -661,7 +661,7 @@
   },
   {
     "doc_id": "3d84476d6ef0433db23bba2f895a4d50_71100177",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/3d84476d6ef0433db23bba2f895a4d50.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/3d84476d6ef0433db23bba2f895a4d50.docx",
     "file_name": "3d84476d6ef0433db23bba2f895a4d50.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -671,7 +671,7 @@
   },
   {
     "doc_id": "kowiki_01688_14462718",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01688.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01688.docx",
     "file_name": "kowiki_01688.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -681,7 +681,7 @@
   },
   {
     "doc_id": "1._202026년_206월_20기업경기조사_20결과_20및_20경제심리지수_ESI_국문__vF_62981213",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/1._202026년_206월_20기업경기조사_20결과_20및_20경제심리지수_ESI_국문__vF.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/1._202026년_206월_20기업경기조사_20결과_20및_20경제심리지수_ESI_국문__vF.docx",
     "file_name": "1._202026년_206월_20기업경기조사_20결과_20및_20경제심리지수_ESI_국문__vF.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -691,7 +691,7 @@
   },
   {
     "doc_id": "kowiki_00635_88115830",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00635.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00635.docx",
     "file_name": "kowiki_00635.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -701,7 +701,7 @@
   },
   {
     "doc_id": "_보도참고자료_20한국은행_20최초로_20지역본부_20조사연구업무_20수행을_20위한_20박사급_20연구인력_20채_60279394",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_보도참고자료_20한국은행_20최초로_20지역본부_20조사연구업무_20수행을_20위한_20박사급_20연구인력_20채용_F.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_보도참고자료_20한국은행_20최초로_20지역본부_20조사연구업무_20수행을_20위한_20박사급_20연구인력_20채용_F.docx",
     "file_name": "_보도참고자료_20한국은행_20최초로_20지역본부_20조사연구업무_20수행을_20위한_20박사급_20연구인력_20채용_F.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -711,7 +711,7 @@
   },
   {
     "doc_id": "_보도자료_202026년_204월중_20부산지역_20금융기관_20여수신_20동향_F_63570985",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_보도자료_202026년_204월중_20부산지역_20금융기관_20여수신_20동향_F.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_보도자료_202026년_204월중_20부산지역_20금융기관_20여수신_20동향_F.docx",
     "file_name": "_보도자료_202026년_204월중_20부산지역_20금융기관_20여수신_20동향_F.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -721,7 +721,7 @@
   },
   {
     "doc_id": "kowiki_00817_34643058",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00817.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00817.docx",
     "file_name": "kowiki_00817.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -731,7 +731,7 @@
   },
   {
     "doc_id": "kowiki_00604_43656862",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00604.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00604.docx",
     "file_name": "kowiki_00604.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -741,7 +741,7 @@
   },
   {
     "doc_id": "kowiki_01345_89601184",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01345.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01345.docx",
     "file_name": "kowiki_01345.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -751,7 +751,7 @@
   },
   {
     "doc_id": "kowiki_01683_37799381",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01683.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01683.docx",
     "file_name": "kowiki_01683.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -761,7 +761,7 @@
   },
   {
     "doc_id": "kowiki_01852_52243326",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01852.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01852.docx",
     "file_name": "kowiki_01852.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -771,7 +771,7 @@
   },
   {
     "doc_id": "kowiki_00950_45445381",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00950.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00950.docx",
     "file_name": "kowiki_00950.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -781,7 +781,7 @@
   },
   {
     "doc_id": "kowiki_01368_56773840",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01368.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01368.docx",
     "file_name": "kowiki_01368.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -791,7 +791,7 @@
   },
   {
     "doc_id": "kowiki_00973_40726682",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00973.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00973.docx",
     "file_name": "kowiki_00973.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -801,7 +801,7 @@
   },
   {
     "doc_id": "202207290943423764_44666356",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/202207290943423764.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/202207290943423764.docx",
     "file_name": "202207290943423764.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -811,7 +811,7 @@
   },
   {
     "doc_id": "북미협상과_남북경협_전망_3__76616041",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/북미협상과_남북경협_전망_3_.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/북미협상과_남북경협_전망_3_.docx",
     "file_name": "북미협상과_남북경협_전망_3_.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -821,7 +821,7 @@
   },
   {
     "doc_id": "kowiki_00745_47550090",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00745.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00745.docx",
     "file_name": "kowiki_00745.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -831,7 +831,7 @@
   },
   {
     "doc_id": "kowiki_01753_82008918",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01753.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01753.docx",
     "file_name": "kowiki_01753.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -841,7 +841,7 @@
   },
   {
     "doc_id": "kowiki_00348_58267116",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00348.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00348.docx",
     "file_name": "kowiki_00348.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -851,7 +851,7 @@
   },
   {
     "doc_id": "AI기반_20기업_20협력_20네트워크를_20활용한_20인천산업의_20협력적_20혁신성_20평가_42837964",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/AI기반_20기업_20협력_20네트워크를_20활용한_20인천산업의_20협력적_20혁신성_20평가.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/AI기반_20기업_20협력_20네트워크를_20활용한_20인천산업의_20협력적_20혁신성_20평가.docx",
     "file_name": "AI기반_20기업_20협력_20네트워크를_20활용한_20인천산업의_20협력적_20혁신성_20평가.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -861,7 +861,7 @@
   },
   {
     "doc_id": "_보도자료_202025_20ADB_20BOK_20JIMF_20컨퍼런스_20개최_53373821",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_보도자료_202025_20ADB_20BOK_20JIMF_20컨퍼런스_20개최.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_보도자료_202025_20ADB_20BOK_20JIMF_20컨퍼런스_20개최.docx",
     "file_name": "_보도자료_202025_20ADB_20BOK_20JIMF_20컨퍼런스_20개최.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -871,7 +871,7 @@
   },
   {
     "doc_id": "kowiki_01028_59492872",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01028.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01028.docx",
     "file_name": "kowiki_01028.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -881,7 +881,7 @@
   },
   {
     "doc_id": "kowiki_01383_44246576",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01383.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01383.docx",
     "file_name": "kowiki_01383.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -891,7 +891,7 @@
   },
   {
     "doc_id": "kowiki_01348_39126819",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01348.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01348.docx",
     "file_name": "kowiki_01348.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -901,7 +901,7 @@
   },
   {
     "doc_id": "kowiki_00729_47787338",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00729.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00729.docx",
     "file_name": "kowiki_00729.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -911,7 +911,7 @@
   },
   {
     "doc_id": "kowiki_00730_42928791",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00730.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00730.docx",
     "file_name": "kowiki_00730.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -921,7 +921,7 @@
   },
   {
     "doc_id": "_보도자료_20경제상황_20평가_2026.1월__F4_28327528",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_보도자료_20경제상황_20평가_2026.1월__F4.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_보도자료_20경제상황_20평가_2026.1월__F4.docx",
     "file_name": "_보도자료_20경제상황_20평가_2026.1월__F4.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -931,7 +931,7 @@
   },
   {
     "doc_id": "kowiki_00872_12446706",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00872.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00872.docx",
     "file_name": "kowiki_00872.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -941,7 +941,7 @@
   },
   {
     "doc_id": "kowiki_00813_40096676",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00813.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00813.docx",
     "file_name": "kowiki_00813.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -951,7 +951,7 @@
   },
   {
     "doc_id": "kowiki_00514_49575797",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00514.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00514.docx",
     "file_name": "kowiki_00514.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -961,7 +961,7 @@
   },
   {
     "doc_id": "안전보건_제안_아차사고_신고_양식_33127584",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kistep_reports/files/안전보건_제안_아차사고_신고_양식.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kistep_reports/files/안전보건_제안_아차사고_신고_양식.docx",
     "file_name": "안전보건_제안_아차사고_신고_양식.docx",
     "source": "kistep_reports",
     "type_group": "docx_doc",
@@ -971,7 +971,7 @@
   },
   {
     "doc_id": "kowiki_00866_92093586",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00866.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00866.docx",
     "file_name": "kowiki_00866.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -981,7 +981,7 @@
   },
   {
     "doc_id": "kowiki_00467_79728313",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00467.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00467.docx",
     "file_name": "kowiki_00467.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -991,7 +991,7 @@
   },
   {
     "doc_id": "FILE_201803300716221461_71663291",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/FILE_201803300716221461.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/FILE_201803300716221461.docx",
     "file_name": "FILE_201803300716221461.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",

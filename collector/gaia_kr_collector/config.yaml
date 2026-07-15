@@ -1,6 +1,6 @@
 # Gaia Korean dataset collector config
 # Unit examples: 10GB, 500MB, 1024KB
-root_dir: ./gaia_test_200g_kr80_no_ocr
+root_dir: ../../gaia_web_dataset  # 2026-07-15: cohesity-poc/gaia_web_dataset로 이전 (구 경로: ./gaia_test_200g_kr80_no_ocr). 상대경로 유지 — 다른 머신으로 옮겨도 collector/gaia_kr_collector 기준 위치만 맞으면 그대로 동작
 user_agent: "gaia-test-collector/1.0 (+internal-poc; respect robots; contact: your-email@example.com)"
 request_timeout_sec: 30
 sleep_sec: 1.0
@@ -445,7 +445,9 @@ kostat_edu:
 # ── XLSX/CSV 즉시 활성화 소스 ───────────────────────────────────────────────
 
 dart_financial:
-  enabled: true           # DART 재무제표 Excel 즉시 수집
+  enabled: false          # 비활성화 (2026-07-15) — DART 역할은 gaia_dataset/(별도 파이프라인,
+                          # gaia_ragas/qdrant_rag용 271개사 XML/PDF/XLS)이 이미 수행 중이라 중복.
+                          # 이 소스는 활성화된 적이 있었으나 실제로는 0건 수집된 빈 소스였음.
   auto_pool: false
   type_hint: xlsx_xls_csv
   seed_urls:

@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "description": "Cohesity GAIA KR 수집 데이터 — docx_doc 타입 RAGAS 테스트셋",
-  "type_group": "docx_doc",
+  "description": "Cohesity GAIA KR 수집 데이터 — docx_doc 그룹 RAGAS 테스트셋",
+  "group_key": "docx_doc",
   "total_samples": 200,
   "samples": [
     {

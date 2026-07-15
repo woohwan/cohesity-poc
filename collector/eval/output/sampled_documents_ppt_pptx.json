@@ -1,7 +1,7 @@
 [
   {
     "doc_id": "오감명상의_이해_42355954",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/오감명상의_이해.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/오감명상의_이해.pptx",
     "file_name": "오감명상의_이해.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -11,7 +11,7 @@
   },
   {
     "doc_id": "Chapter_3_16815349",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/Chapter_3.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/Chapter_3.pptx",
     "file_name": "Chapter_3.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -21,7 +21,7 @@
   },
   {
     "doc_id": "임상시험_84146123",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/임상시험.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/임상시험.pptx",
     "file_name": "임상시험.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -31,7 +31,7 @@
   },
   {
     "doc_id": "lecture14-webrtc-database_11831831",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/lecture14-webrtc-database.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/lecture14-webrtc-database.pptx",
     "file_name": "lecture14-webrtc-database.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -41,7 +41,7 @@
   },
   {
     "doc_id": "Migration_to_MAS_MS_v2_0_81147304",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/Migration_to_MAS_MS_v2_0.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/Migration_to_MAS_MS_v2_0.pptx",
     "file_name": "Migration_to_MAS_MS_v2_0.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -51,7 +51,7 @@
   },
   {
     "doc_id": "테러론 제3강_58910265",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/테러론 제3강.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/테러론 제3강.pptx",
     "file_name": "테러론 제3강.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -61,7 +61,7 @@
   },
   {
     "doc_id": "pss_303_jul_166_34943491",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/pss_303_jul_166.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/pss_303_jul_166.pptx",
     "file_name": "pss_303_jul_166.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -71,7 +71,7 @@
   },
   {
     "doc_id": "간호학개론-21.04.12_42064051",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/간호학개론-21.04.12.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/간호학개론-21.04.12.pptx",
     "file_name": "간호학개론-21.04.12.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -81,7 +81,7 @@
   },
   {
     "doc_id": "OPENANALYTICS_example_analysis_ppt_76808184",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/OPENANALYTICS_example_analysis_ppt.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/OPENANALYTICS_example_analysis_ppt.pptx",
     "file_name": "OPENANALYTICS_example_analysis_ppt.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -91,7 +91,7 @@
   },
   {
     "doc_id": "디지털 필터(2011-2)_71428396",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/디지털 필터(2011-2).pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/디지털 필터(2011-2).pptx",
     "file_name": "디지털 필터(2011-2).pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -101,7 +101,7 @@
   },
   {
     "doc_id": "2. [외국인 매뉴얼]학생증 신청 인터넷 예약방식_19287395",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/2. [외국인 매뉴얼]학생증 신청 인터넷 예약방식.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/2. [외국인 매뉴얼]학생증 신청 인터넷 예약방식.pptx",
     "file_name": "2. [외국인 매뉴얼]학생증 신청 인터넷 예약방식.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -111,7 +111,7 @@
   },
   {
     "doc_id": "2018_DUKE_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85__35740750",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/2018_DUKE_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/2018_DUKE_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C.pptx",
     "file_name": "2018_DUKE_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C.pptx",
     "source": "kdischool_eng",
     "type_group": "ppt_pptx",
@@ -121,7 +121,7 @@
   },
   {
     "doc_id": "dc-ckn_13715000",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/dc-ckn.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/dc-ckn.pptx",
     "file_name": "dc-ckn.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -131,7 +131,7 @@
   },
   {
     "doc_id": "siggraph_2D00_2018_2D00_mmg_2D00_1_2D00_101_2D00_andrewg_2D00_sh_74577710",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/siggraph_2D00_2018_2D00_mmg_2D00_1_2D00_101_2D00_andrewg_2D00_shrunkest.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/siggraph_2D00_2018_2D00_mmg_2D00_1_2D00_101_2D00_andrewg_2D00_shrunkest.pptx",
     "file_name": "siggraph_2D00_2018_2D00_mmg_2D00_1_2D00_101_2D00_andrewg_2D00_shrunkest.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -141,7 +141,7 @@
   },
   {
     "doc_id": "2018_LEEDS_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_18108868",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/2018_LEEDS_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/2018_LEEDS_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C.pptx",
     "file_name": "2018_LEEDS_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C.pptx",
     "source": "kdischool_eng",
     "type_group": "ppt_pptx",
@@ -151,7 +151,7 @@
   },
   {
     "doc_id": "03.KANG_Sunghyu_35922819",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/03.KANG_Sunghyu.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/03.KANG_Sunghyu.pptx",
     "file_name": "03.KANG_Sunghyu.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -161,7 +161,7 @@
   },
   {
     "doc_id": "Boiko_Lect_Purification_of_Materials_15240803",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/Boiko_Lect_Purification_of_Materials.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/Boiko_Lect_Purification_of_Materials.pptx",
     "file_name": "Boiko_Lect_Purification_of_Materials.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -171,7 +171,7 @@
   },
   {
     "doc_id": "Presentation_ID543_Maier_77126795",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/Presentation_ID543_Maier.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/Presentation_ID543_Maier.pptx",
     "file_name": "Presentation_ID543_Maier.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -181,7 +181,7 @@
   },
   {
     "doc_id": "2021_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_51728596",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/2021_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C_EC_9E_90_EB_A3_8C.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/2021_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C_EC_9E_90_EB_A3_8C.pptx",
     "file_name": "2021_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C_EC_9E_90_EB_A3_8C.pptx",
     "source": "kdischool_eng",
     "type_group": "ppt_pptx",
@@ -191,7 +191,7 @@
   },
   {
     "doc_id": "Linley-IoT_30250670",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/Linley-IoT.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/Linley-IoT.pptx",
     "file_name": "Linley-IoT.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -201,7 +201,7 @@
   },
   {
     "doc_id": "wifi_manual_77889704",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/wifi_manual.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/wifi_manual.pptx",
     "file_name": "wifi_manual.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -211,7 +211,7 @@
   },
   {
     "doc_id": "국가안보_교육실태와_발전방향_박휘락__16837588",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/국가안보_교육실태와_발전방향_박휘락_.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/국가안보_교육실태와_발전방향_박휘락_.pptx",
     "file_name": "국가안보_교육실태와_발전방향_박휘락_.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -221,7 +221,7 @@
   },
   {
     "doc_id": "Molybdenum_Lecture_55677139",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/Molybdenum_Lecture.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/Molybdenum_Lecture.pptx",
     "file_name": "Molybdenum_Lecture.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -231,7 +231,7 @@
   },
   {
     "doc_id": "2021_EB_B2_84_EB_B0_8D_EC_97_84_EB_8C_80_EC_84_A4_EB_AA_85_ED_9A_87439253",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/2021_EB_B2_84_EB_B0_8D_EC_97_84_EB_8C_80_EC_84_A4_EB_AA_85_ED_9A_8C_EB_B0_9C_ED_91_9C_EC_9E_90_EB_A3_8C.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/2021_EB_B2_84_EB_B0_8D_EC_97_84_EB_8C_80_EC_84_A4_EB_AA_85_ED_9A_8C_EB_B0_9C_ED_91_9C_EC_9E_90_EB_A3_8C.pptx",
     "file_name": "2021_EB_B2_84_EB_B0_8D_EC_97_84_EB_8C_80_EC_84_A4_EB_AA_85_ED_9A_8C_EB_B0_9C_ED_91_9C_EC_9E_90_EB_A3_8C.pptx",
     "source": "kdischool_eng",
     "type_group": "ppt_pptx",
@@ -241,7 +241,7 @@
   },
   {
     "doc_id": "lec9_72566878",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/lec9.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/lec9.pptx",
     "file_name": "lec9.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -251,7 +251,7 @@
   },
   {
     "doc_id": "2019_MSU_VIPP_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_30380782",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/2019_MSU_VIPP_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/2019_MSU_VIPP_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C.pptx",
     "file_name": "2019_MSU_VIPP_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C.pptx",
     "source": "kdischool_eng",
     "type_group": "ppt_pptx",
@@ -261,7 +261,7 @@
   },
   {
     "doc_id": "세계태권도 본부 국기원 등록 품단 현황_14107697",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/세계태권도 본부 국기원 등록 품단 현황.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/세계태권도 본부 국기원 등록 품단 현황.pptx",
     "file_name": "세계태권도 본부 국기원 등록 품단 현황.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -271,7 +271,7 @@
   },
   {
     "doc_id": "1017-dc-ckn-ppt_41006238",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/1017-dc-ckn-ppt.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/1017-dc-ckn-ppt.pptx",
     "file_name": "1017-dc-ckn-ppt.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -281,7 +281,7 @@
   },
   {
     "doc_id": "Premium_enablementv7_86475643",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/Premium_enablementv7.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/Premium_enablementv7.pptx",
     "file_name": "Premium_enablementv7.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -291,7 +291,7 @@
   },
   {
     "doc_id": "1. 2022 신입생 오리엔테이션 자료(학사지원팀)_15378729",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/1. 2022 신입생 오리엔테이션 자료(학사지원팀).pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/1. 2022 신입생 오리엔테이션 자료(학사지원팀).pptx",
     "file_name": "1. 2022 신입생 오리엔테이션 자료(학사지원팀).pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -301,7 +301,7 @@
   },
   {
     "doc_id": "제 8 장   차동증폭회로 - 강의용_61140029",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/제 8 장   차동증폭회로 - 강의용.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/제 8 장   차동증폭회로 - 강의용.pptx",
     "file_name": "제 8 장   차동증폭회로 - 강의용.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -311,7 +311,7 @@
   },
   {
     "doc_id": "DYEKP_SETUP_51993589",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/DYEKP_SETUP.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/DYEKP_SETUP.pptx",
     "file_name": "DYEKP_SETUP.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -321,7 +321,7 @@
   },
   {
     "doc_id": "8장_함수_89517337",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/8장_함수.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/8장_함수.pptx",
     "file_name": "8장_함수.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -331,7 +331,7 @@
   },
   {
     "doc_id": "재해예방_컨설턴트_모집_63643957",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/재해예방_컨설턴트_모집.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/재해예방_컨설턴트_모집.pptx",
     "file_name": "재해예방_컨설턴트_모집.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -341,7 +341,7 @@
   },
   {
     "doc_id": "대구스마트시티_ppt발표_12215093",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/대구스마트시티_ppt발표.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/대구스마트시티_ppt발표.pptx",
     "file_name": "대구스마트시티_ppt발표.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -351,7 +351,7 @@
   },
   {
     "doc_id": "Schizophrenia-Treatment-Principles_Slide_46__61521735",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/Schizophrenia-Treatment-Principles_Slide_46_.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/Schizophrenia-Treatment-Principles_Slide_46_.pptx",
     "file_name": "Schizophrenia-Treatment-Principles_Slide_46_.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -361,7 +361,7 @@
   },
   {
     "doc_id": "_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C__50943632",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C_KDI_School_presentation_March_2017_.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C_KDI_School_presentation_March_2017_.pptx",
     "file_name": "_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C_KDI_School_presentation_March_2017_.pptx",
     "source": "kdischool_eng",
     "type_group": "ppt_pptx",
@@ -371,7 +371,7 @@
   },
   {
     "doc_id": "pinadx-slides-cgo2012_90550915",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/pinadx-slides-cgo2012.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/pinadx-slides-cgo2012.pptx",
     "file_name": "pinadx-slides-cgo2012.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -381,7 +381,7 @@
   },
   {
     "doc_id": "사회복지조사방법론_62011208",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/사회복지조사방법론.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/사회복지조사방법론.pptx",
     "file_name": "사회복지조사방법론.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -391,7 +391,7 @@
   },
   {
     "doc_id": "3.3_Linear_Functions_49834591",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/3.3_Linear_Functions.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/3.3_Linear_Functions.pptx",
     "file_name": "3.3_Linear_Functions.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -401,7 +401,7 @@
   },
   {
     "doc_id": "2021_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_85253420",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/2021_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C_EB_B0_9C_ED_91_9C_EC_9E_90_EB_A3_8C.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/2021_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C_EB_B0_9C_ED_91_9C_EC_9E_90_EB_A3_8C.pptx",
     "file_name": "2021_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C_EB_B0_9C_ED_91_9C_EC_9E_90_EB_A3_8C.pptx",
     "source": "kdischool_eng",
     "type_group": "ppt_pptx",
@@ -411,7 +411,7 @@
   },
   {
     "doc_id": "C19051303_down_12452230",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/C19051303_down.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/C19051303_down.pptx",
     "file_name": "C19051303_down.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -421,7 +421,7 @@
   },
   {
     "doc_id": "lecture8-application-architecture-robertcohn-ptx-_30023490",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/lecture8-application-architecture-robertcohn-ptx-.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/lecture8-application-architecture-robertcohn-ptx-.pptx",
     "file_name": "lecture8-application-architecture-robertcohn-ptx-.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -431,7 +431,7 @@
   },
   {
     "doc_id": "2022_EB_B2_84_EB_B0_8D_EC_97_84_EB_8C_80_EC_84_A4_EB_AA_85_ED_9A_74632371",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/2022_EB_B2_84_EB_B0_8D_EC_97_84_EB_8C_80_EC_84_A4_EB_AA_85_ED_9A_8C_EB_B0_9C_ED_91_9C_EC_9E_90_EB_A3_8C.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/2022_EB_B2_84_EB_B0_8D_EC_97_84_EB_8C_80_EC_84_A4_EB_AA_85_ED_9A_8C_EB_B0_9C_ED_91_9C_EC_9E_90_EB_A3_8C.pptx",
     "file_name": "2022_EB_B2_84_EB_B0_8D_EC_97_84_EB_8C_80_EC_84_A4_EB_AA_85_ED_9A_8C_EB_B0_9C_ED_91_9C_EC_9E_90_EB_A3_8C.pptx",
     "source": "kdischool_eng",
     "type_group": "ppt_pptx",
@@ -441,7 +441,7 @@
   },
   {
     "doc_id": "신한은행 안내문(21년)_85617659",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/신한은행 안내문(21년).pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/신한은행 안내문(21년).pptx",
     "file_name": "신한은행 안내문(21년).pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -451,7 +451,7 @@
   },
   {
     "doc_id": "_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C__35003516",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C_VIPP.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C_VIPP.pptx",
     "file_name": "_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C_VIPP.pptx",
     "source": "kdischool_eng",
     "type_group": "ppt_pptx",
@@ -461,7 +461,7 @@
   },
   {
     "doc_id": "ICOMOS_66892043",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/ICOMOS.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/ICOMOS.pptx",
     "file_name": "ICOMOS.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -471,7 +471,7 @@
   },
   {
     "doc_id": "공직자 행동강령 연수_78715696",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/공직자 행동강령 연수.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/공직자 행동강령 연수.pptx",
     "file_name": "공직자 행동강령 연수.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -481,7 +481,7 @@
   },
   {
     "doc_id": "2024-1_기계공학실험_OT자료_오후반_88222286",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/2024-1_기계공학실험_OT자료_오후반.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/2024-1_기계공학실험_OT자료_오후반.pptx",
     "file_name": "2024-1_기계공학실험_OT자료_오후반.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -491,7 +491,7 @@
   },
   {
     "doc_id": "(배포) 원내 데이터 공동활용 시스템 데이터 등록 매뉴얼_81356411",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/(배포) 원내 데이터 공동활용 시스템 데이터 등록 매뉴얼.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/(배포) 원내 데이터 공동활용 시스템 데이터 등록 매뉴얼.pptx",
     "file_name": "(배포) 원내 데이터 공동활용 시스템 데이터 등록 매뉴얼.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -501,7 +501,7 @@
   },
   {
     "doc_id": "대만 국립 정치대학교 소개_57559636",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/대만 국립 정치대학교 소개.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/대만 국립 정치대학교 소개.pptx",
     "file_name": "대만 국립 정치대학교 소개.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -511,7 +511,7 @@
   },
   {
     "doc_id": "2021_EB_A0_88_EB_94_A9_EB_8C_80_EC_84_A4_EB_AA_85_ED_9A_8C_EC_9E_41312690",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/2021_EB_A0_88_EB_94_A9_EB_8C_80_EC_84_A4_EB_AA_85_ED_9A_8C_EC_9E_90_EB_A3_8C.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/2021_EB_A0_88_EB_94_A9_EB_8C_80_EC_84_A4_EB_AA_85_ED_9A_8C_EC_9E_90_EB_A3_8C.pptx",
     "file_name": "2021_EB_A0_88_EB_94_A9_EB_8C_80_EC_84_A4_EB_AA_85_ED_9A_8C_EC_9E_90_EB_A3_8C.pptx",
     "source": "kdischool_eng",
     "type_group": "ppt_pptx",
@@ -521,7 +521,7 @@
   },
   {
     "doc_id": "16_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8_32910892",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/16_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/16_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C.pptx",
     "file_name": "16_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C.pptx",
     "source": "kdischool_eng",
     "type_group": "ppt_pptx",
@@ -531,7 +531,7 @@
   },
   {
     "doc_id": "선교사가 되는 길_전송용_88628519",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/선교사가 되는 길_전송용.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/선교사가 되는 길_전송용.pptx",
     "file_name": "선교사가 되는 길_전송용.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -541,7 +541,7 @@
   },
   {
     "doc_id": "Presentation_ID9_Wu_77483294",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/Presentation_ID9_Wu.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/Presentation_ID9_Wu.pptx",
     "file_name": "Presentation_ID9_Wu.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -551,7 +551,7 @@
   },
   {
     "doc_id": "57_Slides_UFLIFoundations_89787839",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/57_Slides_UFLIFoundations.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/57_Slides_UFLIFoundations.pptx",
     "file_name": "57_Slides_UFLIFoundations.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -561,7 +561,7 @@
   },
   {
     "doc_id": "integration_of_amp_52549421",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/integration_of_amp.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/integration_of_amp.pptx",
     "file_name": "integration_of_amp.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -571,7 +571,7 @@
   },
   {
     "doc_id": "2023_금융동향_70341004",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/2023_금융동향.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/2023_금융동향.pptx",
     "file_name": "2023_금융동향.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -581,7 +581,7 @@
   },
   {
     "doc_id": "2022년도 1학기 오리엔테이션 자료_70846806",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/2022년도 1학기 오리엔테이션 자료.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/2022년도 1학기 오리엔테이션 자료.pptx",
     "file_name": "2022년도 1학기 오리엔테이션 자료.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -591,7 +591,7 @@
   },
   {
     "doc_id": "CAIR-2016-Creating-Interactive-Reports-Using-Excel-Pivot-Tables_15716856",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/CAIR-2016-Creating-Interactive-Reports-Using-Excel-Pivot-Tables.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/CAIR-2016-Creating-Interactive-Reports-Using-Excel-Pivot-Tables.pptx",
     "file_name": "CAIR-2016-Creating-Interactive-Reports-Using-Excel-Pivot-Tables.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -601,7 +601,7 @@
   },
   {
     "doc_id": "스팀박스_20124632",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/스팀박스.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/스팀박스.pptx",
     "file_name": "스팀박스.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -611,7 +611,7 @@
   },
   {
     "doc_id": "DSAC AI Cluster 교육 및 자격 취득 제안서_22535594",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/DSAC AI Cluster 교육 및 자격 취득 제안서.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/DSAC AI Cluster 교육 및 자격 취득 제안서.pptx",
     "file_name": "DSAC AI Cluster 교육 및 자격 취득 제안서.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -621,7 +621,7 @@
   },
   {
     "doc_id": "CRISPR-Cas9_89636756",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/CRISPR-Cas9.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/CRISPR-Cas9.pptx",
     "file_name": "CRISPR-Cas9.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -631,7 +631,7 @@
   },
   {
     "doc_id": "한국과 일본의 장애인 대우 비교_26862328",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/한국과 일본의 장애인 대우 비교.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/한국과 일본의 장애인 대우 비교.pptx",
     "file_name": "한국과 일본의 장애인 대우 비교.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -641,7 +641,7 @@
   },
   {
     "doc_id": "_EB_85_B8_ED_8C_85_EC_97_84_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99__12458293",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/_EB_85_B8_ED_8C_85_EC_97_84_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C_2019.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/_EB_85_B8_ED_8C_85_EC_97_84_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C_2019.pptx",
     "file_name": "_EB_85_B8_ED_8C_85_EC_97_84_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C_2019.pptx",
     "source": "kdischool_eng",
     "type_group": "ppt_pptx",
@@ -651,7 +651,7 @@
   },
   {
     "doc_id": "_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C__22885698",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C_17_EB_AF_B8_EC_A3_BC_EB_A6_AC.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C_17_EB_AF_B8_EC_A3_BC_EB_A6_AC.pptx",
     "file_name": "_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_EC_84_A4_EB_AA_85_ED_9A_8C_17_EB_AF_B8_EC_A3_BC_EB_A6_AC.pptx",
     "source": "kdischool_eng",
     "type_group": "ppt_pptx",
@@ -661,7 +661,7 @@
   },
   {
     "doc_id": "Genian_NAC_Datasheet_10483355",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/Genian_NAC_Datasheet.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/Genian_NAC_Datasheet.pptx",
     "file_name": "Genian_NAC_Datasheet.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -671,7 +671,7 @@
   },
   {
     "doc_id": "Suppliers_Contingent_Workforce_Policy_Overview_66233817",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/Suppliers_Contingent_Workforce_Policy_Overview.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/Suppliers_Contingent_Workforce_Policy_Overview.pptx",
     "file_name": "Suppliers_Contingent_Workforce_Policy_Overview.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -681,7 +681,7 @@
   },
   {
     "doc_id": "붙임2. 2026 HL Future Day IDEA 일정(접수) 안내 260311_42776398",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/붙임2. 2026 HL Future Day IDEA 일정(접수) 안내 260311.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/붙임2. 2026 HL Future Day IDEA 일정(접수) 안내 260311.pptx",
     "file_name": "붙임2. 2026 HL Future Day IDEA 일정(접수) 안내 260311.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -691,7 +691,7 @@
   },
   {
     "doc_id": "Mechanisms_20of_20Industrial_20Revolution_32730955",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/Mechanisms_20of_20Industrial_20Revolution.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/Mechanisms_20of_20Industrial_20Revolution.pptx",
     "file_name": "Mechanisms_20of_20Industrial_20Revolution.pptx",
     "source": "bok_publications",
     "type_group": "ppt_pptx",
@@ -701,7 +701,7 @@
   },
   {
     "doc_id": "WM09_49123617",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/WM09.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/WM09.pptx",
     "file_name": "WM09.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -711,7 +711,7 @@
   },
   {
     "doc_id": "190509_세종과학기술인대회 생명분야 및 융복합분야 발표자료_44554832",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/190509_세종과학기술인대회 생명분야 및 융복합분야 발표자료.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/190509_세종과학기술인대회 생명분야 및 융복합분야 발표자료.pptx",
     "file_name": "190509_세종과학기술인대회 생명분야 및 융복합분야 발표자료.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -721,7 +721,7 @@
   },
   {
     "doc_id": "방사선_manual_90494008",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/방사선_manual.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/방사선_manual.pptx",
     "file_name": "방사선_manual.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -731,7 +731,7 @@
   },
   {
     "doc_id": "IBM_Spectrum_Protect_Secure_Communication_overview_29014863",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/IBM_Spectrum_Protect_Secure_Communication_overview.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/IBM_Spectrum_Protect_Secure_Communication_overview.pptx",
     "file_name": "IBM_Spectrum_Protect_Secure_Communication_overview.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -741,7 +741,7 @@
   },
   {
     "doc_id": "신종 코로나바이러스 감염증 고려대학교 세종캠퍼스 대응 지침_56175649",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/신종 코로나바이러스 감염증 고려대학교 세종캠퍼스 대응 지침.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/신종 코로나바이러스 감염증 고려대학교 세종캠퍼스 대응 지침.pptx",
     "file_name": "신종 코로나바이러스 감염증 고려대학교 세종캠퍼스 대응 지침.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -751,7 +751,7 @@
   },
   {
     "doc_id": "_2013_09_05_2012_34_64077128",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/_2013_09_05_2012_34.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/_2013_09_05_2012_34.pptx",
     "file_name": "_2013_09_05_2012_34.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -761,7 +761,7 @@
   },
   {
     "doc_id": "A+ 리포트 작성법 강의자료_41944567",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/A+ 리포트 작성법 강의자료.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/A+ 리포트 작성법 강의자료.pptx",
     "file_name": "A+ 리포트 작성법 강의자료.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -771,7 +771,7 @@
   },
   {
     "doc_id": "KrSIG_kor_20160923_16507762",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/KrSIG_kor_20160923.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/KrSIG_kor_20160923.pptx",
     "file_name": "KrSIG_kor_20160923.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -781,7 +781,7 @@
   },
   {
     "doc_id": "LEC01_DESIGN_DRONE_75081006",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/LEC01_DESIGN_DRONE.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/LEC01_DESIGN_DRONE.pptx",
     "file_name": "LEC01_DESIGN_DRONE.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -791,7 +791,7 @@
   },
   {
     "doc_id": "Presentation_ID390_Cariello_80747529",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/Presentation_ID390_Cariello.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/Presentation_ID390_Cariello.pptx",
     "file_name": "Presentation_ID390_Cariello.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -801,7 +801,7 @@
   },
   {
     "doc_id": "통신설비구축_42563054",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/통신설비구축.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/통신설비구축.pptx",
     "file_name": "통신설비구축.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -811,7 +811,7 @@
   },
   {
     "doc_id": "상담_사례개념화_한신대_강의_18544807",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/상담_사례개념화_한신대_강의.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/상담_사례개념화_한신대_강의.pptx",
     "file_name": "상담_사례개념화_한신대_강의.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -821,7 +821,7 @@
   },
   {
     "doc_id": "작동기능점검교육자동화재탐지설비1_용량_30490232",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/작동기능점검교육자동화재탐지설비1_용량.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/작동기능점검교육자동화재탐지설비1_용량.pptx",
     "file_name": "작동기능점검교육자동화재탐지설비1_용량.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -831,7 +831,7 @@
   },
   {
     "doc_id": "Noe7e_PPT_ch01_86512575",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/Noe7e_PPT_ch01.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/Noe7e_PPT_ch01.pptx",
     "file_name": "Noe7e_PPT_ch01.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -841,7 +841,7 @@
   },
   {
     "doc_id": "2021_GWU_EC_84_A4_EB_AA_85_ED_9A_8C_EB_B0_9C_ED_91_9C_EC_9E_90_E_13174547",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/2021_GWU_EC_84_A4_EB_AA_85_ED_9A_8C_EB_B0_9C_ED_91_9C_EC_9E_90_EB_A3_8C.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/2021_GWU_EC_84_A4_EB_AA_85_ED_9A_8C_EB_B0_9C_ED_91_9C_EC_9E_90_EB_A3_8C.pptx",
     "file_name": "2021_GWU_EC_84_A4_EB_AA_85_ED_9A_8C_EB_B0_9C_ED_91_9C_EC_9E_90_EB_A3_8C.pptx",
     "source": "kdischool_eng",
     "type_group": "ppt_pptx",
@@ -851,7 +851,7 @@
   },
   {
     "doc_id": "Arm_NN_-_AI_Tech_Talks_30714839",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/Arm_NN_-_AI_Tech_Talks.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/Arm_NN_-_AI_Tech_Talks.pptx",
     "file_name": "Arm_NN_-_AI_Tech_Talks.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -861,7 +861,7 @@
   },
   {
     "doc_id": "5.5 전국_AI_방역대_현황_11660737",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/5.5 전국_AI_방역대_현황.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/5.5 전국_AI_방역대_현황.pptx",
     "file_name": "5.5 전국_AI_방역대_현황.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -871,7 +871,7 @@
   },
   {
     "doc_id": "공공후견인지원사업의 이해 강의 자료(명노연 변호사)) 제공용_59900273",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/공공후견인지원사업의 이해 강의 자료(명노연 변호사)) 제공용.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/공공후견인지원사업의 이해 강의 자료(명노연 변호사)) 제공용.pptx",
     "file_name": "공공후견인지원사업의 이해 강의 자료(명노연 변호사)) 제공용.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -881,7 +881,7 @@
   },
   {
     "doc_id": "증산작용 실험 탐구 지도 프로그램 발표 ppt_76324747",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/증산작용 실험 탐구 지도 프로그램 발표 ppt.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/증산작용 실험 탐구 지도 프로그램 발표 ppt.pptx",
     "file_name": "증산작용 실험 탐구 지도 프로그램 발표 ppt.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -891,7 +891,7 @@
   },
   {
     "doc_id": "file_201706_5950745f0d2d0_81942103",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/file_201706_5950745f0d2d0.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/file_201706_5950745f0d2d0.pptx",
     "file_name": "file_201706_5950745f0d2d0.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -901,7 +901,7 @@
   },
   {
     "doc_id": "인행사 ppt_20241188",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/인행사 ppt.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/인행사 ppt.pptx",
     "file_name": "인행사 ppt.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -911,7 +911,7 @@
   },
   {
     "doc_id": "Introduction_to_Thrust_23027383",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/Introduction_to_Thrust.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/Introduction_to_Thrust.pptx",
     "file_name": "Introduction_to_Thrust.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -921,7 +921,7 @@
   },
   {
     "doc_id": "2021_MSU_VIPP_EC_84_A4_EB_AA_85_ED_9A_8C_EB_B0_9C_ED_91_9C_EC_9E_83941179",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/2021_MSU_VIPP_EC_84_A4_EB_AA_85_ED_9A_8C_EB_B0_9C_ED_91_9C_EC_9E_90_EB_A3_8C.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/2021_MSU_VIPP_EC_84_A4_EB_AA_85_ED_9A_8C_EB_B0_9C_ED_91_9C_EC_9E_90_EB_A3_8C.pptx",
     "file_name": "2021_MSU_VIPP_EC_84_A4_EB_AA_85_ED_9A_8C_EB_B0_9C_ED_91_9C_EC_9E_90_EB_A3_8C.pptx",
     "source": "kdischool_eng",
     "type_group": "ppt_pptx",
@@ -931,7 +931,7 @@
   },
   {
     "doc_id": "KDI_final_2020_no_videos_281_29_25892395",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/KDI_final_2020_no_videos_281_29.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/KDI_final_2020_no_videos_281_29.pptx",
     "file_name": "KDI_final_2020_no_videos_281_29.pptx",
     "source": "kdischool_eng",
     "type_group": "ppt_pptx",
@@ -941,7 +941,7 @@
   },
   {
     "doc_id": "rice-2989-microplastics-filtration-presentation_65168810",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/rice-2989-microplastics-filtration-presentation.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/rice-2989-microplastics-filtration-presentation.pptx",
     "file_name": "rice-2989-microplastics-filtration-presentation.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -951,7 +951,7 @@
   },
   {
     "doc_id": "안전사고_71053912",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/안전사고.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/안전사고.pptx",
     "file_name": "안전사고.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -961,7 +961,7 @@
   },
   {
     "doc_id": "청탁금지 제도 운영 교육자료(권익위)_34576370",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/청탁금지 제도 운영 교육자료(권익위).pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/청탁금지 제도 운영 교육자료(권익위).pptx",
     "file_name": "청탁금지 제도 운영 교육자료(권익위).pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -971,7 +971,7 @@
   },
   {
     "doc_id": "감정조절_79025112",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_kr/files/감정조절.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_kr/files/감정조절.pptx",
     "file_name": "감정조절.pptx",
     "source": "web_pptx_kr",
     "type_group": "ppt_pptx",
@@ -981,7 +981,7 @@
   },
   {
     "doc_id": "Why_GPU_Computing_50361338",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/web_pptx_en/files/Why_GPU_Computing.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/web_pptx_en/files/Why_GPU_Computing.pptx",
     "file_name": "Why_GPU_Computing.pptx",
     "source": "web_pptx_en",
     "type_group": "ppt_pptx",
@@ -991,7 +991,7 @@
   },
   {
     "doc_id": "2021_ED_80_B8_EC_A6_88_EB_9E_9C_EB_93_9C_EB_8C_80_EC_84_A4_EB_AA_59004146",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/2021_ED_80_B8_EC_A6_88_EB_9E_9C_EB_93_9C_EB_8C_80_EC_84_A4_EB_AA_85_ED_9A_8C_EB_B0_9C_ED_91_9C_EC_9E_90_EB_A3_8C.pptx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/2021_ED_80_B8_EC_A6_88_EB_9E_9C_EB_93_9C_EB_8C_80_EC_84_A4_EB_AA_85_ED_9A_8C_EB_B0_9C_ED_91_9C_EC_9E_90_EB_A3_8C.pptx",
     "file_name": "2021_ED_80_B8_EC_A6_88_EB_9E_9C_EB_93_9C_EB_8C_80_EC_84_A4_EB_AA_85_ED_9A_8C_EB_B0_9C_ED_91_9C_EC_9E_90_EB_A3_8C.pptx",
     "source": "kdischool_eng",
     "type_group": "ppt_pptx",

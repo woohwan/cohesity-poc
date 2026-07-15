@@ -1,7 +1,7 @@
 [
   {
     "doc_id": "2024_EB_85_84_EB_8F_84_1_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB__18132213",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/2024_EB_85_84_EB_8F_84_1_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/2024_EB_85_84_EB_8F_84_1_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xls",
     "file_name": "2024_EB_85_84_EB_8F_84_1_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xls",
     "source": "kdischool_eng",
     "type_group": "xlsx_xls_csv",
@@ -11,7 +11,7 @@
   },
   {
     "doc_id": "청년_삶의_질_2025_메타데이터_최종__82408947",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kostat_eng/files/청년_삶의_질_2025_메타데이터_최종_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kostat_eng/files/청년_삶의_질_2025_메타데이터_최종_.xlsx",
     "file_name": "청년_삶의_질_2025_메타데이터_최종_.xlsx",
     "source": "kostat_eng",
     "type_group": "xlsx_xls_csv",
@@ -21,7 +21,7 @@
   },
   {
     "doc_id": "청렴옴부즈만운영현황_2016년_61375317",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/knto_tourism/files/청렴옴부즈만운영현황_2016년.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/knto_tourism/files/청렴옴부즈만운영현황_2016년.xlsx",
     "file_name": "청렴옴부즈만운영현황_2016년.xlsx",
     "source": "knto_tourism",
     "type_group": "xlsx_xls_csv",
@@ -31,7 +31,7 @@
   },
   {
     "doc_id": "ESM_17_11123702",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/english_reference/files/ESM_17.csv",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/english_reference/files/ESM_17.csv",
     "file_name": "ESM_17.csv",
     "source": "english_reference",
     "type_group": "xlsx_xls_csv",
@@ -41,7 +41,7 @@
   },
   {
     "doc_id": "200906__EB_AC_B8_EC_84_9C_EB_93_B1_EB_A1_9D_32807126",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/mcst_culture/files/200906__EB_AC_B8_EC_84_9C_EB_93_B1_EB_A1_9D.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/mcst_culture/files/200906__EB_AC_B8_EC_84_9C_EB_93_B1_EB_A1_9D.xls",
     "file_name": "200906__EB_AC_B8_EC_84_9C_EB_93_B1_EB_A1_9D.xls",
     "source": "mcst_culture",
     "type_group": "xlsx_xls_csv",
@@ -51,7 +51,7 @@
   },
   {
     "doc_id": "7월분_업무추진비_공개내역_국립통일교육원장__88784855",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/unikorea_unification/files/7월분_업무추진비_공개내역_국립통일교육원장_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/unikorea_unification/files/7월분_업무추진비_공개내역_국립통일교육원장_.xlsx",
     "file_name": "7월분_업무추진비_공개내역_국립통일교육원장_.xlsx",
     "source": "unikorea_unification",
     "type_group": "xlsx_xls_csv",
@@ -61,7 +61,7 @@
   },
   {
     "doc_id": "02-3_돌봄_필요_노인의_현황_및_특성_2023__69152146",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kostat_eng/files/02-3_돌봄_필요_노인의_현황_및_특성_2023_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kostat_eng/files/02-3_돌봄_필요_노인의_현황_및_특성_2023_.xlsx",
     "file_name": "02-3_돌봄_필요_노인의_현황_및_특성_2023_.xlsx",
     "source": "kostat_eng",
     "type_group": "xlsx_xls_csv",
@@ -71,7 +71,7 @@
   },
   {
     "doc_id": "2013.6월정보공개문서목록_13229989",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/knto_tourism/files/2013.6월정보공개문서목록.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/knto_tourism/files/2013.6월정보공개문서목록.xls",
     "file_name": "2013.6월정보공개문서목록.xls",
     "source": "knto_tourism",
     "type_group": "xlsx_xls_csv",
@@ -81,7 +81,7 @@
   },
   {
     "doc_id": "12_EC_9B_94_EA_B3_B5_EA_B0_9C_EB_AA_A9_EB_A1_9D_90650107",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/mcst_culture/files/12_EC_9B_94_EA_B3_B5_EA_B0_9C_EB_AA_A9_EB_A1_9D.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/mcst_culture/files/12_EC_9B_94_EA_B3_B5_EA_B0_9C_EB_AA_A9_EB_A1_9D.xls",
     "file_name": "12_EC_9B_94_EA_B3_B5_EA_B0_9C_EB_AA_A9_EB_A1_9D.xls",
     "source": "mcst_culture",
     "type_group": "xlsx_xls_csv",
@@ -91,7 +91,7 @@
   },
   {
     "doc_id": "2024년_보도자료_부록_통계표_65531437",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kostat_eng/files/2024년_보도자료_부록_통계표.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kostat_eng/files/2024년_보도자료_부록_통계표.xlsx",
     "file_name": "2024년_보도자료_부록_통계표.xlsx",
     "source": "kostat_eng",
     "type_group": "xlsx_xls_csv",
@@ -101,7 +101,7 @@
   },
   {
     "doc_id": "2월분_업무추진비_공개내역_국립통일교육원장__24896525",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/unikorea_unification/files/2월분_업무추진비_공개내역_국립통일교육원장_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/unikorea_unification/files/2월분_업무추진비_공개내역_국립통일교육원장_.xlsx",
     "file_name": "2월분_업무추진비_공개내역_국립통일교육원장_.xlsx",
     "source": "unikorea_unification",
     "type_group": "xlsx_xls_csv",
@@ -111,7 +111,7 @@
   },
   {
     "doc_id": "05-2_노동_인구구조_변화와_중장년_노동시장_91359819",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kostat_eng/files/05-2_노동_인구구조_변화와_중장년_노동시장.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kostat_eng/files/05-2_노동_인구구조_변화와_중장년_노동시장.xlsx",
     "file_name": "05-2_노동_인구구조_변화와_중장년_노동시장.xlsx",
     "source": "kostat_eng",
     "type_group": "xlsx_xls_csv",
@@ -121,7 +121,7 @@
   },
   {
     "doc_id": "호남청_지역통계_기술지원_현황_2013_2021년__게시용_23214401",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kostat_eng/files/호남청_지역통계_기술지원_현황_2013_2021년__게시용.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kostat_eng/files/호남청_지역통계_기술지원_현황_2013_2021년__게시용.xlsx",
     "file_name": "호남청_지역통계_기술지원_현황_2013_2021년__게시용.xlsx",
     "source": "kostat_eng",
     "type_group": "xlsx_xls_csv",
@@ -131,7 +131,7 @@
   },
   {
     "doc_id": "2014.03월정보공개문서목록_73665491",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/knto_tourism/files/2014.03월정보공개문서목록.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/knto_tourism/files/2014.03월정보공개문서목록.xlsx",
     "file_name": "2014.03월정보공개문서목록.xlsx",
     "source": "knto_tourism",
     "type_group": "xlsx_xls_csv",
@@ -141,7 +141,7 @@
   },
   {
     "doc_id": "2019_gswgs_03_74477935",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/nhis_stats/files/2019_gswgs_03.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/nhis_stats/files/2019_gswgs_03.xlsx",
     "file_name": "2019_gswgs_03.xlsx",
     "source": "nhis_stats",
     "type_group": "xlsx_xls_csv",
@@ -151,7 +151,7 @@
   },
   {
     "doc_id": "2013.11월정보공개문서목록_29443514",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/knto_tourism/files/2013.11월정보공개문서목록.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/knto_tourism/files/2013.11월정보공개문서목록.xlsx",
     "file_name": "2013.11월정보공개문서목록.xlsx",
     "source": "knto_tourism",
     "type_group": "xlsx_xls_csv",
@@ -161,7 +161,7 @@
   },
   {
     "doc_id": "ESM_14_75969434",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/english_reference/files/ESM_14.csv",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/english_reference/files/ESM_14.csv",
     "file_name": "ESM_14.csv",
     "source": "english_reference",
     "type_group": "xlsx_xls_csv",
@@ -171,7 +171,7 @@
   },
   {
     "doc_id": "Table202601p_79832573",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/Table202601p.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/Table202601p.xlsx",
     "file_name": "Table202601p.xlsx",
     "source": "bok_publications",
     "type_group": "xlsx_xls_csv",
@@ -181,7 +181,7 @@
   },
   {
     "doc_id": "아동청소년_삶의_질_20250401_ONE_FILE_74877474",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kostat_eng/files/아동청소년_삶의_질_20250401_ONE_FILE.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kostat_eng/files/아동청소년_삶의_질_20250401_ONE_FILE.xlsx",
     "file_name": "아동청소년_삶의_질_20250401_ONE_FILE.xlsx",
     "source": "kostat_eng",
     "type_group": "xlsx_xls_csv",
@@ -191,7 +191,7 @@
   },
   {
     "doc_id": "02-1_1부_가구가족_가구_가족_영역의_주요_동향_81518197",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kostat_eng/files/02-1_1부_가구가족_가구_가족_영역의_주요_동향.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kostat_eng/files/02-1_1부_가구가족_가구_가족_영역의_주요_동향.xlsx",
     "file_name": "02-1_1부_가구가족_가구_가족_영역의_주요_동향.xlsx",
     "source": "kostat_eng",
     "type_group": "xlsx_xls_csv",
@@ -201,7 +201,7 @@
   },
   {
     "doc_id": "_중국인식당_89570952",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/knto_tourism/files/_중국인식당.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/knto_tourism/files/_중국인식당.xls",
     "file_name": "_중국인식당.xls",
     "source": "knto_tourism",
     "type_group": "xlsx_xls_csv",
@@ -211,7 +211,7 @@
   },
   {
     "doc_id": "02-1_가구_가족_영역의_주요_동향_2022__34703591",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kostat_eng/files/02-1_가구_가족_영역의_주요_동향_2022_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kostat_eng/files/02-1_가구_가족_영역의_주요_동향_2022_.xlsx",
     "file_name": "02-1_가구_가족_영역의_주요_동향_2022_.xlsx",
     "source": "kostat_eng",
     "type_group": "xlsx_xls_csv",
@@ -221,7 +221,7 @@
   },
   {
     "doc_id": "2015.02월정보공개문서목록_79145309",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/knto_tourism/files/2015.02월정보공개문서목록.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/knto_tourism/files/2015.02월정보공개문서목록.xlsx",
     "file_name": "2015.02월정보공개문서목록.xlsx",
     "source": "knto_tourism",
     "type_group": "xlsx_xls_csv",
@@ -231,7 +231,7 @@
   },
   {
     "doc_id": "_재개방_필요_충청남도_공공건축물_현황_20240703_78932974",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/data_go_kr/files/_재개방_필요_충청남도_공공건축물_현황_20240703.csv",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/data_go_kr/files/_재개방_필요_충청남도_공공건축물_현황_20240703.csv",
     "file_name": "_재개방_필요_충청남도_공공건축물_현황_20240703.csv",
     "source": "data_go_kr",
     "type_group": "xlsx_xls_csv",
@@ -241,7 +241,7 @@
   },
   {
     "doc_id": "03-1_건강_건강_영역의_주요_동향_70548034",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kostat_eng/files/03-1_건강_건강_영역의_주요_동향.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kostat_eng/files/03-1_건강_건강_영역의_주요_동향.xlsx",
     "file_name": "03-1_건강_건강_영역의_주요_동향.xlsx",
     "source": "kostat_eng",
     "type_group": "xlsx_xls_csv",
@@ -251,7 +251,7 @@
   },
   {
     "doc_id": "10-1_범죄_안전_영역의_주요_동향_2022__12970930",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kostat_eng/files/10-1_범죄_안전_영역의_주요_동향_2022_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kostat_eng/files/10-1_범죄_안전_영역의_주요_동향_2022_.xlsx",
     "file_name": "10-1_범죄_안전_영역의_주요_동향_2022_.xlsx",
     "source": "kostat_eng",
     "type_group": "xlsx_xls_csv",
@@ -261,7 +261,7 @@
   },
   {
     "doc_id": "_검토완료_한국장학재단_고교_취업연계_장려금_참여_고등학교_현황_260612_26218002",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/data_go_kr/files/_검토완료_한국장학재단_고교_취업연계_장려금_참여_고등학교_현황_260612.csv",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/data_go_kr/files/_검토완료_한국장학재단_고교_취업연계_장려금_참여_고등학교_현황_260612.csv",
     "file_name": "_검토완료_한국장학재단_고교_취업연계_장려금_참여_고등학교_현황_260612.csv",
     "source": "data_go_kr",
     "type_group": "xlsx_xls_csv",
@@ -271,7 +271,7 @@
   },
   {
     "doc_id": "journal-15-겨울_78870684",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-15-겨울.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-15-겨울.xls",
     "file_name": "journal-15-겨울.xls",
     "source": "gov_policy_reports",
     "type_group": "xlsx_xls_csv",
@@ -281,7 +281,7 @@
   },
   {
     "doc_id": "journal-32-4_90149524",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-32-4.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-32-4.xls",
     "file_name": "journal-32-4.xls",
     "source": "gov_policy_reports",
     "type_group": "xlsx_xls_csv",
@@ -291,7 +291,7 @@
   },
   {
     "doc_id": "2022_EB_85_84_9_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_54591365",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/2022_EB_85_84_9_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/2022_EB_85_84_9_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xls",
     "file_name": "2022_EB_85_84_9_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xls",
     "source": "kdischool_eng",
     "type_group": "xlsx_xls_csv",
@@ -301,7 +301,7 @@
   },
   {
     "doc_id": "동남지방데이터청_지역통계_생산대행_및_기술지원_현황_21_25년__88985229",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kostat_eng/files/동남지방데이터청_지역통계_생산대행_및_기술지원_현황_21_25년_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kostat_eng/files/동남지방데이터청_지역통계_생산대행_및_기술지원_현황_21_25년_.xlsx",
     "file_name": "동남지방데이터청_지역통계_생산대행_및_기술지원_현황_21_25년_.xlsx",
     "source": "kostat_eng",
     "type_group": "xlsx_xls_csv",
@@ -311,7 +311,7 @@
   },
   {
     "doc_id": "2015.07월정보공개문서목록_87059142",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/knto_tourism/files/2015.07월정보공개문서목록.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/knto_tourism/files/2015.07월정보공개문서목록.xlsx",
     "file_name": "2015.07월정보공개문서목록.xlsx",
     "source": "knto_tourism",
     "type_group": "xlsx_xls_csv",
@@ -321,7 +321,7 @@
   },
   {
     "doc_id": "journal-6-가을_38392684",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-6-가을.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-6-가을.xls",
     "file_name": "journal-6-가을.xls",
     "source": "gov_policy_reports",
     "type_group": "xlsx_xls_csv",
@@ -331,7 +331,7 @@
   },
   {
     "doc_id": "2025_EA_B0_80_EC_9D_84_EA_B8_B0_EC_A4_80_EA_B5_90_ED_99_98_ED_95_24013899",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/2025_EA_B0_80_EC_9D_84_EA_B8_B0_EC_A4_80_EA_B5_90_ED_99_98_ED_95_99_EC_83_9D_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_ED_98_84_ED_99_A9_update.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/2025_EA_B0_80_EC_9D_84_EA_B8_B0_EC_A4_80_EA_B5_90_ED_99_98_ED_95_99_EC_83_9D_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_ED_98_84_ED_99_A9_update.xls",
     "file_name": "2025_EA_B0_80_EC_9D_84_EA_B8_B0_EC_A4_80_EA_B5_90_ED_99_98_ED_95_99_EC_83_9D_EC_A0_9C_ED_9C_B4_EB_8C_80_ED_95_99_ED_98_84_ED_99_A9_update.xls",
     "source": "kdischool_eng",
     "type_group": "xlsx_xls_csv",
@@ -341,7 +341,7 @@
   },
   {
     "doc_id": "11-1_2부_사회통합주관적웰빙_인권침해와_차별_경험_실태_및_삶의_만족도에_미치는_영향_77690606",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kostat_eng/files/11-1_2부_사회통합주관적웰빙_인권침해와_차별_경험_실태_및_삶의_만족도에_미치는_영향.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kostat_eng/files/11-1_2부_사회통합주관적웰빙_인권침해와_차별_경험_실태_및_삶의_만족도에_미치는_영향.xlsx",
     "file_name": "11-1_2부_사회통합주관적웰빙_인권침해와_차별_경험_실태_및_삶의_만족도에_미치는_영향.xlsx",
     "source": "kostat_eng",
     "type_group": "xlsx_xls_csv",
@@ -351,7 +351,7 @@
   },
   {
     "doc_id": "2026-2월_업추비_공개_95588571",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/unikorea_unification/files/2026-2월_업추비_공개.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/unikorea_unification/files/2026-2월_업추비_공개.xlsx",
     "file_name": "2026-2월_업추비_공개.xlsx",
     "source": "unikorea_unification",
     "type_group": "xlsx_xls_csv",
@@ -361,7 +361,7 @@
   },
   {
     "doc_id": "2021_04_2_코로나19_시대_학교교육의_변화_및_교육격차_실태_40498933",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kostat_eng/files/2021_04_2_코로나19_시대_학교교육의_변화_및_교육격차_실태.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kostat_eng/files/2021_04_2_코로나19_시대_학교교육의_변화_및_교육격차_실태.xlsx",
     "file_name": "2021_04_2_코로나19_시대_학교교육의_변화_및_교육격차_실태.xlsx",
     "source": "kostat_eng",
     "type_group": "xlsx_xls_csv",
@@ -371,7 +371,7 @@
   },
   {
     "doc_id": "한국도로교통공단_사고유형별_월별_교통사고_통계_2024__82703230",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/data_go_kr/files/한국도로교통공단_사고유형별_월별_교통사고_통계_2024_.csv",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/data_go_kr/files/한국도로교통공단_사고유형별_월별_교통사고_통계_2024_.csv",
     "file_name": "한국도로교통공단_사고유형별_월별_교통사고_통계_2024_.csv",
     "source": "data_go_kr",
     "type_group": "xlsx_xls_csv",
@@ -381,7 +381,7 @@
   },
   {
     "doc_id": "2017-7월분_업무추진비_공개내역_장차관__17543872",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/unikorea_unification/files/2017-7월분_업무추진비_공개내역_장차관_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/unikorea_unification/files/2017-7월분_업무추진비_공개내역_장차관_.xlsx",
     "file_name": "2017-7월분_업무추진비_공개내역_장차관_.xlsx",
     "source": "unikorea_unification",
     "type_group": "xlsx_xls_csv",
@@ -391,7 +391,7 @@
   },
   {
     "doc_id": "서울특별시_통계표_2026.5.__23191215",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kostat_eng/files/서울특별시_통계표_2026.5._.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kostat_eng/files/서울특별시_통계표_2026.5._.xlsx",
     "file_name": "서울특별시_통계표_2026.5._.xlsx",
     "source": "kostat_eng",
     "type_group": "xlsx_xls_csv",
@@ -401,7 +401,7 @@
   },
   {
     "doc_id": "ESM_15_31653095",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/english_reference/files/ESM_15.csv",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/english_reference/files/ESM_15.csv",
     "file_name": "ESM_15.csv",
     "source": "english_reference",
     "type_group": "xlsx_xls_csv",
@@ -411,7 +411,7 @@
   },
   {
     "doc_id": "05-1_2부_노동_초단시간_근로_실태와_시사점_70171211",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kostat_eng/files/05-1_2부_노동_초단시간_근로_실태와_시사점.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kostat_eng/files/05-1_2부_노동_초단시간_근로_실태와_시사점.xlsx",
     "file_name": "05-1_2부_노동_초단시간_근로_실태와_시사점.xlsx",
     "source": "kostat_eng",
     "type_group": "xlsx_xls_csv",
@@ -421,7 +421,7 @@
   },
   {
     "doc_id": "2012.11월정보공개문서목록_1__44232330",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/knto_tourism/files/2012.11월정보공개문서목록_1_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/knto_tourism/files/2012.11월정보공개문서목록_1_.xlsx",
     "file_name": "2012.11월정보공개문서목록_1_.xlsx",
     "source": "knto_tourism",
     "type_group": "xlsx_xls_csv",
@@ -431,7 +431,7 @@
   },
   {
     "doc_id": "2019_EB_85_84_3_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D_EA__98150208",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/2019_EB_85_84_3_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D_EA_B3_B5_EA_B0_9C__EA_B3_A0_EC_8B_9C.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/2019_EB_85_84_3_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D_EA_B3_B5_EA_B0_9C__EA_B3_A0_EC_8B_9C.xlsx",
     "file_name": "2019_EB_85_84_3_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D_EA_B3_B5_EA_B0_9C__EA_B3_A0_EC_8B_9C.xlsx",
     "source": "kdischool_eng",
     "type_group": "xlsx_xls_csv",
@@ -441,7 +441,7 @@
   },
   {
     "doc_id": "aeo03_04_50515552",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/customs_excel/files/aeo03_04.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/customs_excel/files/aeo03_04.xls",
     "file_name": "aeo03_04.xls",
     "source": "customs_excel",
     "type_group": "xlsx_xls_csv",
@@ -451,7 +451,7 @@
   },
   {
     "doc_id": "Forum_Registration_Form_11681708",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/Forum_Registration_Form.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/Forum_Registration_Form.xlsx",
     "file_name": "Forum_Registration_Form.xlsx",
     "source": "kdischool_eng",
     "type_group": "xlsx_xls_csv",
@@ -461,7 +461,7 @@
   },
   {
     "doc_id": "2023_8-9월분_업무추진비_공개내역_정책실장__58405918",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/unikorea_unification/files/2023_8-9월분_업무추진비_공개내역_정책실장_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/unikorea_unification/files/2023_8-9월분_업무추진비_공개내역_정책실장_.xlsx",
     "file_name": "2023_8-9월분_업무추진비_공개내역_정책실장_.xlsx",
     "source": "unikorea_unification",
     "type_group": "xlsx_xls_csv",
@@ -471,7 +471,7 @@
   },
   {
     "doc_id": "_표_2023연장_투입산출표_생산자가격_통합대분류_14014260",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_표_2023연장_투입산출표_생산자가격_통합대분류.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_표_2023연장_투입산출표_생산자가격_통합대분류.xlsx",
     "file_name": "_표_2023연장_투입산출표_생산자가격_통합대분류.xlsx",
     "source": "bok_publications",
     "type_group": "xlsx_xls_csv",
@@ -481,7 +481,7 @@
   },
   {
     "doc_id": "2018_EB_85_84_4_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_11953747",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/2018_EB_85_84_4_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/2018_EB_85_84_4_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xlsx",
     "file_name": "2018_EB_85_84_4_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xlsx",
     "source": "kdischool_eng",
     "type_group": "xlsx_xls_csv",
@@ -491,7 +491,7 @@
   },
   {
     "doc_id": "journal-36-봄_62752644",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-36-봄.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-36-봄.xls",
     "file_name": "journal-36-봄.xls",
     "source": "gov_policy_reports",
     "type_group": "xlsx_xls_csv",
@@ -501,7 +501,7 @@
   },
   {
     "doc_id": "8_EC_9B_94_EA_B3_B5_EA_B0_9C_EB_AC_B8_EC_84_9C_EB_AA_A9_EB_A1_9D_18179046",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/mcst_culture/files/8_EC_9B_94_EA_B3_B5_EA_B0_9C_EB_AC_B8_EC_84_9C_EB_AA_A9_EB_A1_9D.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/mcst_culture/files/8_EC_9B_94_EA_B3_B5_EA_B0_9C_EB_AC_B8_EC_84_9C_EB_AA_A9_EB_A1_9D.xls",
     "file_name": "8_EC_9B_94_EA_B3_B5_EA_B0_9C_EB_AC_B8_EC_84_9C_EB_AA_A9_EB_A1_9D.xls",
     "source": "mcst_culture",
     "type_group": "xlsx_xls_csv",
@@ -511,7 +511,7 @@
   },
   {
     "doc_id": "2017-9월분_업무추진비_공개내역_장차관__86357649",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/unikorea_unification/files/2017-9월분_업무추진비_공개내역_장차관_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/unikorea_unification/files/2017-9월분_업무추진비_공개내역_장차관_.xlsx",
     "file_name": "2017-9월분_업무추진비_공개내역_장차관_.xlsx",
     "source": "unikorea_unification",
     "type_group": "xlsx_xls_csv",
@@ -521,7 +521,7 @@
   },
   {
     "doc_id": "2015_EB_85_84_7_EC_9B_94_EC_A0_95_EB_B3_B4_EA_B3_B5_EA_B0_9C_EB__90620564",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/2015_EB_85_84_7_EC_9B_94_EC_A0_95_EB_B3_B4_EA_B3_B5_EA_B0_9C_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/2015_EB_85_84_7_EC_9B_94_EC_A0_95_EB_B3_B4_EA_B3_B5_EA_B0_9C_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xlsx",
     "file_name": "2015_EB_85_84_7_EC_9B_94_EC_A0_95_EB_B3_B4_EA_B3_B5_EA_B0_9C_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xlsx",
     "source": "kdischool_eng",
     "type_group": "xlsx_xls_csv",
@@ -531,7 +531,7 @@
   },
   {
     "doc_id": "2016-3월분_업무추진비_공개내역_장차관__55879818",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/unikorea_unification/files/2016-3월분_업무추진비_공개내역_장차관_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/unikorea_unification/files/2016-3월분_업무추진비_공개내역_장차관_.xlsx",
     "file_name": "2016-3월분_업무추진비_공개내역_장차관_.xlsx",
     "source": "unikorea_unification",
     "type_group": "xlsx_xls_csv",
@@ -541,7 +541,7 @@
   },
   {
     "doc_id": "_호남청_2026년_2월_중소기업제품_구매실적_61529588",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kostat_eng/files/_호남청_2026년_2월_중소기업제품_구매실적.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kostat_eng/files/_호남청_2026년_2월_중소기업제품_구매실적.xlsx",
     "file_name": "_호남청_2026년_2월_중소기업제품_구매실적.xlsx",
     "source": "kostat_eng",
     "type_group": "xlsx_xls_csv",
@@ -551,7 +551,7 @@
   },
   {
     "doc_id": "2020-11월분_업무추진비_공개내역_장차관__21785317",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/unikorea_unification/files/2020-11월분_업무추진비_공개내역_장차관_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/unikorea_unification/files/2020-11월분_업무추진비_공개내역_장차관_.xlsx",
     "file_name": "2020-11월분_업무추진비_공개내역_장차관_.xlsx",
     "source": "unikorea_unification",
     "type_group": "xlsx_xls_csv",
@@ -561,7 +561,7 @@
   },
   {
     "doc_id": "2024.3월분_업무추진비_공개내역_57010285",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/unikorea_unification/files/2024.3월분_업무추진비_공개내역.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/unikorea_unification/files/2024.3월분_업무추진비_공개내역.xlsx",
     "file_name": "2024.3월분_업무추진비_공개내역.xlsx",
     "source": "unikorea_unification",
     "type_group": "xlsx_xls_csv",
@@ -571,7 +571,7 @@
   },
   {
     "doc_id": "2024-2월분_업무추진비_공개내역_정착안전정책관__42125924",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/unikorea_unification/files/2024-2월분_업무추진비_공개내역_정착안전정책관_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/unikorea_unification/files/2024-2월분_업무추진비_공개내역_정착안전정책관_.xlsx",
     "file_name": "2024-2월분_업무추진비_공개내역_정착안전정책관_.xlsx",
     "source": "unikorea_unification",
     "type_group": "xlsx_xls_csv",
@@ -581,7 +581,7 @@
   },
   {
     "doc_id": "journal-9-1_34234585",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-9-1.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-9-1.xls",
     "file_name": "journal-9-1.xls",
     "source": "gov_policy_reports",
     "type_group": "xlsx_xls_csv",
@@ -591,7 +591,7 @@
   },
   {
     "doc_id": "_EB_AC_B8_EC_84_9C_EB_AA_A9_EB_A1_9D_282007_EB_85_84_5_EC_9B_94__22317339",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/mcst_culture/files/_EB_AC_B8_EC_84_9C_EB_AA_A9_EB_A1_9D_282007_EB_85_84_5_EC_9B_94_EB_B6_84_29.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/mcst_culture/files/_EB_AC_B8_EC_84_9C_EB_AA_A9_EB_A1_9D_282007_EB_85_84_5_EC_9B_94_EB_B6_84_29.xls",
     "file_name": "_EB_AC_B8_EC_84_9C_EB_AA_A9_EB_A1_9D_282007_EB_85_84_5_EC_9B_94_EB_B6_84_29.xls",
     "source": "mcst_culture",
     "type_group": "xlsx_xls_csv",
@@ -601,7 +601,7 @@
   },
   {
     "doc_id": "_보도자료_202026년_4월_생산자물가지수_잠정_통계표__62243647",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_보도자료_202026년_4월_생산자물가지수_잠정_통계표_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_보도자료_202026년_4월_생산자물가지수_잠정_통계표_.xlsx",
     "file_name": "_보도자료_202026년_4월_생산자물가지수_잠정_통계표_.xlsx",
     "source": "bok_publications",
     "type_group": "xlsx_xls_csv",
@@ -611,7 +611,7 @@
   },
   {
     "doc_id": "2016-1월분_업무추진비_공개내역_장차관__84548142",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/unikorea_unification/files/2016-1월분_업무추진비_공개내역_장차관_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/unikorea_unification/files/2016-1월분_업무추진비_공개내역_장차관_.xlsx",
     "file_name": "2016-1월분_업무추진비_공개내역_장차관_.xlsx",
     "source": "unikorea_unification",
     "type_group": "xlsx_xls_csv",
@@ -621,7 +621,7 @@
   },
   {
     "doc_id": "2026년_3월_충청지역_총괄표_22110404",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kostat_eng/files/2026년_3월_충청지역_총괄표.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kostat_eng/files/2026년_3월_충청지역_총괄표.xls",
     "file_name": "2026년_3월_충청지역_총괄표.xls",
     "source": "kostat_eng",
     "type_group": "xlsx_xls_csv",
@@ -631,7 +631,7 @@
   },
   {
     "doc_id": "200403__EA_B3_B5_EA_B0_9C_EB_AA_A9_EB_A1_9D_57666776",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/mcst_culture/files/200403__EA_B3_B5_EA_B0_9C_EB_AA_A9_EB_A1_9D.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/mcst_culture/files/200403__EA_B3_B5_EA_B0_9C_EB_AA_A9_EB_A1_9D.xls",
     "file_name": "200403__EA_B3_B5_EA_B0_9C_EB_AA_A9_EB_A1_9D.xls",
     "source": "mcst_culture",
     "type_group": "xlsx_xls_csv",
@@ -641,7 +641,7 @@
   },
   {
     "doc_id": "2026년_5월_충청지역_총괄표_41800283",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kostat_eng/files/2026년_5월_충청지역_총괄표.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kostat_eng/files/2026년_5월_충청지역_총괄표.xlsx",
     "file_name": "2026년_5월_충청지역_총괄표.xlsx",
     "source": "kostat_eng",
     "type_group": "xlsx_xls_csv",
@@ -651,7 +651,7 @@
   },
   {
     "doc_id": "2023-7월분_업무추진비_공개내역_81988601",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/unikorea_unification/files/2023-7월분_업무추진비_공개내역.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/unikorea_unification/files/2023-7월분_업무추진비_공개내역.xlsx",
     "file_name": "2023-7월분_업무추진비_공개내역.xlsx",
     "source": "unikorea_unification",
     "type_group": "xlsx_xls_csv",
@@ -661,7 +661,7 @@
   },
   {
     "doc_id": "2010D_X_1_i_30068600",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/mois_data/files/2010D_X_1_i.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/mois_data/files/2010D_X_1_i.xls",
     "file_name": "2010D_X_1_i.xls",
     "source": "mois_data",
     "type_group": "xlsx_xls_csv",
@@ -671,7 +671,7 @@
   },
   {
     "doc_id": "북한이탈주민정책_2026.3월_기준__홈페이지게시_46677252",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/unikorea_unification/files/북한이탈주민정책_2026.3월_기준__홈페이지게시.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/unikorea_unification/files/북한이탈주민정책_2026.3월_기준__홈페이지게시.xlsx",
     "file_name": "북한이탈주민정책_2026.3월_기준__홈페이지게시.xlsx",
     "source": "unikorea_unification",
     "type_group": "xlsx_xls_csv",
@@ -681,7 +681,7 @@
   },
   {
     "doc_id": "2020_EB_85_84_9_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_83015721",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/2020_EB_85_84_9_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/2020_EB_85_84_9_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xlsx",
     "file_name": "2020_EB_85_84_9_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xlsx",
     "source": "kdischool_eng",
     "type_group": "xlsx_xls_csv",
@@ -691,7 +691,7 @@
   },
   {
     "doc_id": "2012D_0_0__58331475",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/mois_data/files/2012D_0_0_.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/mois_data/files/2012D_0_0_.xls",
     "file_name": "2012D_0_0_.xls",
     "source": "mois_data",
     "type_group": "xlsx_xls_csv",
@@ -701,7 +701,7 @@
   },
   {
     "doc_id": "2017_EB_85_84_5_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_41087982",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/2017_EB_85_84_5_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/2017_EB_85_84_5_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xlsx",
     "file_name": "2017_EB_85_84_5_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xlsx",
     "source": "kdischool_eng",
     "type_group": "xlsx_xls_csv",
@@ -711,7 +711,7 @@
   },
   {
     "doc_id": "2019_EB_85_849_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA__51620775",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/2019_EB_85_849_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/2019_EB_85_849_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xlsx",
     "file_name": "2019_EB_85_849_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xlsx",
     "source": "kdischool_eng",
     "type_group": "xlsx_xls_csv",
@@ -721,7 +721,7 @@
   },
   {
     "doc_id": "_통계서비스국_2026년_5월분_업무추진비_집행내역_86066461",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kostat_eng/files/_통계서비스국_2026년_5월분_업무추진비_집행내역.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kostat_eng/files/_통계서비스국_2026년_5월분_업무추진비_집행내역.xlsx",
     "file_name": "_통계서비스국_2026년_5월분_업무추진비_집행내역.xlsx",
     "source": "kostat_eng",
     "type_group": "xlsx_xls_csv",
@@ -731,7 +731,7 @@
   },
   {
     "doc_id": "통계표_2024년_20국민계정_확정_20및_202025년_20국민계정_잠정__18412332",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/통계표_2024년_20국민계정_확정_20및_202025년_20국민계정_잠정_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/통계표_2024년_20국민계정_확정_20및_202025년_20국민계정_잠정_.xlsx",
     "file_name": "통계표_2024년_20국민계정_확정_20및_202025년_20국민계정_잠정_.xlsx",
     "source": "bok_publications",
     "type_group": "xlsx_xls_csv",
@@ -741,7 +741,7 @@
   },
   {
     "doc_id": "2014.02월정보공개문서목록_15213746",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/knto_tourism/files/2014.02월정보공개문서목록.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/knto_tourism/files/2014.02월정보공개문서목록.xlsx",
     "file_name": "2014.02월정보공개문서목록.xlsx",
     "source": "knto_tourism",
     "type_group": "xlsx_xls_csv",
@@ -751,7 +751,7 @@
   },
   {
     "doc_id": "journal-28-봄_16244509",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-28-봄.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-28-봄.xls",
     "file_name": "journal-28-봄.xls",
     "source": "gov_policy_reports",
     "type_group": "xlsx_xls_csv",
@@ -761,7 +761,7 @@
   },
   {
     "doc_id": "journal-39-1_51111756",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-39-1.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-39-1.xls",
     "file_name": "journal-39-1.xls",
     "source": "gov_policy_reports",
     "type_group": "xlsx_xls_csv",
@@ -771,7 +771,7 @@
   },
   {
     "doc_id": "ESM_10_53548890",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/english_reference/files/ESM_10.csv",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/english_reference/files/ESM_10.csv",
     "file_name": "ESM_10.csv",
     "source": "english_reference",
     "type_group": "xlsx_xls_csv",
@@ -781,7 +781,7 @@
   },
   {
     "doc_id": "_EA_B3_B5_EA_B0_9C_EB_AC_B8_EC_84_9C_EB_AA_A9_EB_A1_9D_28201205__60752781",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/mcst_culture/files/_EA_B3_B5_EA_B0_9C_EB_AC_B8_EC_84_9C_EB_AA_A9_EB_A1_9D_28201205_29.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/mcst_culture/files/_EA_B3_B5_EA_B0_9C_EB_AC_B8_EC_84_9C_EB_AA_A9_EB_A1_9D_28201205_29.xls",
     "file_name": "_EA_B3_B5_EA_B0_9C_EB_AC_B8_EC_84_9C_EB_AA_A9_EB_A1_9D_28201205_29.xls",
     "source": "mcst_culture",
     "type_group": "xlsx_xls_csv",
@@ -791,7 +791,7 @@
   },
   {
     "doc_id": "11-3_2부_사회통합주관적웰빙_한국의_성평등_제도와_인식_결과의_국제_비교_35546878",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kostat_eng/files/11-3_2부_사회통합주관적웰빙_한국의_성평등_제도와_인식_결과의_국제_비교.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kostat_eng/files/11-3_2부_사회통합주관적웰빙_한국의_성평등_제도와_인식_결과의_국제_비교.xlsx",
     "file_name": "11-3_2부_사회통합주관적웰빙_한국의_성평등_제도와_인식_결과의_국제_비교.xlsx",
     "source": "kostat_eng",
     "type_group": "xlsx_xls_csv",
@@ -801,7 +801,7 @@
   },
   {
     "doc_id": "ESM_12_63154262",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/english_reference/files/ESM_12.csv",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/english_reference/files/ESM_12.csv",
     "file_name": "ESM_12.csv",
     "source": "english_reference",
     "type_group": "xlsx_xls_csv",
@@ -811,7 +811,7 @@
   },
   {
     "doc_id": "_EC_A0_95_EB_B3_B4_EA_B3_B5_EA_B0_9C_EB_AA_A9_EB_A1_9D_283_EC_9B_83474145",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/mcst_culture/files/_EC_A0_95_EB_B3_B4_EA_B3_B5_EA_B0_9C_EB_AA_A9_EB_A1_9D_283_EC_9B_94_29.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/mcst_culture/files/_EC_A0_95_EB_B3_B4_EA_B3_B5_EA_B0_9C_EB_AA_A9_EB_A1_9D_283_EC_9B_94_29.xls",
     "file_name": "_EC_A0_95_EB_B3_B4_EA_B3_B5_EA_B0_9C_EB_AA_A9_EB_A1_9D_283_EC_9B_94_29.xls",
     "source": "mcst_culture",
     "type_group": "xlsx_xls_csv",
@@ -821,7 +821,7 @@
   },
   {
     "doc_id": "07-3_디지털_여가의_명암_2022__33358085",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kostat_eng/files/07-3_디지털_여가의_명암_2022_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kostat_eng/files/07-3_디지털_여가의_명암_2022_.xlsx",
     "file_name": "07-3_디지털_여가의_명암_2022_.xlsx",
     "source": "kostat_eng",
     "type_group": "xlsx_xls_csv",
@@ -831,7 +831,7 @@
   },
   {
     "doc_id": "Forum_Activity_Report_Form_61285944",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/Forum_Activity_Report_Form.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/Forum_Activity_Report_Form.xlsx",
     "file_name": "Forum_Activity_Report_Form.xlsx",
     "source": "kdischool_eng",
     "type_group": "xlsx_xls_csv",
@@ -841,7 +841,7 @@
   },
   {
     "doc_id": "2017-3월분_업무추진비_공개내역_장차관__75673033",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/unikorea_unification/files/2017-3월분_업무추진비_공개내역_장차관_.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/unikorea_unification/files/2017-3월분_업무추진비_공개내역_장차관_.xlsx",
     "file_name": "2017-3월분_업무추진비_공개내역_장차관_.xlsx",
     "source": "unikorea_unification",
     "type_group": "xlsx_xls_csv",
@@ -851,7 +851,7 @@
   },
   {
     "doc_id": "2023.11월분_업무추진비_공개내역_70607734",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/unikorea_unification/files/2023.11월분_업무추진비_공개내역.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/unikorea_unification/files/2023.11월분_업무추진비_공개내역.xlsx",
     "file_name": "2023.11월분_업무추진비_공개내역.xlsx",
     "source": "unikorea_unification",
     "type_group": "xlsx_xls_csv",
@@ -861,7 +861,7 @@
   },
   {
     "doc_id": "journal-3-1_27219680",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-3-1.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-3-1.xls",
     "file_name": "journal-3-1.xls",
     "source": "gov_policy_reports",
     "type_group": "xlsx_xls_csv",
@@ -871,7 +871,7 @@
   },
   {
     "doc_id": "_붙임2_2025년_20기업경영분석_20결과_속보_20통계편_32124342",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_붙임2_2025년_20기업경영분석_20결과_속보_20통계편.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_붙임2_2025년_20기업경영분석_20결과_속보_20통계편.xlsx",
     "file_name": "_붙임2_2025년_20기업경영분석_20결과_속보_20통계편.xlsx",
     "source": "bok_publications",
     "type_group": "xlsx_xls_csv",
@@ -881,7 +881,7 @@
   },
   {
     "doc_id": "사전정보공표_해수욕장_방사능_검사_260504_0508_채수_55666962",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/mof_docs/files/사전정보공표_해수욕장_방사능_검사_260504_0508_채수.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/mof_docs/files/사전정보공표_해수욕장_방사능_검사_260504_0508_채수.xlsx",
     "file_name": "사전정보공표_해수욕장_방사능_검사_260504_0508_채수.xlsx",
     "source": "mof_docs",
     "type_group": "xlsx_xls_csv",
@@ -891,7 +891,7 @@
   },
   {
     "doc_id": "2017_EB_85_84_12_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__E_41120044",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kdischool_eng/files/2017_EB_85_84_12_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kdischool_eng/files/2017_EB_85_84_12_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xlsx",
     "file_name": "2017_EB_85_84_12_EC_9B_94_EC_A0_95_EB_B3_B4_EB_AA_A9_EB_A1_9D__EA_B3_A0_EC_8B_9C.xlsx",
     "source": "kdischool_eng",
     "type_group": "xlsx_xls_csv",
@@ -901,7 +901,7 @@
   },
   {
     "doc_id": "부산광역시_동구_가로등현황_20250917_88855549",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/local_gov_data/files/부산광역시_동구_가로등현황_20250917.csv",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/local_gov_data/files/부산광역시_동구_가로등현황_20250917.csv",
     "file_name": "부산광역시_동구_가로등현황_20250917.csv",
     "source": "local_gov_data",
     "type_group": "xlsx_xls_csv",
@@ -911,7 +911,7 @@
   },
   {
     "doc_id": "8-9월정보목록_47867632",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/knto_tourism/files/8-9월정보목록.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/knto_tourism/files/8-9월정보목록.xls",
     "file_name": "8-9월정보목록.xls",
     "source": "knto_tourism",
     "type_group": "xlsx_xls_csv",
@@ -921,7 +921,7 @@
   },
   {
     "doc_id": "journal-34-3_74101061",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-34-3.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-34-3.xls",
     "file_name": "journal-34-3.xls",
     "source": "gov_policy_reports",
     "type_group": "xlsx_xls_csv",
@@ -931,7 +931,7 @@
   },
   {
     "doc_id": "금융안정보고서_2025년_2012월_20그림_20데이터_34960764",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/금융안정보고서_2025년_2012월_20그림_20데이터.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/금융안정보고서_2025년_2012월_20그림_20데이터.xlsx",
     "file_name": "금융안정보고서_2025년_2012월_20그림_20데이터.xlsx",
     "source": "bok_publications",
     "type_group": "xlsx_xls_csv",
@@ -941,7 +941,7 @@
   },
   {
     "doc_id": "2013.10월정보공개문서목록_73631017",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/knto_tourism/files/2013.10월정보공개문서목록.xlsx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/knto_tourism/files/2013.10월정보공개문서목록.xlsx",
     "file_name": "2013.10월정보공개문서목록.xlsx",
     "source": "knto_tourism",
     "type_group": "xlsx_xls_csv",
@@ -951,7 +951,7 @@
   },
   {
     "doc_id": "journal-42-4_59476740",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/gov_policy_reports/files/journal-42-4.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/gov_policy_reports/files/journal-42-4.xls",
     "file_name": "journal-42-4.xls",
     "source": "gov_policy_reports",
     "type_group": "xlsx_xls_csv",
@@ -961,7 +961,7 @@
   },
   {
     "doc_id": "2009년_10월_정보공개목록_55502900",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/knto_tourism/files/2009년_10월_정보공개목록.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/knto_tourism/files/2009년_10월_정보공개목록.xls",
     "file_name": "2009년_10월_정보공개목록.xls",
     "source": "knto_tourism",
     "type_group": "xlsx_xls_csv",
@@ -971,7 +971,7 @@
   },
   {
     "doc_id": "인문100년장학금_지원금액_현황_20251231_26796407",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/data_go_kr/files/인문100년장학금_지원금액_현황_20251231.csv",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/data_go_kr/files/인문100년장학금_지원금액_현황_20251231.csv",
     "file_name": "인문100년장학금_지원금액_현황_20251231.csv",
     "source": "data_go_kr",
     "type_group": "xlsx_xls_csv",
@@ -981,7 +981,7 @@
   },
   {
     "doc_id": "2009.12_EC_9B_94__EB_AC_B8_EC_84_9C_EB_AA_A9_EB_A1_9D_61928022",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/mcst_culture/files/2009.12_EC_9B_94__EB_AC_B8_EC_84_9C_EB_AA_A9_EB_A1_9D.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/mcst_culture/files/2009.12_EC_9B_94__EB_AC_B8_EC_84_9C_EB_AA_A9_EB_A1_9D.xls",
     "file_name": "2009.12_EC_9B_94__EB_AC_B8_EC_84_9C_EB_AA_A9_EB_A1_9D.xls",
     "source": "mcst_culture",
     "type_group": "xlsx_xls_csv",
@@ -991,7 +991,7 @@
   },
   {
     "doc_id": "7_EC_9B_94_EA_B3_B5_EA_B0_9C_EB_AC_B8_EC_84_9C_EB_AA_A9_EB_A1_9D_69591097",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/mcst_culture/files/7_EC_9B_94_EA_B3_B5_EA_B0_9C_EB_AC_B8_EC_84_9C_EB_AA_A9_EB_A1_9D.xls",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/mcst_culture/files/7_EC_9B_94_EA_B3_B5_EA_B0_9C_EB_AC_B8_EC_84_9C_EB_AA_A9_EB_A1_9D.xls",
     "file_name": "7_EC_9B_94_EA_B3_B5_EA_B0_9C_EB_AC_B8_EC_84_9C_EB_AA_A9_EB_A1_9D.xls",
     "source": "mcst_culture",
     "type_group": "xlsx_xls_csv",

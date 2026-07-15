@@ -171,7 +171,7 @@ class Cfg:
         raw = yaml.safe_load(Path(path).read_text(encoding="utf-8"))
         return cls(
             raw=raw,
-            root=Path(raw.get("root_dir", "./gaia_test_200g_kr80_no_ocr")),
+            root=Path(raw.get("root_dir", "../../gaia_web_dataset")),
             ua=raw.get("user_agent", "gaia-test-collector/1.0"),
             sleep=float(raw.get("sleep_sec", 1.0)),
             timeout=int(raw.get("request_timeout_sec", 30)),

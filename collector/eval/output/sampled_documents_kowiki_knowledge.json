@@ -1,7 +1,7 @@
 [
   {
     "doc_id": "kowiki_01428_75607112",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01428.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01428.docx",
     "file_name": "kowiki_01428.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -11,7 +11,7 @@
   },
   {
     "doc_id": "kowiki_01978_67301290",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01978.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01978.docx",
     "file_name": "kowiki_01978.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -21,7 +21,7 @@
   },
   {
     "doc_id": "kowiki_02014_33254856",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_02014.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_02014.docx",
     "file_name": "kowiki_02014.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -31,7 +31,7 @@
   },
   {
     "doc_id": "kowiki_01093_44267397",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01093.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01093.docx",
     "file_name": "kowiki_01093.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -41,7 +41,7 @@
   },
   {
     "doc_id": "kowiki_01883_40626489",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01883.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01883.docx",
     "file_name": "kowiki_01883.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -51,7 +51,7 @@
   },
   {
     "doc_id": "kowiki_00386_38346482",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00386.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00386.docx",
     "file_name": "kowiki_00386.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -61,7 +61,7 @@
   },
   {
     "doc_id": "kowiki_00136_19275426",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00136.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00136.docx",
     "file_name": "kowiki_00136.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -71,7 +71,7 @@
   },
   {
     "doc_id": "kowiki_00375_46341951",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00375.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00375.docx",
     "file_name": "kowiki_00375.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -81,7 +81,7 @@
   },
   {
     "doc_id": "kowiki_00996_75852289",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00996.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00996.docx",
     "file_name": "kowiki_00996.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -91,7 +91,7 @@
   },
   {
     "doc_id": "kowiki_02023_32128670",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_02023.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_02023.docx",
     "file_name": "kowiki_02023.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -101,7 +101,7 @@
   },
   {
     "doc_id": "kowiki_01717_69401043",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01717.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01717.docx",
     "file_name": "kowiki_01717.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -111,7 +111,7 @@
   },
   {
     "doc_id": "kowiki_00574_41708823",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00574.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00574.docx",
     "file_name": "kowiki_00574.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -121,7 +121,7 @@
   },
   {
     "doc_id": "kowiki_01441_58920959",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01441.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01441.docx",
     "file_name": "kowiki_01441.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -131,7 +131,7 @@
   },
   {
     "doc_id": "kowiki_00524_44889458",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00524.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00524.docx",
     "file_name": "kowiki_00524.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -141,7 +141,7 @@
   },
   {
     "doc_id": "kowiki_00978_20555187",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00978.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00978.docx",
     "file_name": "kowiki_00978.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -151,7 +151,7 @@
   },
   {
     "doc_id": "kowiki_01773_64023384",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01773.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01773.docx",
     "file_name": "kowiki_01773.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -161,7 +161,7 @@
   },
   {
     "doc_id": "kowiki_01375_91040857",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01375.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01375.docx",
     "file_name": "kowiki_01375.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -171,7 +171,7 @@
   },
   {
     "doc_id": "kowiki_00811_34357815",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_00811.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_00811.docx",
     "file_name": "kowiki_00811.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -181,7 +181,7 @@
   },
   {
     "doc_id": "kowiki_01152_52879572",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01152.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01152.docx",
     "file_name": "kowiki_01152.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",
@@ -191,7 +191,7 @@
   },
   {
     "doc_id": "kowiki_01823_37106239",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/kowiki_knowledge/docx/kowiki_01823.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/kowiki_knowledge/docx/kowiki_01823.docx",
     "file_name": "kowiki_01823.docx",
     "source": "kowiki_knowledge",
     "type_group": "docx_doc",

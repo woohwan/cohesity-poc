@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "description": "Cohesity GAIA KR 수집 데이터 — pdf 타입 RAGAS 테스트셋",
-  "type_group": "pdf",
+  "description": "Cohesity GAIA KR 수집 데이터 — pdf 그룹 RAGAS 테스트셋",
+  "group_key": "pdf",
   "total_samples": 200,
   "samples": [
     {
@@ -113,7 +113,7 @@
       "type_group": "pdf",
       "ext": "pdf",
       "source": "law_lbook",
-      "file_name": "_ED_87_B4_EC_A7_81_EA_B8_89_EC_97_AC_20_EB_B3_B4_EC_9E_A5_EB_B2_95_EB_A0_B9.pdf",
+      "file_name": "퇴직급여 보장법령.pdf",
       "question_type": "factual"
     },
     {
@@ -281,7 +281,7 @@
       "type_group": "pdf",
       "ext": "pdf",
       "source": "law_lbook",
-      "file_name": "_ED_87_B4_EC_A7_81_EA_B8_89_EC_97_AC_20_EB_B3_B4_EC_9E_A5_EB_B2_95_EB_A0_B9.pdf",
+      "file_name": "퇴직급여 보장법령.pdf",
       "question_type": "factual"
     },
     {
@@ -631,7 +631,7 @@
       "type_group": "pdf",
       "ext": "pdf",
       "source": "law_lbook",
-      "file_name": "_EA_B2_BD_EA_B8_B0_EB_8F_84_EA_B5_90_EC_9C_A1_EC_B2_AD_20_EC_A1_B0_EB_A1_80_EC_A7_91.pdf",
+      "file_name": "경기도교육청 조례집.pdf",
       "question_type": "factual"
     },
     {
@@ -799,7 +799,7 @@
       "type_group": "pdf",
       "ext": "pdf",
       "source": "law_lbook",
-      "file_name": "_EA_B2_BD_EA_B8_B0_EB_8F_84_EA_B5_90_EC_9C_A1_EC_B2_AD_20_EC_A1_B0_EB_A1_80_EC_A7_91.pdf",
+      "file_name": "경기도교육청 조례집.pdf",
       "question_type": "summary"
     },
     {
@@ -925,7 +925,7 @@
       "type_group": "pdf",
       "ext": "pdf",
       "source": "law_lbook",
-      "file_name": "_ED_98_95_EC_82_AC_EB_B2_95_20_EB_B0_8F_20_ED_98_95_EC_82_AC_ED_8A_B9_EB_B3_84_EB_B2_95.pdf",
+      "file_name": "형사법 및 형사특별법.pdf",
       "question_type": "factual"
     },
     {
@@ -953,7 +953,7 @@
       "type_group": "pdf",
       "ext": "pdf",
       "source": "law_lbook",
-      "file_name": "_ED_95_AD_EA_B3_B5_EB_B2_95_EA_B7_9C.pdf",
+      "file_name": "항공법규.pdf",
       "question_type": "factual"
     },
     {
@@ -1093,7 +1093,7 @@
       "type_group": "pdf",
       "ext": "pdf",
       "source": "law_lbook",
-      "file_name": "_ED_98_95_EC_82_AC_EB_B2_95_20_EB_B0_8F_20_ED_98_95_EC_82_AC_ED_8A_B9_EB_B3_84_EB_B2_95.pdf",
+      "file_name": "형사법 및 형사특별법.pdf",
       "question_type": "factual"
     },
     {
@@ -1219,7 +1219,7 @@
       "type_group": "pdf",
       "ext": "pdf",
       "source": "law_lbook",
-      "file_name": "_ED_95_AD_EA_B3_B5_EB_B2_95_EA_B7_9C.pdf",
+      "file_name": "항공법규.pdf",
       "question_type": "summary"
     },
     {
@@ -1233,7 +1233,7 @@
       "type_group": "pdf",
       "ext": "pdf",
       "source": "law_lbook",
-      "file_name": "_EA_B2_BD_EC_A0_9C_ED_8C_80_20_EB_B2_95_EB_A0_B9_EC_A7_91.pdf",
+      "file_name": "경제팀 법령집.pdf",
       "question_type": "factual"
     },
     {
@@ -1261,7 +1261,7 @@
       "type_group": "pdf",
       "ext": "pdf",
       "source": "law_lbook",
-      "file_name": "_EC_8B_9D_ED_92_88_20_EA_B4_80_EB_A0_A8_20_EB_B2_95_EA_B7_9C.pdf",
+      "file_name": "식품 관련 법규.pdf",
       "question_type": "factual"
     },
     {
@@ -1415,7 +1415,7 @@
       "type_group": "pdf",
       "ext": "pdf",
       "source": "law_lbook",
-      "file_name": "_EC_8B_9D_ED_92_88_20_EA_B4_80_EB_A0_A8_20_EB_B2_95_EA_B7_9C.pdf",
+      "file_name": "식품 관련 법규.pdf",
       "question_type": "factual"
     },
     {
@@ -1583,7 +1583,7 @@
       "type_group": "pdf",
       "ext": "pdf",
       "source": "law_lbook",
-      "file_name": "_EC_B5_9C_EC_8B_A0_20_EC_A0_84_EA_B8_B0_EA_B4_80_EA_B3_84_EB_B2_95_EB_A0_B9.pdf",
+      "file_name": "최신 전기관계법령.pdf",
       "question_type": "factual"
     },
     {
@@ -1625,7 +1625,7 @@
       "type_group": "pdf",
       "ext": "pdf",
       "source": "law_lbook",
-      "file_name": "_EC_A7_80_EC_97_AD_EA_B2_BD_EC_B0_B0_EC_9D_B4_EC_82_AC_EC_9A_A9_ED_95_98_EB_8A_94_EB_B2_95_EB_A0_B9_EC_A7_91.pdf",
+      "file_name": "지역경찰이사용하는법령집.pdf",
       "question_type": "factual"
     },
     {
@@ -2059,7 +2059,7 @@
       "type_group": "pdf",
       "ext": "pdf",
       "source": "law_lbook",
-      "file_name": "_EA_B2_BD_EC_A0_9C_ED_8C_80_20_EB_B2_95_EB_A0_B9_EC_A7_91.pdf",
+      "file_name": "경제팀 법령집.pdf",
       "question_type": "summary"
     },
     {
@@ -2647,7 +2647,7 @@
       "type_group": "pdf",
       "ext": "pdf",
       "source": "law_lbook",
-      "file_name": "_EC_A7_80_EC_97_AD_EA_B2_BD_EC_B0_B0_EC_9D_B4_EC_82_AC_EC_9A_A9_ED_95_98_EB_8A_94_EB_B2_95_EB_A0_B9_EC_A7_91.pdf",
+      "file_name": "지역경찰이사용하는법령집.pdf",
       "question_type": "factual"
     },
     {
@@ -2703,7 +2703,7 @@
       "type_group": "pdf",
       "ext": "pdf",
       "source": "law_lbook",
-      "file_name": "_EC_B5_9C_EC_8B_A0_20_EC_A0_84_EA_B8_B0_EA_B4_80_EA_B3_84_EB_B2_95_EB_A0_B9.pdf",
+      "file_name": "최신 전기관계법령.pdf",
       "question_type": "factual"
     },
     {

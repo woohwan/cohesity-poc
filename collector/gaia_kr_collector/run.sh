@@ -16,6 +16,18 @@ CONFIG="$SCRIPT_DIR/config.yaml"
 LOG="$SCRIPT_DIR/collect.log"
 PIDFILE="$SCRIPT_DIR/.collect.pid"
 
+# config.yaml의 root_dir을 읽어 절대경로로 반환한다.
+# root_dir이 이미 절대경로(/로 시작)면 그대로, 아니면 SCRIPT_DIR 기준 상대경로로 해석한다.
+resolve_root_dir() {
+    local raw
+    raw="$(grep '^root_dir:' "$CONFIG" | sed 's|root_dir:[[:space:]]*||;s|[[:space:]]*#.*||')"
+    case "$raw" in
+        /*) echo "$raw" ;;
+        ./*) echo "$SCRIPT_DIR/${raw#./}" ;;
+        *) echo "$SCRIPT_DIR/$raw" ;;
+    esac
+}
+
 # ── Python 경로 결정 ──────────────────────────────────────────────────────────
 resolve_python() {
     if [ -f "$VENV" ]; then
@@ -85,7 +97,7 @@ if [ "${1}" = "status" ]; then
 
     if [ -f "$LOG" ]; then
         LOG_MTIME=$(stat -c %Y "$LOG")
-        _ROOT_DIR="$SCRIPT_DIR/$(grep '^root_dir:' "$CONFIG" | sed 's|root_dir:[[:space:]]*||;s|^\./||')"
+        _ROOT_DIR="$(resolve_root_dir)"
         MAN_MTIME=$(stat -c %Y "$_ROOT_DIR/manifest.csv" 2>/dev/null || echo 0)
         NOW=$(date +%s)
         # 로그와 manifest.csv 중 더 최근 활동 기준으로 경과 시간 계산
@@ -160,7 +172,7 @@ if [ "${1}" = "status" ]; then
     "$PYTHON" gaia_collect.py --config "$CONFIG" --plan
 
     # 디렉토리별 디스크 사용량
-    ROOT_DIR="$SCRIPT_DIR/$(grep '^root_dir:' "$CONFIG" | sed 's|root_dir:[[:space:]]*||;s|^\./||')"
+    ROOT_DIR="$(resolve_root_dir)"
     if [ -d "$ROOT_DIR" ]; then
         echo ""
         echo "[디스크] 소스별 수집량:"
@@ -171,7 +183,7 @@ fi
 
 # ── cleanup ──────────────────────────────────────────────────────────────────
 if [ "${1}" = "cleanup" ]; then
-    ROOT="$SCRIPT_DIR/$(grep '^root_dir:' "$CONFIG" | sed 's|root_dir:[[:space:]]*||;s|^\./||')"
+    ROOT="$(resolve_root_dir)"
     echo "[cleanup] 임시/중간 파일 정리..."
 
     # Common Crawl WET 원본 (처리 후 남은 찌꺼기)
@@ -275,7 +287,7 @@ if [ "${1}" = "bg" ]; then
         PREV_COLLECTED="-1"
         STALL_COUNT=0
         STALE_SEC=1800   # 30분 동안 로그·manifest 모두 미업데이트 시 재시작
-        MANIFEST="$SCRIPT_DIR/$(grep '^root_dir:' "$CONFIG" | sed 's|root_dir:[[:space:]]*||;s|^\./||')/manifest.csv"
+        MANIFEST="$(resolve_root_dir)/manifest.csv"
         cd "$SCRIPT_DIR"
         while true; do
             echo "" >> "$RUN_LOG"

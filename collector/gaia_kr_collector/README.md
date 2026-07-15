@@ -33,8 +33,11 @@
 
 ## 출력 구조
 
+`config.yaml`의 `root_dir`이 가리키는 경로에 저장된다 (2026-07-15부터
+`cohesity-poc/gaia_web_dataset/`, 구 경로: `./gaia_test_200g_kr80_no_ocr`).
+
 ```text
-gaia_test_200g_kr80_no_ocr/
+gaia_web_dataset/
   data_go_kr/
   gov_policy_reports/
   kosis_statistics/

@@ -6,10 +6,14 @@
 
   gaia_ragas/      ← QA 생성 / RAGAS 평가 소스 코드 (.venv 제외)
   qdrant_rag/      ← Qdrant RAG 파이프라인 소스 코드 (.venv 제외)
-  gaia_dataset/    ← 통합 데이터셋 (111GB, XML/PDF/XLS 원본)
+  gaia_dataset/    ← DART 통합 데이터셋 (111GB, XML/PDF/XLS 원본)
+  collector/       ← gaia_kr_collector(수집기) + eval(QA/RAGAS 생성) 소스 코드 (.venv 제외)
+  gaia_web_dataset/ ← Web 수집 데이터셋 (약 50GB, PDF/DOCX/XLSX/PPTX 등, 73개 소스)
 
   ※ dataset1/, dataset2/, dataset3/ 는 gaia_dataset/ 으로 이미 통합됨 → 불필요
   ※ .venv/, qdrant_storage/, output/ 은 타겟에서 재생성
+  ※ collector/gaia_kr_collector/config.yaml의 root_dir은 상대경로(../../gaia_web_dataset)라
+    collector/와 gaia_web_dataset/를 같은 상대 위치(cohesity-poc/ 바로 아래)에 두면 그대로 동작함
 
 
 [ 1. 파일 전송 (rsync 권장) ]
@@ -18,7 +22,12 @@
     /data/richard/cohesity-poc/gaia_ragas/ \
     /data/richard/cohesity-poc/qdrant_rag/ \
     /data/richard/cohesity-poc/gaia_dataset/ \
+    /data/richard/cohesity-poc/collector/ \
+    /data/richard/cohesity-poc/gaia_web_dataset/ \
     user@target-server:/data/cohesity-poc/
+
+  ※ collector/ 전송 시 .venv/, gaia_kr_collector/logs/, gaia_kr_collector/.collect.pid,
+    eval/output/ 은 제외해도 무방 (rsync --exclude 옵션 사용 가능, 타겟에서 재생성/재실행)
 
   ※ --progress: 진행률 표시
   ※ 중단 후 재실행하면 이어서 전송 (중복 전송 없음)
@@ -26,7 +35,9 @@
 
 [ 2. 타겟 서버에서 환경 설정 ]
 
-  # Python 3.10 이상 필요
+  # Python 3.10 이상 필요 — 이 저장소의 모든 가상환경(gaia_ragas/qdrant_rag/
+  # collector/gaia_kr_collector/collector/eval)은 3.12로 통일되어 검증됨.
+  # 타겟 서버에도 python3.12로 맞추는 것을 권장 (3.10+면 동작은 하나 미검증).
   python3 --version
 
   # gaia_ragas 가상환경
@@ -38,6 +49,28 @@
   # qdrant_rag 가상환경
   cd /data/cohesity-poc/qdrant_rag
   ./run.sh setup
+
+  # collector/gaia_kr_collector 가상환경 (Web 수집기 재개 시 필요)
+  cd /data/cohesity-poc/collector/gaia_kr_collector
+  ./run.sh setup   # venv 생성 + LibreOffice/h2orestart(HWP 변환 필터) 설치 확인
+
+  # collector/eval 가상환경 (Web QA/RAGAS 생성 시 필요)
+  cd /data/cohesity-poc/collector/eval
+  python3 -m venv .venv
+  .venv/bin/pip install --upgrade pip
+  .venv/bin/pip install -r requirements.txt
+
+
+[ 2-1. Web 수집 상태 확인 / 재개 (선택) ]
+
+  cd /data/cohesity-poc/collector/gaia_kr_collector
+  ./run.sh status          # 타입별 쿼터 진행률, manifest 기준 (전송 직후엔 원본 그대로 유지됨)
+  ./run.sh bg               # 이어서 수집 (manifest.csv로 중복 다운로드 방지)
+
+  # Web 데이터로 QA/RAGAS 데이터셋 생성 (LLM API 필요)
+  cd /data/cohesity-poc/collector/eval
+  export ANTHROPIC_API_KEY=sk-ant-...
+  .venv/bin/python run_pipeline.py --step all
 
 
 [ 3. Qdrant 인제스트 ]
@@ -117,9 +150,30 @@
   │   ├── requirements.txt
   │   ├── qdrant_storage/          (인제스트 후 생성)
   │   └── output/                  (평가 후 생성)
-  └── gaia_dataset/                (전송, 111GB)
-      ├── 000030_우리금융지주/
-      ├── 000060_메리츠화재해상보험/
-      └── ... (275개 회사)
+  ├── gaia_dataset/                (전송, 111GB — DART)
+  │   ├── 000030_우리금융지주/
+  │   ├── 000060_메리츠화재해상보험/
+  │   └── ... (275개 회사)
+  ├── collector/
+  │   ├── gaia_kr_collector/
+  │   │   ├── .venv/               (타겟에서 생성)
+  │   │   ├── config.yaml          (root_dir: ../../gaia_web_dataset — 상대경로)
+  │   │   ├── gaia_collect.py
+  │   │   ├── run.sh
+  │   │   └── logs/                (타겟에서 생성)
+  │   └── eval/
+  │       ├── .venv/               (타겟에서 생성)
+  │       ├── config.py
+  │       ├── document_sampler.py
+  │       ├── qa_generator.py
+  │       ├── ragas_testset_creator.py
+  │       ├── gaia_evaluator.py
+  │       ├── run_pipeline.py
+  │       └── output/              (타겟에서 생성)
+  └── gaia_web_dataset/            (전송, 약 50GB — Web, 73개 소스)
+      ├── bok_publications/
+      ├── law_lbook/
+      ├── manifest.csv
+      └── ... (73개 소스)
 
 ================================================================

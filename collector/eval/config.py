@@ -10,10 +10,11 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).parent
 
-# 수집된 원본 데이터 루트 (collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr)
+# 수집된 원본 데이터 루트 (2026-07-15: cohesity-poc/gaia_web_dataset로 이전,
+# 구 경로: collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr)
 DATASET_DIR = Path(os.environ.get(
     "GAIA_KR_DATASET_DIR",
-    str(BASE_DIR.parent / "gaia_kr_collector" / "gaia_test_200g_kr80_no_ocr"),
+    str(BASE_DIR.parent.parent / "gaia_web_dataset"),
 ))
 
 OUTPUT_DIR = Path(os.environ.get("OUTPUT_DIR", str(BASE_DIR / "output")))

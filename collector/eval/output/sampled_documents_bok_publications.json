@@ -1,7 +1,7 @@
 [
   {
     "doc_id": "5deda44bb6964ec3be8da2d96688385b_47300889",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/5deda44bb6964ec3be8da2d96688385b.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/5deda44bb6964ec3be8da2d96688385b.docx",
     "file_name": "5deda44bb6964ec3be8da2d96688385b.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -11,7 +11,7 @@
   },
   {
     "doc_id": "202008190832000171_44397173",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/202008190832000171.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/202008190832000171.pdf",
     "file_name": "202008190832000171.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -21,7 +21,7 @@
   },
   {
     "doc_id": "한국은행_20제주본부_20지방중소기업지원_20프로그램_20운용기준_20개정_20신구조문_20대비표_85918067",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/한국은행_20제주본부_20지방중소기업지원_20프로그램_20운용기준_20개정_20신구조문_20대비표.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/한국은행_20제주본부_20지방중소기업지원_20프로그램_20운용기준_20개정_20신구조문_20대비표.pdf",
     "file_name": "한국은행_20제주본부_20지방중소기업지원_20프로그램_20운용기준_20개정_20신구조문_20대비표.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -31,7 +31,7 @@
   },
   {
     "doc_id": "_붙임1_20_한국은행_20인천본부_20지방중소기업지원_20프로그램_20운용기준_20주요_20개정_20내용_f_92034310",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_붙임1_20_한국은행_20인천본부_20지방중소기업지원_20프로그램_20운용기준_20주요_20개정_20내용_f.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_붙임1_20_한국은행_20인천본부_20지방중소기업지원_20프로그램_20운용기준_20주요_20개정_20내용_f.docx",
     "file_name": "_붙임1_20_한국은행_20인천본부_20지방중소기업지원_20프로그램_20운용기준_20주요_20개정_20내용_f.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -41,7 +41,7 @@
   },
   {
     "doc_id": "_제2025-23호_20미국_20무역정책_20불확실성이_20우리_20성장에_20미치는_20영향_65901529",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_제2025-23호_20미국_20무역정책_20불확실성이_20우리_20성장에_20미치는_20영향.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_제2025-23호_20미국_20무역정책_20불확실성이_20우리_20성장에_20미치는_20영향.pdf",
     "file_name": "_제2025-23호_20미국_20무역정책_20불확실성이_20우리_20성장에_20미치는_20영향.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -51,7 +51,7 @@
   },
   {
     "doc_id": "c644ef6118a84fe4b33a216dd2ee0203_72340597",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/c644ef6118a84fe4b33a216dd2ee0203.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/c644ef6118a84fe4b33a216dd2ee0203.pdf",
     "file_name": "c644ef6118a84fe4b33a216dd2ee0203.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -61,7 +61,7 @@
   },
   {
     "doc_id": "3a9e8ee10b1a430b82a5438aec900bdc_59005892",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/3a9e8ee10b1a430b82a5438aec900bdc.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/3a9e8ee10b1a430b82a5438aec900bdc.pdf",
     "file_name": "3a9e8ee10b1a430b82a5438aec900bdc.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -71,7 +71,7 @@
   },
   {
     "doc_id": "inaugural_20address_final_60408446",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/inaugural_20address_final.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/inaugural_20address_final.pdf",
     "file_name": "inaugural_20address_final.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -81,7 +81,7 @@
   },
   {
     "doc_id": "_EB_B3_B4_EB_8F_84_EC_9E_90_EB_A3_8C_202026_EB_85_84_205_EC_9B_9_96347622",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_EB_B3_B4_EB_8F_84_EC_9E_90_EB_A3_8C_202026_EB_85_84_205_EC_9B_94_20_EA_B8_88_EC_9C_B5_EA_B8_B0_EA_B4_80_20_EA_B0_80_EC_A4_91_ED_8F_89_EA_B7_A0_EA_B8_88_EB_A6_AC.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_EB_B3_B4_EB_8F_84_EC_9E_90_EB_A3_8C_202026_EB_85_84_205_EC_9B_94_20_EA_B8_88_EC_9C_B5_EA_B8_B0_EA_B4_80_20_EA_B0_80_EC_A4_91_ED_8F_89_EA_B7_A0_EA_B8_88_EB_A6_AC.pdf",
     "file_name": "_EB_B3_B4_EB_8F_84_EC_9E_90_EB_A3_8C_202026_EB_85_84_205_EC_9B_94_20_EA_B8_88_EC_9C_B5_EA_B8_B0_EA_B4_80_20_EA_B0_80_EC_A4_91_ED_8F_89_EA_B7_A0_EA_B8_88_EB_A6_AC.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -91,7 +91,7 @@
   },
   {
     "doc_id": "보도자료_2025년_4분기_및_연간_국민소득_잠정__F_24582745",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/보도자료_2025년_4분기_및_연간_국민소득_잠정__F.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/보도자료_2025년_4분기_및_연간_국민소득_잠정__F.pdf",
     "file_name": "보도자료_2025년_4분기_및_연간_국민소득_잠정__F.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -101,7 +101,7 @@
   },
   {
     "doc_id": "BOK_20_EA_B2_BD_EC_A0_9C_EC_97_B0_EA_B5_AC_20_EC_A0_9C2025-1_ED__75999087",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/BOK_20_EA_B2_BD_EC_A0_9C_EC_97_B0_EA_B5_AC_20_EC_A0_9C2025-1_ED_98_B8_EC_9A_94_EC_95_BD_.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/BOK_20_EA_B2_BD_EC_A0_9C_EC_97_B0_EA_B5_AC_20_EC_A0_9C2025-1_ED_98_B8_EC_9A_94_EC_95_BD_.pdf",
     "file_name": "BOK_20_EA_B2_BD_EC_A0_9C_EC_97_B0_EA_B5_AC_20_EC_A0_9C2025-1_ED_98_B8_EC_9A_94_EC_95_BD_.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -111,7 +111,7 @@
   },
   {
     "doc_id": "202006150321285921_17714064",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/202006150321285921.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/202006150321285921.docx",
     "file_name": "202006150321285921.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -121,7 +121,7 @@
   },
   {
     "doc_id": "e0b77c9e5538460b98073000d5d43a6d_60978318",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/e0b77c9e5538460b98073000d5d43a6d.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/e0b77c9e5538460b98073000d5d43a6d.pdf",
     "file_name": "e0b77c9e5538460b98073000d5d43a6d.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -131,7 +131,7 @@
   },
   {
     "doc_id": "65e787863d8643d4b40aac7238262681_79612816",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/65e787863d8643d4b40aac7238262681.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/65e787863d8643d4b40aac7238262681.pdf",
     "file_name": "65e787863d8643d4b40aac7238262681.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -141,7 +141,7 @@
   },
   {
     "doc_id": "2._20지역경제통계-2026.5월_28773324",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/2._20지역경제통계-2026.5월.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/2._20지역경제통계-2026.5월.pdf",
     "file_name": "2._20지역경제통계-2026.5월.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -151,7 +151,7 @@
   },
   {
     "doc_id": "_발표2_202025년_20한국경제_20전망_52586879",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_발표2_202025년_20한국경제_20전망.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_발표2_202025년_20한국경제_20전망.pdf",
     "file_name": "_발표2_202025년_20한국경제_20전망.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -161,7 +161,7 @@
   },
   {
     "doc_id": "_보도자료_202026년_204월중_20경남지역_20실물경제_20동향_202606__f_53112343",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/_보도자료_202026년_204월중_20경남지역_20실물경제_20동향_202606__f.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/_보도자료_202026년_204월중_20경남지역_20실물경제_20동향_202606__f.docx",
     "file_name": "_보도자료_202026년_204월중_20경남지역_20실물경제_20동향_202606__f.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -171,7 +171,7 @@
   },
   {
     "doc_id": "한국은행_20광주전남본부_20지방중소기업지원_20프로그램_20운용기준_20신구조문_20대비표_f_25716438",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/한국은행_20광주전남본부_20지방중소기업지원_20프로그램_20운용기준_20신구조문_20대비표_f.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/한국은행_20광주전남본부_20지방중소기업지원_20프로그램_20운용기준_20신구조문_20대비표_f.pdf",
     "file_name": "한국은행_20광주전남본부_20지방중소기업지원_20프로그램_20운용기준_20신구조문_20대비표_f.pdf",
     "source": "bok_publications",
     "type_group": "pdf",
@@ -181,7 +181,7 @@
   },
   {
     "doc_id": "1._20지역경제동향-2026.5월_88492566",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/1._20지역경제동향-2026.5월.docx",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/1._20지역경제동향-2026.5월.docx",
     "file_name": "1._20지역경제동향-2026.5월.docx",
     "source": "bok_publications",
     "type_group": "docx_doc",
@@ -191,7 +191,7 @@
   },
   {
     "doc_id": "82559822a8ec4808867a7ab8266523f6_55647248",
-    "file_path": "/data/richard/cohesity-poc/collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/bok_publications/files/82559822a8ec4808867a7ab8266523f6.pdf",
+    "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/82559822a8ec4808867a7ab8266523f6.pdf",
     "file_name": "82559822a8ec4808867a7ab8266523f6.pdf",
     "source": "bok_publications",
     "type_group": "pdf",

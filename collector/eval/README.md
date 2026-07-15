@@ -1,6 +1,6 @@
 # collector/eval — 문서 타입별/소스(토픽)별 QA/RAGAS 데이터셋 생성기
 
-`collector/gaia_kr_collector`가 수집한 `gaia_test_200g_kr80_no_ocr` 데이터셋에서
+`collector/gaia_kr_collector`가 수집한 `cohesity-poc/gaia_web_dataset`(구 경로: `gaia_test_200g_kr80_no_ocr`) 데이터셋에서
 문서 타입(PDF / DOCX·DOC / XLSX·XLS·CSV / PPT·PPTX)별로, 또는 수집 소스(=토픽,
 `manifest.csv`의 `source` 컬럼 — 예: `dart_financial`, `bok_publications`)별로
 QA 쌍을 생성하고 Cohesity GAIA RAGAS 평가용 테스트셋을 만드는 독립 파이프라인이다.
@@ -13,7 +13,7 @@ txt 타입은 제외한다 — 수집된 txt의 대부분이 Common Crawl 저품
 ## 처리 흐름
 
 ```
-gaia_test_200g_kr80_no_ocr/  (pdf/docx/xlsx/pptx 등)
+gaia_web_dataset/  (pdf/docx/xlsx/pptx 등)
       │
       ▼
 document_sampler.py   →  타입별 무작위 샘플링 + 텍스트 추출 (parsers.py)
@@ -32,11 +32,12 @@ gaia_evaluator.py      →  (별도 실행) Cohesity GAIA API 질의 + RAGAS 스
 
 ### 1-1. 원본 데이터셋
 
-이 파이프라인은 `../gaia_kr_collector/gaia_test_200g_kr80_no_ocr/`를 기본 입력으로 삼는다.
+이 파이프라인은 `cohesity-poc/gaia_web_dataset/`(collector/eval 기준 `../../gaia_web_dataset/`)를
+기본 입력으로 삼는다 (2026-07-15 이전: `collector/gaia_kr_collector/gaia_test_200g_kr80_no_ocr/`).
 다른 머신에서 돌리려면 아래 중 하나가 필요하다.
 
 - `collector/gaia_kr_collector`를 먼저 돌려서 그 결과물을 만들거나,
-- 이미 수집된 `gaia_test_200g_kr80_no_ocr/` 디렉터리를 통째로 복사해오거나,
+- 이미 수집된 `gaia_web_dataset/` 디렉터리를 통째로 복사해오거나,
 - 경로가 다르면 `GAIA_KR_DATASET_DIR` 환경 변수로 위치를 지정한다 (아래 참고).
 
 ### 1-2. 시스템 패키지 — LibreOffice (필수는 아니지만 권장)
@@ -151,7 +152,7 @@ cd collector/eval
 
 ### 3-1. 전제 조건
 
-1. 이 저장소의 문서(`gaia_test_200g_kr80_no_ocr`)가 **먼저 Cohesity GAIA 데이터셋으로
+1. 이 저장소의 문서(`gaia_web_dataset`)가 **먼저 Cohesity GAIA 데이터셋으로
    색인(ingest)되어 있어야 한다.** 이 스크립트는 질의만 하지, 색인은 하지 않는다
    (색인은 Helios UI 또는 별도 ingestion API로 진행 — 이 저장소 범위 밖).
 2. GAIA API 접근 정보를 환경 변수로 설정한다:
@@ -258,11 +259,11 @@ print(df[['faithfulness','answer_relevancy','context_precision','context_recall'
   (속도 제한 완화용 경고일 뿐). 필요하면 `export HF_TOKEN=...`으로 없앨 수 있음.
 - **LibreOffice 관련 변환 실패**: `.doc`/`.ppt` 등 구형 파일은 LibreOffice가 없으면
   조용히 스킵(None 반환)된다 — 파이프라인이 죽지는 않지만 해당 타입 샘플이 줄어든다.
-- **`gaia_test_200g_kr80_no_ocr`를 못 찾음**: `GAIA_KR_DATASET_DIR` 환경 변수로 절대
+- **`gaia_web_dataset`를 못 찾음**: `GAIA_KR_DATASET_DIR` 환경 변수로 절대
   경로를 직접 지정.
 
 ```bash
-export GAIA_KR_DATASET_DIR=/path/to/gaia_test_200g_kr80_no_ocr
+export GAIA_KR_DATASET_DIR=/path/to/gaia_web_dataset
 ```
 
 ## 6. 출력 (`output/`)
@@ -288,7 +289,7 @@ export GAIA_KR_DATASET_DIR=/path/to/gaia_test_200g_kr80_no_ocr
 
 | 변수 | 기본값 | 환경 변수 | 설명 |
 |---|---|---|---|
-| `DATASET_DIR` | `../gaia_kr_collector/gaia_test_200g_kr80_no_ocr` | `GAIA_KR_DATASET_DIR` | 샘플링 대상 원본 데이터 경로 |
+| `DATASET_DIR` | `../../gaia_web_dataset` | `GAIA_KR_DATASET_DIR` | 샘플링 대상 원본 데이터 경로 |
 | `OUTPUT_DIR` | `./output` | `OUTPUT_DIR` | 결과 저장 경로 |
 | `LLM_PROVIDER` | `claude` | `LLM_PROVIDER` | `claude` 또는 `chatgpt` |
 | `SAMPLE_SIZE_PER_TYPE` | `100` | `SAMPLE_SIZE_PER_TYPE` | 타입당 샘플 문서 수 (`--group-by type`) |
