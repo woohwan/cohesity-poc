@@ -544,8 +544,13 @@ class Collector:
         settings = self.cfg.raw.get("generic_crawl", {})
         max_pages = int(settings.get("max_pages_per_site", 5000))
         max_depth = int(settings.get("max_depth", 4))
-        # 이전 실행에서 방문한 URL로 seen 초기화 → 재시작 시 재크롤 방지
-        seen: Set[str] = set(self._visited)
+        # 이전 실행에서 방문한 URL로 seen 초기화 → 재시작 시 재크롤 방지.
+        # 단, seed_urls(게시판 목록 진입점)는 매 실행 제외 대상에서 뺀다 — 안 그러면
+        # 예전에 한 번이라도 방문한 소스는 seed 자체가 seen에 남아 프론티어가 항상
+        # 비고, 새 글이 올라와도 영구히 0page로 멈춘다 (2026-07-16: nhis_stats 등
+        # 재크롤 영구 정지 버그). 목록 페이지를 다시 훑어도 이미 받은 개별 파일/
+        # 하위 페이지는 seen에 남아있으므로 재다운로드되지 않는다.
+        seen: Set[str] = set(self._visited) - set(seed_urls)
         # 미방문 프론티어(큐)를 파일로 영속화 — seed_urls는 첫 방문 즉시 visited
         # 처리되므로, 프론티어를 저장해두지 않으면 재시작 시 큐가 비어 그 소스는
         # 영구히 0페이지로 멈춘다 (2026-07-08: kostat_eng 등 재시작 후 크롤 유실 버그).
