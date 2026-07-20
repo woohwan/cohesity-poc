@@ -404,9 +404,19 @@ class Collector:
         if m:
             raw = m.group(1)
             try:
-                return raw.encode("latin-1").decode("utf-8")  # 한국 사이트 EUC-KR→UTF-8 복구
+                raw = raw.encode("latin-1").decode("utf-8")  # 한국 사이트 EUC-KR→UTF-8 복구
             except Exception:
-                return raw
+                pass
+            # RFC 5987이 아니라 filename="%EC%9D%B4..." 처럼 따옴표 안에 퍼센트
+            # 인코딩된 바이트를 그대로 넣어 보내는 사이트가 많다 (2026-07-20:
+            # kdischool_eng 등 파일명 깨짐 버그). 위 latin-1 복구는 순수 ASCII인
+            # 퍼센트 인코딩 문자열엔 아무 효과가 없으므로 별도로 unquote한다.
+            if re.search(r"%[0-9A-Fa-f]{2}", raw):
+                try:
+                    raw = unquote(raw, encoding="utf-8", errors="strict")
+                except Exception:
+                    pass
+            return raw
         m = re.search(r"filename\s*=\s*([^;\s\"']+)", cd, re.I)
         if m:
             return unquote(m.group(1))
