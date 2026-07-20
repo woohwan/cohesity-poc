@@ -119,7 +119,10 @@ kowiki_knowledge:
     - "https://dumps.wikimedia.org/kowiki/latest/kowiki-latest-pages-articles-multistream-index.txt.bz2"
 
 english_reference:
-  enabled: true
+  enabled: false   # 2026-07-20: PDF 타입 이미 100% 쿼터 달성 + 프론티어 45만건까지
+                    # 불어나 사실상 정지 상태(skip_over_quota만 쌓임). 전체 배치가
+                    # 이 소스 하나 때문에 안 끝나서 부족한 타입(txt/docx/xlsx/ppt)
+                    # 채우는 auto_pool 소스 승격이 막혔음 — 재활성화 전 프론티어 리셋 권장.
   seed_urls:
     - "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_bulk/"
     - "https://arxiv.org/list/cs.AI/recent"
@@ -135,7 +138,10 @@ english_reference:
 # ---------------------------------------------------------------------------
 
 riss_theses:
-  enabled: true
+  enabled: false   # 2026-07-20: PDF 타입 이미 100% 쿼터 달성 + 프론티어 100만건까지
+                    # 불어나 사실상 정지 상태(skip_over_quota만 쌓임). 전체 배치가
+                    # 이 소스 하나 때문에 안 끝나서 부족한 타입(txt/docx/xlsx/ppt)
+                    # 채우는 auto_pool 소스 승격이 막혔음 — 재활성화 전 프론티어 리셋 권장.
   seed_urls:
     - "https://www.riss.kr/search/Search.do?searchGubun=true&p_mat_type=p&query=%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5"
     - "https://www.riss.kr/search/Search.do?searchGubun=true&p_mat_type=p&query=%EA%B2%BD%EC%A0%9C%EC%A0%95%EC%B1%85"

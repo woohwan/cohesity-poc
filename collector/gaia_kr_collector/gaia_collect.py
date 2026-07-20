@@ -585,6 +585,14 @@ class Collector:
             except OSError:
                 pass
 
+        # 프론티어를 페이지마다 통째로 다시 직렬화하면, 사이트에 따라 큐가
+        # 수십만~백만 건까지 불어났을 때 페이지당 비용이 계속 커져 사실상
+        # 크롤이 멈춘 것처럼 느려진다 (2026-07-20: riss_theses 큐 100만건에서
+        # 페이지당 20초+까지 느려짐). 시간 간격을 두고 저장한다 — 중단 시에는
+        # finally에서 마지막으로 한 번 더 저장하므로 재시작 유실은 없다.
+        FRONTIER_SAVE_INTERVAL_SEC = 30
+        last_frontier_save = time.monotonic()
+
         pbar = tqdm(desc=source, unit="page")
         try:
             while q and self.any_quota_remaining() and pages < max_pages:
@@ -623,7 +631,10 @@ class Collector:
                                 q.append((link, depth + 1))
                         except ValueError:
                             pass
-                _save_frontier()
+                now = time.monotonic()
+                if now - last_frontier_save >= FRONTIER_SAVE_INTERVAL_SEC:
+                    _save_frontier()
+                    last_frontier_save = now
                 time.sleep(self.cfg.sleep)
         finally:
             _save_frontier()
