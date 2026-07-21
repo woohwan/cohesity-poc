@@ -16,7 +16,7 @@ quotas:
     docx_doc:     30GB   # .doc .docx .odf .rtf
     xlsx_xls_csv: 15GB   # .xls .xlsx .csv
     ppt_pptx:     10GB   # .ppt .pptx
-    txt:          20GB   # .txt .html
+    txt:          20GB   # .txt (2026-07-21: html 제외 — 실질 문서가 아니라 에러 페이지만 쌓임)
   # 한국어 소스가 부족한 타입은 영어 소스로 보충 허용 (한국어 70% / 영어 30%).
   # lang: en 태그가 붙은 소스는 여기 지정된 비율(타입 quota 대비)까지만 채워짐.
   lang_cap:
@@ -36,7 +36,6 @@ allowed_extensions:
   - .ppt
   - .pptx
   - .txt
-  - .html
   - .xml
 
 # Crawl depth / page limits — increase if a source produces fewer files than expected.
@@ -536,7 +535,12 @@ nts_stats:
 
 # ── JSON/XML 풀 (법령·도서관·문화 오픈데이터) ──────────────────────────────
 
+# 아래 4개는 type_hint: json_xml인데 TYPE_GROUPS/quotas.by_type에 json_xml
+# 버킷 자체가 없어 auto_pool 승격 대상에 절대 안 낌 (2026-07-21 확인) — 의도된
+# 상태임: JSON은 필요 없고, XML은 gaia_dataset(DART)에 이미 충분해서 여기선
+# 뺐음. 계속 실행 후보로 남아있으면 헷갈리니 명시적으로 꺼둠.
 law_open_data:
+  enabled: false
   auto_pool: true
   type_hint: json_xml
   seed_urls:
@@ -545,6 +549,7 @@ law_open_data:
     - "https://www.law.go.kr/LSW/admRulLstP.do"
 
 library_catalog:
+  enabled: false
   auto_pool: true
   type_hint: json_xml
   seed_urls:
@@ -552,6 +557,7 @@ library_catalog:
     - "https://www.nl.go.kr/seoji/SearchApi.do?cert_key=test&result_style=xml&page_no=1&page_size=10"
 
 cultural_heritage_data:
+  enabled: false
   auto_pool: true
   type_hint: json_xml
   seed_urls:
@@ -559,6 +565,7 @@ cultural_heritage_data:
     - "https://www.heritage.go.kr/heri/cul/culSelectDetail.do"
 
 data_go_kr_json:
+  enabled: false
   auto_pool: true
   type_hint: json_xml
   seed_urls:

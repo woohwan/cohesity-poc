@@ -78,7 +78,7 @@ CONTENT_TYPE_EXT: Dict[str, Optional[str]] = {
     "application/json":                                                         None,
     "application/xml":                                                          ".xml",
     "text/xml":                                                                 ".xml",
-    "text/html":                                                                ".html",
+    "text/html":                                                                None,  # 저장 안 함 — 대부분 다운로드 실패 시 서버가 주는 에러 페이지
     "application/rtf":                                                          ".rtf",
     "text/rtf":                                                                 ".rtf",
     "application/vnd.oasis.opendocument.text":                                  ".odf",
@@ -102,12 +102,17 @@ NON_SOURCE_KEYS = frozenset({
 })
 
 # Document type groups and the file extensions that belong to each.
+# html은 예전엔 txt로 쳐줬지만(2026-07-20 이전), collector/eval/config.py의
+# TYPE_GROUPS가 애초에 txt를 평가 대상에서 빼놔서 아무 소용이 없었고, 다운로드
+# 실패 시 서버가 돌려주는 에러 페이지까지 "downloaded"로 잡혀 gov_policy_reports
+# 한 곳에서만 9,410개(37MB) 중복 쓰레기가 쌓였다. html은 더 이상 수집 대상이
+# 아니다 — CONTENT_TYPE_EXT["text/html"]도 함께 None으로 바꿔야 한다.
 TYPE_GROUPS: Dict[str, Set[str]] = {
     "pdf":          {"pdf"},
     "docx_doc":     {"docx", "doc", "odf", "rtf"},
     "xlsx_xls_csv": {"xlsx", "xls", "csv"},
     "ppt_pptx":     {"ppt", "pptx"},
-    "txt":          {"txt", "html"},
+    "txt":          {"txt"},
 }
 EXT_TO_GROUP: Dict[str, str] = {
     ext: grp for grp, exts in TYPE_GROUPS.items() for ext in exts
@@ -493,6 +498,13 @@ class Collector:
         if n == 0:
             tmp.unlink(missing_ok=True)
             self.log(source, url, out, 0, "empty")
+            return False
+        if total and n < total:
+            # 응답이 중간에 끊겨 Content-Length보다 적게 받은 반쪽 파일을
+            # 그냥 "downloaded"로 기록해버리던 버그 (2026-07-20 발견, PDF
+            # 32%가 이 상태였음). 다음 실행에서 재시도되도록 실패 처리한다.
+            tmp.unlink(missing_ok=True)
+            self.log(source, url, out, 0, "truncated")
             return False
         tmp.rename(out)
         if is_hwp:
