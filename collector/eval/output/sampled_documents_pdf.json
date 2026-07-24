@@ -1,6 +1,6 @@
 [
   {
-    "doc_id": "_EA_B5_AD_EB_AC_B8_EB_B3_B4_EB_8F_84_EC_9E_90_EB_A3_8C_2604__47123539",
+    "doc_id": "국문보도자료&04__47123539",
     "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/국문보도자료&04_.pdf",
     "file_name": "국문보도자료&04_.pdf",
     "source": "bok_publications",
@@ -10,7 +10,7 @@
     "text_length": 2423
   },
   {
-    "doc_id": "_ED_87_B4_EC_A7_81_EA_B8_89_EC_97_AC_20_EB_B3_B4_EC_9E_A5_EB_B2__55734208",
+    "doc_id": "퇴직급여 보장__55734208",
     "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/law_lbook/files/퇴직급여 보장법령.pdf",
     "file_name": "퇴직급여 보장법령.pdf",
     "source": "law_lbook",
@@ -90,7 +90,7 @@
     "text_length": 19751
   },
   {
-    "doc_id": "_ED_95_AD_EA_B3_B5_EB_B2_95_EA_B7_9C_44454521",
+    "doc_id": "항공법규_44454521",
     "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/law_lbook/files/항공법규.pdf",
     "file_name": "항공법규.pdf",
     "source": "law_lbook",
@@ -170,7 +170,7 @@
     "text_length": 62127
   },
   {
-    "doc_id": "_EC_B5_9C_EC_8B_A0_20_EC_A0_84_EA_B8_B0_EA_B4_80_EA_B3_84_EB_B2__24809188",
+    "doc_id": "최신 전기관계__24809188",
     "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/law_lbook/files/최신 전기관계법령.pdf",
     "file_name": "최신 전기관계법령.pdf",
     "source": "law_lbook",
@@ -190,7 +190,7 @@
     "text_length": 791
   },
   {
-    "doc_id": "_EA_B8_88_EC_9C_B5_EC_95_88_EC_A0_95_EB_B3_B4_EA_B3_A0_EC_84_9C__49513906",
+    "doc_id": "금융안정보고서__49513906",
     "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/금융안정보고서 26년 6월_.pdf",
     "file_name": "금융안정보고서 26년 6월_.pdf",
     "source": "bok_publications",
@@ -280,7 +280,7 @@
     "text_length": 11388
   },
   {
-    "doc_id": "_EB_B3_B4_EB_8F_84_EC_9E_90_EB_A3_8C_202026_EB_85_84_201_EC_9B_9_84110358",
+    "doc_id": "보도자료 2026년 1월 생산자물가지수잠정__f_84110358",
     "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/보도자료 2026년 1월 생산자물가지수잠정__f.pdf",
     "file_name": "보도자료 2026년 1월 생산자물가지수잠정__f.pdf",
     "source": "bok_publications",
@@ -310,7 +310,7 @@
     "text_length": 28915
   },
   {
-    "doc_id": "2025_EB_85_84_EC_9D_B8_EA_B6_8C_EC_98_81_ED_96_A5_ED_8F_89_EA_B0_58470515",
+    "doc_id": "2025년인권영향평_58470515",
     "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/krihs_reports/files/2025년인권영향평가결과보고서.pdf",
     "file_name": "2025년인권영향평가결과보고서.pdf",
     "source": "krihs_reports",
@@ -390,7 +390,7 @@
     "text_length": 184793
   },
   {
-    "doc_id": "_ED_98_95_EC_82_AC_EB_B2_95_20_EB_B0_8F_20_ED_98_95_EC_82_AC_ED__64181961",
+    "doc_id": "형사법 및 형사__64181961",
     "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/law_lbook/files/형사법 및 형사특별법.pdf",
     "file_name": "형사법 및 형사특별법.pdf",
     "source": "law_lbook",
@@ -640,7 +640,7 @@
     "text_length": 19037
   },
   {
-    "doc_id": "BOK_EC_9D_B4_EC_8A_88_EB_85_B8_ED_8A_B8__EC_A0_9C2025-2_ED_98_B8_15710848",
+    "doc_id": "BOK이슈노트_제2025-2호_15710848",
     "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/BOK이슈노트_제2025-2호_AI와 한국경제.pdf",
     "file_name": "BOK이슈노트_제2025-2호_AI와 한국경제.pdf",
     "source": "bok_publications",
@@ -670,7 +670,7 @@
     "text_length": 9365
   },
   {
-    "doc_id": "_EB_B3_B4_EA_B1_B4_EC_9D_98_EB_A3_8C_EB_8D_B0_EC_9D_B4_ED_84_B0__16356795",
+    "doc_id": "보건의료데이터__16356795",
     "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/hira_opendata/files/보건의료데이터 활용 가이드라인(2024.12._29.pdf",
     "file_name": "보건의료데이터 활용 가이드라인(2024.12._29.pdf",
     "source": "hira_opendata",
@@ -690,7 +690,7 @@
     "text_length": 7299
   },
   {
-    "doc_id": "_EC_A7_80_EC_97_AD_EA_B2_BD_EC_B0_B0_EC_9D_B4_EC_82_AC_EC_9A_A9__58502066",
+    "doc_id": "지역경찰이사용__58502066",
     "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/law_lbook/files/지역경찰이사용하는법령집.pdf",
     "file_name": "지역경찰이사용하는법령집.pdf",
     "source": "law_lbook",
@@ -700,7 +700,7 @@
     "text_length": 32341
   },
   {
-    "doc_id": "_EA_B2_BD_EC_A0_9C_ED_8C_80_20_EB_B2_95_EB_A0_B9_EC_A7_91_83721310",
+    "doc_id": "경제팀 법령집_83721310",
     "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/law_lbook/files/경제팀 법령집.pdf",
     "file_name": "경제팀 법령집.pdf",
     "source": "law_lbook",
@@ -800,7 +800,7 @@
     "text_length": 26075
   },
   {
-    "doc_id": "_EA_B2_BD_EA_B8_B0_EB_8F_84_EA_B5_90_EC_9C_A1_EC_B2_AD_20_EC_A1__44244908",
+    "doc_id": "경기도교육청 __44244908",
     "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/law_lbook/files/경기도교육청 조례집.pdf",
     "file_name": "경기도교육청 조례집.pdf",
     "source": "law_lbook",
@@ -870,7 +870,7 @@
     "text_length": 5924
   },
   {
-    "doc_id": "_EC_8B_9D_ED_92_88_20_EA_B4_80_EB_A0_A8_20_EB_B2_95_EA_B7_9C_91866510",
+    "doc_id": "식품 관련 법규_91866510",
     "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/law_lbook/files/식품 관련 법규.pdf",
     "file_name": "식품 관련 법규.pdf",
     "source": "law_lbook",
@@ -920,7 +920,7 @@
     "text_length": 3560
   },
   {
-    "doc_id": "_EA_B5_AD_ED_86_A0_EC_A2_85_ED_95_A9_EA_B3_84_ED_9A_8D50_EB_85_8_24483253",
+    "doc_id": "국토종합계획50년_전시회_리플렛_24483253",
     "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/krihs_reports/files/국토종합계획50년_전시회_리플렛.pdf",
     "file_name": "국토종합계획50년_전시회_리플렛.pdf",
     "source": "krihs_reports",
@@ -960,7 +960,7 @@
     "text_length": 27071
   },
   {
-    "doc_id": "_EB_B3_B4_EB_8F_84_EC_9E_90_EB_A3_8C_202026_EB_85_84_203_EC_9B_9_85867279",
+    "doc_id": "보도자료 2026년 3월중 거주자외화예금 동향_F_85867279",
     "file_path": "/data/richard/cohesity-poc/gaia_web_dataset/bok_publications/files/보도자료 2026년 3월중 거주자외화예금 동향_F.pdf",
     "file_name": "보도자료 2026년 3월중 거주자외화예금 동향_F.pdf",
     "source": "bok_publications",
