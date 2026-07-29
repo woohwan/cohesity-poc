@@ -1,5 +1,5 @@
 ================================================================
-  다른 Linux 서버로 이전 및 테스트 절차 (v2)
+  다른 Linux 서버로 이전 및 테스트 절차 (v3)
 ================================================================
 
 [ 목적 ]
@@ -9,6 +9,8 @@
 
   - Cohesity로 올라가는 실데이터는 gaia_dataset(DART)과 gaia_web_dataset(Web)
     두 개뿐이며, 각각 tar로 묶어서 이동한다.
+  - 코드(gaia_ragas, collector/eval 등)는 타겟 머신에 인터넷이 되므로
+    rsync 대신 **git clone**으로 가져온다.
   - 실제 테스트(QA 생성 + Cohesity GAIA API 평가)는 타겟 머신에서
     gaia_ragas(DART용) / collector/eval(Web용) 두 파이프라인으로 수행한다.
   - qdrant_rag(로컬 벡터 검색 RAG)는 이번 이전 범위에서 제외한다.
@@ -16,27 +18,33 @@
 
 [ 이동 대상 정리 ]
 
-  ■ Cohesity에 올릴 데이터 (tar로 묶어 이동)
+  ■ Cohesity에 올릴 데이터 (tar로 묶어 이동 — git에는 안 잡히는 대용량 데이터)
 
     gaia_dataset/       ← DART 통합 데이터셋 (현재 103GB, XML/PDF/XLS 원본, 275개 회사)
     gaia_web_dataset/   ← Web 수집 데이터셋 (현재 60GB, PDF/DOCX/XLSX/PPTX 등, 73개 소스)
 
-  ■ 타겟 머신에 직접 복사할 코드 (소스코드만, 용량 작음 — rsync)
+  ■ 타겟 머신에서 git clone으로 가져올 코드
 
-    gaia_ragas/         ← DART 데이터 QA 생성 / GAIA·RAGAS 평가 (.venv 제외)
-    collector/eval/     ← Web 데이터 QA 생성 / GAIA·RAGAS 평가 (.venv 제외)
+    저장소: https://github.com/woohwan/cohesity-poc.git (branch: main)
 
-  ■ 이번엔 옮기지 않음
+    clone 하면 repo 전체(qdrant_rag/, collector/gaia_kr_collector/ 포함)가
+    다 딸려오지만, 실제로 쓰는 건 이 두 곳뿐이다:
+      gaia_ragas/         ← DART 데이터 QA 생성 / GAIA·RAGAS 평가
+      collector/eval/     ← Web 데이터 QA 생성 / GAIA·RAGAS 평가
+
+  ■ 이번엔 쓰지 않음 (clone은 되지만 셋업/실행 안 함)
 
     qdrant_rag/                    로컬 RAG 인제스트/검색 테스트 — 이번 범위 아님
     collector/gaia_kr_collector/   Web 데이터는 이미 수집 완료본을 tar로 옮기는
                                     것이라 수집기 자체는 불필요
                                     (타겟에서 재수집이 필요해지면 별도 안내 참고)
 
-  ※ .venv/, output/ 은 타겟에서 재생성
+  ※ gaia_dataset/, gaia_web_dataset/ 은 .gitignore에 잡혀있어 git clone으로는
+    안 온다 — 반드시 tar+Cohesity로 별도 전달해야 함.
+  ※ .venv/, output/ 은 타겟에서 재생성 (git에도 안 잡힘)
   ※ gaia_ragas/config.py의 GAIA_DATASET_DIR, collector/eval/config.py의
     DATASET_DIR은 둘 다 자기 상위 디렉터리를 기준으로 형제 폴더를 상대경로로
-    찾는다. 타겟에서도 cohesity-poc/ 바로 아래에 같은 상대 위치로 둬야 한다:
+    찾는다. clone한 repo 루트에 tar를 그대로 풀면 자동으로 맞는 위치가 된다:
       cohesity-poc/gaia_ragas/       ↔  cohesity-poc/gaia_dataset/
       cohesity-poc/collector/eval/   ↔  cohesity-poc/gaia_web_dataset/
 
@@ -68,9 +76,19 @@
   (Cohesity 쪽 세부 조작 절차는 이 문서 범위 밖 — 운영 가이드 별도 참고)
 
 
-[ 3. 타겟 머신 — 데이터 복원 및 압축 해제 ]
+[ 3. 타겟 머신 — 코드 clone ]
 
-  # Cohesity에서 복원받은 tar 파일이 /data/cohesity-poc/ 에 있다고 가정
+  cd /data/cohesity-poc   # 또는 원하는 위치
+  git clone https://github.com/woohwan/cohesity-poc.git .
+
+  ※ private repo면 타겟 머신에 GitHub 인증(SSH 키 또는 HTTPS PAT)이
+    미리 설정돼 있어야 함.
+  ※ 이미 다른 경로에 clone돼 있으면 git pull로 최신화만 해도 됨.
+
+
+[ 4. 타겟 머신 — 데이터 복원 및 압축 해제 ]
+
+  # Cohesity에서 복원받은 tar 파일이 clone한 repo 루트에 있다고 가정
   cd /data/cohesity-poc
   tar -xf gaia_dataset.tar
   tar -xf gaia_web_dataset.tar
@@ -80,25 +98,26 @@
   #   /data/cohesity-poc/gaia_web_dataset/...
 
 
-[ 4. 타겟 머신 — 코드 전송 (rsync) ]
-
-  rsync -avz --progress \
-    --exclude='.venv' --exclude='__pycache__' --exclude='output' \
-    /data/richard/cohesity-poc/gaia_ragas/ \
-    user@target-server:/data/cohesity-poc/gaia_ragas/
-
-  rsync -avz --progress \
-    --exclude='.venv' --exclude='__pycache__' --exclude='output' \
-    /data/richard/cohesity-poc/collector/eval/ \
-    user@target-server:/data/cohesity-poc/collector/eval/
-
-  ※ --progress: 진행률 표시 / 중단 후 재실행하면 이어서 전송(중복 전송 없음)
-
-
 [ 5. 타겟 머신 — 환경 설정 ]
 
-  # Python 3.12 권장 (두 가상환경 모두 3.12로 검증됨. 3.10+면 동작하나 미검증)
-  python3 --version
+  # Python 3.12 필요 (두 가상환경 모두 3.12로 검증됨. 3.10+면 동작하나 미검증)
+  # 시스템 python3 버전에 안 좌우되게 Miniconda로 정확한 버전을 받는다 —
+  # 배포판/권한(root 불필요) 안 가림.
+
+  # Miniconda 설치 (이미 설치돼 있으면 건너뜀 — `conda --version`으로 확인)
+  wget -O ~/miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+  bash ~/miniconda.sh -b -p $HOME/miniconda3
+  source $HOME/miniconda3/bin/activate
+  conda init bash   # 이후 새 셸부터 conda 명령 바로 사용 가능 (재로그인 필요할 수 있음)
+
+  # Python 3.12 환경 생성 및 활성화
+  conda create -n cohesity-poc python=3.12 -y
+  conda activate cohesity-poc
+  python3 --version   # 3.12.x 로 나오면 정상
+
+  ※ 새 터미널 세션을 열 때마다 `conda activate cohesity-poc`를 다시 해줘야
+    conda의 python3.12가 잡힌다 — 안 하면 시스템 기본 python3로 venv가
+    생성될 수 있으니 주의.
 
   # gaia_ragas 가상환경
   cd /data/cohesity-poc/gaia_ragas
@@ -149,7 +168,8 @@
   디렉터리 구조 (타겟 기준)
 ================================================================
 
-  /data/cohesity-poc/
+  /data/cohesity-poc/               ← git clone 루트
+  ├── .git/
   ├── gaia_ragas/
   │   ├── .venv/                   (타겟에서 생성)
   │   ├── config.py
@@ -162,11 +182,12 @@
   │   ├── run.sh
   │   ├── requirements.txt
   │   └── output/                  (타겟에서 생성)
-  ├── gaia_dataset/                (tar로 이전, 103GB — DART)
+  ├── gaia_dataset/                (tar로 이전, 103GB — DART, git 추적 안 됨)
   │   ├── 000030_우리금융지주/
   │   ├── 000060_메리츠화재해상보험/
   │   └── ... (275개 회사)
   ├── collector/
+  │   ├── gaia_kr_collector/       (clone은 되지만 이번엔 미사용)
   │   └── eval/
   │       ├── .venv/               (타겟에서 생성)
   │       ├── config.py
@@ -176,7 +197,8 @@
   │       ├── gaia_evaluator.py
   │       ├── run_pipeline.py
   │       └── output/               (타겟에서 생성)
-  └── gaia_web_dataset/            (tar로 이전, 60GB — Web, 73개 소스)
+  ├── qdrant_rag/                  (clone은 되지만 이번엔 미사용)
+  └── gaia_web_dataset/            (tar로 이전, 60GB — Web, git 추적 안 됨)
       ├── bok_publications/
       ├── law_lbook/
       ├── manifest.csv
