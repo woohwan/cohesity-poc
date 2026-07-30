@@ -379,7 +379,7 @@
       "type_group": "xlsx_xls_csv",
       "ext": "csv",
       "source": "data_go_kr",
-      "file_name": "_재개방_필요_충청남도_공공건축물_현황_20240703.csv",
+      "file_name": "_재개방_필요_충청남도_공공건축물_현황_20240703.xlsx",
       "question_type": "numeric"
     },
     {
@@ -421,7 +421,7 @@
       "type_group": "xlsx_xls_csv",
       "ext": "csv",
       "source": "data_go_kr",
-      "file_name": "인문100년장학금_지원금액_현황_20251231.csv",
+      "file_name": "인문100년장학금_지원금액_현황_20251231.xlsx",
       "question_type": "numeric"
     },
     {
@@ -533,7 +533,7 @@
       "type_group": "xlsx_xls_csv",
       "ext": "csv",
       "source": "data_go_kr",
-      "file_name": "인문100년장학금_지원금액_현황_20251231.csv",
+      "file_name": "인문100년장학금_지원금액_현황_20251231.xlsx",
       "question_type": "numeric"
     },
     {
@@ -547,7 +547,7 @@
       "type_group": "xlsx_xls_csv",
       "ext": "csv",
       "source": "english_reference",
-      "file_name": "ESM_14.csv",
+      "file_name": "ESM_14.xlsx",
       "question_type": "numeric"
     },
     {
@@ -631,7 +631,7 @@
       "type_group": "xlsx_xls_csv",
       "ext": "csv",
       "source": "english_reference",
-      "file_name": "ESM_12.csv",
+      "file_name": "ESM_12.xlsx",
       "question_type": "factual"
     },
     {
@@ -645,7 +645,7 @@
       "type_group": "xlsx_xls_csv",
       "ext": "csv",
       "source": "data_go_kr",
-      "file_name": "_검토완료_한국장학재단_고교_취업연계_장려금_참여_고등학교_현황_260612.csv",
+      "file_name": "_검토완료_한국장학재단_고교_취업연계_장려금_참여_고등학교_현황_260612.xlsx",
       "question_type": "factual"
     },
     {
@@ -799,7 +799,7 @@
       "type_group": "xlsx_xls_csv",
       "ext": "csv",
       "source": "english_reference",
-      "file_name": "ESM_12.csv",
+      "file_name": "ESM_12.xlsx",
       "question_type": "relationship"
     },
     {
@@ -841,7 +841,7 @@
       "type_group": "xlsx_xls_csv",
       "ext": "csv",
       "source": "english_reference",
-      "file_name": "ESM_15.csv",
+      "file_name": "ESM_15.xlsx",
       "question_type": "factual"
     },
     {
@@ -1065,7 +1065,7 @@
       "type_group": "xlsx_xls_csv",
       "ext": "csv",
       "source": "data_go_kr",
-      "file_name": "_재개방_필요_충청남도_공공건축물_현황_20240703.csv",
+      "file_name": "_재개방_필요_충청남도_공공건축물_현황_20240703.xlsx",
       "question_type": "factual"
     },
     {
@@ -1205,7 +1205,7 @@
       "type_group": "xlsx_xls_csv",
       "ext": "csv",
       "source": "english_reference",
-      "file_name": "ESM_14.csv",
+      "file_name": "ESM_14.xlsx",
       "question_type": "factual"
     },
     {
@@ -1331,7 +1331,7 @@
       "type_group": "xlsx_xls_csv",
       "ext": "csv",
       "source": "english_reference",
-      "file_name": "ESM_10.csv",
+      "file_name": "ESM_10.xlsx",
       "question_type": "numeric"
     },
     {
@@ -1695,7 +1695,7 @@
       "type_group": "xlsx_xls_csv",
       "ext": "csv",
       "source": "english_reference",
-      "file_name": "ESM_15.csv",
+      "file_name": "ESM_15.xlsx",
       "question_type": "numeric"
     },
     {
@@ -1807,7 +1807,7 @@
       "type_group": "xlsx_xls_csv",
       "ext": "csv",
       "source": "data_go_kr",
-      "file_name": "_검토완료_한국장학재단_고교_취업연계_장려금_참여_고등학교_현황_260612.csv",
+      "file_name": "_검토완료_한국장학재단_고교_취업연계_장려금_참여_고등학교_현황_260612.xlsx",
       "question_type": "factual"
     },
     {
@@ -1933,7 +1933,7 @@
       "type_group": "xlsx_xls_csv",
       "ext": "csv",
       "source": "local_gov_data",
-      "file_name": "부산광역시_동구_가로등현황_20250917.csv",
+      "file_name": "부산광역시_동구_가로등현황_20250917.xlsx",
       "question_type": "numeric"
     },
     {
@@ -1961,7 +1961,7 @@
       "type_group": "xlsx_xls_csv",
       "ext": "csv",
       "source": "data_go_kr",
-      "file_name": "한국도로교통공단_사고유형별_월별_교통사고_통계_2024_.csv",
+      "file_name": "한국도로교통공단_사고유형별_월별_교통사고_통계_2024_.xlsx",
       "question_type": "numeric"
     },
     {
@@ -2045,7 +2045,7 @@
       "type_group": "xlsx_xls_csv",
       "ext": "csv",
       "source": "data_go_kr",
-      "file_name": "한국도로교통공단_사고유형별_월별_교통사고_통계_2024_.csv",
+      "file_name": "한국도로교통공단_사고유형별_월별_교통사고_통계_2024_.xlsx",
       "question_type": "numeric"
     },
     {
@@ -2269,7 +2269,7 @@
       "type_group": "xlsx_xls_csv",
       "ext": "csv",
       "source": "local_gov_data",
-      "file_name": "부산광역시_동구_가로등현황_20250917.csv",
+      "file_name": "부산광역시_동구_가로등현황_20250917.xlsx",
       "question_type": "factual"
     },
     {
@@ -2507,7 +2507,7 @@
       "type_group": "xlsx_xls_csv",
       "ext": "csv",
       "source": "english_reference",
-      "file_name": "ESM_10.csv",
+      "file_name": "ESM_10.xlsx",
       "question_type": "numeric"
     },
     {
@@ -2577,7 +2577,7 @@
       "type_group": "xlsx_xls_csv",
       "ext": "csv",
       "source": "english_reference",
-      "file_name": "ESM_17.csv",
+      "file_name": "ESM_17.xlsx",
       "question_type": "factual"
     },
     {
@@ -2773,7 +2773,7 @@
       "type_group": "xlsx_xls_csv",
       "ext": "csv",
       "source": "english_reference",
-      "file_name": "ESM_17.csv",
+      "file_name": "ESM_17.xlsx",
       "question_type": "numeric"
     },
     {
