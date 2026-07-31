@@ -6,6 +6,7 @@
 from __future__ import annotations
 
 import csv
+import io
 import re
 import shutil
 import signal
@@ -161,14 +162,19 @@ def parse_xls(path: Path, max_rows_per_sheet: int = 200) -> Optional[str]:
 
 def parse_csv(path: Path, max_rows: int = 300) -> Optional[str]:
     try:
-        with path.open(encoding="utf-8-sig", errors="ignore", newline="") as f:
-            rows = []
-            for i, row in enumerate(csv.reader(f)):
-                if i >= max_rows:
-                    break
-                vals = [v.strip() for v in row if v.strip()]
-                if vals:
-                    rows.append("  ".join(vals))
+        raw = path.read_bytes()
+        try:
+            text = raw.decode("utf-8-sig")
+        except UnicodeDecodeError:
+            # data.go.kr 등 국내 공공데이터 CSV는 cp949로 배포되는 경우가 흔하다.
+            text = raw.decode("cp949", errors="ignore")
+        rows = []
+        for i, row in enumerate(csv.reader(io.StringIO(text, newline=""))):
+            if i >= max_rows:
+                break
+            vals = [v.strip() for v in row if v.strip()]
+            if vals:
+                rows.append("  ".join(vals))
         return _clean("\n".join(rows)) or None
     except Exception:
         return None

@@ -1060,7 +1060,7 @@ def main():
     args = ap.parse_args()
 
     if args.bg:
-        cmd = [sys.executable] + [a for a in sys.argv[1:] if a not in ("--bg",)]
+        cmd = [sys.executable, sys.argv[0]] + [a for a in sys.argv[1:] if a not in ("--bg",)]
         log_path = Path(args.log)
         with log_path.open("a") as f:
             proc = subprocess.Popen(cmd, stdout=f, stderr=f, start_new_session=True)
